@@ -20,3 +20,12 @@ Route::get('/', function () {
 Route::get('/registro', function () {
     return view('registro');
 });
+
+// Vistas de supervisor
+Route::get('/supervisor.home', function () {
+    return view('/supervisor/home');
+});
+
+Route::get('/supervisor.visualizar_solicitud', function () {
+    return view('/supervisor/visualizar_solicitud');
+});
