@@ -32,3 +32,7 @@ Route::get('/alumno.home', function () {
 Route::get('/supervisor.visualizar_solicitud', function () {
     return view('/supervisor/visualizar_solicitud');
 });
+
+Route::get('/supervisor.ayuda', function () {
+    return view('/supervisor/ayuda');
+});

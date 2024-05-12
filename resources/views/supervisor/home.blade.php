@@ -24,17 +24,31 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/supervisor.home') }}">
+                      Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Visualizar Solicitudes</a>
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.visualizar_solicitud') }}">
+                      Visualizar Solicitudes
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link elemento-navegacion-plh" href="#">Visualizar Reporte</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Ayuda</a>
+                {{--  --}}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                      Ayuda
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
+                    <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
+                    <li><a class="dropdown-item" href="#">Contacto</a></li>
+                  </ul>
                 </li>
+                {{--  --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
