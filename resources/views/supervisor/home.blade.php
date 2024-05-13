@@ -14,7 +14,8 @@
 </head>
 <body>
     {{-- Menú de navegación --}}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0">
+    <div class="menu-navegacion">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid nav-color color-borde-plh">
           <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
             <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
@@ -63,7 +64,9 @@
             </ul>
         </div>
         </div>
-    </nav>
+      </nav>
+    </div>
+    
 
     {{-- Contenido --}}
     <div class="row contenido-plh">

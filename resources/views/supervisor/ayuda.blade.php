@@ -1,3 +1,4 @@
+{{-- VISTA QUE SE VA A ELIMINAR --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

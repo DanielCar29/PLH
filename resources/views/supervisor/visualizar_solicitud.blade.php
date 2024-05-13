@@ -13,47 +13,64 @@
 </head>
 <body>
     {{-- Menú de navegación --}}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0">
-        <div class="container-fluid nav-color color-borde-plh">
-          <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
-            <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
-                width="40" height="40" class="d-inline-block align-text-top">
-                    PLH
-        </a>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/supervisor.home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.visualizar_solicitud') }}">Visualizar Solicitudes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Visualizar Reporte</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.ayuda') }}">Ayuda</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+    <div class="menu-navegacion">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid nav-color color-borde-plh">
+              <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
+                <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
+                    width="40" height="40" class="d-inline-block align-text-top">
+                        PLH
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/supervisor.home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.visualizar_solicitud') }}">Visualizar Solicitudes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link elemento-navegacion-plh" href="#">Visualizar Reporte</a>
+                    </li>
+                    {{--  --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Supervisor
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Configuración</a></li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
+                            Ayuda
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
+                          <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
+                          <li><a class="dropdown-item" href="#">Contacto</a></li>
+                        </ul>
+                    </li>
+                    {{--  --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                                Nombre Supervisor
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li><a class="dropdown-item" href="#">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+    </div>
+    
     
     <div class="contenido-plh">
 
+        <div class="titulo">
+            <h2>Solicitudes de alumnos</h2>
+        </div>
+
         <div class="tabla">
-            <table class="table table-hover" id="tabla" style="background-color: rgb(0, 29, 61,.3)">
+            <table class="table table-hover" id="tabla">
                 <tbody>
                     <tr>
                         <th>Numero de control</th>
@@ -100,8 +117,63 @@
 
             </table>
         </div>
+
+        <div class="titulo">
+            <h2>Lista de aceptados</h2>
+        </div>
+
+        <div class="tabla">
+            <table class="table table-hover" id="tabla">
+                <tbody>
+                    <tr>
+                        <th>Numero de control</th>
+                        <th>Alumno</th>
+                        <th>Acciones</th>
+                        <th>Día de envío</th>
+                    </tr>
+    
+                    <tr>
+                        <td>212310628</td>
+                        <td>Jose Alberto Sandoval Vazquez</td>
+                        <td><a href="#">Visualizar</a></td>
+                        <td>07/05/2024</td>
+                    </tr>
+    
+                    <tr>
+                        <td>212310628</td>
+                        <td>Jose Alberto Sandoval Vazquez</td>
+                        <td><a href="#">Visualizar</a></td>
+                        <td>07/05/2024</td>
+                    </tr>
+    
+                    <tr>
+                        <td>212310628</td>
+                        <td>Jose Alberto Sandoval Vazquez</td>
+                        <td><a href="#">Visualizar</a></td>
+                        <td>07/05/2024</td>
+                    </tr>
+    
+                    <tr>
+                        <td>212310628</td>
+                        <td>Jose Alberto Sandoval Vazquez</td>
+                        <td><a href="#">Visualizar</a></td>
+                        <td>07/05/2024</td>
+                    </tr>
+    
+                    <tr>
+                        <td>212310628</td>
+                        <td>Jose Alberto Sandoval Vazquez</td>
+                        <td><a href="#">Visualizar</a></td>
+                        <td>07/05/2024</td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
         
     </div>
+
+    
 
 
     {{-- CDN'S de Bootstrap Js --}}
@@ -115,7 +187,7 @@
     </script>
 </body>
 {{-- Contenido del Footer --}}
-<footer>
+{{-- <footer>
     <div class="container pie-plh">
       <div class="row">
         <div class="col-lg-4 elemento-pie-plh">
@@ -137,6 +209,6 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> --}}
 
 </html>
