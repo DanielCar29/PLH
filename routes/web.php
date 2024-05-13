@@ -25,9 +25,11 @@ Route::get('/registro', function () {
 Route::get('/supervisor.home', function () {
     return view('/supervisor/home');
 });
-Route::get('/alumno.home', function () {
-    return view('/alumno/home');
+
+Route::get('/supervisor.visualizar_reporte', function () {
+    return view('/supervisor/visualizar_reporte');
 });
+
 
 Route::get('/supervisor.visualizar_solicitud', function () {
     return view('/supervisor/visualizar_solicitud');
@@ -35,4 +37,10 @@ Route::get('/supervisor.visualizar_solicitud', function () {
 
 Route::get('/supervisor.ayuda', function () {
     return view('/supervisor/ayuda');
+});
+
+
+// Vistas de Alumno
+Route::get('/alumno.home', function () {
+    return view('/alumno/home');
 });

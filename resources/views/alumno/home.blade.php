@@ -11,6 +11,9 @@
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
             <style>
+              div.menu-navegacion nav{
+                  background-color: #003785 !important;
+              }
               .nav-color-custom {
                   background-color: #003785; /* Azul oscuro */
               }
@@ -19,7 +22,8 @@
 </head>
 <body>
     {{-- Menú de navegación --}}
-    <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
+    <div class="menu-navegacion">
+      <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
         <div class="container-fluid nav-color color-borde-plh nav-color-custom">
           <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
             <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
@@ -54,7 +58,9 @@
             </ul>
         </div>
         </div>
-    </nav>
+      </nav>
+    </div>
+    
 
     {{-- Contenido --}}
     <div class="row contenido-plh">

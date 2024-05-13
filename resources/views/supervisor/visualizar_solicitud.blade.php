@@ -30,7 +30,9 @@
                         <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.visualizar_solicitud') }}">Visualizar Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link elemento-navegacion-plh" href="#">Visualizar Reporte</a>
+                        <a class="nav-link elemento-navegacion-plh" href="{{ url('/supervisor.visualizar_reporte') }}">
+                            Visualizar Reporte
+                        </a>
                     </li>
                     {{--  --}}
                     <li class="nav-item dropdown">
