@@ -26,6 +26,8 @@ Route::get('/supervisor.home', function () {
     return view('/supervisor/home');
 });
 
+
+
 Route::get('/supervisor.visualizar_reporte', function () {
     return view('/supervisor/visualizar_reporte');
 });
@@ -43,4 +45,12 @@ Route::get('/supervisor.ayuda', function () {
 // Vistas de Alumno
 Route::get('/alumno.home', function () {
     return view('/alumno/home');
+});
+
+Route::get('/solicitar_beca', function () {
+    return view('/alumno/solicitar_beca');
+});
+
+Route::get('/formulario', function () {
+    return view('/alumno/preguntas');
 });
