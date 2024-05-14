@@ -41,9 +41,12 @@
                             Ayuda
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
-                          <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
-                          <li><a class="dropdown-item" href="#">Contacto</a></li>
+                          <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">
+                                Preguntas Frecuentes
+                                </a>
+                            </li>
+                          <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
                         </ul>
                     </li>
                     {{--  --}}
@@ -64,116 +67,81 @@
         </nav>
     </div>
     
-    
-    <div class="contenido-plh">
+    <div class="contenido-plh_general">
+        <div class="contenido-plh">
 
-        <div class="titulo">
-            <h2>Solicitudes de alumnos</h2>
-        </div>
-
-        <div class="tabla">
-            <table class="table table-hover" id="tabla">
-                <tbody>
-                    <tr>
-                        <th>Numero de control</th>
-                        <th>Alumno</th>
-                        <th>Visualizar Solicitud</th>
-                        <th>Día de envío</th>
-                    </tr>
+            <div class="titulo">
+                <h1>Solicitudes de alumnos</h1>
+            </div>
     
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-
-        <div class="titulo">
-            <h2>Lista de aceptados</h2>
-        </div>
-
-        <div class="tabla">
-            <table class="table table-hover" id="tabla">
-                <tbody>
-                    <tr>
-                        <th>Numero de control</th>
-                        <th>Alumno</th>
-                        <th>Acciones</th>
-                        <th>Día de envío</th>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-    
-                    <tr>
-                        <td>212310628</td>
-                        <td>Jose Alberto Sandoval Vazquez</td>
-                        <td><a href="#">Visualizar</a></td>
-                        <td>07/05/2024</td>
-                    </tr>
-                </tbody>
-    
-            </table>
-        </div>
+            <div class="tabla">
+                <table class="table table-hover table-striped" id="tabla">
+                    
+                        <tr>
+                            <th>Numero de control</th>
+                            <th>Alumno</th>
+                            <th>Visualizar Solicitud</th>
+                            <th>Día de envío</th>
+                            <th>Aceptado/Rechazado</th>
+                        </tr>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td><a href="#">Visualizar</a></td>
+                            <td>07/05/2024</td>
+                            <td>
+                                <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
+                            </td>
+                        </tr>
         
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td><a href="#">Visualizar</a></td>
+                            <td>07/05/2024</td>
+                            <td>
+                                <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td><a href="#">Visualizar</a></td>
+                            <td>07/05/2024</td>
+                            <td>
+                                <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td><a href="#">Visualizar</a></td>
+                            <td>07/05/2024</td>
+                            <td>
+                                <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td><a href="#">Visualizar</a></td>
+                            <td>07/05/2024</td>
+                            <td>
+                                <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
+                            </td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+            </div>
+            
+        </div>
     </div>
+    
 
     
 

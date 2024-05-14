@@ -25,6 +25,10 @@ div.menu-navegacion nav{
 }
 
 /* vista home----------------------------------------------------------------------------------------------------------------------*/
+.contenido-plh_{
+    margin-top: 3% !important;
+}
+
 .color-borde-plh{
     background-color: #58151c;
     max-width: 100%;
@@ -104,7 +108,8 @@ div.menu-navegacion nav{
 
 /* Vista visualizar_solicitud----------------------------------------------------------------------------------------------------------*/
 .tabla{
-    max-width: 80%;
+    max-width: 90%;
+    max-height: 80%;
     margin: auto;
     /* padding: 5%; */
 }
@@ -121,16 +126,29 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh .titulo{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     max-width: 50%;
     margin: auto;
     margin-top: 2%;
-    margin-bottom: 2%;
-    padding: 1%;
+    margin-bottom: 4%;
 }
 
+.contenido-plh_general{
+    height: 90vh;
+    max-width: 80%;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.contenido-plh{
+    background-color: rgba(88, 21, 28,.3);
+    border-radius: 10px;
+    padding: 1%;
+    padding-top: 0;
+}
 /* Vista ayuda ------------------------------------------------------------------------------------------------------------------------*/
 div.contenedor-ayuda{
     margin-top: 5%;
@@ -151,3 +169,58 @@ div.container .row .ayuda:hover{
     background-color: rgba(158, 205, 255);
 }
 
+/* Vista Visualizar Reporte --------------------------------------------------------------------------------------------------------------- */
+
+div.contenido-visualizar_reporte{
+    background-color: #aaa;
+    margin-top: 3%;
+    max-width: 75%;
+    margin: auto;
+    height: 100%;
+    background-color: rgba(88, 21, 28,.3);
+    border-radius: 10px;
+
+}
+
+div.titulo-visualizar_reporte{
+    max-width: 60%;
+    margin: auto;
+    margin-top: 2%;
+    background-color: #fff;;
+    border-radius: 10px;
+}
+
+div.titulo-visualizar_reporte > h1{
+    text-align: center;
+    margin-top: 2%;
+    font-family: fuente_,'Courier New', Courier, monospace;
+    color: #212529;
+}
+
+div.tabla-visualizar_reporte{
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.contenido_general-visualizar_reporte{
+    height: 70vh;
+    padding: 2%;
+}
+div.tabla-visualizar_reporte > table{
+    max-height: 100px;
+}
+
+.icono_notificacion{
+    max-width: 50%;
+    text-align: center;
+    display: inline-block;
+}
+.icono_monitoreo{
+    max-width: 50%;
+    text-align: center;
+    box-sizing: content-box;
+    display: inline-block;
+
+}

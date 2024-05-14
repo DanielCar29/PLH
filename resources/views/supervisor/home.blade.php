@@ -46,9 +46,9 @@
                       Ayuda
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
-                    <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
-                    <li><a class="dropdown-item" href="#">Contacto</a></li>
+                    <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">Preguntas Frecuentes</a></li>
+                    <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
                   </ul>
                 </li>
                 {{--  --}}
@@ -71,7 +71,7 @@
     
 
     {{-- Contenido --}}
-    <div class="row contenido-plh">
+    <div class="row contenido-plh_">
         {{-- Imagen | Video --}}
         <div class="col-7 contenido-plh-video">
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

@@ -21,6 +21,10 @@ Route::get('/registro', function () {
     return view('registro');
 });
 
+Route::get('/preguntas_frecuentes', function () {
+    return view('preguntas_frecuentes');
+});
+
 // Vistas de supervisor
 Route::get('/supervisor.home', function () {
     return view('/supervisor/home');

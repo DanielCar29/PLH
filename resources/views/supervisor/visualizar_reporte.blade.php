@@ -45,9 +45,9 @@
                         Ayuda
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
-                      <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
-                      <li><a class="dropdown-item" href="#">Contacto</a></li>
+                      <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
+                      <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">Preguntas Frecuentes</a></li>
+                      <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
                     </ul>
                   </li>
                   {{--  --}}
@@ -66,9 +66,86 @@
           </div>
           </div>
         </nav>
-      </div>
+    </div>
+    <div class="contenido_general-visualizar_reporte">
+        <div class="contenido-visualizar_reporte">
+            <div class="titulo-visualizar_reporte">
+                <h1>Reporte del alumnado</h1>
+            </div>
 
-    <h1>Aqui se visualizará reporte</h1>
+            <div class="tabla-visualizar_reporte table-responsive">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Numero de control</th>
+                        <th>Nombre del alumno</th>
+                        <th>Acciones</th>
+                        <th>Última vez</th>
+                    </tr>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td>
+                                <div class="icono_notificacion">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
+                                <div class="icono_monitoreo">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+                            </td>
+                            <td>Lunes 13 de Mayo 2024</td>
+                        </tr>
+
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td>
+                                <div class="icono_notificacion">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
+                                <div class="icono_monitoreo">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+                            </td>
+                            <td>Lunes 13 de Mayo 2024</td>
+                        </tr>
+
+                        <tr>
+                            <td>212310628</td>
+                            <td>Jose Alberto Sandoval Vazquez</td>
+                            <td>
+                                <div class="icono_notificacion">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
+                                <div class="icono_monitoreo">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+                            </td>
+                            <td>Lunes 13 de Mayo 2024</td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
 
     {{-- CDN'S de Bootstrap Js --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 

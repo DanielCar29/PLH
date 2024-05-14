@@ -77,7 +77,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Supervisor
+                            Nombre Alumno
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
