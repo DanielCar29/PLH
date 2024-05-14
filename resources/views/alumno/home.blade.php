@@ -13,23 +13,45 @@
             <style>
               div.menu-navegacion nav{
                   background-color: #003785 !important;
+                  position: relative; /* Añadimos esta propiedad para establecer el contexto de apilamiento */
+                  z-index: 1000; /* Ajustamos el z-index para que el menú de navegación se superponga sobre el contenido */
               }
               .nav-color-custom {
                   background-color: #003785; /* Azul oscuro */
               }
+              .contenido {
+                  margin-top: 70px; /* Ajusta el valor según el tamaño de la barra de navegación */
+              }
+              .navbar {
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%; /* o cualquier otro valor fijo deseado */
+}
+
+/* Media query para dispositivos con un ancho máximo de 768px (tabletas y teléfonos) */
+@media (max-width: 768px) {
+    /* Establecer un ancho máximo para el menú de navegación en dispositivos más pequeños */
+    .navbar {
+        width: 100%; /* o cualquier otro valor fijo deseado */
+    }
+}
           </style>
 
 </head>
 <body>
-    {{-- Menú de navegación --}}
-    <div class="menu-navegacion">
+     {{-- Menú de navegación --}}
+     <div class="menu-navegacion">
       <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
-        <div class="container-fluid nav-color color-borde-plh nav-color-custom">
+        <div class="container-fluid nav-color-custom">
           <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
             <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
                 width="40" height="40" class="d-inline-block align-text-top">
                     PLH
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -41,8 +63,16 @@
                 <li class="nav-item">
                     <a class="nav-link elemento-navegacion-plh" href="#">Ver beca</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Ayuda</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                      Ayuda
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
+                    <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
+                    <li><a class="dropdown-item" href="#">Contacto</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
@@ -61,100 +91,126 @@
       </nav>
     </div>
     
-
     {{-- Contenido --}}
-    <div class="row contenido-plh">
+    <div class="container contenido">
         {{-- Imagen | Video --}}
-        <div class="col-7 contenido-plh-video">
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+        <div class="row">
+          <div class="col-lg-7 col-md-12">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                   </div>
-                  <div class="carousel-item">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+            </div>
+            {{-- Novedades --}}
+            <div class="col-lg-5 col-md-12 bg-light">
+                <h1>Novedades</h1>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    Novedad #1
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                          <strong>This is the first item's accordion body.</strong> 
+                            It is shown by default, until the collapse plugin adds 
+                            the appropriate classes that we use to style each element. These 
+                            classes control the overall appearance, as well as the showing and hiding 
+                            via CSS transitions. You can modify any of this with custom CSS or overriding 
+                            our default variables. It's also worth noting that just about any HTML can go within the 
+                            <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                    Novedad #2
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                          <strong>This is the second item's accordion body.</strong> 
+                          It is hidden by default, until the collapse plugin adds the 
+                          appropriate classes that we use to style each element. These 
+                          classes control the overall appearance, as well as the showing 
+                          and hiding via CSS transitions. You can modify any of this with 
+                          custom CSS or overriding our default variables. It's also worth 
+                          noting that just about any HTML can go within the <code>.accordion-body</code>, 
+                          though the transition does limit overflow.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    Novedad #3
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                          <strong>This is the third item's accordion body.</strong>
+                           It is hidden by default, until the collapse plugin adds 
+                           the appropriate classes that we use to style each element. 
+                           These classes control the overall appearance, as well as the 
+                           showing and hiding via CSS transitions. You can modify any of 
+                           this with custom CSS or overriding our default variables. It's 
+                           also worth noting that just about any HTML can go within the 
+                           <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="carousel-item">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+            </div>  
         </div>
-        {{-- Novedades --}}
-        <div class="col-4 contenido-plh-actualizacion">
-            <h1>Novedades</h1>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                Novedad #1
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                      <strong>This is the first item's accordion body.</strong> 
-                        It is shown by default, until the collapse plugin adds 
-                        the appropriate classes that we use to style each element. These 
-                        classes control the overall appearance, as well as the showing and hiding 
-                        via CSS transitions. You can modify any of this with custom CSS or overriding 
-                        our default variables. It's also worth noting that just about any HTML can go within the 
-                        <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                Novedad #2
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                      <strong>This is the second item's accordion body.</strong> 
-                      It is hidden by default, until the collapse plugin adds the 
-                      appropriate classes that we use to style each element. These 
-                      classes control the overall appearance, as well as the showing 
-                      and hiding via CSS transitions. You can modify any of this with 
-                      custom CSS or overriding our default variables. It's also worth 
-                      noting that just about any HTML can go within the <code>.accordion-body</code>, 
-                      though the transition does limit overflow.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                Novedad #3
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                      <strong>This is the third item's accordion body.</strong>
-                       It is hidden by default, until the collapse plugin adds 
-                       the appropriate classes that we use to style each element. 
-                       These classes control the overall appearance, as well as the 
-                       showing and hiding via CSS transitions. You can modify any of 
-                       this with custom CSS or overriding our default variables. It's 
-                       also worth noting that just about any HTML can go within the 
-                       <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>  
     </div>
     
+
+    {{-- Footer --}}
+    <footer>
+        <div class="container pie-plh nav-color color-borde-plh nav-color-custom">
+          <div class="row">
+            <div class="col-lg-4 elemento-pie-plh">
+              <h3>Enlaces</h3>
+              <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 elemento-pie-plh">
+              <h3>Contacto</h3>
+              <p>Correo electrónico: info@example.com</p>
+              <p>Teléfono: 123-456-7890</p>
+            </div>
+            <div class="col-lg-4 elemento-pie-plh">
+              <h3>Derechos de autor</h3>
+              <p>(c) 2023 Mi Sitio Web. Todos los derechos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
 
     {{-- CDN'S de Bootstrap Js --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
@@ -166,27 +222,4 @@
             crossorigin="anonymous">
     </script>
 </body>
-<footer>
-    <div class="container pie-plh nav-color color-borde-plh nav-color-custom">
-      <div class="row">
-        <div class="col-lg-4 elemento-pie-plh">
-          <h3>Enlaces</h3>
-          <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 elemento-pie-plh">
-          <h3>Contacto</h3>
-          <p>Correo electrónico: info@example.com</p>
-          <p>Teléfono: 123-456-7890</p>
-        </div>
-        <div class="col-lg-4 elemento-pie-plh">
-          <h3>Derechos de autor</h3>
-          <p>(c) 2023 Mi Sitio Web. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 </html>
