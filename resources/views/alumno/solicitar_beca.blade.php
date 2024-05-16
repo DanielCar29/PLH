@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>PLH: solicitar_beca</title>
     <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -78,7 +78,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Supervisor
+                        Nombre alumno
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
