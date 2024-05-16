@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>PLH:Formulario</title>
     <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -77,7 +77,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Supervisor
+                            Nombre alumno
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -100,79 +100,88 @@
                     <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
                     <div class="card-body">
                         <form action="/submit_form" method="post">
-                        <div class="mb-3">
-                            <label for="reason" class="form-label">¿Cuál es la razón principal que te lleva a solicitar urgentemente una beca alimenticia?</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reason" id="income_loss" value="income_loss">
-                                <label class="form-check-label" for="income_loss">Pérdida repentina de ingresos</label>
+                            <!-- Pregunta 1 -->
+                            <div class="mb-4">
+                                <label for="reason" class="form-label">¿Cuál es la razón principal que te lleva a solicitar urgentemente una beca alimenticia?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reason" id="income_loss" value="income_loss" required>
+                                    <label class="form-check-label" for="income_loss">Pérdida repentina de ingresos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reason" id="unexpected_expenses" value="unexpected_expenses" required>
+                                    <label class="form-check-label" for="unexpected_expenses">Gastos inesperados</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reason" id="other" value="other" required>
+                                    <label class="form-check-label" for="other">Otros (especificar)</label>
+                                </div>
+                                <textarea class="form-control mt-2" name="other_reason" rows="3" placeholder="Especificar"></textarea>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reason" id="unexpected_expenses" value="unexpected_expenses">
-                                <label class="form-check-label" for="unexpected_expenses">Gastos inesperados</label>
+    
+                            <!-- Pregunta 2 -->
+                            <div class="mb-4">
+                                <label for="current_financial_situation" class="form-label">Proporciona detalles sobre tu situación financiera actual y por qué te encuentras en una situación tan crítica en términos de acceso a alimentos</label>
+                                <textarea class="form-control" name="current_financial_situation" rows="3" placeholder="Escribe aquí..." required></textarea>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reason" id="other" value="other">
-                                <label class="form-check-label" for="other">Otros (especificar)</label>
+    
+                            <!-- Pregunta 3 -->
+                            <div class="mb-4">
+                                <label for="meals_per_day" class="form-label">¿Cuántas comidas al día tienes actualmente? ¿Experimentas días sin suficiente comida?</label>
+                                <input type="number" class="form-control" name="meals_per_day" placeholder="Escribe aquí..." required>
                             </div>
-                            <textarea class="form-control mt-2" name="other_reason" rows="3"></textarea>
-                        </div>
     
-                        <div class="mb-3">
-                            <label for="current_financial_situation" class="form-label">Proporciona detalles sobre tu situación financiera actual y por qué te encuentras en una situación tan crítica en términos de acceso a alimentos</label>
-                            <textarea class="form-control" name="current_financial_situation" rows="3"></textarea>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="meals_per_day" class="form-label">¿Cuántas comidas al día tienes actualmente? ¿Experimentas días sin suficiente comida?</label>
-                            <input type="text" class="form-control" name="meals_per_day">
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="dependents" class="form-label">¿Tienes dependientes, como hijos o familiares ancianos, que también enfrentan inseguridad alimentaria?</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="dependents" id="yes" value="yes">
-                                <label class="form-check-label" for="yes">Sí</label>
+                            <!-- Pregunta 4 -->
+                            <div class="mb-4">
+                                <label for="dependents" class="form-label">¿Tienes dependientes, como hijos o familiares ancianos, que también enfrentan inseguridad alimentaria?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="dependents" id="yes" value="yes" required>
+                                    <label class="form-check-label" for="yes">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="dependents" id="no" value="no" required>
+                                    <label class="form-check-label" for="no">No</label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="dependents" id="no" value="no">
-                                <label class="form-check-label" for="no">No</label>
+    
+                            <!-- Pregunta 5 -->
+                            <div class="mb-4">
+                                <label for="assistance_received" class="form-label">¿Has buscado o recibido asistencia alimentaria de otras organizaciones o programas gubernamentales? Si es así, ¿en qué medida?</label>
+                                <textarea class="form-control" name="assistance_received" rows="3" placeholder="Escribe aquí..." required></textarea>
                             </div>
-                        </div>
     
-                        <div class="mb-3">
-                            <label for="assistance_received" class="form-label">¿Has buscado o recibido asistencia alimentaria de otras organizaciones o programas gubernamentales? Si es así, ¿en qué medida?</label>
-                            <textarea class="form-control" name="assistance_received" rows="3"></textarea>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="medical_condition" class="form-label">¿Tienes alguna condición médica que requiera una dieta especial o restricciones alimentarias?</label>
-                            <textarea class="form-control" name="medical_condition" rows="3"></textarea>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="documentation" class="form-label">¿Estás dispuesto a proporcionar documentación que respalde tu situación financiera actual, como extractos bancarios, cartas de desempleo u otros documentos relevantes?</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="documentation" id="yes_doc" value="yes">
-                                <label class="form-check-label" for="yes_doc">Sí</label>
+                            <!-- Pregunta 6 -->
+                            <div class="mb-4">
+                                <label for="medical_condition" class="form-label">¿Tienes alguna condición médica que requiera una dieta especial o restricciones alimentarias?</label>
+                                <textarea class="form-control" name="medical_condition" rows="3" placeholder="Escribe aquí..." required></textarea>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="documentation" id="no_doc" value="no">
-                                <label class="form-check-label" for="no_doc">No</label>
+    
+                            <!-- Pregunta 7 -->
+                            <div class="mb-4">
+                                <label for="documentation" class="form-label">¿Estás dispuesto a proporcionar documentación que respalde tu situación financiera actual, como extractos bancarios, cartas de desempleo u otros documentos relevantes?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="documentation" id="yes_doc" value="yes" required>
+                                    <label class="form-check-label" for="yes_doc">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="documentation" id="no_doc" value="no" required>
+                                    <label class="form-check-label" for="no_doc">No</label>
+                                </div>
                             </div>
-                        </div>
     
-                        <div class="mb-3">
-                            <label for="difference" class="form-label">¿Cómo crees que recibir esta beca alimenticia podría marcar una diferencia significativa en tu situación?</label>
-                            <textarea class="form-control" name="difference" rows="3"></textarea>
-                        </div>
+                            <!-- Pregunta 8 -->
+                            <div class="mb-4">
+                                <label for="difference" class="form-label">¿Cómo crees que recibir esta beca alimenticia podría marcar una diferencia significativa en tu situación?</label>
+                                <textarea class="form-control" name="difference" rows="3" placeholder="Escribe aquí..." required></textarea>
+                            </div>
     
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
 
 
     {{-- CDN'S de Bootstrap Js --}}
