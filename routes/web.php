@@ -51,10 +51,14 @@ Route::get('/alumno.home', function () {
     return view('/alumno/home');
 });
 
-Route::get('/solicitar_beca', function () {
+Route::get('/alumno.solicitar_beca', function () {
     return view('/alumno/solicitar_beca');
 });
 
-Route::get('/formulario', function () {
+Route::get('/alumno.formulario', function () {
     return view('/alumno/preguntas');
+});
+
+Route::get('/alumno.beca', function () {
+    return view('/alumno/ver_beca');
 });
