@@ -45,6 +45,10 @@ Route::get('/supervisor.ayuda', function () {
     return view('/supervisor/ayuda');
 });
 
+Route::get('/supervisor.perfil', function () {
+    return view('/supervisor/perfil');
+});
+
 
 // Vistas de Alumno
 Route::get('/alumno.home', function () {

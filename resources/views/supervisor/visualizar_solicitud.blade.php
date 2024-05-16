@@ -21,6 +21,14 @@
                     width="40" height="40" class="d-inline-block align-text-top">
                         PLH
             </a>
+             {{-- Botón de desplazamiento --}}
+            <div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+          {{-- ---------------------------------------------------------------------------------------------------------------------- --}}
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -56,8 +64,7 @@
                                 Nombre Supervisor
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/supervisor.perfil') }}">Perfil</a></li>
                             <li><a class="dropdown-item" href="#">Salir</a></li>
                         </ul>
                     </li>
@@ -88,7 +95,10 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">Visualizar</a></td>
+                            <td><a href="#">
+                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                </a>
+                            </td>
                             <td>07/05/2024</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
@@ -98,7 +108,10 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">Visualizar</a></td>
+                            <td><a href="#">
+                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                </a>
+                            </td>
                             <td>07/05/2024</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
@@ -108,7 +121,10 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">Visualizar</a></td>
+                            <td><a href="#">
+                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                </a>
+                            </td>
                             <td>07/05/2024</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
@@ -118,7 +134,10 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">Visualizar</a></td>
+                            <td><a href="#">
+                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                </a>
+                            </td>
                             <td>07/05/2024</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
@@ -128,7 +147,10 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">Visualizar</a></td>
+                            <td><a href="#">
+                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                </a>
+                            </td>
                             <td>07/05/2024</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">

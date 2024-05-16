@@ -18,6 +18,13 @@ body{
     border-radius: 5px;
 }
 
+.navbar{
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%;
+}
+
 div.menu-navegacion nav{
     background-color: #58151c !important; 
     border-radius: 10px;
@@ -120,9 +127,10 @@ div.menu-navegacion nav{
 
 .tabla table tr td a:hover{
     color: #fff;
-    background-color: #000;
+    background-color: #fff;
     border-radius: 5px;
     text-decoration: dashed;
+    border: 1px solid #000;
 }
 
 .contenido-plh .titulo{
@@ -223,4 +231,21 @@ div.tabla-visualizar_reporte > table{
     box-sizing: content-box;
     display: inline-block;
 
+}
+
+/* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
+.contenido-general-perfil{
+    width: 95vw;
+    height: 90vh;
+    background-color: rgba(0, 0, 0,.4);
+    margin: 2%;
+    border-radius: 10px;
+}
+
+.foto-perfil{
+    display: inline-block;
+}
+
+.datos-perfil{
+    display: inline-block;
 }

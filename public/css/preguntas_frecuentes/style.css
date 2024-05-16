@@ -2,11 +2,55 @@
     font-family: 'fuente_';
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
+
 body{
     background-image: url('/img/fondo.jpg');
     background-size: cover;
     overflow-x: hidden;
+    font-family: fuente_,Arial, Helvetica, sans-serif !important;
+
 }
 .contenido-general{
     background-color: rgba(29, 22, 23, .4);
+    width: 100vw;
+    height: 100vh;
+}
+
+.contenido-parte-uno{
+    padding: 1%;
+}
+
+.contenido-parte-dos{
+    padding: 1%;
+}
+
+.caja-ayuda{
+    /* border: 1px solid #000; */
+    padding: 2%;
+    background-color: rgba(0,0,0,.4);
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.subtitulo-caja-ayuda{
+    background-color: #fff;
+    margin-bottom: 1%;
+}
+
+.subtitulo-caja-ayuda h5{
+    max-width: 50%;
+    display: inline-block;
+}
+
+.icono{
+    display: inline-block;
+}
+
+.titulo-general{
+    text-align: center;
+    text-decoration: underline;
+    background-color: #fff;
+    max-width: 30%;
+    margin: auto;
+    border-radius: 10px;
 }
