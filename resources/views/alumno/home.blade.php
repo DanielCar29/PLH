@@ -55,13 +55,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Solicitar becas</a>
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="#">Ver beca</a>
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Ver beca</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
@@ -69,7 +69,7 @@
                       Ayuda
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Guías Y Manuales</a></li>
+                    <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
                     <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
                     <li><a class="dropdown-item" href="#">Contacto</a></li>
                   </ul>
@@ -80,7 +80,7 @@
                             Nombre Alumno
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item"href="">Perfil</a></li>
                         <li><a class="dropdown-item" href="#">Configuración</a></li>
                         <li><a class="dropdown-item" href="#">Salir</a></li>
                     </ul>
