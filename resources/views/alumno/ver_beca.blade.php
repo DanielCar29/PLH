@@ -5,37 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PLH:info:beca</title>
-    <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('/css/alumno/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
-            <style>
-             div.menu-navegacion nav {
-            background-color: #003785 !important;
-            position: sticky; /* Cambiado a sticky */
-            top: 0; /* Se fija en la parte superior */
-            z-index: 1000; /* Ajustamos el z-index para que el menú de navegación se superponga sobre el contenido */
-        }
-        .nav-color-custom {
-            background-color: #003785; /* Azul oscuro */
-        }
-        .contenido {
-            margin-top: 80px; /* Ajusta el valor según el tamaño de la barra de navegación */
-
-            
-        }
-         
-              @media (max-width: 991.98px) {
-                  .navbar-expand-lg .navbar-nav .nav-link {
-                      padding-right: 0.5rem;
-                      padding-left: 0.5rem;
-                  }
-                  .navbar {
-        width: 100%; /* o cualquier otro valor fijo deseado */
-    }
-              }
-          </style>
 
 </head>
 <body>

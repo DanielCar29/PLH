@@ -66,3 +66,8 @@ Route::get('/alumno.formulario', function () {
 Route::get('/alumno.beca', function () {
     return view('/alumno/ver_beca');
 });
+
+// Vistas de administrador
+Route::get('/administrador.home', function () {
+    return view('/administrador/home');
+});

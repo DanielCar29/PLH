@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <link rel="stylesheet" href="{{ asset('/css/alumno/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
             <style>
               div.menu-navegacion nav{
-                  background-color: #003785 !important;
+                  background-color: #4c007d !important;
                   position: relative; /* Añadimos esta propiedad para establecer el contexto de apilamiento */
                   z-index: 1000; /* Ajustamos el z-index para que el menú de navegación se superponga sobre el contenido */
               }
               .nav-color-custom {
-                  background-color: #003785; /* Azul oscuro */
+                  background-color: #4c007d; 
               }
               .contenido {
                   margin-top: 70px; /* Ajusta el valor según el tamaño de la barra de navegación */
@@ -58,10 +58,13 @@
                     <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Registrar supervisor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Ver beca</a>
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Habilitar convocatorio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Lista de solicitudes</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
@@ -77,7 +80,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Alumno
+                            Nombre <br>
+                            administrador
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"href="">Perfil</a></li>

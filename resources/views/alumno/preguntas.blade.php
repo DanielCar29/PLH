@@ -5,38 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PLH:Formulario</title>
-    <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('/css/alumno/style.css')}}">
     <!-- CDN de Boostrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
           crossorigin="anonymous">
-    <style>
-        div.menu-navegacion nav {
-            background-color: #003785 !important;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-color-custom {
-            background-color: #003785;
-        }
-        .contenido {
-            margin-top: 100px; /* Ajusta el valor según el tamaño de la barra de navegación */
-        }
-        .container{
-            margin-top: 1cm;
-        }
-        @media (max-width: 991.98px) {
-            .navbar-expand-lg .navbar-nav .nav-link {
-                padding-right: 0.5rem;
-                padding-left: 0.5rem;
-            }
-            .navbar {
-                width: 100%;
-            }
-        }
 
-    </style>
+       
+   
 </head>
 <body>
     <!-- Menú de navegación -->
@@ -80,7 +56,6 @@
                   </a>
                   <ul class="dropdown-menu">
                       <li><a class="dropdown-item"href="">Perfil</a></li>
-                      <li><a class="dropdown-item" href="#">Configuración</a></li>
                       <li><a class="dropdown-item" href="#">Salir</a></li>
                   </ul>
               </li>
@@ -91,7 +66,8 @@
   </div>
     </div>
 
-{{-- Formulario de Solicitud de Beca Alimenticia --}}
+    {{-- Formulario de Solicitud de Beca Alimenticia --}}
+<div class="contenido_formulario">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -180,7 +156,7 @@
             </div>
         </div>
     </div>
-    
+</div>
 
 
     <!-- CDN'S de Bootstrap Js -->
