@@ -101,7 +101,7 @@
                                 </div>
 
                                 <div class="icono_monitoreo">
-                                    <a href="">
+                                    <a href="{{ url('/supervisor.grafica') }}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div class="icono_monitoreo">
-                                    <a href="">
+                                    <a href="{{ url('/supervisor.grafica') }}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
@@ -139,7 +139,7 @@
                                 </div>
 
                                 <div class="icono_monitoreo">
-                                    <a href="">
+                                    <a href="{{ url('/supervisor.grafica') }}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>

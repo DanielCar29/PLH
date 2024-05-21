@@ -3,9 +3,10 @@
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
 body{
-    background-image: url('/img/fondo.jpg');
-    background-size: cover;
-    overflow-x: hidden;
+    /* background-image: url('/img/fondo.jpg'); */
+    background-color: #d5bdaf !important;
+    /* background-size: cover;
+    overflow-x: hidden; */
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
@@ -34,6 +35,7 @@ div.menu-navegacion nav{
 /* vista home----------------------------------------------------------------------------------------------------------------------*/
 .contenido-plh_{
     margin-top: 3% !important;
+    
 }
 
 .color-borde-plh{
@@ -145,7 +147,7 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh_general{
-    height: 90vh;
+    height: 100vh;
     max-width: 80%;
     margin: auto;
     margin-top: 4%;
@@ -156,6 +158,9 @@ div.menu-navegacion nav{
     border-radius: 10px;
     padding: 1%;
     padding-top: 0;
+    border: 1px solid #fff;
+    width: 80vw;
+    height: 100vh;
 }
 /* Vista ayuda ------------------------------------------------------------------------------------------------------------------------*/
 div.contenedor-ayuda{
@@ -181,6 +186,7 @@ div.container .row .ayuda:hover{
 
 div.contenido-visualizar_reporte{
     background-color: #aaa;
+    border: 1px solid #fff;
     margin-top: 3%;
     max-width: 75%;
     margin: auto;
@@ -235,17 +241,69 @@ div.tabla-visualizar_reporte > table{
 
 /* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
 .contenido-general-perfil{
-    width: 95vw;
-    height: 90vh;
-    background-color: rgba(0, 0, 0,.4);
-    margin: 2%;
+    width: 75vw;
+    height: 100vh;
+    background-color: rgba(88, 21, 28,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
     border-radius: 10px;
+    
 }
 
 .foto-perfil{
-    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgb(169, 65, 45,.4);
+    width: 60% !important;
+    margin: auto;
+    margin-top: 50%;
+    padding: 2%;
 }
 
-.datos-perfil{
-    display: inline-block;
+.foto-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil{
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgb(169, 65, 45,.4);
+    width: 60% !important;
+    margin: auto;
+    padding: 4%;
+
+}
+
+.contenido-datos-perfil{
+    text-align: center;
+}
+
+div.foto-datos_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 25%;
+}
+
+.datos-correo_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 1.35% !important;
+}
+
+.datos-correo_usuario-interno{
+    border-radius: 10px;
+    background-color: rgb(169, 65, 45,.3);
+    border: 1px solid rgb(169, 65, 45);
+    margin: auto;
+    margin-top: 5%;
+    max-width: 80%;
+    padding: 4%;
+}
+
+.contenido-datos-institucionales{
+    text-align: center;
+}
+
+.datos-correo_usuario-interno > div{
+    text-align: center;
 }

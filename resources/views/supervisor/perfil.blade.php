@@ -11,10 +11,7 @@
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
     <style>
-        body{
-            background-image: url('/img/perfil.png');
-
-        }
+       
     </style>
 </head>
 <body>
@@ -28,7 +25,7 @@
                   width="40" height="40" class="d-inline-block align-text-top">
                       PLH
           </a>
-           {{-- Botón de desplazamiento --}}
+           {{-- Botón de desplazamiento del menú--}}
             <div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +70,7 @@
                       </a>
                       <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="#">Perfil</a></li>
-                          <li><a class="dropdown-item" href="#">Configuración</a></li>
+
                           <li><a class="dropdown-item" href="#">Salir</a></li>
                       </ul>
                   </li>
@@ -85,35 +82,110 @@
 
       <div class="contenido-general-perfil">
 
-        <div class="container">
+        <div class="container ">
 
             <div class="row">
 
-                <div class="col-8">
+                <div class="col-6">
 
-                    <div class="row">
+                    <div class="row flex-sm-row flex-column foto-datos_usuario">
                         <div class="col-6 foto-perfil">
-                            FOTO DE PERFIL
+                            <div>
+                                <img src="{{URL::asset('/img/perfil_usuario.png')}}" alt="" >
+                            </div>
+                            <div>
+                                <h5>Nombre de Usuario</h5>
+                            </div>
                         </div>
 
-                        <div class="col-6 datos-perfil">
-                            DATOS DE NOMBRE
-                        </div>
+                        
                     </div>
 
                 </div>
 
-                <div class="col-4">
-                    CORREO CONTRASEÑA
+                <div class="col-6 datos-correo_usuario">
+
+                    <div class="col-6 datos-perfil">
+                        <div>
+                            <h3>DATOS DE USUARIO</h3>
+                        </div>
+                        
+                        <div class="contenido-datos-perfil">
+                            <form action="">
+
+                                <div>
+                                    <span>Nombre:</span>
+                                </div>
+
+                                <div>
+                                    <input type="text" value="" placeholder="Jose Alberto">
+                                </div>
+
+                                <div>
+                                    <span>Apellido Paterno:</span>
+                                </div>
+
+                                <div>
+                                    <input type="text" value="" placeholder="Sandoval">
+                                </div>
+
+                                <div>
+                                    <span>Apellido Materno:</span>
+                                </div>
+
+                                <div>
+                                    <input type="text" placeholder="Vazquez">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="datos-correo_usuario-interno">
+                        <div>
+                            <h3>
+                                DATOS INSTITUCIONALES
+                            </h3>
+                            
+                        </div>
+                        
+                        <div class="contenido-datos-institucionales">
+                            <form action="">
+
+                                <div>
+                                    <span>Correo Electronico:</span>
+                                </div>
+
+                                <div>
+                                    <input type="text" value="" placeholder="212310628@gmail.com">
+                                </div>
+
+                                <div>
+                                    <span>Contraseña:</span>
+                                </div>
+
+                                <div>
+                                    <input type="password" value="" placeholder="************">
+                                </div>
+
+                                <div>
+                                    <span>Carrera:</span>
+                                </div>
+
+                                <div>
+                                    <input type="text" placeholder="Informática">
+                                </div>
+
+                            </form>
+                        </div>
+
+
+                    </div>
                 </div>
 
             </div>
 
         </div>
-
-        
-
-
 
       </div>
     
