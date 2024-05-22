@@ -162,6 +162,16 @@ div.menu-navegacion nav{
     width: 80vw;
     height: 100vh;
 }
+
+.contenido-plh:hover{
+    background-color: rgba(88, 21, 28,.6);
+    border-radius: 10px;
+    padding: 1%;
+    padding-top: 0;
+    border: 1px solid #fff;
+    width: 80vw;
+    height: 100vh;
+}
 /* Vista ayuda ------------------------------------------------------------------------------------------------------------------------*/
 div.contenedor-ayuda{
     margin-top: 5%;
@@ -192,6 +202,18 @@ div.contenido-visualizar_reporte{
     margin: auto;
     height: 100%;
     background-color: rgba(88, 21, 28,.3);
+    border-radius: 10px;
+
+}
+
+div.contenido-visualizar_reporte:hover{
+    background-color: #aaa;
+    border: 1px solid #fff;
+    margin-top: 3%;
+    max-width: 75%;
+    margin: auto;
+    height: 100%;
+    background-color: rgba(88, 21, 28,.6);
     border-radius: 10px;
 
 }
@@ -231,6 +253,7 @@ div.tabla-visualizar_reporte > table{
     text-align: center;
     display: inline-block;
 }
+
 .icono_monitoreo{
     max-width: 50%;
     text-align: center;
@@ -238,6 +261,15 @@ div.tabla-visualizar_reporte > table{
     display: inline-block;
 
 }
+
+.icono_pdf{
+    max-width: 50%;
+    text-align: center;
+    box-sizing: content-box;
+    display: inline-block;
+
+}
+
 
 /* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
 .contenido-general-perfil{
@@ -254,12 +286,12 @@ div.tabla-visualizar_reporte > table{
 
 .foto-perfil{
     border-radius: 10px;
-    border: 1px solid #000;
-    background-color: rgb(169, 65, 45,.4);
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
     width: 60% !important;
     margin: auto;
-    margin-top: 50%;
-    padding: 2%;
+    margin-top: 10%;
+    padding: 6%;
 }
 
 .foto-perfil > div{
@@ -267,17 +299,23 @@ div.tabla-visualizar_reporte > table{
 }
 
 div.datos-perfil{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
     border-radius: 10px;
-    border: 1px solid #000;
-    background-color: rgb(169, 65, 45,.4);
-    width: 60% !important;
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
+    width: 100% !important;
     margin: auto;
-    padding: 4%;
+    padding: 6%;
 
 }
 
 .contenido-datos-perfil{
     text-align: center;
+    padding: 3%;
+}
+
+.contenido-datos-institucionales{
+    padding: 3%;
 }
 
 div.foto-datos_usuario{
@@ -291,19 +329,135 @@ div.foto-datos_usuario{
 }
 
 .datos-correo_usuario-interno{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
     border-radius: 10px;
-    background-color: rgb(169, 65, 45,.3);
-    border: 1px solid rgb(169, 65, 45);
+    background-color: rgba(88, 21, 28,.3);
+    border: 1px solid #fff;
     margin: auto;
     margin-top: 5%;
-    max-width: 80%;
+    max-width: 100%;
     padding: 4%;
 }
 
-.contenido-datos-institucionales{
+.datos-perfil > div{
     text-align: center;
+}
+
+div.datos-perfil > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div > h3{
+    text-decoration: underline;
 }
 
 .datos-correo_usuario-interno > div{
     text-align: center;
+}
+
+.boton_perfil-guardar{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
+}
+
+.boton_perfil-guardar:hover{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: #fff
+}
+
+.boton_perfil-guardar > a{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton_perfil-guardar > a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+
+/* Grafica Supervisor -------------------------------------------------------------------------------------- */
+
+.datos_alumno{
+    margin-top: 10% !important;
+}
+
+.nombre_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.nombre_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+.carrera_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.carrera_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+.numero-control_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.numero-control_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+
+.contenido_grafica{
+    margin-top: 3% !important;
+}
+
+.grafica{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+canvas#myChart{
+    height: 100% !important;
+    width: 80% !important;
+}
+
+div h5{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
 }
