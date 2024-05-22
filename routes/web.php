@@ -71,6 +71,11 @@ Route::get('/alumno.beca', function () {
     return view('/alumno/ver_beca');
 });
 
+Route::get('/alumno.perfil', function () {
+    return view('/alumno/perfil');
+});
+
+
 // Vistas de administrador
 Route::get('/administrador.home', function () {
     return view('/administrador/home');

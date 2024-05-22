@@ -3,9 +3,10 @@
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
 body{
-    background-image: url('/img/fondo.jpg');
-    background-size: cover;
-    overflow-x: hidden;
+    /* background-image: url('/img/fondo.jpg'); */
+    background-color: #b6ffff !important;
+    /* background-size: cover;
+    overflow-x: hidden; */
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
@@ -51,14 +52,13 @@ width: 100%; /* o cualquier otro valor fijo deseado */
     margin: 12px;
 }
 
-/* pie de pagina login*/
 /* vista home----------------------------------------------------------------------------------------------------------------------*/
 .contenido-plh_{
     margin-top: 3% !important;
 }
 
 .color-borde-plh{
-    background-color: #58151c;
+    background-color: #003785;
     max-width: 100%;
 }
 
@@ -78,7 +78,7 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 
 .pie-plh{
     margin-top: 100px;
-    background-color: #58151c;
+    background-color: #003785;
     max-width: 100% !important;
 }
 
@@ -173,7 +173,6 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 }
 
 .contenido-plh{
-    background-color: rgba(88, 21, 28,.3);
     border-radius: 10px;
     padding: 1%;
     padding-top: 0;
@@ -182,4 +181,91 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 
 .contenido_formulario{
     margin-top: 5%;
+}
+
+/*Perfil */
+
+.contenido-general-perfil {
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 35, 102, 0.3); /* Fondo azul oscuro */
+    border: 1px solid #fff;
+    margin: 3% auto;
+    border-radius: 10px;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    padding: 2%;
+}
+
+.foto-perfil {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgba(0, 35, 102, 0.4); /* Fondo azul oscuro */
+    width: 100%;
+    margin: auto;
+    padding: 2%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    text-align: center;
+}
+
+.foto-perfil img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Opcional: Si deseas que la imagen sea circular */
+}
+
+.datos-perfil {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgba(0, 35, 102, 0.4); /* Fondo azul oscuro */
+    width: 100%;
+    margin: auto;
+    padding: 4%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    margin-bottom: 1rem;
+}
+
+.datos-correo_usuario-interno {
+    border-radius: 10px;
+    background-color: rgba(0, 35, 102, 0.3); /* Fondo azul oscuro */
+    border: 1px solid rgb(0, 35, 102);
+    margin: auto;
+    margin-top: 5%;
+    padding: 4%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+}
+
+.contenido-datos-perfil, .contenido-datos-institucionales {
+    text-align: center;
+}
+
+.datos-correo_usuario {
+    margin-top: 1.35% !important;
+}
+
+/* Opcional: Estilos para los enlaces y texto dentro de los divs */
+.contenido-general-perfil a,
+.foto-perfil a,
+.datos-perfil a,
+.datos-correo_usuario-interno a {
+    color: white; /* Asegura que los enlaces sean legibles sobre el fondo oscuro */
+}
+
+.contenido-general-perfil a:hover,
+.foto-perfil a:hover,
+.datos-perfil a:hover,
+.datos-correo_usuario-interno a:hover {
+    color: #000000; /* Color del enlace al pasar el ratón por encima */
+}
+
+/* Adaptabilidad de los inputs */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn{
+    margin-top: 3%;
 }

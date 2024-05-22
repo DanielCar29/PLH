@@ -44,10 +44,10 @@
                     Ayuda
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
-                  <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
-                  <li><a class="dropdown-item" href="#">Contacto</a></li>
-                </ul>
+                    <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">Preguntas Frecuentes</a></li>
+                    <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
+                  </ul>
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
