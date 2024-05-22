@@ -30,6 +30,9 @@ Route::get('/supervisor.home', function () {
     return view('/supervisor/home');
 });
 
+Route::get('/supervisor.ver_solicitud', function () {
+    return view('/supervisor/ver_solicitud_alumno');
+});
 
 
 Route::get('/supervisor.visualizar_reporte', function () {

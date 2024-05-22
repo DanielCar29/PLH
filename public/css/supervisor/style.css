@@ -127,14 +127,6 @@ div.menu-navegacion nav{
     text-align: center;
 }
 
-.tabla table tr td a:hover{
-    color: #fff;
-    background-color: #fff;
-    border-radius: 5px;
-    text-decoration: dashed;
-    border: 1px solid #000;
-}
-
 .contenido-plh .titulo{
     font-family: fuente_,Arial, Helvetica, sans-serif;
     background-color: #fff;
@@ -460,4 +452,84 @@ canvas#myChart{
 
 div h5{
     font-family: fuente_,Arial, Helvetica, sans-serif;
+}
+
+/* Ver solicitud alumno ----------------------------------------------------------------------------------- */
+
+.contenido_formulario{
+    margin-top: 1%;
+}
+
+.datos_alumno-formulario{
+    margin-bottom: 1% !important;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+}
+
+.nombre_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.nombre_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
 }

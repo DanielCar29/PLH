@@ -95,7 +95,7 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">
+                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
@@ -108,7 +108,7 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">
+                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
@@ -121,7 +121,7 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">
+                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
@@ -134,7 +134,7 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">
+                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
@@ -147,7 +147,7 @@
                         <tr>
                             <td>212310628</td>
                             <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="#">
+                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
