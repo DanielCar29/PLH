@@ -75,6 +75,7 @@
           </div>
         </nav>
     </div>
+    
     <div class="contenido_general-visualizar_reporte">
         <div class="contenido-visualizar_reporte">
             <div class="titulo-visualizar_reporte">
@@ -105,6 +106,12 @@
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
+
+                                <div class="icono_pdf">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
                             </td>
                             <td>Lunes 13 de Mayo 2024</td>
                         </tr>
@@ -124,6 +131,12 @@
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
+
+                                <div class="icono_pdf">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
                             </td>
                             <td>Lunes 13 de Mayo 2024</td>
                         </tr>
@@ -141,6 +154,12 @@
                                 <div class="icono_monitoreo">
                                     <a href="{{ url('/supervisor.grafica') }}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
+                                <div class="icono_pdf">
+                                    <a href="">
+                                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
                                     </a>
                                 </div>
                             </td>

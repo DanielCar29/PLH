@@ -88,17 +88,26 @@
 
                 <div class="col-6">
 
-                    <div class="row flex-sm-row flex-column foto-datos_usuario">
+                    <div class="flex-sm-row flex-column foto-datos_usuario">
                         <div class="col-6 foto-perfil">
+
                             <div>
                                 <img src="{{URL::asset('/img/perfil_usuario.png')}}" alt="" >
                             </div>
+
                             <div>
                                 <h5>Nombre de Usuario</h5>
                             </div>
+
+                        </div>
+                    </div>
+
+                    <div class="boton_perfil">
+                        
+                        <div class="boton_perfil-guardar">
+                            <a href="">Guardar cambios</a>
                         </div>
 
-                        
                     </div>
 
                 </div>
