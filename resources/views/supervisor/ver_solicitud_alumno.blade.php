@@ -14,7 +14,7 @@
 <body>
 
     {{-- Menú --}}
-    @include('/supervisor/menu-supervisor')
+    @include('/supervisor/navbar/menu-supervisor')
     
         {{-- Formulario de Solicitud de Beca Alimenticia --}}
 

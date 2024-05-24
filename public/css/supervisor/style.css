@@ -11,6 +11,18 @@ body{
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
 
+.boton-salir{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer; /* Opcional: mantener el cursor de puntero */
+    outline: none;
+    text-decoration: none;
+}
+
 .menu-navegacion{
     margin-top: 10px !important;
     max-width: 95%;

@@ -17,7 +17,7 @@
 <body>
 
     {{-- Menú --}}
-    @include('/supervisor/menu-supervisor')
+    @include('/supervisor/navbar/menu-supervisor')
 
       <div class="contenido-general-perfil">
 

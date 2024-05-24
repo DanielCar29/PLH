@@ -21,7 +21,7 @@
 <body>
 
     {{-- Menú --}}
-    @include('/supervisor/menu-supervisor')
+    @include('/supervisor/navbar/menu-supervisor')
     
 {{-- Contenido --}}
 
