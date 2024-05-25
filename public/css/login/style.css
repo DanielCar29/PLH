@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'fuente_login-bienvenida';
+    src: url(/fonts/Jersey25Charted-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'fuente_login';
+    src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+body{
+    background-image: url('/img/fondo_login.jpg');
+    overflow-x: hidden;
+    
+}
+div.container.text-center{
+    margin-top: 3%;
+}
+.contenido-general{
+    /* border: 5px solid #000; */
+    padding: 5%;
+}
+.contenido-bienvenida{
+    background-image: url('/img/fondo_login.jpg');
+    background-size: cover;
+    border-radius: 5px;
+    font-family: fuente_login-bienvenida, Arial, Helvetica, sans-serif;
+    /* border: 1px solid #aaa; */
+
+}
+.login-plh{
+    background-color: rgb(255, 255, 255,.7);
+    border-radius: 5px;
+    /* border: 1px solid #aaa; */
+    padding: 5% 1% 5% 1%;
+    font-family: fuente_login, Arial, Helvetica, sans-serif;
+
+}
+.instrucciones{
+    max-width: 50%;
+    margin: auto;
+}
+.instrucciones p{
+    font-size: smaller;
+    text-align: justify;
+}
+.input-login{
+    margin: 3%;
+}
+.input-login input{
+    max-width: 80%;
+}
+.boton-login{
+    margin: auto;
+    max-width: 50%;
+    background-color: #4bb4f8;
+    border-radius: 5px;
+}
+.boton-login button{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+.color{
+    color: #fff;
+}
+
+.nombre-proyecto{
+    margin-top: 2%;
+    margin-bottom: 17%;
+    text-align: left;
+}
+.bienvenida-texto{
+    margin-bottom: 2%;
+}
+.bienvenida-texto h4{
+    font-size: 30px;
+}
+
+.bienvenida-titulo{
+
+}
+.bienvenida-titulo h1{
+    font-size: 64px;
+}
+
+.bienvenida-parrafo{
+    max-width: 50%;
+    margin: auto;
+}

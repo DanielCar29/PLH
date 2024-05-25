@@ -1,0 +1,535 @@
+@font-face {
+    font-family: 'fuente_';
+    src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+body{
+    /* background-image: url('/img/fondo.jpg'); */
+    background-color: #d5bdaf !important;
+    /* background-size: cover;
+    overflow-x: hidden; */
+}
+
+/* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
+
+.menu-navegacion{
+    margin-top: 10px !important;
+    max-width: 95%;
+    margin: auto;
+    max-height: 10%;
+    border-radius: 5px;
+}
+
+.navbar{
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%;
+}
+
+div.menu-navegacion nav{
+    background-color: #58151c !important; 
+    border-radius: 10px;
+    height: 100px;
+}
+
+/* vista home----------------------------------------------------------------------------------------------------------------------*/
+.contenido-plh_{
+    margin-top: 3% !important;
+    
+}
+
+.color-borde-plh{
+    background-color: #58151c;
+    max-width: 100%;
+}
+
+.elemento-navegacion-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: x-large !important;
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 12px;
+}
+
+.elemento-navegacion-plh:hover{
+    color: #000 !important;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.pie-plh{
+    margin-top: 100px;
+    background-color: #58151c;
+    max-width: 100% !important;
+}
+
+.elemento-pie-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: small !important;
+}
+.elemento-pie-plh a{
+    text-decoration: none;
+    color: #fff;
+}
+.elemento-pie-plh li{
+    list-style: none;
+}
+
+.elemento-pie-plh a:hover{
+    color: #aaa !important;
+}
+
+.contenido-plh{
+    max-height: 80%;
+    margin-top: 2% !important;
+}
+
+.contenido-plh-video{
+    /* border: 2px solid #000; */
+    background-color: #eeeeee;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+.contenido-plh-video img{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.contenido-plh-actualizacion{
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    max-height: 450px;
+    padding: 10px;
+    /* border: 2px solid #000; */
+    overflow: hidden;
+    overflow-y:scroll;
+}
+
+.contenido-plh-actualizacion h1{
+    text-align: center;
+}
+
+/* Vista visualizar_solicitud----------------------------------------------------------------------------------------------------------*/
+.tabla{
+    max-width: 90%;
+    max-height: 80%;
+    margin: auto;
+    /* padding: 5%; */
+}
+
+.tabla table tr td, .tabla table th{
+    text-align: center;
+}
+
+.contenido-plh .titulo{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.contenido-plh_general{
+    height: 100vh;
+    max-width: 80%;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.contenido-plh{
+    background-color: rgba(88, 21, 28,.3);
+    border-radius: 10px;
+    padding: 1%;
+    padding-top: 0;
+    border: 1px solid #fff;
+    width: 80vw;
+    height: 100vh;
+}
+
+.contenido-plh:hover{
+    background-color: rgba(88, 21, 28,.6);
+    border-radius: 10px;
+    padding: 1%;
+    padding-top: 0;
+    border: 1px solid #fff;
+    width: 80vw;
+    height: 100vh;
+}
+/* Vista ayuda ------------------------------------------------------------------------------------------------------------------------*/
+div.contenedor-ayuda{
+    margin-top: 5%;
+}
+div.container .row .ayuda{
+    /* border: 5px solid #000; */
+    border-radius: 5px;
+    background-color: rgba(158, 205, 255, 0.6);
+    margin: auto;
+    margin-bottom: 5%;
+}
+div.container .row .ayuda a{
+    font-size: 65px;
+    text-decoration: none;
+    
+}
+div.container .row .ayuda:hover{
+    background-color: rgba(158, 205, 255);
+}
+
+/* Vista Visualizar Reporte --------------------------------------------------------------------------------------------------------------- */
+
+div.contenido-visualizar_reporte{
+    background-color: #aaa;
+    border: 1px solid #fff;
+    margin-top: 3%;
+    max-width: 75%;
+    margin: auto;
+    height: 100%;
+    background-color: rgba(88, 21, 28,.3);
+    border-radius: 10px;
+
+}
+
+div.contenido-visualizar_reporte:hover{
+    background-color: #aaa;
+    border: 1px solid #fff;
+    margin-top: 3%;
+    max-width: 75%;
+    margin: auto;
+    height: 100%;
+    background-color: rgba(88, 21, 28,.6);
+    border-radius: 10px;
+
+}
+
+div.titulo-visualizar_reporte{
+    max-width: 60%;
+    margin: auto;
+    margin-top: 2%;
+    background-color: #fff;;
+    border-radius: 10px;
+}
+
+div.titulo-visualizar_reporte > h1{
+    text-align: center;
+    margin-top: 2%;
+    font-family: fuente_,'Courier New', Courier, monospace;
+    color: #212529;
+}
+
+div.tabla-visualizar_reporte{
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.contenido_general-visualizar_reporte{
+    height: 70vh;
+    padding: 2%;
+}
+div.tabla-visualizar_reporte > table{
+    max-height: 100px;
+}
+
+.icono_notificacion{
+    max-width: 50%;
+    text-align: center;
+    display: inline-block;
+}
+
+.icono_monitoreo{
+    max-width: 50%;
+    text-align: center;
+    box-sizing: content-box;
+    display: inline-block;
+
+}
+
+.icono_pdf{
+    max-width: 50%;
+    text-align: center;
+    box-sizing: content-box;
+    display: inline-block;
+
+}
+
+
+/* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
+.contenido-general-perfil{
+    width: 75vw;
+    height: 100vh;
+    background-color: rgba(88, 21, 28,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    
+}
+
+.foto-perfil{
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
+    width: 60% !important;
+    margin: auto;
+    margin-top: 10%;
+    padding: 6%;
+}
+
+.foto-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
+    width: 100% !important;
+    margin: auto;
+    padding: 6%;
+
+}
+
+.contenido-datos-perfil{
+    text-align: center;
+    padding: 3%;
+}
+
+.contenido-datos-institucionales{
+    padding: 3%;
+}
+
+div.foto-datos_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 25%;
+}
+
+.datos-correo_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 1.35% !important;
+}
+
+.datos-correo_usuario-interno{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    background-color: rgba(88, 21, 28,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 100%;
+    padding: 4%;
+}
+
+.datos-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div{
+    text-align: center;
+}
+
+.boton_perfil-guardar{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: rgba(88, 21, 28,.3);
+}
+
+.boton_perfil-guardar:hover{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: #fff
+}
+
+.boton_perfil-guardar > a{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton_perfil-guardar > a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+
+/* Grafica Supervisor -------------------------------------------------------------------------------------- */
+
+.datos_alumno{
+    margin-top: 10% !important;
+}
+
+.nombre_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.nombre_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+.carrera_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.carrera_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+.numero-control_alumno{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+}
+.numero-control_alumno:hover{
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 8%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+}
+
+.contenido_grafica{
+    margin-top: 3% !important;
+}
+
+.grafica{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+canvas#myChart{
+    height: 100% !important;
+    width: 80% !important;
+}
+
+div h5{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+}
+
+/* Ver solicitud alumno ----------------------------------------------------------------------------------- */
+
+.contenido_formulario{
+    margin-top: 1%;
+}
+
+.datos_alumno-formulario{
+    margin-bottom: 1% !important;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+}
+
+.nombre_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.nombre_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(88, 21, 28,.6);
+    text-decoration: underline;
+    display: inline-block;
+}

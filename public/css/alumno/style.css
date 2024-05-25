@@ -1,0 +1,271 @@
+@font-face {
+    font-family: 'fuente_';
+    src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+body{
+    /* background-image: url('/img/fondo.jpg'); */
+    background-color: #b6ffff !important;
+    /* background-size: cover;
+    overflow-x: hidden; */
+}
+
+/* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
+div.menu-navegacion nav{
+    background-color: #003785 !important;
+    position: relative; /* Añadimos esta propiedad para establecer el contexto de apilamiento */
+    z-index: 1000; /* Ajustamos el z-index para que el menú de navegación se superponga sobre el contenido */
+    border-radius: 10px;
+    height: 100px;
+}
+.menu-navegacion{
+    margin-top: 10px !important;
+    max-width: 95%;
+    margin: auto;
+    max-height: 10%;
+    border-radius: 5px;
+}
+.nav-color-custom {
+    background-color: #003785; /* Azul oscuro */
+}
+.contenido {
+    margin-top: 70px; /* Ajusta el valor según el tamaño de la barra de navegación */
+}
+.navbar {
+position: relative;
+z-index: 1000;
+/* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+width: 100%; /* o cualquier otro valor fijo deseado */
+}
+
+/* Media query para dispositivos con un ancho máximo de 768px (tabletas y teléfonos) */
+@media (max-width: 768px) {
+/* Establecer un ancho máximo para el menú de navegación en dispositivos más pequeños */
+.navbar {
+width: 100%; /* o cualquier otro valor fijo deseado */
+}
+}
+.elemento-navegacion-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: x-large !important;
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 12px;
+}
+
+/* vista home----------------------------------------------------------------------------------------------------------------------*/
+.contenido-plh_{
+    margin-top: 3% !important;
+}
+
+.color-borde-plh{
+    background-color: #003785;
+    max-width: 100%;
+}
+
+.elemento-navegacion-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: x-large !important;
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 12px;
+}
+
+.elemento-navegacion-plh:hover{
+    color: #000 !important;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.pie-plh{
+    margin-top: 100px;
+    background-color: #003785;
+    max-width: 100% !important;
+}
+
+.elemento-pie-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: small !important;
+}
+.elemento-pie-plh a{
+    text-decoration: none;
+    color: #fff;
+}
+.elemento-pie-plh li{
+    list-style: none;
+}
+
+.elemento-pie-plh a:hover{
+    color: #aaa !important;
+}
+
+.contenido-plh{
+    max-height: 80%;
+    margin-top: 2% !important;
+}
+
+.contenido-plh-video{
+    /* border: 2px solid #000; */
+    background-color: #eeeeee;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+.contenido-plh-video img{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.contenido-plh-actualizacion{
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    max-height: 450px;
+    padding: 10px;
+    /* border: 2px solid #000; */
+    overflow: hidden;
+    overflow-y:scroll;
+}
+
+.contenido-plh-actualizacion h1{
+    text-align: center;
+}
+
+/* Vista visualizar_solicitud----------------------------------------------------------------------------------------------------------*/
+.tabla{
+    max-width: 90%;
+    max-height: 80%;
+    margin: auto;
+    /* padding: 5%; */
+}
+
+.tabla table tr td, .tabla table th{
+    text-align: center;
+}
+
+.tabla table tr td a:hover{
+    color: #fff;
+    background-color: #fff;
+    border-radius: 5px;
+    text-decoration: dashed;
+    border: 1px solid #000;
+}
+
+.contenido-plh .titulo{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.contenido-plh_general{
+    height: 90vh;
+    max-width: 80%;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.contenido-plh{
+    border-radius: 10px;
+    padding: 1%;
+    padding-top: 0;
+}
+/*Formulario */
+
+.contenido_formulario{
+    margin-top: 5%;
+}
+
+/*Perfil */
+
+.contenido-general-perfil {
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 35, 102, 0.3); /* Fondo azul oscuro */
+    border: 1px solid #fff;
+    margin: 3% auto;
+    border-radius: 10px;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    padding: 2%;
+}
+
+.foto-perfil {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgba(0, 35, 102, 0.4); /* Fondo azul oscuro */
+    width: 100%;
+    margin: auto;
+    padding: 2%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    text-align: center;
+}
+
+.foto-perfil img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Opcional: Si deseas que la imagen sea circular */
+}
+
+.datos-perfil {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: rgba(0, 35, 102, 0.4); /* Fondo azul oscuro */
+    width: 100%;
+    margin: auto;
+    padding: 4%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+    margin-bottom: 1rem;
+}
+
+.datos-correo_usuario-interno {
+    border-radius: 10px;
+    background-color: rgba(0, 35, 102, 0.3); /* Fondo azul oscuro */
+    border: 1px solid rgb(0, 35, 102);
+    margin: auto;
+    margin-top: 5%;
+    padding: 4%;
+    color: white; /* Asegura que el texto sea legible sobre el fondo oscuro */
+}
+
+.contenido-datos-perfil, .contenido-datos-institucionales {
+    text-align: center;
+}
+
+.datos-correo_usuario {
+    margin-top: 1.35% !important;
+}
+
+/* Opcional: Estilos para los enlaces y texto dentro de los divs */
+.contenido-general-perfil a,
+.foto-perfil a,
+.datos-perfil a,
+.datos-correo_usuario-interno a {
+    color: white; /* Asegura que los enlaces sean legibles sobre el fondo oscuro */
+}
+
+.contenido-general-perfil a:hover,
+.foto-perfil a:hover,
+.datos-perfil a:hover,
+.datos-correo_usuario-interno a:hover {
+    color: #000000; /* Color del enlace al pasar el ratón por encima */
+}
+
+/* Adaptabilidad de los inputs */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn{
+    margin-top: 3%;
+}
