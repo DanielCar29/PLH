@@ -116,4 +116,17 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         return view('/administrador/home');
     });
 
+    Route::get('/administrador.registro', function () {
+        return view('/administrador/registrarSupervisor');
+    });
+
+    Route::get('/administrador.habilitar', function () {
+        return view('/administrador/habilitarConvocatoria');
+    });
+
+    Route::get('/administrador.lista', function () {
+        return view('/administrador/listaSolicitudes');
+    });
+
+
 });

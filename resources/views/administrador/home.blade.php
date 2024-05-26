@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('/css/administrador/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
@@ -40,65 +40,13 @@
 
 </head>
 <body>
-     {{-- Menú de navegación --}}
-     <div class="menu-navegacion">
-      <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
-        <div class="container-fluid nav-color-custom">
-          <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
-            <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
-                width="40" height="40" class="d-inline-block align-text-top">
-                    PLH
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Registrar supervisor</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Habilitar convocatorio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Lista de solicitudes</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                      Ayuda
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
-                    <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
-                    <li><a class="dropdown-item" href="#">Contacto</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre <br>
-                            administrador
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item"href="">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        </div>
-      </nav>
-    </div>
+     @include('administrador/navbar/menu')
     
     {{-- Contenido --}}
-    <div class="container contenido">
+    <div class="container contenido-plh_">
         {{-- Imagen | Video --}}
         <div class="row">
-          <div class="col-lg-7 col-md-12">
+          <div class="col-7 contenido-plh-video">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
@@ -122,7 +70,7 @@
                   </div>
             </div>
             {{-- Novedades --}}
-            <div class="col-lg-5 col-md-12 bg-light">
+            <div class="col-4 contenido-plh-actualizacion">
                 <h1>Novedades</h1>
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">

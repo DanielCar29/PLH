@@ -1,0 +1,291 @@
+@font-face {
+    font-family: 'fuente_';
+    src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+
+body{
+    background-color: rgb(76, 0, 125,.2) !important;
+}
+
+/* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
+
+.boton-salir{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer; /* Opcional: mantener el cursor de puntero */
+    outline: none;
+    text-decoration: none;
+}
+
+.menu-navegacion{
+    margin-top: 1.5% !important;
+    max-width: 95%;
+    margin: auto;
+    max-height: 10%;
+    border-radius: 5px;
+}
+
+.navbar{
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%;
+}
+
+div.menu-navegacion nav{
+    background-color: #4c007d !important; 
+    border-radius: 10px;
+    height: 100px;
+}
+
+/* vista home----------------------------------------------------------------------------------------------------------------------*/
+.contenido-plh_{
+    margin-top: 3% !important;
+    
+}
+
+.color-borde-plh{
+    background-color: #4c007d;
+    max-width: 100%;
+}
+
+.elemento-navegacion-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size:larger !important;
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 12px;
+}
+
+.elemento-navegacion-plh:hover{
+    color: #000 !important;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.pie-plh{
+    margin-top: 100px;
+    background-color: #58151c;
+    max-width: 100% !important;
+}
+
+.elemento-pie-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: small !important;
+}
+.elemento-pie-plh a{
+    text-decoration: none;
+    color: #fff;
+}
+.elemento-pie-plh li{
+    list-style: none;
+}
+
+.elemento-pie-plh a:hover{
+    color: #aaa !important;
+}
+
+.contenido-plh{
+    max-height: 80%;
+    margin-top: 2% !important;
+}
+
+.contenido-plh-video{
+    /* border: 2px solid #000; */
+    background-color: #eeeeee;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+.contenido-plh-video img{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.contenido-plh-actualizacion{
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    max-height: 450px;
+    padding: 10px;
+    /* border: 2px solid #000; */
+    overflow: hidden;
+    overflow-y:scroll;
+}
+
+.contenido-plh-actualizacion h1{
+    text-align: center;
+}
+
+/* Vista Registrar Supervisor */
+
+.contenido{
+    margin-top: 2%;
+}
+
+.registro{
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+    padding: 4%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.registro:hover{
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+    padding: 4%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.correo{
+    margin-top: 1.5%;
+}
+
+.contrasena{
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+.boton-registro{
+    width: 30%;
+    margin: auto;
+    margin-top: 1.5%;
+}
+
+.titulo{
+    color:#fff;
+    font-family:fuente_,Arial, Helvetica, sans-serif;
+    max-width: 20%;
+    margin: auto;
+    margin-bottom: 1.5%;
+    text-align: center;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.titulo:hover{
+    color:#fff;
+    font-family:fuente_,Arial, Helvetica, sans-serif;
+    max-width: 20%;
+    margin: auto;
+    margin-bottom: 1.5%;
+    text-align: center;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.titulo > h2{
+    text-decoration:underline;
+}
+
+/* Vista habilitar convocatoria */
+
+.habilitar-convocatoria{
+    margin: auto;
+    margin-top: 2.5%;
+    max-width: 70%;
+    padding: 3%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.habilitar-convocatoria:hover{
+    margin: auto;
+    margin-top: 2.5%;
+    max-width: 70%;
+    padding: 3%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.formulario-convocatoria{
+    /* padding: 2%; */
+}
+
+.input-carrera{
+    width: 45% !important;
+    display:inline-table !important;
+}
+
+.nombre-carrera-input{
+    /* max-width: 60%; */
+    display:inline-table !important;
+}
+
+.input-numero-carrera{
+    width: 30% !important;
+    display:inline-table !important;
+}
+
+.boton-acuerdo{
+    display: inline-block;
+    margin: auto;
+    max-width: 100%;
+}
+
+.boton-envio{
+    display: inline-block;
+    margin: auto;
+    max-width: 100%;
+}
+
+.botones-form{
+    display: inline-block;
+    margin: auto;
+    max-width: 50%;
+}
+
+.titulo-convocatoria{
+    width: 30%;
+    border:1px #fff solid;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+    text-align: center;
+}
+
+.titulo-convocatoria:hover{
+    width: 30%;
+    border:1px #fff solid;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+    text-align: center;
+}
+
+.titulo-convocatoria > h2{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Vista lista solicitudes */
+.contenido-lista{
+    margin-top: 2%;
+}
+
+.contenido-listas-cuerpo{
+    max-width: 80%;
+    margin: auto;
+}
+
