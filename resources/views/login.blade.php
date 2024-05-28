@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>PLH: Proyect Large heart</title>
   <link rel="stylesheet" href="{{ asset('/css/login/style.css')}}">
+  <link rel="shortcut icon" href="{{URL::asset('/img/favicon.ico')}}" type="image/x-icon">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
@@ -41,7 +42,7 @@
 
       <div class="col-4 login-plh">
         <div>
-          <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+          <img src="{{URL::asset('/img/logo-plh.png')}}" alt="Logo"  height="80" class="d-inline-block align-text-top">
         </div>
       
           <div class="instrucciones">

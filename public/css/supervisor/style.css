@@ -3,8 +3,8 @@
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
 body{
-    /* background-image: url('/img/fondo.jpg'); */
-    background-color: #d5bdaf !important;
+    background-image: url('/img/fondo-supervisor.jpg');
+    /* background-color: #d5bdaf !important; */
     /* background-size: cover;
     overflow-x: hidden; */
 }
@@ -46,8 +46,10 @@ div.menu-navegacion nav{
 
 /* vista home----------------------------------------------------------------------------------------------------------------------*/
 .contenido-plh_{
+    margin: auto;
     margin-top: 3% !important;
-    
+    margin-left: 1.5% !important;
+    padding: 2%;
 }
 
 .color-borde-plh{
@@ -92,13 +94,16 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh{
-    max-height: 80%;
+    /* max-height: 70%; */
+    /* max-width: 60% !important; */
     margin-top: 2% !important;
 }
 
 .contenido-plh-video{
     /* border: 2px solid #000; */
-    background-color: #eeeeee;
+    background-color: rgba(88, 21, 28,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
     padding: 10px;
     border-radius: 10px;
     max-height: 400px;
@@ -113,9 +118,13 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh-actualizacion{
+    text-decoration: underline;
+    color: #fff;
+    font-family: fuente_,'Times New Roman', Times, serif;
     margin: 20px;
+    border: 3px solid #fff;
     border-radius: 10px;
-    background-color: #eeeeee;
+    background-color: rgba(88, 21, 28,.3);
     max-height: 450px;
     padding: 10px;
     /* border: 2px solid #000; */
@@ -449,6 +458,18 @@ div.datos-perfil > div > h3{
 
 .contenido_grafica{
     margin-top: 3% !important;
+    margin-bottom: 2% !important;
+    background-color: rgba(88, 21, 28,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+.contenido_grafica:hover{
+    margin-top: 3% !important;
+    margin-bottom: 2% !important;
+    background-color: rgba(88, 21, 28,.6);
+    border: 3px solid #fff;
+    border-radius: 10px;
 }
 
 .grafica{
@@ -460,6 +481,7 @@ div.datos-perfil > div > h3{
 canvas#myChart{
     height: 100% !important;
     width: 80% !important;
+    margin: auto;
 }
 
 div h5{
@@ -467,6 +489,20 @@ div h5{
 }
 
 /* Ver solicitud alumno ----------------------------------------------------------------------------------- */
+
+.formulario-contestado{
+    padding: 2%;
+    background-color: rgba(88, 21, 28,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+.formulario-contestado:hover{
+    padding: 2%;
+    background-color: rgba(88, 21, 28,.6);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
 
 .contenido_formulario{
     margin-top: 1%;

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
     <link rel="stylesheet" href="{{ asset('/css/supervisor/style.css')}}">
+    <link rel="shortcut icon" href="{{URL::asset('/img/favicon.ico')}}" type="image/x-icon">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
@@ -24,13 +25,13 @@
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
+                    <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

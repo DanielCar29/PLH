@@ -7,9 +7,8 @@
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
 body{
-    background-image: url('/img/fondo_login.jpg');
+    background-image: url('/img/fondo-login-blanco.jpg');
     overflow-x: hidden;
-    
 }
 div.container.text-center{
     margin-top: 3%;
@@ -19,20 +18,24 @@ div.container.text-center{
     padding: 5%;
 }
 .contenido-bienvenida{
-    background-image: url('/img/fondo_login.jpg');
+    background-color: rgba(0, 0, 0, .8);
     background-size: cover;
-    border-radius: 5px;
+    border-radius: 10px;
     font-family: fuente_login-bienvenida, Arial, Helvetica, sans-serif;
     /* border: 1px solid #aaa; */
-
+    border: 5px #fff solid;
+    /* margin-right: .5%; */
+    
 }
 .login-plh{
-    background-color: rgb(255, 255, 255,.7);
-    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 10px;
     /* border: 1px solid #aaa; */
     padding: 5% 1% 5% 1%;
     font-family: fuente_login, Arial, Helvetica, sans-serif;
-
+    border: 5px #fff solid;
+    border-left: 0px;
+    color: #fff;
 }
 .instrucciones{
     max-width: 50%;

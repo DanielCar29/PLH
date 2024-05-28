@@ -3,8 +3,8 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid nav-color color-borde-plh">
       <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
-        <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
-            width="40" height="40" class="d-inline-block align-text-top">
+        <img src="{{URL::asset('/img/logo-plh-menu.png')}}" alt="Logo" 
+            height="30" class="d-inline-block align-text-top">
                 PLH
     </a>
     {{-- Botón de desplazamiento --}}

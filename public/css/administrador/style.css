@@ -4,7 +4,8 @@
 }
 
 body{
-    background-color: rgb(76, 0, 125,.2) !important;
+    /* background-color: rgb(76, 0, 125,.2) !important; */
+    background-image: url('/img/fondo-admin.jpg');
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
@@ -95,8 +96,21 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh-video{
-    /* border: 2px solid #000; */
-    background-color: #eeeeee;
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+
+.contenido-plh-video{
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
     padding: 10px;
     border-radius: 10px;
     max-height: 400px;
@@ -111,9 +125,13 @@ div.menu-navegacion nav{
 }
 
 .contenido-plh-actualizacion{
+    text-decoration: underline;
+    color: #fff;
+    font-family: fuente_,'Times New Roman', Times, serif;
     margin: 20px;
+    border: 3px solid #fff;
     border-radius: 10px;
-    background-color: #eeeeee;
+    background-color: rgb(76, 0, 125,.3);
     max-height: 450px;
     padding: 10px;
     /* border: 2px solid #000; */
@@ -285,7 +303,22 @@ div.menu-navegacion nav{
 }
 
 .contenido-listas-cuerpo{
+    padding: 2%;
     max-width: 80%;
     margin: auto;
+    margin-bottom: 2%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.3);
+}
+
+.contenido-listas-cuerpo:hover{
+    padding: 2%;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 2%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
 }
 
