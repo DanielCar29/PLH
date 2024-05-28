@@ -3,47 +3,14 @@
     src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
 }
 body{
-    /* background-image: url('/img/fondo.jpg'); */
-    background-color: #b6ffff !important;
+    background-image: url('/img/fondo_alumno.jpeg');
+    /* background-color: #d5bdaf !important; */
     /* background-size: cover;
     overflow-x: hidden; */
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
-div.menu-navegacion nav{
-    background-color: #003785 !important;
-    position: relative; /* Añadimos esta propiedad para establecer el contexto de apilamiento */
-    z-index: 1000; /* Ajustamos el z-index para que el menú de navegación se superponga sobre el contenido */
-    border-radius: 10px;
-    height: 100px;
-}
-.menu-navegacion{
-    margin-top: 10px !important;
-    max-width: 95%;
-    margin: auto;
-    max-height: 10%;
-    border-radius: 5px;
-}
-.nav-color-custom {
-    background-color: #003785; /* Azul oscuro */
-}
-.contenido {
-    margin-top: 70px; /* Ajusta el valor según el tamaño de la barra de navegación */
-}
-.navbar {
-position: relative;
-z-index: 1000;
-/* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
-width: 100%; /* o cualquier otro valor fijo deseado */
-}
 
-/* Media query para dispositivos con un ancho máximo de 768px (tabletas y teléfonos) */
-@media (max-width: 768px) {
-/* Establecer un ancho máximo para el menú de navegación en dispositivos más pequeños */
-.navbar {
-width: 100%; /* o cualquier otro valor fijo deseado */
-}
-}
 .elemento-navegacion-plh{
     color: rgb(255, 255, 255) !important;
     font-size: x-large !important;
@@ -52,9 +19,45 @@ width: 100%; /* o cualquier otro valor fijo deseado */
     margin: 12px;
 }
 
+.boton-salir{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer; /* Opcional: mantener el cursor de puntero */
+    outline: none;
+    text-decoration: none;
+}
+
+.menu-navegacion{
+    margin-top: 10px !important;
+    max-width: 95%;
+    margin: auto;
+    max-height: 10%;
+    border-radius: 5px;
+}
+
+.navbar{
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%;
+}
+
+div.menu-navegacion nav{
+    background-color: #003785 !important; 
+    border-radius: 10px;
+    height: 100px;
+}
+
 /* vista home----------------------------------------------------------------------------------------------------------------------*/
 .contenido-plh_{
+    margin: auto;
     margin-top: 3% !important;
+    margin-left: 1.5% !important;
+    padding: 2%;
 }
 
 .color-borde-plh{
@@ -99,13 +102,16 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 }
 
 .contenido-plh{
-    max-height: 80%;
+    /* max-height: 70%; */
+    /* max-width: 60% !important; */
     margin-top: 2% !important;
 }
 
 .contenido-plh-video{
     /* border: 2px solid #000; */
-    background-color: #eeeeee;
+    background-color: rgba(45, 25, 99, 0.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
     padding: 10px;
     border-radius: 10px;
     max-height: 400px;
@@ -120,9 +126,13 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 }
 
 .contenido-plh-actualizacion{
+    text-decoration: underline;
+    color: #fff;
+    font-family: fuente_,'Times New Roman', Times, serif;
     margin: 20px;
+    border: 3px solid #fff;
     border-radius: 10px;
-    background-color: #eeeeee;
+    background-color: rgba(45, 25, 99, 0.3);
     max-height: 450px;
     padding: 10px;
     /* border: 2px solid #000; */
@@ -133,6 +143,7 @@ width: 100%; /* o cualquier otro valor fijo deseado */
 .contenido-plh-actualizacion h1{
     text-align: center;
 }
+
 
 /* Vista visualizar_solicitud----------------------------------------------------------------------------------------------------------*/
 .tabla{
@@ -266,6 +277,41 @@ input[type="text"], input[type="password"] {
     border: 1px solid #ccc;
 }
 
-.btn{
+.boton_perfil-guardar{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: rgba(18, 20, 89, 0.581);
+}
+
+
+.boton_perfil-guardar:hover{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: #fff
+}
+
+.boton_perfil-guardar > a{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton_perfil-guardar > a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+/* ver beca */
+
+.contenedor_detalles{
     margin-top: 3%;
 }

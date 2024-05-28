@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <link rel="shortcut icon" href="{{URL::asset('/img/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('/css/alumno/style.css')}}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -14,148 +15,103 @@
 </head>
 <body>
      {{-- Menú de navegación --}}
-     <div class="menu-navegacion">
-      <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
-        <div class="container-fluid nav-color-custom">
-          <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
-            <img src="{{URL::asset('/img/logo_ejemplo.png')}}" alt="Logo" 
-                width="40" height="40" class="d-inline-block align-text-top">
-                    PLH
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Ver beca</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                      Ayuda
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
-                    <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">Preguntas Frecuentes</a></li>
-                    <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                            Nombre Alumno
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item"href="{{URL::asset('/alumno.perfil')}}">Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        </div>
-      </nav>
-    </div>
-    
-  {{-- Contenido --}}
-  <div class="row contenido-plh_">
-    {{-- Imagen | Video --}}
-    <div class="col-7 contenido-plh-video">
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="...">
-              </div>
+     @include('/alumno/nav/menu_alumno')
+
+{{-- Contenido --}}
+<div class="row contenido-plh_">
+  {{-- Imagen | Video --}}
+  <div class="col-7 contenido-plh-video">
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+              <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
+            </div>
+            <div class="carousel-item">
+              <img src="{{URL::asset('/img/video_ejemplo.png')}}" class="d-block w-100" alt="..." style="border-radius: 10px;">
+            </div>
           </div>
-    </div>
-    {{-- Novedades --}}
-    <div class="col-4 contenido-plh-actualizacion">
-        <h1>Novedades</h1>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Novedad #1
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <strong>This is the first item's accordion body.</strong> 
-                    It is shown by default, until the collapse plugin adds 
-                    the appropriate classes that we use to style each element. These 
-                    classes control the overall appearance, as well as the showing and hiding 
-                    via CSS transitions. You can modify any of this with custom CSS or overriding 
-                    our default variables. It's also worth noting that just about any HTML can go within the 
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Novedad #2
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> 
-                  It is hidden by default, until the collapse plugin adds the 
-                  appropriate classes that we use to style each element. These 
-                  classes control the overall appearance, as well as the showing 
-                  and hiding via CSS transitions. You can modify any of this with 
-                  custom CSS or overriding our default variables. It's also worth 
-                  noting that just about any HTML can go within the <code>.accordion-body</code>, 
-                  though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Novedad #3
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                  <strong>This is the third item's accordion body.</strong>
-                   It is hidden by default, until the collapse plugin adds 
-                   the appropriate classes that we use to style each element. 
-                   These classes control the overall appearance, as well as the 
-                   showing and hiding via CSS transitions. You can modify any of 
-                   this with custom CSS or overriding our default variables. It's 
-                   also worth noting that just about any HTML can go within the 
-                   <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+  </div>
+  {{-- Novedades --}}
+  <div class="col-4 contenido-plh-actualizacion">
+      <h1>Novedades</h1>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                      data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          Novedad #1
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> 
+                  It is shown by default, until the collapse plugin adds 
+                  the appropriate classes that we use to style each element. These 
+                  classes control the overall appearance, as well as the showing and hiding 
+                  via CSS transitions. You can modify any of this with custom CSS or overriding 
+                  our default variables. It's also worth noting that just about any HTML can go within the 
+                  <code>.accordion-body</code>, though the transition does limit overflow.
               </div>
             </div>
           </div>
-    </div>  
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                      data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                          Novedad #2
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> 
+                It is hidden by default, until the collapse plugin adds the 
+                appropriate classes that we use to style each element. These 
+                classes control the overall appearance, as well as the showing 
+                and hiding via CSS transitions. You can modify any of this with 
+                custom CSS or overriding our default variables. It's also worth 
+                noting that just about any HTML can go within the <code>.accordion-body</code>, 
+                though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                      data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                          Novedad #3
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong>
+                 It is hidden by default, until the collapse plugin adds 
+                 the appropriate classes that we use to style each element. 
+                 These classes control the overall appearance, as well as the 
+                 showing and hiding via CSS transitions. You can modify any of 
+                 this with custom CSS or overriding our default variables. It's 
+                 also worth noting that just about any HTML can go within the 
+                 <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>  
 </div>
-    
+
+
+  
 
 <!-- Footer -->
 <footer>

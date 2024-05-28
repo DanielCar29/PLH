@@ -1,0 +1,55 @@
+<div class="menu-navegacion">
+    <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
+      <div class="container-fluid nav-color-custom">
+        <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
+          <img src="{{URL::asset('/img/logo-plh-menu.png')}}" alt="Logo" 
+            height="30" class="d-inline-block align-text-top">
+                  PLH
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Ver beca</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                    Ayuda
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{URL::asset('/pdfs/README.pdf')}}">Guías Y Manuales</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/preguntas_frecuentes') }}" target="_blank">Preguntas Frecuentes</a></li>
+                  <li><a class="dropdown-item" href="mailto:contact.josesandoval@gmail.com">Contacto</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                          Nombre Alumno
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item"href="{{URL::asset('/alumno.perfil')}}">Perfil</a></li>
+                      <li>  <a class="dropdown-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type="submit" class="boton-salir">Salir</button>
+                        </form>
+                      </a>
+                    </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      </div>
+    </nav>
+  </div>
+  
