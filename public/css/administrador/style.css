@@ -143,7 +143,7 @@ div.menu-navegacion nav{
     text-align: center;
 }
 
-/* Vista Registrar Supervisor */
+/* Vista Registrar Supervisor ----------------------------------------------------------------------------------------------------------*/
 
 .contenido{
     margin-top: 2%;
@@ -297,7 +297,25 @@ div.menu-navegacion nav{
     text-decoration: underline;
 }
 
-/* Vista lista solicitudes */
+/* Vista lista solicitudes ----------------------------------------------------------------------------------------------------------*/
+th{
+    text-align: center !important;
+}
+
+.boton-envio-aceptados{
+    text-align: center;
+}
+
+.icono_ver{
+    margin: auto;
+    width: 70%;
+    text-align: center;
+}
+
+.grupo-botones{
+    text-align: center;
+}
+
 .contenido-lista{
     margin-top: 2%;
 }
@@ -322,3 +340,213 @@ div.menu-navegacion nav{
     background-color: rgb(76, 0, 125,.6);
 }
 
+/* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
+.contenido-general-perfil{
+    width: 75vw;
+    height: 100vh;
+    background-color: rgb(76, 0, 125,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    
+}
+
+.foto-perfil{
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgb(76, 0, 125,.3);
+    width: 60% !important;
+    margin: auto;
+    margin-top: 10%;
+    padding: 6%;
+}
+
+.foto-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgb(76, 0, 125,.3);
+    width: 100% !important;
+    margin: auto;
+    padding: 6%;
+
+}
+
+.contenido-datos-perfil{
+    text-align: center;
+    padding: 3%;
+}
+
+.contenido-datos-institucionales{
+    padding: 3%;
+}
+
+div.foto-datos_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 25%;
+}
+
+.datos-correo_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 1.35% !important;
+}
+
+.datos-correo_usuario-interno{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 100%;
+    padding: 4%;
+}
+
+.datos-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div{
+    text-align: center;
+}
+
+.boton_perfil-guardar{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: rgb(76, 0, 125,.3);
+}
+
+.boton_perfil-guardar:hover{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: #fff
+}
+
+.boton_perfil-guardar > a{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton_perfil-guardar > a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+/* Ver solicitud alumno -------------------------------------------------------------------------------------------------------- */
+
+.formulario-contestado{
+    padding: 2%;
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+.formulario-contestado:hover{
+    padding: 2%;
+    background-color: rgb(76, 0, 125,.6);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+.contenido_formulario{
+    margin-top: 1%;
+}
+
+.datos_alumno-formulario{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    margin-bottom: 1% !important;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+}
+
+.nombre_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.nombre_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.carrera_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.numero-control_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+}

@@ -56,7 +56,7 @@
                         Nombre Supervisor
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ url('/supervisor.perfil') }}">Perfil</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/administrador.perfil') }}">Perfil</a></li>
                     <li>
                       <a class="dropdown-item">
                         <form method="POST" action="{{ route('logout') }}">

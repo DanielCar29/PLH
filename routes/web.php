@@ -128,5 +128,13 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         return view('/administrador/listaSolicitudes');
     });
 
+    Route::get('/administrador.perfil', function () {
+        return view('/administrador/perfil');
+    });
+
+    Route::get('/administrador.ver', function () {
+        return view('/administrador/verSolicitudAlumno');
+    });
+
 
 });

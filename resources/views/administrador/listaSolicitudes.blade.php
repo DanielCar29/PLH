@@ -31,32 +31,103 @@
                     <div class="accordion-body">
                         <div class="tabla-lista">
                             <table class="table table-hover table-striped">
-                                <caption>Lista de solicitudes de alumnos de Informática</caption>
                                 <thead>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Edad</th>
-                                    <th>Correo Electrónico</th>
+                                    <tr>
+                                        <th>Numero de control</th>
+                                        <th>Nombre del alumno</th>
+                                        <th>Acciones</th>
+                                        <th>Aceptado/Rechazado</th>
+                                    </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody class="table-group-divider">
                                     <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
+                                        <td>212310628</td>
+                                        <td>Jose Alberto Sandoval Vazquez</td>
+                                        <td>
+                                            <div class="icono_ver">
+                                                <a href="{{ url('/administrador.ver') }}">
+                                                    <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                                </a>
+                                            </div>
+            
+                                        </td>
+                                        <td>
+                                            <div class="grupo-botones">
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option1">
+
+                                                        <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="30">
+
+                                                    </label>
+                                            
+                                                    <input type="radio" class="btn-check" name="options" id="option2" checked autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option2">
+                                                        
+                                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="30">
+
+                                                    </label>
+                                            
+                                                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option3">
+                                                        
+                                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="30">
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        
+                                        </td>
                                     </tr>
 
-
                                     <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
+                                        <td>212310628</td>
+                                        <td>Jose Alberto Sandoval Vazquez</td>
+                                        <td>
+                                            <div class="icono_ver">
+                                                <a href="{{ url('/administrador.ver') }}">
+                                                    <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
+                                                </a>
+                                            </div>
+            
+                                        </td>
+                                        <td>
+                                            <div class="grupo-botones">
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="options-" id="option1-" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option1-">
+
+                                                        <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="30">
+
+                                                    </label>
+                                            
+                                                    <input type="radio" class="btn-check" name="options-" id="option2-" checked autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option2-">
+                                                        
+                                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="30">
+
+                                                    </label>
+                                            
+                                                    <input type="radio" class="btn-check" name="options-" id="option3-" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="option3-">
+                                                        
+                                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="30">
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="boton-envio-aceptados">
+                            <button type="button" class="btn btn-success">Enviar aceptados</button>
+                        </div>
+
                     </div>
                   </div>
                 </div>
