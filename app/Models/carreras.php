@@ -12,4 +12,12 @@ class carreras extends Model
 
     protected $table = 'carreras';
 
+    public function carreras()
+    {
+        return $this->belongsToMany(Carreras::class, 'carreras_alumno', 'alumno_id', 'carreras_id');
+    }
+    protected $fillable = [
+        'carrera',
+    ];
+
 }

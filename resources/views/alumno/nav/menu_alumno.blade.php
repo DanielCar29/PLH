@@ -1,11 +1,12 @@
+{{-- Menú de navegación --}}
 <div class="menu-navegacion">
-    <nav class="navbar navbar-expand-lg bg-primary" style="padding: 0">
-      <div class="container-fluid nav-color-custom">
-        <a class="navbar-brand item-nav elemento-navegacion-plh" href="#">
-          <img src="{{URL::asset('/img/logo-plh-menu.png')}}" alt="Logo" 
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid nav-color color-borde-plh">
+      <a class="navbar-brand item-nav elemento-navegacion-plh" href="{{ url('/supervisor.home') }}">
+        <img src="{{URL::asset('/img/logo-plh-menu.png')}}" alt="Logo" 
             height="30" class="d-inline-block align-text-top">
-                  PLH
-      </a>
+                PLH
+    </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

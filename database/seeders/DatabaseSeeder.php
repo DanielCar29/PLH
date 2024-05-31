@@ -49,31 +49,31 @@ class DatabaseSeeder extends Seeder
         // Creación de carreras:
 
         $carrera1 = new carreras;
-        $carrera1->carrera = '1';
+        $carrera1->carrera = 'ing. informatica';
         $carrera1->save();
 
         $carrera2 = new carreras;
-        $carrera2->carrera = '2';
+        $carrera2->carrera = 'ing. Sistemas Computacionales';
         $carrera2->save();
 
         $carrera3 = new carreras;
-        $carrera3->carrera = '3';
+        $carrera3->carrera = 'ing. Sistemas Automotrices';
         $carrera3->save();
 
         $carrera4 = new carreras;
-        $carrera4->carrera = '4';
+        $carrera4->carrera = 'Ing. ambiental';
         $carrera4->save();
 
         $carrera5 = new carreras;
-        $carrera5->carrera = '5';
+        $carrera5->carrera = 'ing. electromecanica';
         $carrera5->save();
 
         $carrera6 = new carreras;
-        $carrera6->carrera = '6';
+        $carrera6->carrera = 'ing electronica';
         $carrera6->save();
 
         $carrera7 = new carreras;
-        $carrera7->carrera = '7';
+        $carrera7->carrera = 'ing industrial';
         $carrera7->save();
 
         // Creación de 5 Usuarios --------------------------------------------------------------------------------------------------------------
@@ -112,6 +112,7 @@ class DatabaseSeeder extends Seeder
         // ID = 1 registro en tabla alumno
         $alumno1 = new alumnos;
         $alumno1->usuario_id = 2;
+        $alumno1->numero_de_control = 212310023;
         $alumno1->semestre = 6;
         $alumno1->save();
         // Registro en tabla reporte
@@ -132,6 +133,7 @@ class DatabaseSeeder extends Seeder
         // ID = 1 registro en tabla alumno
         $alumno2 = new alumnos;
         $alumno2->usuario_id = 3;
+        $alumno2->numero_de_control = 212310078;
         $alumno2->semestre = 6;
         $alumno2->save();
         // ID = 2 Registro en tabla reporte
@@ -152,6 +154,7 @@ class DatabaseSeeder extends Seeder
         // ID = 3
         $alumno3 = new alumnos;
         $alumno3->usuario_id = 4;
+        $alumno3->numero_de_control = 212310977;
         $alumno3->semestre = 6;
         $alumno3->save();
         // ID = 2 Registro en tabla reporte

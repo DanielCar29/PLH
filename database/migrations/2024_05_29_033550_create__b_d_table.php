@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alumnos', function (Blueprint $table) { 
-            $table->bigIncrements('id'); 
-            $table->string('semestre', 200); 
-            $table->bigInteger('usuario_id')->unsigned(); 
-            $table->timestamps(); 
-
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('no action')->onUpdate('no action'); 
-
-        }); 
+        Schema::create('alumnos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('numero_de_control', 9)->unique();
+            $table->string('semestre', 200);
+            $table->bigInteger('usuario_id')->unsigned();
+            $table->timestamps();
+        
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
+        });
+        
 
  
 
@@ -59,12 +60,12 @@ return new class extends Migration
             $table->timestamps(); 
         }); 
 
-        Schema::create('carreras', function (Blueprint $table) { 
-            $table->bigIncrements('id'); 
-            $table->integer('carrera'); 
-            $table->timestamps(); 
-
-        }); 
+        Schema::create('carreras', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('carrera'); // Cambiar 'integer' por 'string'
+            $table->timestamps();
+        });
+        
         Schema::create('detalles_becas', function (Blueprint $table) {  
             $table->increments('id');  
             $table->integer('cantidad_de_beces');  

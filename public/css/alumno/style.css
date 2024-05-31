@@ -11,14 +11,6 @@ body{
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
 
-.elemento-navegacion-plh{
-    color: rgb(255, 255, 255) !important;
-    font-size: x-large !important;
-    font-family: fuente_, Arial, Helvetica, sans-serif;
-    padding: 5px;
-    margin: 12px;
-}
-
 .boton-salir{
     background: none;
     border: none;
@@ -193,6 +185,18 @@ div.menu-navegacion nav{
 .contenido_formulario{
     margin-top: 5%;
 }
+/* Asegurarse de que el textarea crezca sin límites */
+.form-control {
+    overflow: hidden; /* Oculta las barras de desplazamiento */
+    resize: none; /* Previene el cambio manual de tamaño */
+    min-height: 3em; /* Ajusta esta altura según tus necesidades */
+    line-height: 1.5em; /* Ajusta esta altura según tus necesidades */
+    padding: 0.5em; /* Ajusta el padding según tus necesidades */
+    box-sizing: border-box;
+}
+
+
+
 
 /*Perfil */
 

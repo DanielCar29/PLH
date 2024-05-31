@@ -21,5 +21,16 @@ class alumnos extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+
+    
     }
+    public function carreras()
+    {
+        return $this->belongsToMany(Carreras::class, 'carreras_alumno', 'alumno_id', 'carreras_id');
+    }
+    protected $fillable = [
+        'numero_de_control',
+        'semestre',
+        'usuario_id',
+    ];
 }

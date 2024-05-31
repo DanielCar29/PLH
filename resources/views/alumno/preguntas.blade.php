@@ -28,80 +28,260 @@
                     <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
                     <div class="card-body">
                         <form action="/submit_form" method="post">
-                            <!-- Pregunta 1 -->
+                                                        <!-- Pregunta 1 -->
                             <div class="mb-4">
-                                <label for="reason" class="form-label">¿Cuál es la razón principal que te lleva a solicitar urgentemente una beca alimenticia?</label>
+                                <label for="scholarship_type" class="form-label">1. La beca Alimenticia que solicitas es:</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="reason" id="income_loss" value="income_loss" required>
-                                    <label class="form-check-label" for="income_loss">Pérdida repentina de ingresos</label>
+                                    <input class="form-check-input" type="radio" name="scholarship_type" id="first_time" value="first_time" required>
+                                    <label class="form-check-label" for="first_time">Primera vez</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="reason" id="unexpected_expenses" value="unexpected_expenses" required>
-                                    <label class="form-check-label" for="unexpected_expenses">Gastos inesperados</label>
+                                    <input class="form-check-input" type="radio" name="scholarship_type" id="renewal" value="renewal" required>
+                                    <label class="form-check-label" for="renewal">Renovación</label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="reason" id="other" value="other" required>
-                                    <label class="form-check-label" for="other">Otros (especificar)</label>
-                                </div>
-                                <textarea class="form-control mt-2" name="other_reason" rows="3" placeholder="Especificar"></textarea>
                             </div>
-    
-                            <!-- Pregunta 2 -->
+
+                          <!-- Pregunta 2 -->
                             <div class="mb-4">
-                                <label for="current_financial_situation" class="form-label">Proporciona detalles sobre tu situación financiera actual y por qué te encuentras en una situación tan crítica en términos de acceso a alimentos</label>
-                                <textarea class="form-control" name="current_financial_situation" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                <label for="other_scholarships" class="form-label">2. ¿Cuentas actualmente con otra beca en el Tec?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="other_scholarships" id="yes_other_scholarships" value="yes" required>
+                                    <label class="form-check-label" for="yes_other_scholarships">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="other_scholarships" id="no_other_scholarships" value="no" required>
+                                    <label class="form-check-label" for="no_other_scholarships">No</label>
+                                </div>
                             </div>
-    
+
+                            <!-- Pregunta sobre las becas actuales -->
+                            <div id="scholarships_details" class="mb-4" style="display:none;">
+                                <label for="scholarships_details" class="form-label">En caso de que sí, ¿con qué becas cuentas actualmente?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="scholarship_details" id="academic_effort" value="academic_effort">
+                                    <label class="form-check-label" for="academic_effort">Esfuerzo académico</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="scholarship_details" id="academic_excellence" value="academic_excellence">
+                                    <label class="form-check-label" for="academic_excellence">Excelencia académica</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="scholarship_details" id="socioeconomic" value="socioeconomic">
+                                    <label class="form-check-label" for="socioeconomic">Socio-económica</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="scholarship_details" id="federal_scholarship" value="federal_scholarship">
+                                    <label class="form-check-label" for="federal_scholarship">Beca federal (Benito Juárez, manutención, madres solteras, etc.)</label>
+                                </div>
+                            </div>
+
                             <!-- Pregunta 3 -->
                             <div class="mb-4">
-                                <label for="meals_per_day" class="form-label">¿Cuántas comidas al día tienes actualmente? ¿Experimentas días sin suficiente comida?</label>
-                                <input type="number" class="form-control" name="meals_per_day" placeholder="Escribe aquí..." required>
-                            </div>
-    
-                            <!-- Pregunta 4 -->
-                            <div class="mb-4">
-                                <label for="dependents" class="form-label">¿Tienes dependientes, como hijos o familiares ancianos, que también enfrentan inseguridad alimentaria?</label>
+                                <label for="live_with_family" class="form-label">3. ¿Vives con tu familia?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="dependents" id="yes" value="yes" required>
-                                    <label class="form-check-label" for="yes">Sí</label>
+                                    <input class="form-check-input" type="radio" name="live_with_family" id="yes_live_with_family" value="yes" required>
+                                    <label class="form-check-label" for="yes_live_with_family">Sí</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="dependents" id="no" value="no" required>
-                                    <label class="form-check-label" for="no">No</label>
+                                    <input class="form-check-input" type="radio" name="live_with_family" id="no_live_with_family" value="no" required>
+                                    <label class="form-check-label" for="no_live_with_family">No</label>
                                 </div>
                             </div>
-    
+                             <!-- Pregunta 4 -->
+                                <div class="mb-4">
+                                <label for="currently_working" class="form-label mt-3">4. ¿Trabajas Actualmente?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="currently_working" id="yes_working" value="yes" required>
+                                    <label class="form-check-label" for="yes_working">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="currently_working" id="no_working" value="no" required>
+                                    <label class="form-check-label" for="no_working">No</label>
+                                </div>
+                            </div>
+
                             <!-- Pregunta 5 -->
                             <div class="mb-4">
-                                <label for="assistance_received" class="form-label">¿Has buscado o recibido asistencia alimentaria de otras organizaciones o programas gubernamentales? Si es así, ¿en qué medida?</label>
-                                <textarea class="form-control" name="assistance_received" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                <label for="dependents" class="form-label">5. ¿Cuántas personas dependen del ingreso económico de los miembros de tu hogar para cubrir gastos de alimento (incluyéndote)?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="dependents" id="1-3_dependents" value="1-3" required>
+                                    <label class="form-check-label" for="1-3_dependents">1-3</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="dependents" id="4-5_dependents" value="4-5" required>
+                                    <label class="form-check-label" for="4-5_dependents">4-5</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="dependents" id="6_or_more_dependents" value="6_or_more" required>
+                                    <label class="form-check-label" for="6_or_more_dependents">6 o más</label>
+                                </div>
                             </div>
-    
+
                             <!-- Pregunta 6 -->
                             <div class="mb-4">
-                                <label for="medical_condition" class="form-label">¿Tienes alguna condición médica que requiera una dieta especial o restricciones alimentarias?</label>
-                                <textarea class="form-control" name="medical_condition" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                <label for="monthly_income" class="form-label">6. ¿Cuál es el ingreso económico mensual?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monthly_income" id="2500-3000" value="2500-3000" required>
+                                    <label class="form-check-label" for="2500-3000">2500-3000</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monthly_income" id="3000-4000" value="3000-4000" required>
+                                    <label class="form-check-label" for="3000-4000">3000-4000</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monthly_income" id="4000-5000" value="4000-5000" required>
+                                    <label class="form-check-label" for="4000-5000">4000-5000</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monthly_income" id="5000_more" value="5000_more" required>
+                                    <label class="form-check-label" for="5000_more">5000 o más</label>
+                                </div>
                             </div>
-    
+
                             <!-- Pregunta 7 -->
                             <div class="mb-4">
-                                <label for="documentation" class="form-label">¿Estás dispuesto a proporcionar documentación que respalde tu situación financiera actual, como extractos bancarios, cartas de desempleo u otros documentos relevantes?</label>
+                                <label for="responsible_person" class="form-label">7. ¿Quién es la persona responsable de cubrir tus gastos escolares y colegiaturas?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="documentation" id="yes_doc" value="yes" required>
-                                    <label class="form-check-label" for="yes_doc">Sí</label>
+                                    <input class="form-check-input" type="radio" name="responsible_person" id="parents" value="parents" required>
+                                    <label class="form-check-label" for="parents">Padres (ambos)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="documentation" id="no_doc" value="no" required>
-                                    <label class="form-check-label" for="no_doc">No</label>
+                                    <input class="form-check-input" type="radio" name="responsible_person" id="single_parent_or_guardian" value="single_parent_or_guardian" required>
+                                    <label class="form-check-label" for="single_parent_or_guardian">Mamá, Papá o tutor</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="responsible_person" id="myself" value="myself" required>
+                                    <label class="form-check-label" for="myself">Yo mismo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="responsible_person" id="other_person" value="other_person" required>
+                                    <label class="form-check-label" for="other_person">Otra persona</label>
                                 </div>
                             </div>
-    
+
                             <!-- Pregunta 8 -->
                             <div class="mb-4">
-                                <label for="difference" class="form-label">¿Cómo crees que recibir esta beca alimenticia podría marcar una diferencia significativa en tu situación?</label>
-                                <textarea class="form-control" name="difference" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                <label for="housing_situation" class="form-label">8. La vivienda donde vive tu familia es:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="housing_situation" id="own_house" value="own_house" required>
+                                    <label class="form-check-label" for="own_house">Propia</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="housing_situation" id="rent_house" value="rent_house" required>
+                                    <label class="form-check-label" for="rent_house">Renta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="housing_situation" id="borrowed_house" value="borrowed_house" required>
+                                    <label class="form-check-label" for="borrowed_house">Prestada</label>
+                                </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="other_health_services">Otros</label>
+                                        <textarea class="form-control" name="scholarship_reason" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                </div>
                             </div>
-    
+
+                            <!-- Pregunta 9 -->
+                            <div class="mb-4">
+                                <label for="health_services" class="form-label">9. ¿Con qué servicio de salud cuentan tú y tu familia?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="health_services" id="imss" value="imss" required>
+                                    <label class="form-check-label" for="imss">IMSS</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="health_services" id="issste" value="issste" required>
+                                    <label class="form-check-label" for="issste">ISSSTE</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="health_services" id="insabi" value="insabi" required>
+                                    <label class="form-check-label" for="insabi">INSABI</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="health_services" id="major_medical_expenses" value="major_medical_expenses" required>
+                                    <label class="form-check-label" for="major_medical_expenses">Gastos de servicios médicos mayores</label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="other_health_services">Otros</label>
+                                    <textarea class="form-control" name="scholarship_reason" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="health_services" id="no_health_services" value="no_health_services" required>
+                                    <label class="form-check-label" for="no_health_services">No tengo</label>
+                                </div>
+                            </div>
+
+                            <!-- Pregunta 10 -->
+                            <div class="mb-4">
+                                <label for="transportation" class="form-label">10. ¿Qué medio de transporte utilizas para ir a la escuela?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="taxi" value="taxi" required>
+                                    <label class="form-check-label" for="taxi">Taxi</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="bus" value="bus" required>
+                                    <label class="form-check-label" for="bus">Camión</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="online_service" value="online_service" required>
+                                    <label class="form-check-label" for="online_service">Servicio online (Uber, Didi, etc.)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="walking" value="walking" required>
+                                    <label class="form-check-label" for="walking">Caminando</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="two_wheel_vehicle" value="two_wheel_vehicle" required>
+                                    <label class="form-check-label" for="two_wheel_vehicle">Vehículo de 2 ruedas (bicis, motocicletas, otros)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="transportation" id="own_car" value="own_car" required>
+                                    <label class="form-check-label" for="own_car">Carro propio</label>
+                                </div>
+                            </div>
+
+                            <!-- Pregunta 11 -->
+                            <div class="mb-4">
+                                <label for="commute_time" class="form-label">11. ¿Cuánto tiempo tardas en trasladarte de tu casa a la escuela?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="commute_time" id="0-14_minutes" value="0-14_minutes" required>
+                                    <label class="form-check-label" for="0-14_minutes">0-14 min</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="commute_time" id="15-29_minutes" value="15-29_minutes" required>
+                                    <label class="form-check-label" for="15-29_minutes">15-29 min</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="commute_time" id="30-59_minutes" value="30-59_minutes" required>
+                                    <label class="form-check-label" for="30-59_minutes">30-59 min</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="commute_time" id="60_minutes_or_more" value="60_minutes_or_more" required>
+                                    <label class="form-check-label" for="60_minutes_or_more">60 min o más</label>
+                                </div>
+                            </div>
+
+                            <!-- Pregunta 12 -->
+                            <div class="mb-4">
+                                <label for="school_duration" class="form-label">12. ¿Cuánto tiempo duras en la escuela?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="school_duration" id="4-6_hours" value="4-6_hours" required>
+                                    <label class="form-check-label" for="4-6_hours">4 a 6 horas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="school_duration" id="7-8_hours" value="7-8_hours" required>
+                                    <label class="form-check-label" for="7-8_hours">7 a 8 horas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="school_duration" id="9_or_more_hours" value="9_or_more_hours" required>
+                                    <label class="form-check-label" for="9_or_more_hours">9 o más horas</label>
+                                </div>
+                            </div>
+
+                            <!-- Pregunta 13 -->
+                            <div class="mb-4">
+                                <label for="scholarship_reason" class="form-label">13. Describe las causas de por qué solicitas la beca</label>
+                                <textarea class="form-control" name="scholarship_reason" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." required></textarea>
+                            </div>
+                            
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
                     </div>
@@ -119,5 +299,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var otherScholarships = document.querySelector('input[name="other_scholarships"]');
+                    var scholarshipsDetails = document.getElementById('scholarships_details');
+
+                    otherScholarships.addEventListener('change', function() {
+                        if (this.value === 'yes') {
+                            scholarshipsDetails.style.display = 'block';
+                        } else {
+                            scholarshipsDetails.style.display = 'none';
+                        }
+                    });
+                });
+                </script>
+                
+                
 </body>
 </html>

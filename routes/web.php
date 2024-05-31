@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileController;use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +38,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/registro', function () {
-    return view('registro');
-});
+Route::get('/registro', [RegisteredUserController::class, 'create'])->name('register.create');
 
 Route::get('/preguntas_frecuentes', function () {
     return view('preguntas_frecuentes');
