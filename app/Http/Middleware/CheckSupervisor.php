@@ -15,7 +15,7 @@ class CheckSupervisor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->email == 'supervisor@gmail.com'){
+        if(auth()->user()->role == 'supervisor'){
             return $next($request);
         }
         else{

@@ -15,7 +15,7 @@ class CheckAlumno
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->email == 'alumno@gmail.com'){
+        if(auth()->user()->role == 'alumno'){
             return $next($request);
         }
         else{
