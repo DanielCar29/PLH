@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -127,7 +128,7 @@ return new class extends Migration
             $table->foreign('supervisor_id')->references('id')->on('supervisores')->onDelete('no action')->onUpdate('no action');  
         });  
 
-        Schema::create('respuestas_salicitud', function (Blueprint $table) {
+        Schema::create('respuestas_solicitud', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('solicitud_de_beca_id')->unsigned();
             $table->bigInteger('respuestas_alumno_id')->unsigned();
@@ -186,6 +187,33 @@ return new class extends Migration
  
 
         });  
+
+        // Creación de procedimientos almacenados:
+
+        $procedimiento_visualizar_solicitudes = "
+        CREATE PROCEDURE obtenerAlumnos_visualizarSolicitudes()
+            BEGIN
+                SELECT 
+                    alumnos.id AS alumno_id,
+                    alumnos.numero_de_control,
+                    alumnos.semestre,
+                    users.name,
+                    users.apellido_paterno,
+                    users.apellido_materno,
+                    solicitudes_de_beca.fecha_solicitud,
+                    alumno_solicitudbeca.estado
+                FROM 
+                    alumnos
+                JOIN
+                    alumno_solicitudbeca ON alumnos.id = alumno_solicitudbeca.alumno_id
+                JOIN
+                    solicitudes_de_beca ON alumno_solicitudbeca.solicitud_de_beca_id = solicitudes_de_beca.id
+                JOIN
+                    users ON alumnos.usuario_id = users.id;
+            END
+        ";
+
+        DB::unprepared($procedimiento_visualizar_solicitudes);
     }
 
     /**
@@ -203,7 +231,7 @@ return new class extends Migration
 
         Schema::dropIfExists('respuestas_alumno'); 
 
-        Schema::dropIfExists('respuestas_salicitud');
+        Schema::dropIfExists('respuestas_solicitud');
 
         Schema::dropIfExists('preguntas_de_solicitud_del_alumno'); 
 
@@ -226,5 +254,9 @@ return new class extends Migration
         Schema::dropIfExists('supervisores'); 
 
         Schema::dropIfExists('alumnos'); 
+
+        $procedimiento_visualizar_solicitudes = "DROP PROCEDURE IF EXISTS obtenerAlumnos_visualizarSolicitudes;";
+
+        DB::unprepared($procedimiento_visualizar_solicitudes);
     }
 };

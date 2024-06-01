@@ -36,69 +36,19 @@
                         </tr>
                     <tbody class="table-group-divider">
                         <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
+                            @foreach($alumnos as $alumno)
+                            <td>{{$alumno->numero_de_control}}</td>
+                            <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
                             <td><a href="{{ url('/supervisor.ver_solicitud') }}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
                             </td>
-                            <td>07/05/2024</td>
+                            <td>{{$alumno->fecha_solicitud}}</td>
                             <td>
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
                             </td>
                         </tr>
-        
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
-                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                </a>
-                            </td>
-                            <td>07/05/2024</td>
-                            <td>
-                                <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
-                            </td>
-                        </tr>
-        
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
-                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                </a>
-                            </td>
-                            <td>07/05/2024</td>
-                            <td>
-                                <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
-                            </td>
-                        </tr>
-        
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
-                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                </a>
-                            </td>
-                            <td>07/05/2024</td>
-                            <td>
-                                <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
-                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
-                                <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                </a>
-                            </td>
-                            <td>07/05/2024</td>
-                            <td>
-                                <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
-                            </td>
-                        </tr>
+                            @endforeach
                     </tbody>
     
                 </table>

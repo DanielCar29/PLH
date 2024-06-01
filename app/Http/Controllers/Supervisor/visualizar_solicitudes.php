@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\user;
+use Illuminate\Support\Facades\DB;
 
 class visualizar_solicitudes extends Controller
 {
@@ -12,7 +14,9 @@ class visualizar_solicitudes extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+
+        return view('supervisor.visualizar_solicitud', compact('alumnos'));
     }
 
     /**

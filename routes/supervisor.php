@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Supervisor\visualizar_solicitudes;
 
 // RUTAS DE SUPERVISOR
 
@@ -19,9 +20,12 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         return view('/supervisor/visualizar_reporte');
     });
 
-    Route::get('/supervisor.visualizar_solicitud', function () {
-        return view('/supervisor/visualizar_solicitud');
-    });
+    // Route::get('/supervisor.visualizar_solicitud', function () {
+    //     return view('/supervisor/visualizar_solicitud');
+    // });
+
+    Route::get('/supervisor.visualizar_solicitud',[visualizar_solicitudes::class,'index'])
+                ->name('supervisor.visualizar_solicitud');
 
     Route::get('/supervisor.ayuda', function () {
         return view('/supervisor/ayuda');
