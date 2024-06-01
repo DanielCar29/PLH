@@ -102,6 +102,7 @@ return new class extends Migration
             $table->bigIncrements('id');  
             $table->bigInteger('solicitud_de_beca_id')->unsigned();  
             $table->bigInteger('alumno_id')->unsigned();  
+            $table->string('estado', 45)->default('pendiente');
             $table->timestamps();  
 
             $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitudes_de_beca')->onDelete('no action')->onUpdate('no action');  
@@ -110,30 +111,37 @@ return new class extends Migration
 
         Schema::create('preguntas_de_solicitud_del_alumno', function (Blueprint $table) {  
             $table->bigIncrements('id');  
-            $table->bigInteger('solicitud_de_beca_id')->unsigned();  
+            $table->bigInteger('solicitud_de_beca_id')->unsigned();
+            $table->string('pregunta', 200);  
             $table->timestamps();  
-            $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitudes_de_beca')->onDelete('no action')->onUpdate('no action');  
         });  
 
          Schema::create('respuestas_alumno', function (Blueprint $table) {  
             $table->bigIncrements('id');  
-            $table->bigInteger('Preguntas_id')->unsigned();  
-            $table->bigInteger('alumno_id')->unsigned();  
+            $table->bigInteger('preguntas_id')->unsigned();    
             $table->bigInteger('supervisor_id')->unsigned();  
             $table->string('respuesta', 200);  
-            $table->timestamps();  
-
-            $table->foreign('Preguntas_id')->references('id')->on('preguntas_de_solicitud_del_alumno')->onDelete('no action')->onUpdate('no action');  
-            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('no action')->onUpdate('no action');  
+            $table->timestamps(); 
+           
+            $table->foreign('preguntas_id')->references('id')->on('preguntas_de_solicitud_del_alumno')->onDelete('no action')->onUpdate('no action');  
             $table->foreign('supervisor_id')->references('id')->on('supervisores')->onDelete('no action')->onUpdate('no action');  
         });  
+
+        Schema::create('respuestas_salicitud', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('solicitud_de_beca_id')->unsigned();
+            $table->bigInteger('respuestas_alumno_id')->unsigned();
+            $table->timestamps();
+                        //
+            $table->foreign('solicitud_de_beca_id')->references('id')->on('preguntas_de_solicitud_del_alumno')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('respuestas_alumno_id')->references('id')->on('respuestas_alumno')->onDelete('no action')->onUpdate('no action');
+        });
 
         Schema::create('supervisor_visualiza_reporte', function (Blueprint $table) {  
             $table->bigIncrements('id');  
             $table->bigInteger('supervisor_id')->unsigned();  
             $table->bigInteger('reporte_id')->unsigned();  
             $table->timestamps();  
-
 
             $table->foreign('supervisor_id')->references('id')->on('supervisores')->onDelete('no action')->onUpdate('no action');  
             $table->foreign('reporte_id')->references('id')->on('reportes')->onDelete('no action')->onUpdate('no action'); 
@@ -194,6 +202,8 @@ return new class extends Migration
         Schema::dropIfExists('supervisor_visualiza_reporte'); 
 
         Schema::dropIfExists('respuestas_alumno'); 
+
+        Schema::dropIfExists('respuestas_salicitud');
 
         Schema::dropIfExists('preguntas_de_solicitud_del_alumno'); 
 
