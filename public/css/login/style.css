@@ -21,7 +21,7 @@ div.container.text-center{
     background-color: rgba(0, 0, 0, .8);
     background-size: cover;
     border-radius: 10px;
-    font-family: fuente_login-bienvenida, Arial, Helvetica, sans-serif;
+    font-family: fuente_login, Arial, Helvetica, sans-serif;
     /* border: 1px solid #aaa; */
     border: 5px #fff solid;
     /* margin-right: .5%; */

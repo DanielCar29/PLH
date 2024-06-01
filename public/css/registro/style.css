@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+body {
+    background-image: url('/img/fondo-login.jpg');
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenido-general {
+    padding: 5%;
+}
+
+.container {
+    color: #000000;
+}
+
+.contenido {
+    background-color: rgb(255, 255, 255); /* Blanco transparente */
+    background-size: cover;
+    border-radius: 10px;
+    border: 5px #ffffff06 solid;
+    color: #000000; /* Texto negro */
+    font-family: 'Open Sans', sans-serif;
+    max-width: 700px; /* Limita el tamaño máximo del div */
+    width: 100%; /* Hace que el div ocupe el 100% del ancho disponible */
+    margin: auto; /* Centra el div horizontalmente */
+    padding: 20px; /* Agrega espacio interno para el contenido */
+}
+
+.input-login {
+    margin: 3%;
+}
+
+.input-login input {
+    max-width: 100%; /* Ajusta el tamaño del input al 100% del contenedor */
+    width: 100%;
+}
+
+.boton-login {
+    margin: auto;
+    max-width: 50%;
+    background-color: #4bb4f8;
+    border-radius: 5px;
+}
+
+.boton-login button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+

@@ -3,104 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro</title>
-  <!-- Estilos de Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>Home</title>
+  <link rel="shortcut icon" href="{{URL::asset('/img/favicon.ico')}}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ asset('/css/registro/style.css')}}">
+  {{-- CDN de Boostrap CSS --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+          crossorigin="anonymous">
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col s12 m6 offset-m3">
-        <div class="card blue lighten-3">
-          <div class="card-content white-text">
-            <span class="card-title center-align">Registro</span>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card contenido">
+          <div class="card-body">
+            <div class="d-flex justify-content-center">
+              <img src="{{URL::asset('/img/logo-plh.png')}}" alt="Logo" height="80" class="d-inline-block align-text-top">
+          </div>
+          
+            <h1 class="text-center bienvenida-titulo">Registro</h1>
             <form method="POST" action="{{ route('register') }}">
               @csrf
 
-              <div class="input-field">
-                <input id="name" type="text" class="validate white-text" name="name" value="{{ old('name') }}" required autofocus>
-                <label for="name" class="white-text">Nombre</label>
+              <div class="form-group input-login">
+                <label for="name" class="color">Nombre</label>
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
                 @error('name')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="apellido_paterno" type="text" class="validate white-text" name="apellido_paterno" value="{{ old('apellido_paterno') }}" required>
-                <label for="apellido_paterno" class="white-text">Apellido Paterno</label>
+              <div class="form-group input-login">
+                <label for="apellido_paterno" class="color">Apellido Paterno</label>
+                <input id="apellido_paterno" type="text" class="form-control" name="apellido_paterno" value="{{ old('apellido_paterno') }}" required>
                 @error('apellido_paterno')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="apellido_materno" type="text" class="validate white-text" name="apellido_materno" value="{{ old('apellido_materno') }}" required>
-                <label for="apellido_materno" class="white-text">Apellido Materno</label>
+              <div class="form-group input-login">
+                <label for="apellido_materno" class="color">Apellido Materno</label>
+                <input id="apellido_materno" type="text" class="form-control" name="apellido_materno" value="{{ old('apellido_materno') }}" required>
                 @error('apellido_materno')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="email" type="email" class="validate white-text" name="email" value="{{ old('email') }}" required>
-                <label for="email" class="white-text">Correo Electrónico</label>
+              <div class="form-group input-login">
+                <label for="email" class="color">Correo Electrónico</label>
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                 @error('email')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="numero_de_control" type="text" class="validate white-text" name="numero_de_control" value="{{ old('numero_de_control') }}" required>
-                <label for="numero_de_control" class="white-text">Número de Control</label>
+              <div class="form-group input-login">
+                <label for="numero_de_control" class="color">Número de Control</label>
+                <input id="numero_de_control" type="text" class="form-control" name="numero_de_control" value="{{ old('numero_de_control') }}" required>
                 @error('numero_de_control')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="password" type="password" class="validate white-text" name="password" required>
-                <label for="password" class="white-text">Password</label>
+              <div class="form-group input-login">
+                <label for="password" class="color">Contraseña</label>
+                <input id="password" type="password" class="form-control" name="password" required>
                 @error('password')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <input id="password_confirmation" type="password" class="validate white-text" name="password_confirmation" required>
-                <label for="password_confirmation" class="white-text">Confirmar Password</label>
+              <div class="form-group input-login">
+                <label for="password_confirmation" class="color">Confirmar Contraseña</label>
+                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
                 @error('password_confirmation')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <select id="carrera" name="carrera" required>
+              <div class="form-group input-login">
+                <label for="carrera" class="color">Carrera</label>
+                <select id="carrera" class="form-control" name="carrera" required>
                   <option value="" disabled selected>Selecciona tu carrera</option>
                   @foreach ($carreras as $carrera)
                     <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>
                   @endforeach
                 </select>
-                <label class="white-text">Carrera</label>
                 @error('carrera')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="input-field">
-                <select id="semestre" name="semestre" required>
+              <div class="form-group input-login">
+                <label for="semestre" class="color">Semestre</label>
+                <select id="semestre" class="form-control" name="semestre" required>
                   <option value="" disabled selected>Selecciona tu semestre</option>
                   @for ($i = 1; $i <= 8; $i++)
                     <option value="{{ $i }}" {{ old('semestre') == $i ? 'selected' : '' }}>{{ $i }}</option>
                   @endfor
                 </select>
-                <label class="white-text">Semestre</label>
                 @error('semestre')
-                  <span class="red-text">{{ $message }}</span>
+                  <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
 
-              <div class="center-align">
-                <button type="submit" class="btn waves-effect waves-light">
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary boton-login">
                   {{ __('Registro') }}
                 </button>
               </div>
@@ -111,14 +119,15 @@
     </div>
   </div>
 
-  <!-- Scripts de Materialize CSS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- Inicialización de los select -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems);
-    });
+  {{-- CDN'S de Bootstrap Js --}}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
+  crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
+  integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
+  crossorigin="anonymous">
+</script>
   </script>
 </body>
 </html>

@@ -23,19 +23,17 @@
           <h4>Proyect Large Heart</h4>
         </div>
 
-        <div class="bienvenida-texto color">
-          <h4>Nice to see you again!</h4>
-        </div>
-
         <div class="bienvenida-titulo color">
-          <h1>WELCOME BACK!</h1>
+          <h1>Bienvenido</h1>
         </div>
 
         <div class="bienvenida-parrafo color">
-          <p>
-            Tempor ipsum qui ea culpa nulla est exercitation anim consectetur magna.
-            In aliqua exercitation eiusmod quis aliquip Lorem ad commodo ut cupidatat proident.
-          </p>
+          <h5>
+            En que consiste la beca Alimenticia: <br>
+          </h5>
+          <li>Se otorga a alumnos de muy escasos recursos.</li>
+          <li>Es un apoyo alimenticio que se imparte en la cafetería de la institución; solo puede ser utilizado para consumir alimentos (ni golosinas ni refrescos).</li>
+          <li>Esta se tramita en la Coordinación Institucional del Programa de Tutorías.</li>
         </div>
 
       </div>
@@ -46,8 +44,8 @@
         </div>
       
           <div class="instrucciones">
-            <h4>Login Account</h4>
-            <p>Exercitation enim adipisicing quis dolore irure reprehenderit labore consequat.</p>
+            <h4>PLH</h4>
+            <p>Recuerda esta pagina nomas es para poder solicitar la beca limencia en el Tecnologico Superiror de Lerdo.</p>
           </div>
 
           <div>
@@ -83,26 +81,18 @@
                             required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+              
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-          <label for="remember_me" class="inline-flex items-center">
-              <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-              <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-          </label>
+        <div>
+          <a class="dropdown-item text-decoration-none text-blue-dark" href="{{URL::asset('/registro')}}">Registrarse</a>
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-          @if (Route::has('password.request'))
-              <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                  {{ __('Forgot your password?') }}
-              </a>
-          @endif
         
+
         <div class="boton-login">
           <button type="submit">
-            {{ __('Log in') }}
+            {{ __('Iniciar sesión') }}
           </button>
         </div>
         
