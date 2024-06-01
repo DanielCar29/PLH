@@ -58,14 +58,28 @@
               </div>
 
               <div class="input-field">
+                <input id="password" type="password" class="validate white-text" name="password" required>
+                <label for="password" class="white-text">Password</label>
+                @error('password')
+                  <span class="red-text">{{ $message }}</span>
+                @enderror
+              </div>
+
+              <div class="input-field">
+                <input id="password_confirmation" type="password" class="validate white-text" name="password_confirmation" required>
+                <label for="password_confirmation" class="white-text">Confirmar Password</label>
+                @error('password_confirmation')
+                  <span class="red-text">{{ $message }}</span>
+                @enderror
+              </div>
+
+              <div class="input-field">
                 <select id="carrera" name="carrera" required>
                   <option value="" disabled selected>Selecciona tu carrera</option>
                   @foreach ($carreras as $carrera)
-                  <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>
+                    <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>
                   @endforeach
-
                 </select>
-                
                 <label class="white-text">Carrera</label>
                 @error('carrera')
                   <span class="red-text">{{ $message }}</span>
@@ -86,9 +100,9 @@
               </div>
 
               <div class="center-align">
-                <x-primary-button class="ms-4">
-                  {{ __('registro') }}
-                </x-primary-button>
+                <button type="submit" class="btn waves-effect waves-light">
+                  {{ __('Registro') }}
+                </button>
               </div>
             </form>
           </div>
