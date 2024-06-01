@@ -32,7 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Agregar rutas modulados 
 require __DIR__.'/auth.php';
+require __DIR__.'/supervisor.php';
+require __DIR__.'/alumno.php';
+require __DIR__.'/admin.php';
 
 Route::get('/', function () {
     return view('login');
@@ -42,97 +46,4 @@ Route::get('/registro', [RegisteredUserController::class, 'create'])->name('regi
 
 Route::get('/preguntas_frecuentes', function () {
     return view('preguntas_frecuentes');
-});
-
-// ---------------------
-
-// Vistas de supervisor
-
-Route::group(['middleware' => ['auth','checkSupervisor']], function(){
-    
-    Route::get('/supervisor.home', function () {
-        return view('/supervisor/home');
-    });
-
-    Route::get('/supervisor.ver_solicitud', function () {
-        return view('/supervisor/ver_solicitud_alumno');
-    });
-
-    Route::get('/supervisor.visualizar_reporte', function () {
-        return view('/supervisor/visualizar_reporte');
-    });
-
-    Route::get('/supervisor.visualizar_solicitud', function () {
-        return view('/supervisor/visualizar_solicitud');
-    });
-
-    Route::get('/supervisor.ayuda', function () {
-        return view('/supervisor/ayuda');
-    });
-
-    Route::get('/supervisor.perfil', function () {
-        return view('/supervisor/perfil');
-    });
-
-    Route::get('/supervisor.grafica', function () {
-        return view('/supervisor/grafica');
-    });
-
-});
-
-// Vistas Alumno
-
-Route::group(['middleware' => ['auth','checkAlumno']], function(){
-
-    Route::get('/alumno.home', function () {
-        return view('/alumno/home');
-    });
-
-    Route::get('/alumno.solicitar_beca', function () {
-        return view('/alumno/solicitar_beca');
-    });
-
-    Route::get('/alumno.formulario', function () {
-        return view('/alumno/preguntas');
-    });
-
-    Route::get('/alumno.beca', function () {
-        return view('/alumno/ver_beca');
-    });
-
-    Route::get('/alumno.perfil', function () {
-        return view('/alumno/perfil');
-    });
-
-});
-
-
-// Rutas de administrador
-Route::group(['middleware' => ['auth','checkAdmin']], function(){
-
-    Route::get('/administrador.home', function () {
-        return view('/administrador/home');
-    });
-
-    Route::get('/administrador.registro', function () {
-        return view('/administrador/registrarSupervisor');
-    });
-
-    Route::get('/administrador.habilitar', function () {
-        return view('/administrador/habilitarConvocatoria');
-    });
-
-    Route::get('/administrador.lista', function () {
-        return view('/administrador/listaSolicitudes');
-    });
-
-    Route::get('/administrador.perfil', function () {
-        return view('/administrador/perfil');
-    });
-
-    Route::get('/administrador.ver', function () {
-        return view('/administrador/verSolicitudAlumno');
-    });
-
-
 });
