@@ -14,12 +14,14 @@ return new class extends Migration
     public function up(): void
     {
 
-        // Creación de procedimientos almacenados:
-
-        $procedimiento_visualizar_solicitudes = "
-        CREATE PROCEDURE obtenerAlumnos_visualizarSolicitudes()
+        // Eliminar el procedimiento si ya existe
+        DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnos_visualizarSolicitudes');
+        
+        // Crear el procedimiento
+        DB::statement('
+            CREATE PROCEDURE obtenerAlumnos_visualizarSolicitudes()
             BEGIN
-                SELECT 
+                SELECT
                     alumnos.id AS alumno_id,
                     alumnos.numero_de_control,
                     alumnos.semestre,
@@ -28,7 +30,7 @@ return new class extends Migration
                     users.apellido_materno,
                     solicitudes_de_beca.fecha_solicitud,
                     alumno_solicitudbeca.estado
-                FROM 
+                FROM
                     alumnos
                 JOIN
                     alumno_solicitudbeca ON alumnos.id = alumno_solicitudbeca.alumno_id
@@ -37,10 +39,9 @@ return new class extends Migration
                 JOIN
                     users ON alumnos.usuario_id = users.id;
             END
-        ";
-
-        DB::unprepared($procedimiento_visualizar_solicitudes);
+        ');
     }
+
 
     /**
      * Reverse the migrations.
@@ -48,9 +49,8 @@ return new class extends Migration
     public function down(): void
     {
 
-        if (DB::statement("SHOW PROCEDURE STATUS WHERE Name = 'obtenerAlumnos_visualizarSolicitudes'")) {
-            DB::unprepared("DROP PROCEDURE obtenerAlumnos_visualizarSolicitudes;");
-        }
+      // Eliminar el procedimiento en la migración inversa
+      DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnos_visualizarSolicitudes');
     }
 
     

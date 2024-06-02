@@ -282,6 +282,70 @@ class DatabaseSeeder extends Seeder
         $carreras_alumno3->alumno_id = 3;
         $carreras_alumno3->save();
 
+// ID = 1
+$pregunta1 = new preguntas_de_solicitud_del_alumno;
+$pregunta1->pregunta = "1. La beca Alimenticia que solicitas es:";
+$pregunta1->save();
+
+// ID = 2
+$pregunta2 = new preguntas_de_solicitud_del_alumno;
+$pregunta2->pregunta = "2. Cuentas actualmente con otra beca en el Tec:";
+$pregunta2->save();
+
+$pregunta2 = new preguntas_de_solicitud_del_alumno;
+$pregunta2->pregunta = "2. Cuentas actualmente con otra beca en el Tec:";
+$pregunta2->save();
+// ID = 3
+$pregunta3 = new preguntas_de_solicitud_del_alumno;
+$pregunta3->pregunta = "3. ¿Vives con tu familia?";
+$pregunta3->save();
+
+// ID = 4
+$pregunta4 = new preguntas_de_solicitud_del_alumno;
+$pregunta4->pregunta = "4. ¿Cuántas personas dependen del ingreso económico de los miembros de tu hogar para cubrir gastos de alimento (incluyéndote)?";
+$pregunta4->save();
+
+// ID = 5
+$pregunta5 = new preguntas_de_solicitud_del_alumno;
+$pregunta5->pregunta = "5. ¿Cuál es el ingreso económico mensual?";
+$pregunta5->save();
+
+// ID = 6
+$pregunta6 = new preguntas_de_solicitud_del_alumno;
+$pregunta6->pregunta = "6. ¿Quién es la persona responsable de cubrir tus gastos escolares (colegiaturas)?";
+$pregunta6->save();
+
+// ID = 7
+$pregunta7 = new preguntas_de_solicitud_del_alumno;
+$pregunta7->pregunta = "7. La vivienda donde vive tu familia es:";
+$pregunta7->save();
+
+// ID = 8
+$pregunta8 = new preguntas_de_solicitud_del_alumno;
+$pregunta8->pregunta = "8. ¿Con qué servicio de salud cuentan tú y tu familia?";
+$pregunta8->save();
+
+// ID = 9
+$pregunta9 = new preguntas_de_solicitud_del_alumno;
+$pregunta9->pregunta = "9. ¿Qué medio de transporte utilizas para ir a la escuela?";
+$pregunta9->save();
+
+// ID = 10
+$pregunta10 = new preguntas_de_solicitud_del_alumno;
+$pregunta10->pregunta = "10. ¿Cuánto tiempo tardas en trasladarte de tu casa a la escuela?";
+$pregunta10->save();
+
+// ID = 11
+$pregunta11 = new preguntas_de_solicitud_del_alumno;
+$pregunta11->pregunta = "11. ¿Cuánto tiempo duras en la escuela?";
+$pregunta11->save();
+
+// ID = 12
+$pregunta12 = new preguntas_de_solicitud_del_alumno;
+$pregunta12->pregunta = "12. Describe las causas de por qué solicitas la beca:";
+$pregunta12->save();
+
+
         
     }
 }
