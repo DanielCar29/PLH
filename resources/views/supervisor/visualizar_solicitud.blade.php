@@ -45,7 +45,16 @@
                             </td>
                             <td>{{$alumno->fecha_solicitud}}</td>
                             <td>
+                              @if ($alumno->estado == 'aceptada')
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
+
+                              @elseif ($alumno->estado == 'rechazada')
+                                <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
+
+                              @else
+                                <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
+                              @endif
+                                
                             </td>
                         </tr>
                             @endforeach
