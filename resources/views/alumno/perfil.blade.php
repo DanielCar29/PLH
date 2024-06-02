@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PLH: Perfil</title>
-    <link rel="shortcut icon" href="{{URL::asset('/img/favicon.ico')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('/css/alumno/style.css')}}">
+    <link rel="shortcut icon" href="{{ URL::asset('/img/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('/css/alumno/style.css') }}">
     {{-- CDN de Boostrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
-
 </head>
 <body>
-     {{-- Menú de navegación --}}
-     {{-- Menú de navegación --}}
-     @include('/alumno/nav/menu_alumno')
+    {{-- Menú de navegación --}}
+    @include('/alumno/nav/menu_alumno')
     
     {{-- Perfil --}}
     <div class="contenido-general-perfil">
@@ -26,10 +24,10 @@
                     <div class="row flex-sm-row flex-column foto-datos_usuario">
                         <div class="col-12 foto-perfil">
                             <div>
-                                <img src="{{URL::asset('/img/perfil_usuario.png')}}" alt="">
+                                <img src="{{ URL::asset('/img/perfil_usuario.png') }}" alt="">
                             </div>
                             <div>
-                                <h5>Nombre de Usuario</h5>
+                                <h5>{{ $user->name }}</h5> <!-- Mostrar nombre del usuario -->
                             </div>
                         </div>
                     </div>
@@ -45,19 +43,19 @@
                                     <span>Nombre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="" placeholder="Jose Alberto">
+                                    <input type="text" value="{{ $user->name }}" placeholder="Jose Alberto">
                                 </div>
                                 <div>
                                     <span>Apellido Paterno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="" placeholder="Sandoval">
+                                    <input type="text" value="{{ $user->apellido_paterno }}" placeholder="Sandoval">
                                 </div>
                                 <div>
                                     <span>Apellido Materno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Vazquez">
+                                    <input type="text" value="{{ $user->apellido_materno }}" placeholder="Vazquez">
                                 </div>
                             </form>
                         </div>
@@ -73,49 +71,38 @@
                                     <span>Correo Electronico:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="" placeholder="212310628@gmail.com">
+                                    <input type="text" value="{{ $user->email }}" placeholder="212310628@gmail.com">
                                 </div>
                                 <div>
-                                    <span>Contraseña:</span>
+                                    <span>Número de Control:</span>
                                 </div>
                                 <div>
-                                    <input type="password" value="" placeholder="************">
+                                    <input type="text" value="{{ $alumno->numero_de_control }}" placeholder="Número de Control">
                                 </div>
                                 <div>
                                     <span>Semestre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Semestre">
+                                    <input type="text" value="{{ $alumno->semestre }}" placeholder="Semestre">
                                 </div>
                                 <div>
                                     <span>Carrera:</span>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Informática">
+                                    <input type="text" value="{{ $user->carrera }}" placeholder="Informática">
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="boton_perfil">
-                        
                         <div class="boton_perfil-guardar">
                             <a href="">Guardar cambios</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-        <
-        
-        
     </div>
-
-    
-    
-
-
-
 
     {{-- CDN'S de Bootstrap Js --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 

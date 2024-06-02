@@ -12,4 +12,6 @@ class becas extends Model
     use HasFactory;
 
     protected $table = 'becas';
+
+    
 }

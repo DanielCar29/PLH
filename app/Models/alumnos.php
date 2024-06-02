@@ -12,6 +12,7 @@ use App\Models\reportes;
 use App\Models\respuestas_alumno;
 
 
+
 class alumnos extends Model
 {
     use HasFactory;
@@ -20,14 +21,19 @@ class alumnos extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
-
-    
+        return $this->belongsTo(User::class, 'usuario_id');
     }
+    
+    public function becas()
+    {
+        return $this->belongsToMany(becas::class, 'alumno_beca', 'alumno_id', 'beca_id');
+    }
+
     public function carreras()
     {
         return $this->belongsToMany(Carreras::class, 'carreras_alumno', 'alumno_id', 'carreras_id');
     }
+
     protected $fillable = [
         'numero_de_control',
         'semestre',
