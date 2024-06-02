@@ -187,33 +187,6 @@ return new class extends Migration
  
 
         });  
-
-        // Creación de procedimientos almacenados:
-
-        $procedimiento_visualizar_solicitudes = "
-        CREATE PROCEDURE obtenerAlumnos_visualizarSolicitudes()
-            BEGIN
-                SELECT 
-                    alumnos.id AS alumno_id,
-                    alumnos.numero_de_control,
-                    alumnos.semestre,
-                    users.name,
-                    users.apellido_paterno,
-                    users.apellido_materno,
-                    solicitudes_de_beca.fecha_solicitud,
-                    alumno_solicitudbeca.estado
-                FROM 
-                    alumnos
-                JOIN
-                    alumno_solicitudbeca ON alumnos.id = alumno_solicitudbeca.alumno_id
-                JOIN
-                    solicitudes_de_beca ON alumno_solicitudbeca.solicitud_de_beca_id = solicitudes_de_beca.id
-                JOIN
-                    users ON alumnos.usuario_id = users.id;
-            END
-        ";
-
-        DB::unprepared($procedimiento_visualizar_solicitudes);
     }
 
     /**
@@ -254,9 +227,5 @@ return new class extends Migration
         Schema::dropIfExists('supervisores'); 
 
         Schema::dropIfExists('alumnos'); 
-
-        $procedimiento_visualizar_solicitudes = "DROP PROCEDURE IF EXISTS obtenerAlumnos_visualizarSolicitudes;";
-
-        DB::unprepared($procedimiento_visualizar_solicitudes);
     }
 };

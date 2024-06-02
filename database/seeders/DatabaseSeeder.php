@@ -251,7 +251,7 @@ class DatabaseSeeder extends Seeder
         $alumno_solicitudbeca1 = new alumno_solicitudbeca;
         $alumno_solicitudbeca1->solicitud_de_beca_id = 1;
         $alumno_solicitudbeca1->alumno_id = 1;
-        $alumno_solicitudbeca1->estado = "acetada";
+        $alumno_solicitudbeca1->estado = "aceptada";
         $alumno_solicitudbeca1->save();
         // ID = 2
         $alumno_solicitudbeca2 = new alumno_solicitudbeca;
