@@ -19,6 +19,50 @@ class visualizar_solicitudes extends Controller
         return view('supervisor.visualizar_solicitud', compact('alumnos'));
     }
 
+    public function verSolicitudAlumno($id){
+
+        $alumno = DB::select('CALL obtenerDatosAlumno(?)',[$id]);
+
+        return view('supervisor.ver_solicitud_alumno', compact('alumno'));
+
+    }
+
+    public function aceptarSolicitud($id){
+
+        $estado = 'aceptada';
+
+        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
+
+        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+
+        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+
+    }
+
+    public function rechazarSolicitud($id){
+
+        $estado = 'rechazada';
+
+        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
+
+        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+
+        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+
+    }
+
+    public function esperaSolicitud($id){
+
+        $estado = 'pendiente';
+
+        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
+        
+        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+
+        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

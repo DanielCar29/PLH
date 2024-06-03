@@ -581,3 +581,18 @@ div h5{
     text-decoration: underline;
     display: inline-block;
 }
+
+.botones_solicitud{
+    display: inline-block;
+    padding: 2%;
+}
+
+.contenido_botones-solicitud form{
+    display: inline-block;
+}
+
+.contenido_botones-solicitud{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}

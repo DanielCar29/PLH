@@ -52,18 +52,21 @@
 
         <div class="datos_alumno col-4">
 
+        @foreach($alumno as $alumno)
+
             <div class="nombre_alumno">
-                <h5>Jose Alberto Sandoval Vazquez</h1>
+                <h5>{{$alumno->Nombre}} {{$alumno->Apellido_Paterno}} {{$alumno->Apellido_Materno}}</h1>
             </div>
     
             <div class="carrera_alumno">
-                <h5>Ingeniería informática</h1>
+                <h5>{{$alumno->Carrera}}</h1>
             </div>
     
             <div class="numero-control_alumno">
-                <h5>212310628</h1>
+                <h5>{{$alumno->Numero_de_control}}</h1>
             </div>
-    
+
+        @endforeach    
         </div>
 
     </div>

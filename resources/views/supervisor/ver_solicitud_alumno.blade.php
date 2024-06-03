@@ -22,19 +22,19 @@
     <div class="contenido_formulario">
 
         <div class="datos_alumno-formulario">
-
+            @foreach($alumno as $alumno)
             <div class="nombre_alumno-formulario">
-                <h5>Jose Alberto Sandoval Vazquez</h1>
+                <h5>{{$alumno->Nombre}} {{$alumno->Apellido_Materno}} {{$alumno->Apellido_Paterno}}</h1>
             </div>
     
             <div class="carrera_alumno-formulario">
-                <h5>Ingeniería informática</h1>
+                <h5>{{$alumno->Carrera}}</h1>
             </div>
     
             <div class="numero-control_alumno-formulario">
-                <h5>212310628</h1>
+                <h5>{{$alumno->Numero_de_control}}</h1>
             </div>
-
+            
         </div>
 
         
@@ -120,10 +120,59 @@
                                     <textarea class="form-control" name="difference" rows="3" placeholder="Escribe aquí..." required></textarea>
                                 </div>
         
-                                <button type="submit" class="btn btn-primary">Aceptar</button>
-                                <button type="submit" class="btn btn-primary">Rechazar</button>
-                                <button type="submit" class="btn btn-primary">Espera</button>
                             </form>
+
+                                <div class="contenido_botones-solicitud">
+                            <form method="POST" action="{{route('supervisor.aceptarSolicitud',[$alumno->alumno_id])}}">
+                                @csrf
+                                
+                                    <div class="botones_solicitud">
+    
+                                        <button type="submit">
+
+                                            <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="50">
+
+                                        </button>
+                                            
+    
+                                    </div>
+
+                            </form>
+
+                            <form method="POST" action="{{route('supervisor.rechazarSolicitud',[$alumno->alumno_id])}}">
+                                @csrf
+                                <div class="botones_solicitud">
+
+                                    <button type="submit">
+
+                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="50">
+
+                                    </button>
+                                        
+                                    
+
+                                </div class="botones_solicitud">
+
+                            </form>
+                                
+                            <form method="POST" action="{{route('supervisor.esperaSolicitud',[$alumno->alumno_id])}}">
+
+                                @csrf
+                                <div class="botones_solicitud">
+
+                                    <button type="submit">
+
+                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="50">
+
+                                    </button>
+                                        
+                                </div>
+
+                            </form>
+
+                                </div>
+                            
+        @endforeach                        
                         </div>
                     </div>
                 </div>

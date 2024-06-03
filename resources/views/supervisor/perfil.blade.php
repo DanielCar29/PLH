@@ -20,6 +20,8 @@
     {{-- Menú --}}
     @include('/supervisor/navbar/menu-supervisor')
 
+@foreach($datos_supervisor as $datos)
+
       <div class="contenido-general-perfil">
 
         <div class="container ">
@@ -36,16 +38,24 @@
                             </div>
 
                             <div>
-                                <h5>Nombre de Usuario</h5>
+                                <h5>{{$datos->Nombre}} {{$datos->ApellidoPaterno}} {{$datos->ApellidoMaterno}}</h5>
                             </div>
 
                         </div>
                     </div>
 
+            <form method="POST" action="{{route('supervisor.actualiza_perfil')}}">  
+                @csrf
                     <div class="boton_perfil">
-                        
+
                         <div class="boton_perfil-guardar">
-                            <a href="">Guardar cambios</a>
+                            
+                                <button type="submit">
+
+                                    Guardar cambios
+
+                                </button>
+
                         </div>
 
                     </div>
@@ -60,14 +70,13 @@
                         </div>
                         
                         <div class="contenido-datos-perfil">
-                            <form action="">
 
                                 <div>
                                     <span>Nombre:</span>
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="Jose Alberto">
+                                    <input type="text" value="{{$datos->Nombre}}" placeholder="" name="nombre">
                                 </div>
 
                                 <div>
@@ -75,7 +84,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="Sandoval">
+                                    <input type="text" value="{{$datos->ApellidoPaterno}}" placeholder="" name="apellidoPaterno">
                                 </div>
 
                                 <div>
@@ -83,10 +92,9 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" placeholder="Vazquez">
+                                    <input type="text" value="{{$datos->ApellidoMaterno}}" placeholder="" name="apellidoMaterno">
                                 </div>
 
-                            </form>
                         </div>
                     </div>
                     
@@ -99,14 +107,13 @@
                         </div>
                         
                         <div class="contenido-datos-institucionales">
-                            <form action="">
 
                                 <div>
                                     <span>Correo Electronico:</span>
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="212310628@gmail.com">
+                                    <input type="text" value="{{$datos->Correo}}" placeholder="" name="correo">
                                 </div>
 
                                 <div>
@@ -114,7 +121,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="password" value="" placeholder="************">
+                                    <input type="password" value="" placeholder="" name="pass" minlength="8">
                                 </div>
 
                                 <div>
@@ -122,22 +129,21 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" placeholder="Informática">
+                                    <input type="text" value="{{$datos->Carrera}}" placeholder="" disabled>
                                 </div>
 
-                            </form>
                         </div>
 
-
+                    
                     </div>
                 </div>
-
+            </form>
             </div>
 
         </div>
 
       </div>
-    
+@endforeach   
     
 
 

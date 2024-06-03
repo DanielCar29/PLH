@@ -33,8 +33,9 @@
                     </tr>
                     <tbody class="table-group-divider">
                         <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
+                    @foreach($alumnos as $alumno)
+                            <td>{{$alumno->numero_de_control}}</td>
+                            <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
                             <td>
                                 <div class="icono_notificacion">
                                     <a href="">
@@ -43,7 +44,7 @@
                                 </div>
 
                                 <div class="icono_monitoreo">
-                                    <a href="{{ url('/supervisor.grafica') }}">
+                                    <a href="{{route('supervisor.ver_grafica', ['id' => $alumno->id])}}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
@@ -54,58 +55,15 @@
                                     </a>
                                 </div>
                             </td>
-                            <td>Lunes 13 de Mayo 2024</td>
-                        </tr>
-
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
                             <td>
-                                <div class="icono_notificacion">
-                                    <a href="">
-                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
-
-                                <div class="icono_monitoreo">
-                                    <a href="{{ url('/supervisor.grafica') }}">
-                                        <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
-
-                                <div class="icono_pdf">
-                                    <a href="">
-                                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
+                                @if(empty($alumno->ultima_vez_uso_beca))
+                                    <strong>No hay registro</strong>
+                                @else
+                                {{$alumno->ultima_vez_uso_beca}}
+                                @endif
                             </td>
-                            <td>Lunes 13 de Mayo 2024</td>
                         </tr>
-
-                        <tr>
-                            <td>212310628</td>
-                            <td>Jose Alberto Sandoval Vazquez</td>
-                            <td>
-                                <div class="icono_notificacion">
-                                    <a href="">
-                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
-
-                                <div class="icono_monitoreo">
-                                    <a href="{{ url('/supervisor.grafica') }}">
-                                        <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
-
-                                <div class="icono_pdf">
-                                    <a href="">
-                                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
-                                    </a>
-                                </div>
-                            </td>
-                            <td>Lunes 13 de Mayo 2024</td>
-                        </tr>
+                    @endforeach
                     </tbody>
                     
                 </table>

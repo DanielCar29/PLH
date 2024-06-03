@@ -39,9 +39,12 @@
                             @foreach($alumnos as $alumno)
                             <td>{{$alumno->numero_de_control}}</td>
                             <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
-                            <td><a href="{{ url('/supervisor.ver_solicitud') }}">
+                            <td>
+                                
+                                <a href="{{route('supervisor.ver_solicitud', ['id' => $alumno->alumno_id])}}">
                                 <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                 </a>
+
                             </td>
                             <td>{{$alumno->fecha_solicitud}}</td>
                             <td>
@@ -63,6 +66,16 @@
                 </table>
             </div>
             
+            <form method="POST" action="">
+
+              <button type="submit">
+
+                Enviar solicitudes
+
+              </button>
+
+            </form>
+
         </div>
     </div>
     
