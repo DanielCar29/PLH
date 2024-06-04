@@ -26,4 +26,8 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
 
     Route::get('/alumno.perfil', [ProfileController::class, 'show'])->middleware('auth');
 
+
+    Route::get('/generar-pdf', [BecaController::class, 'generarPDF'])->name('generar.pdf');
+    
+
 });

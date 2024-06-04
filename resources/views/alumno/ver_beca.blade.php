@@ -29,7 +29,8 @@
                             <p><strong>Estado:</strong> {{ $beca->estado }}</p>
                             <p><strong>Descripción:</strong> <span id="description">Esta beca proporciona apoyo alimenticio mensual
                                  para estudiantes en situación de vulnerabilidad económica.</span></p>
-                            <button class="btn btn-primary" id="recover-qr-btn">Recuperar Código QR</button>
+                                 <a href="{{ route('generar.pdf') }}" target="_blank" class="btn btn-primary">Generar PDF</a>
+
                         </div>
                     </div>
                 </div>

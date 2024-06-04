@@ -187,7 +187,14 @@ return new class extends Migration
  
 
         });
-        
+        Schema::create('listas_solicitud', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('administrador_general_id');
+            $table->unsignedBigInteger('solicitud_de_beca_id');
+            $table->foreign('administrador_general_id')->references('id')->on('administrador_general')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitud_de_beca')->onDelete('no action')->onUpdate('no action');
+            $table->timestamps();
+        });
         
     }
 
@@ -229,5 +236,7 @@ return new class extends Migration
         Schema::dropIfExists('supervisores'); 
 
         Schema::dropIfExists('alumnos'); 
+        
+        Schema::dropIfExists('listas_solicitud');
     }
 };
