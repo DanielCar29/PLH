@@ -50,7 +50,7 @@
 
                         <div class="boton_perfil-guardar">
                             
-                                <button type="submit" class="boton_enviar-perfil" id="enviarDatosPerfil-boton">
+                                <button type="submit" class="btn btn-dark" id="enviarDatosPerfil-boton">
 
                                     Guardar cambios
 

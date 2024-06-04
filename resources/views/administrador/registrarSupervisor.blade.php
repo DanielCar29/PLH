@@ -63,7 +63,7 @@
 
                 <div class="boton-registro">
 
-                    <button type="submit" class="btn btn-primary mb-3">Registrar</button>
+                    <button type="submit" class="btn btn-dark">Registrar</button>
 
                 </div>
 

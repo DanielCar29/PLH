@@ -42,7 +42,7 @@ class perfil extends Controller
         $correo = $request->input('correo');
 
         if(empty($request->pass)){
-            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[
+            DB::select('CALL ActualizarUsuario(?,?,?,?,?,?)',[
                 $id_supervisor,
                 $nombre,
                 $apellidoPaterno,
@@ -54,7 +54,7 @@ class perfil extends Controller
         else{
             $pass = hash::make($request->input('pass'));
 
-            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[
+            DB::select('CALL ActualizarUsuario(?,?,?,?,?,?)',[
                 $id_supervisor,
                 $nombre,
                 $apellidoPaterno,

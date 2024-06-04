@@ -22,6 +22,8 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosSupervisor');
         DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
         DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
+        DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
+
 
 
 
@@ -132,7 +134,7 @@ return new class extends Migration
         ");
 
         DB::statement("
-        CREATE PROCEDURE ActualizarUsuarioSupervisor(
+        CREATE PROCEDURE ActualizarUsuario(
             IN p_user_id INT,
             IN p_nombre VARCHAR(255),
             IN p_apellido_paterno VARCHAR(255),
@@ -202,6 +204,13 @@ return new class extends Migration
             END
         ");
 
+        DB::statement("
+            CREATE PROCEDURE obtenerDatosAdmin(IN userid BIGINT)
+            BEGIN
+                SELECT * FROM users WHERE id = userid;
+            END
+        ");
+
     }
 
 
@@ -219,7 +228,8 @@ return new class extends Migration
       DB::statement('DRPO PROCEDURE IF EXISTS obtenerDatosSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
-
+      DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
+      
     }
 
     

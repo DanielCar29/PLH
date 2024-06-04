@@ -69,7 +69,7 @@
             <form id="enviar_solicitudes" method="POST" action="">
               <div class="botonEnviar-lista_contenido">
 
-                <button type="submit" id="botonEnviar-lista" class="botonEnviar-lista">
+                <button type="submit" id="botonEnviar-lista" class="btn btn-dark">
 
                   Enviar solicitudes
   

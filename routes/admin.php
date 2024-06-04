@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrador\registrar_supervisor;
+use App\Http\Controllers\Administrador\perfil;
+
 
 
 // Rutas de administrador -------------------------------------------------------------------------------------------------
@@ -19,11 +21,11 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
     // Rutas de acción Registrar supervisor
     // |_______________________________________________________________________________________________________________
 
-    Route::get('/administrador.registro',[registrar_supervisor::class,'index'])
-                ->name('administrador.registrarSupervisor');
+        Route::get('/administrador.registro',[registrar_supervisor::class,'index'])
+                    ->name('administrador.registrarSupervisor');
 
-    Route::post('/administrador.registro',[registrar_supervisor::class,'registrarSupervisor'])
-                ->name('registrarSupervisor');
+        Route::post('/administrador.registro',[registrar_supervisor::class,'registrarSupervisor'])
+                    ->name('registrarSupervisor');
     
     // |_______________________________________________________________________________________________________________
 
@@ -35,9 +37,20 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         return view('/administrador/listaSolicitudes');
     });
 
-    Route::get('/administrador.perfil', function () {
-        return view('/administrador/perfil');
-    });
+    // Route::get('/administrador.perfil', function () {
+    //     return view('/administrador/perfil');
+    // });
+
+    // Rutas de accion perfil
+    // |________________________________________________________________________________________________________________
+
+        Route::get('/administrador.perfil',[perfil::class,'index'])
+                    ->name('administrador.perfil');
+
+        Route::post('/administrador.ActualizaPerfil',[perfil::class,'actualizarPerfil'])
+                    ->name('actualizarPerfil');
+
+    // |________________________________________________________________________________________________________________
 
     Route::get('/administrador.ver', function () {
         return view('/administrador/verSolicitudAlumno');

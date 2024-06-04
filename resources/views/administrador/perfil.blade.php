@@ -24,18 +24,19 @@
                             <div>
                                 <img src="{{URL::asset('/img/perfil_usuario.png')}}" alt="" >
                             </div>
-
+                        @foreach($admin as $data)
                             <div>
-                                <h5>Nombre de Usuario</h5>
+                                <h5>{{$data->name}} {{$data->apellido_paterno}} {{$data->apellido_materno}}</h5>
                             </div>
 
                         </div>
                     </div>
-
+                <form method="POST" action="{{route('actualizarPerfil')}}">
+                    @csrf
                     <div class="boton_perfil">
                         
                         <div class="boton_perfil-guardar">
-                            <a href="">Guardar cambios</a>
+                            <button type="submit" class="btn btn-dark">Guardar cambios</button>
                         </div>
 
                     </div>
@@ -50,14 +51,14 @@
                         </div>
                         
                         <div class="contenido-datos-perfil">
-                            <form action="">
+
 
                                 <div>
                                     <span>Nombre:</span>
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="Jose Alberto">
+                                    <input type="text" value="{{$data->name}}" placeholder="" name="nombre">
                                 </div>
 
                                 <div>
@@ -65,7 +66,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="Sandoval">
+                                    <input type="text" value="{{$data->apellido_paterno}}" placeholder="" name="apellido_paterno">
                                 </div>
 
                                 <div>
@@ -73,10 +74,10 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" placeholder="Vazquez">
+                                    <input type="text" placeholder="" value="{{$data->apellido_materno}}" name="apellido_materno">
                                 </div>
 
-                            </form>
+
                         </div>
                     </div>
                     
@@ -89,14 +90,14 @@
                         </div>
                         
                         <div class="contenido-datos-institucionales">
-                            <form action="">
+
 
                                 <div>
                                     <span>Correo Electronico:</span>
                                 </div>
 
                                 <div>
-                                    <input type="text" value="" placeholder="212310628@gmail.com">
+                                    <input type="text" value="{{$data->email}}" placeholder="" name="correo">
                                 </div>
 
                                 <div>
@@ -104,17 +105,17 @@
                                 </div>
 
                                 <div>
-                                    <input type="password" value="" placeholder="************">
+                                    <input type="password" value="" placeholder="" name="pass">
                                 </div>
 
+                            @endforeach        
 
-                            </form>
                         </div>
 
 
                     </div>
                 </div>
-
+                </form>
             </div>
 
         </div>

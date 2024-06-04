@@ -143,22 +143,6 @@ div.menu-navegacion nav{
     margin-top: 3% !important;
     text-align: center;
     padding: 1.5%;
-    border: 3px solid #fff;
-    border-radius: 10px;
-    background-color: rgba(88, 21, 28,.3);
-    color: #fff;
-}
-
-.botonEnviar-lista_contenido:hover{
-    width: 20%;
-    margin: auto;
-    margin-top: 3% !important;
-    text-align: center;
-    padding: 1.5%;
-    border: 3px solid #fff;
-    border-radius: 10px;
-    background-color: #fff;
-    color:#000
 }
 
 .botonEnviar-lista{
@@ -429,21 +413,8 @@ div.datos-perfil > div > h3{
     padding: 2%;
     border-radius: 10px;
     text-align: center;
-    border: 1px solid #fff;
-    background-color: rgba(88, 21, 28,.3);
 }
 
-.boton_perfil-guardar:hover{
-    width: 50%;
-    margin: auto;
-    margin-top: 10%;
-    padding: 2%;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #fff;
-    background-color: #fff;
-    color: #000;
-}
 
 .boton_perfil-guardar > a{
     text-decoration: none;
