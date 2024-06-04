@@ -21,6 +21,8 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosReporteAlumno');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosSupervisor');
         DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
+        DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
+
 
 
         // Crear el procedimiento
@@ -167,6 +169,39 @@ return new class extends Migration
                 END
         ");
 
+        DB::statement("
+            CREATE PROCEDURE RegistrarSupervisor(
+                IN p_name VARCHAR(255),
+                IN p_apellido_paterno VARCHAR(255),
+                IN p_apellido_materno VARCHAR(255),
+                IN p_email VARCHAR(255),
+                IN p_password VARCHAR(255),
+                IN p_carrera_id BIGINT
+            )
+            BEGIN
+                DECLARE v_user_id BIGINT;
+                DECLARE v_supervisor_id BIGINT;
+
+                -- Insertar un nuevo usuario con el rol de supervisor
+                INSERT INTO users (name, apellido_paterno, apellido_materno, email, password, role, created_at, updated_at)
+                VALUES (p_name, p_apellido_paterno, p_apellido_materno, p_email, p_password, 'supervisor', NOW(), NOW());
+
+                -- Obtener el ID del nuevo usuario
+                SET v_user_id = LAST_INSERT_ID();
+
+                -- Insertar un nuevo supervisor
+                INSERT INTO supervisores (usuario_id, created_at, updated_at)
+                VALUES (v_user_id, NOW(), NOW());
+
+                -- Obtener el ID del nuevo supervisor
+                SET v_supervisor_id = LAST_INSERT_ID();
+
+                -- Asignar la carrera al supervisor
+                INSERT INTO carreras_supervisor (supervisor_id, carreras_id, created_at, updated_at)
+                VALUES (v_supervisor_id, p_carrera_id, NOW(), NOW());
+            END
+        ");
+
     }
 
 
@@ -183,6 +218,8 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosReporteAlumno');
       DB::statement('DRPO PROCEDURE IF EXISTS obtenerDatosSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
+      DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
+
     }
 
     

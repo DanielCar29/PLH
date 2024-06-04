@@ -44,13 +44,13 @@
                         </div>
                     </div>
 
-            <form method="POST" action="{{route('supervisor.actualiza_perfil')}}">  
+            <form id="enviarDatosPerfil" method="POST" action="{{route('supervisor.actualiza_perfil')}}">  
                 @csrf
                     <div class="boton_perfil">
 
                         <div class="boton_perfil-guardar">
                             
-                                <button type="submit">
+                                <button type="submit" class="boton_enviar-perfil" id="enviarDatosPerfil-boton">
 
                                     Guardar cambios
 
@@ -157,5 +157,26 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
     </script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('enviarDatosPerfil');
+        const submitButton = document.getElementById('enviarDatosPerfil-boton');
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el envío del formulario inmediatamente
+
+            const userConfirmed = confirm('¿Estás seguro que quieres hacer esos cambios?');
+            if (userConfirmed) {
+                alert('Has aceptado.');
+                form.submit(); // Envía el formulario si el usuario confirma
+            } else {
+                alert('Has cancelado.');
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

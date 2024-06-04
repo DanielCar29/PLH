@@ -20,47 +20,45 @@
 
         <div class="registro">
 
-            <form action="">
+            <form method="POST" action="{{route('registrarSupervisor')}}">
+                @csrf
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombres</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default" name="nombre">
                 </div>
 
                 <div class="input-group">
-                    <span class="input-group-text">Apellido Materno y Paterno</span>
-                    <input type="text" aria-label="First name" class="form-control">
-                    <input type="text" aria-label="Last name" class="form-control">
+                    <span class="input-group-text">Apellido Paterno y Materno</span>
+                    <input type="text" aria-label="First name" class="form-control" name="apellido_paterno">
+                    <input type="text" aria-label="Last name" class="form-control" name="apellido_materno">
                 </div>
 
                 <div class="input-group mb-3 correo">
-                    <input type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username">
+                    <input type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username" name="correoPart1">
                     <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" placeholder="Gmail" aria-label="Server">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="Nombre de usuario" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Gmail.com" aria-label="Server" name="correoPart2">
                 </div>
 
                 <div>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Informática</option>
-                        <option value="1">Ambiental</option>
-                        <option value="2">Industrial</option>
-                        <option value="3">Sistemas Computacionales</option>
+                    
+                    <select class="form-select" aria-label="Default select example" name="carrera">
+                        @foreach($carreras as $carrera)
+                        <option value="{{$carrera->id}}">{{$carrera->carrera}}</option>
+                        @endforeach
                     </select>
+                    
                 </div>
                 
                 <div class="contrasena">
                     <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                            placeholder="Constraseña">
+                            placeholder="Constraseña" name="passPart1" minlength="8">
                 </div>
 
                 <div>
                     <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                            placeholder="Verificar Constraseña">
+                            placeholder="Verificar Constraseña" name="passPart2" minlength="8">
                 </div>
 
                 <div class="boton-registro">
@@ -74,6 +72,12 @@
         </div>
 
     </div>
+
+    @if (session('message'))
+        <script>
+            alert("{{ session('message') }}");
+        </script>
+    @endif
 
 
 

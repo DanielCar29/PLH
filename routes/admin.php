@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Administrador\registrar_supervisor;
+
 
 // Rutas de administrador -------------------------------------------------------------------------------------------------
 // |
@@ -14,9 +16,16 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         return view('/administrador/home');
     });
 
-    Route::get('/administrador.registro', function () {
-        return view('/administrador/registrarSupervisor');
-    });
+    // Rutas de acción Registrar supervisor
+    // |_______________________________________________________________________________________________________________
+
+    Route::get('/administrador.registro',[registrar_supervisor::class,'index'])
+                ->name('administrador.registrarSupervisor');
+
+    Route::post('/administrador.registro',[registrar_supervisor::class,'registrarSupervisor'])
+                ->name('registrarSupervisor');
+    
+    // |_______________________________________________________________________________________________________________
 
     Route::get('/administrador.habilitar', function () {
         return view('/administrador/habilitarConvocatoria');

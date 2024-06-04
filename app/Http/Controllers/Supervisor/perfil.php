@@ -30,10 +30,10 @@ class perfil extends Controller
 
     public function actualizarPerfil(Request $request){
 
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'pass' => 'min:8',
-        ]);
+        // $request->validate([
+        //     'nombre' => 'required|string|max:255',
+        //     'pass' => 'min:8',
+        // ]);
 
         $id_supervisor = auth()->user()->id;
         $nombre = $request->input('nombre');
@@ -42,14 +42,26 @@ class perfil extends Controller
         $correo = $request->input('correo');
 
         if(empty($request->pass)){
-            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[$id_supervisor,
-                        $nombre,$apellidoPaterno,$apellidoMaterno,$correo,'']);
+            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[
+                $id_supervisor,
+                $nombre,
+                $apellidoPaterno,
+                $apellidoMaterno,
+                $correo,
+                ''
+            ]);
         }
         else{
             $pass = hash::make($request->input('pass'));
 
-            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[$id_supervisor,
-                        $nombre,$apellidoPaterno,$apellidoMaterno,$correo,$pass]);
+            DB::select('CALL ActualizarUsuarioSupervisor(?,?,?,?,?,?)',[
+                $id_supervisor,
+                $nombre,
+                $apellidoPaterno,
+                $apellidoMaterno,
+                $correo,
+                $pass
+            ]);
         }
 
         $datos_supervisor =DB::select('CALL ObtenerDatosSupervisor(?)',[$id_supervisor]);

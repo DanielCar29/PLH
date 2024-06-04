@@ -66,13 +66,17 @@
                 </table>
             </div>
             
-            <form method="POST" action="">
+            <form id="enviar_solicitudes" method="POST" action="">
+              <div class="botonEnviar-lista_contenido">
 
-              <button type="submit">
+                <button type="submit" id="botonEnviar-lista" class="botonEnviar-lista">
 
-                Enviar solicitudes
+                  Enviar solicitudes
+  
+                </button>
 
-              </button>
+              </div>
+
 
             </form>
 
@@ -91,6 +95,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
+    </script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('enviar_solicitudes');
+            const submitButton = document.getElementById('botonEnviar-lista');
+
+            submitButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Evita el envío del formulario inmediatamente
+
+                const userConfirmed = confirm('¿Estás seguro que quieres mandar la lista de solicitudes?');
+                if (userConfirmed) {
+                    alert('Has aceptado.');
+                    form.submit(); // Envía el formulario si el usuario confirma
+                } else {
+                    alert('Has cancelado.');
+                }
+            });
+        });
+
     </script>
 </body>
 {{-- Contenido del Footer --}}
