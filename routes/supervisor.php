@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
                 ->name('supervisor.perfil');
 
         Route::post('/supervisor.actualiza_perfil',[perfil::class,'actualizarPerfil'])
-        ->name('supervisor.actualiza_perfil');        
+                    ->name('supervisor.actualiza_perfil');        
 
     //|_______________________________________________________________________________________________ 
     

@@ -24,8 +24,15 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
     });
     Route::get('/alumno.beca', [BecaController::class, 'show'])->name('alumno.beca');
 
-    Route::get('/alumno.perfil', [ProfileController::class, 'show'])->middleware('auth');
+    // Rutas perfil
+    // |__________________________________________________________________________________________________
+        Route::get('/alumno.perfil', [ProfileController::class, 'show'])
+                ->name('alumno.perfil');
 
+        Route::post('/alumno.actualizarPerfil/{id}',[ProfileController::class,'actualizarPerfil'])
+                    ->name('alumno.actualizaPerfil');
+
+    // |__________________________________________________________________________________________________
 
     Route::get('/generar-pdf', [BecaController::class, 'generarPDF'])->name('generar.pdf');
     

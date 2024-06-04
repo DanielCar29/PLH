@@ -27,37 +27,42 @@
                                 <img src="{{ URL::asset('/img/perfil_usuario.png') }}" alt="">
                             </div>
                             <div>
-                                <h5>{{ $user->name }}</h5> <!-- Mostrar nombre del usuario -->
+            @foreach($alumno as $data)
+                                <h5>{{$data->nombre}} {{$data->apellido_paterno}} {{$data->apellido_materno}}</h5> <!-- Mostrar nombre del usuario -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-12 datos-correo_usuario">
+                    <form method="POST" action="{{route('alumno.actualizaPerfil',['id'=> $data->alumno_id])}}">
+                        
+                        @csrf
                     <div class="col-12 datos-perfil">
                         <div>
                             <h3>DATOS DE USUARIO</h3>
                         </div>
                         <div class="contenido-datos-perfil">
-                            <form action="">
+
+
                                 <div>
                                     <span>Nombre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $user->name }}" placeholder="Jose Alberto">
+                                    <input type="text" value="{{$data->nombre}}" placeholder="" name="nombre">
                                 </div>
                                 <div>
                                     <span>Apellido Paterno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $user->apellido_paterno }}" placeholder="Sandoval">
+                                    <input type="text" value="{{$data->apellido_paterno}}" placeholder="" name="apellido_paterno">
                                 </div>
                                 <div>
                                     <span>Apellido Materno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $user->apellido_materno }}" placeholder="Vazquez">
+                                    <input type="text" value="{{$data->apellido_materno}}" placeholder="" name="apellido_materno">
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                     
@@ -66,39 +71,46 @@
                             <h3>DATOS INSTITUCIONALES</h3>
                         </div>
                         <div class="contenido-datos-institucionales">
-                            <form action="">
+
                                 <div>
                                     <span>Correo Electronico:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $user->email }}" placeholder="212310628@gmail.com">
+                                    <input type="text" value="{{$data->email}}" placeholder="" name="correo">
                                 </div>
                                 <div>
                                     <span>Número de Control:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $alumno->numero_de_control }}" placeholder="Número de Control">
+                                    <input type="text" value="{{$data->numero_de_control}}" placeholder="" name="numero_control">
                                 </div>
                                 <div>
                                     <span>Semestre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $alumno->semestre }}" placeholder="Semestre">
+                                    <input type="text" value="{{$data->semestre}}" placeholder="" name="semestre">
                                 </div>
                                 <div>
                                     <span>Carrera:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{ $user->carrera }}" placeholder="Informática">
+                                    <input type="text" value="{{$data->carrera}}" placeholder="" name="carrera" disabled>
                                 </div>
-                            </form>
+
+                                <span>Contraseña:</span>
+                            </div>
+                            <div>
+                                <input type="password" value="" placeholder="" name="pass">
+                            </div>
+            @endforeach
                         </div>
                     </div>
                     <div class="boton_perfil">
-                        <div class="boton_perfil-guardar">
-                            <a href="">Guardar cambios</a>
-                        </div>
+
+                        <button type="submit" class="btn btn-dark">Guardar cambios</button>
+
                     </div>
+                </form>
                 </div>
             </div>
         </div>

@@ -20,9 +20,13 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS cambiarEstadoSolicitudAlumno');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosReporteAlumno');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosSupervisor');
-        DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
+        DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuario');
         DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
+        DB::statement('DROP PROCEDURE IF EXISTS actualizarAlumno');
+        DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
+
+
 
 
 
@@ -211,6 +215,73 @@ return new class extends Migration
             END
         ");
 
+        DB::statement("
+        CREATE PROCEDURE actualizarAlumno(
+            IN alumno_id BIGINT,
+            IN nuevo_nombre VARCHAR(255),
+            IN nuevo_apellido_paterno VARCHAR(255),
+            IN nuevo_apellido_materno VARCHAR(255),
+            IN nuevo_email VARCHAR(255),
+            IN nuevo_password VARCHAR(255), -- Este campo es opcional
+            IN nuevo_numero_de_control VARCHAR(9),
+            IN nuevo_semestre VARCHAR(200)
+        )
+        BEGIN
+            -- Actualizar la tabla users
+            IF nuevo_password IS NOT NULL THEN
+                UPDATE users
+                SET name = nuevo_nombre,
+                    apellido_paterno = nuevo_apellido_paterno,
+                    apellido_materno = nuevo_apellido_materno,
+                    email = nuevo_email,
+                    password = nuevo_password
+                WHERE id = (SELECT usuario_id FROM alumnos WHERE id = alumno_id);
+            ELSE
+                UPDATE users
+                SET name = nuevo_nombre,
+                    apellido_paterno = nuevo_apellido_paterno,
+                    apellido_materno = nuevo_apellido_materno,
+                    email = nuevo_email
+                WHERE id = (SELECT usuario_id FROM alumnos WHERE id = alumno_id);
+            END IF;
+        
+            -- Actualizar la tabla alumnos
+            UPDATE alumnos
+            SET numero_de_control = nuevo_numero_de_control,
+                semestre = nuevo_semestre
+            WHERE id = alumno_id;
+        END
+        
+        ");
+
+        DB::statement("
+            CREATE PROCEDURE obtenerDatosAlumno_perfil(
+                IN userId INT
+        )
+            BEGIN
+            SELECT 
+                u.id AS usuario_id,
+                u.name AS nombre,
+                u.apellido_paterno,
+                u.apellido_materno,
+                u.email,
+                a.id AS alumno_id,
+                a.numero_de_control,
+                a.semestre,
+                c.carrera
+                FROM 
+                    users AS u
+                INNER JOIN 
+                    alumnos AS a ON u.id = a.usuario_id
+                INNER JOIN 
+                    carreras_alumno AS ca ON a.id = ca.alumno_id
+                INNER JOIN 
+                    carreras AS c ON ca.carreras_id = c.id
+                WHERE 
+                    u.id = userId;
+        END
+        ");
+
     }
 
 
@@ -229,6 +300,8 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
+      DB::statement('DROP PROCEDURE IF EXISTS actualizarAlumno');
+      DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
       
     }
 

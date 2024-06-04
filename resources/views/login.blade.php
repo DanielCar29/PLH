@@ -45,7 +45,9 @@
       
           <div class="instrucciones">
             <h4>PLH</h4>
-            <p>Recuerda esta pagina nomas es para poder solicitar la beca limencia en el Tecnologico Superiror de Lerdo.</p>
+            <p>"¡PLH apoya con becas alimenticias para estudiantes universitarios!
+              Consigue el apoyo que necesitas para tu bienestar mientras estudias."
+            </p>
           </div>
 
           <div>
