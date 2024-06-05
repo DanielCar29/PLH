@@ -180,9 +180,12 @@ class DatabaseSeeder extends Seeder
         // registro en tabla detalles becas
         // ID = 1
         $detalles_beca = new detalles_becas;
-        $detalles_beca->cantidad_de_beces = 10;
+        $detalles_beca->cantidad_de_becas = 10;
+        $detalles_beca->carrera_id = 1;
         $detalles_beca->administrador_general_id = 1;
-        $detalles_beca->estado_combocatoria = 'activo';
+        $detalles_beca->estado_convocatoria = 'activo';
+        $detalles_beca->inicio_convocatoria =fake()->date();
+        $detalles_beca->fin_convocatoria = fake()->date();
         $detalles_beca->save();
 
         // Registro en tabla becas carrera
@@ -252,17 +255,20 @@ class DatabaseSeeder extends Seeder
         $alumno_solicitudbeca1->solicitud_de_beca_id = 1;
         $alumno_solicitudbeca1->alumno_id = 1;
         $alumno_solicitudbeca1->estado = "aceptada";
+        $alumno_solicitudbeca1->envio = 1;
         $alumno_solicitudbeca1->save();
         // ID = 2
         $alumno_solicitudbeca2 = new alumno_solicitudbeca;
         $alumno_solicitudbeca2->solicitud_de_beca_id = 2;
         $alumno_solicitudbeca2->alumno_id = 2;
         $alumno_solicitudbeca2->estado = "rechazada";
+        $alumno_solicitudbeca2->envio = 0;
         $alumno_solicitudbeca2->save();
         // ID = 3
         $alumno_solicitudbeca3 = new alumno_solicitudbeca;
         $alumno_solicitudbeca3->solicitud_de_beca_id = 3;
         $alumno_solicitudbeca3->alumno_id = 3;
+        $alumno_solicitudbeca3->envio = 0;
         $alumno_solicitudbeca3->save();
 
         // Registros en tabla de carreras alumno

@@ -68,15 +68,19 @@ return new class extends Migration
             $table->timestamps();
         });
         
-        Schema::create('detalles_becas', function (Blueprint $table) {  
-            $table->increments('id');  
-            $table->integer('cantidad_de_beces');  
-            $table->bigInteger('administrador_general_id')->unsigned();  
-            $table->string('estado_combocatoria', 45);  
-            $table->timestamps();  
+        Schema::create('detalles_becas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('cantidad_de_becas');
+            $table->unsignedBigInteger('carrera_id');
+            $table->bigInteger('administrador_general_id')->unsigned();
+            $table->string('estado_convocatoria', 45);
+            $table->date('inicio_convocatoria'); // New field for the start date of the convocatoria
+            $table->date('fin_convocatoria'); // New field for the end date of the convocatoria
+            $table->timestamps();
 
-            $table->foreign('administrador_general_id')->references('id')->on('administradores_generales')->onDelete('no action')->onUpdate('no action');  
-        });  
+            $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('no action')->onUpdate('no action');  
+            $table->foreign('administrador_general_id')->references('id')->on('administradores_generales')->onDelete('no action')->onUpdate('no action');
+        });
 
         Schema::create('becas_carrera', function (Blueprint $table) {  
             $table->increments('id');  
@@ -105,6 +109,7 @@ return new class extends Migration
             $table->bigInteger('solicitud_de_beca_id')->unsigned();  
             $table->bigInteger('alumno_id')->unsigned();  
             $table->string('estado', 45)->default('pendiente');
+            $table->integer('envio');
             $table->timestamps();  
 
             $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitudes_de_beca')->onDelete('no action')->onUpdate('no action');  
@@ -189,9 +194,9 @@ return new class extends Migration
         });
         Schema::create('listas_solicitud', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('administrador_general_id');
+            $table->unsignedBigInteger('carreras_id');
             $table->unsignedBigInteger('solicitud_de_beca_id');
-            $table->foreign('administrador_general_id')->references('id')->on('administradores_generales')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('carreras_id')->references('id')->on('carreras')->onDelete('no action')->onUpdate('no action');  
             $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitudes_de_beca')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });
