@@ -137,6 +137,15 @@ div.menu-navegacion nav{
 }
 
 /* Vista visualizar_solicitud----------------------------------------------------------------------------------------------------------*/
+.anuncio_noSolicitudes{
+
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+
+}
 .botonEnviar-lista_contenido{
     width: 20%;
     margin: auto;

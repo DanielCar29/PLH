@@ -24,6 +24,12 @@
                 <h1>Solicitudes de alumnos</h1>
             </div>
     
+
+            @if(empty($alumnos))
+                <div class="anuncio_noSolicitudes">
+                    <h2>No hay solicitudes disponibles!</h2>
+                </div>
+            @else
             <div class="tabla">
                 <table class="table table-hover table-striped" id="tabla">
                     
@@ -34,8 +40,10 @@
                             <th>Día de envío</th>
                             <th>Aceptado/Rechazado</th>
                         </tr>
+
                     <tbody class="table-group-divider">
                         <tr>
+
                             @foreach($alumnos as $alumno)
                             <td>{{$alumno->numero_de_control}}</td>
                             <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
@@ -46,7 +54,7 @@
                                 </a>
 
                             </td>
-                            <td>{{$alumno->fecha_solicitud}}</td>
+                            <td>{{$alumno->fecha_envio_solicitud}}</td>
                             <td>
                               @if ($alumno->estado == 'aceptada')
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
@@ -61,12 +69,17 @@
                             </td>
                         </tr>
                             @endforeach
+              @endif
                     </tbody>
     
                 </table>
             </div>
-            
-            <form id="enviar_solicitudes" method="POST" action="">
+            @if(empty($alumnos))
+            <div></div>
+
+            @else
+            <form id="enviar_solicitudes" method="POST" action="{{route('supervisor.enviarListaSolicitudes')}}">
+              @csrf
               <div class="botonEnviar-lista_contenido">
 
                 <button type="submit" id="botonEnviar-lista" class="btn btn-dark">
@@ -76,7 +89,7 @@
                 </button>
 
               </div>
-
+            @endif
 
             </form>
 

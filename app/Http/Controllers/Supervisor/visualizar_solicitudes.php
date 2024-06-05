@@ -14,7 +14,7 @@ class visualizar_solicitudes extends Controller
      */
     public function index()
     {
-        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+        $alumnos = DB::select('CALL mostrarDatosAlumno_NOENVIO()');
 
         return view('supervisor.visualizar_solicitud', compact('alumnos'));
     }
@@ -63,51 +63,14 @@ class visualizar_solicitudes extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function enviarListaSolicitudes(){
+
+        DB::select('CALL actualizar_e_insertar_solicitudes()');
+
+        $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
+
+        return view('supervisor.visualizar_solicitud');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         Route::post('/esperaSolicitud/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
                     ->name('supervisor.esperaSolicitud');
 
+        Route::post('/enviarListaSolicitudes',[visualizar_solicitudes::class,'enviarListaSolicitudes'])
+                    ->name('supervisor.enviarListaSolicitudes');
+
     // |______________________________________________________________________________________________
 
     // Rutas de accion perfil

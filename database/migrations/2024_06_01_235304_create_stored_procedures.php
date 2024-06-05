@@ -25,9 +25,8 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
         DB::statement('DROP PROCEDURE IF EXISTS actualizarAlumno');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
-
-
-
+        DB::statement('DROP PROCEDURE IF EXISTS actualizar_e_insertar_solicitudes');
+        DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
 
 
 
@@ -282,6 +281,60 @@ return new class extends Migration
         END
         ");
 
+        DB::statement("
+            CREATE PROCEDURE actualizar_e_insertar_solicitudes()
+                BEGIN
+                    -- Desactivar el modo de actualización segura
+                    SET @old_safe_updates = @@sql_safe_updates;
+                    SET @@sql_safe_updates = 0;
+                
+                    -- Iniciar la transacción
+                    START TRANSACTION;
+                
+                    -- Actualizar el campo envio a 1
+                    UPDATE alumno_solicitudbeca
+                    SET envio = 1;
+                
+                    -- Insertar registros en listas_solicitud para aquellos con estado = 'aceptada'
+                    INSERT INTO listas_solicitud (carreras_id, solicitud_de_beca_id, created_at, updated_at)
+                    SELECT ca.carreras_id, asb.solicitud_de_beca_id, NOW(), NOW()
+                    FROM alumno_solicitudbeca asb
+                    JOIN alumnos a ON asb.alumno_id = a.id
+                    JOIN carreras_alumno ca ON a.id = ca.alumno_id
+                    WHERE asb.estado = 'aceptada';
+                
+                    -- Confirmar la transacción
+                    COMMIT;
+                
+                    -- Restaurar el modo de actualización segura
+                    SET @@sql_safe_updates = @old_safe_updates;
+                END
+        ");
+
+        DB::statement("
+            CREATE PROCEDURE mostrarDatosAlumno_NOENVIO()
+                BEGIN
+                    SELECT 
+                    a.id as alumno_id,
+                    u.name,
+                    u.apellido_paterno,
+                    u.apellido_materno,
+                    a.numero_de_control,
+                    sb.fecha_solicitud AS fecha_envio_solicitud,
+                    asb.estado AS estado
+                FROM 
+                    alumno_solicitudbeca asb
+                JOIN 
+                    alumnos a ON asb.alumno_id = a.id
+                JOIN 
+                    users u ON a.usuario_id = u.id
+                JOIN 
+                    solicitudes_de_beca sb ON asb.solicitud_de_beca_id = sb.id
+                WHERE 
+                    asb.envio = 0;            
+            END
+        ");
+
     }
 
 
@@ -302,6 +355,8 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');
       DB::statement('DROP PROCEDURE IF EXISTS actualizarAlumno');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
+      DB::statement('DROP PROCEDURE IF EXISTS actualizar_e_insertar_solicitudes');
+      DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
       
     }
 
