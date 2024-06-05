@@ -27,6 +27,8 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
         DB::statement('DROP PROCEDURE IF EXISTS actualizar_e_insertar_solicitudes');
         DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
+        DB::statement('DROP PROCEDURE IF EXISTS insertar_detalle_beca');
+
 
 
 
@@ -335,6 +337,38 @@ return new class extends Migration
             END
         ");
 
+        DB::statement("
+        CREATE PROCEDURE insertar_detalle_beca(
+            IN p_cantidad_de_becas INT,
+            IN p_carrera_id BIGINT,
+            IN p_administrador_general_id BIGINT,
+            IN p_estado_convocatoria VARCHAR(45),
+            IN p_inicio_convocatoria DATE,
+            IN p_fin_convocatoria DATE
+        )
+            BEGIN
+            INSERT INTO detalles_becas (
+                cantidad_de_becas, 
+                carrera_id, 
+                administrador_general_id, 
+                estado_convocatoria, 
+                inicio_convocatoria, 
+                fin_convocatoria,
+                created_at,
+                updated_at
+            ) VALUES (
+                p_cantidad_de_becas, 
+                p_carrera_id, 
+                p_administrador_general_id, 
+                p_estado_convocatoria, 
+                p_inicio_convocatoria, 
+                p_fin_convocatoria,
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP
+            );
+        END
+        ");
+
     }
 
 
@@ -357,6 +391,7 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno_perfil');
       DB::statement('DROP PROCEDURE IF EXISTS actualizar_e_insertar_solicitudes');
       DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
+      DB::statement('DROP PROCEDURE IF EXISTS insertar_detalle_beca');
       
     }
 

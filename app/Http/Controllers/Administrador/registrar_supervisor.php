@@ -44,11 +44,13 @@ class registrar_supervisor extends Controller
                 $carrera
             ]);
 
-            session()->flash('message', 'Se ha creado Supervisor: '.$nombre.' '.$apellido_paterno.' '.$apellido_materno);
-
             $carreras = carreras::all();
 
-            return view('administrador.registrarSupervisor',compact('carreras'));
+            return redirect()->back()->with([
+                'success' => 'Se ha registradro el supervisor: '.$nombre.' '.$apellido_paterno.' '.$apellido_materno,
+                'carreras' => $carreras,
+            ]);
+
         }
         else{
 
@@ -56,7 +58,10 @@ class registrar_supervisor extends Controller
 
             $carreras = carreras::all();
 
-            return view('administrador.registrarSupervisor',compact('carreras'));
+            return redirect()->back()->with([
+                'error' => 'Ocurrió un error. Intenta de nuevo',
+                'carreras' => $carreras,
+            ]);
 
         }
 
@@ -64,43 +69,4 @@ class registrar_supervisor extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

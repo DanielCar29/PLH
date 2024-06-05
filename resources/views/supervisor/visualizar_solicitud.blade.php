@@ -20,6 +20,20 @@
     <div class="contenido-plh_general">
         <div class="contenido-plh">
 
+          <div class="container mt-1">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>  
+        
             <div class="titulo">
                 <h1>Solicitudes de alumnos</h1>
             </div>

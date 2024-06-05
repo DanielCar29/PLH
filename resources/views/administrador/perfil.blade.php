@@ -10,6 +10,14 @@
 <body>
     @include('administrador/navbar/menu')
 
+    <div class="container mt-1">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
+
     <div class="contenido-general-perfil">
 
         <div class="container ">

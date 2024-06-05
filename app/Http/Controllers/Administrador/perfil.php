@@ -52,7 +52,11 @@ class perfil extends Controller
         }
 
         $admin = DB::select('CALL obtenerDatosAdmin(?)',[$id_user]);
-        return view('administrador.perfil',compact('admin'));
+
+        return redirect()->back()->with([
+            'success' => 'Se han hecho cambios correctamente!',
+            'admin' => $admin,
+        ]);
 
     }
 

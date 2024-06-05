@@ -12,6 +12,20 @@
 
     <div class="contenido">
 
+        <div class="container mt-1">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>    
+
         <div class="titulo">
             <h2>
                 Registrar 
@@ -72,12 +86,6 @@
         </div>
 
     </div>
-
-    @if (session('message'))
-        <script>
-            alert("{{ session('message') }}");
-        </script>
-    @endif
 
 
 

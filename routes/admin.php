@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;use App\Http\Controllers\Auth\Registe
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrador\registrar_supervisor;
 use App\Http\Controllers\Administrador\perfil;
+use App\Http\Controllers\Administrador\habilitar_convocatoria;
+
 
 
 
@@ -29,17 +31,26 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
     
     // |_______________________________________________________________________________________________________________
 
-    Route::get('/administrador.habilitar', function () {
-        return view('/administrador/habilitarConvocatoria');
-    });
+    // Rutas de accion habilitar convocatoria
+    // |_______________________________________________________________________________________________________________
+
+        // Route::get('/administrador.habilitar', function () {
+        //     return view('/administrador/habilitarConvocatoria');
+        // });
+
+        Route::get('/administrador.habilitar',[habilitar_convocatoria::class,'index'])
+                    ->name('administrador.habilitarConvocatoria');
+
+        Route::Post('/administrador.activaConvocatoria',[habilitar_convocatoria::class,'habilitarConvocatoria'])
+                ->name('administrador.activaConvocatoria');
+
+
+    // |________________________________________________________________________________________________________________
 
     Route::get('/administrador.lista', function () {
         return view('/administrador/listaSolicitudes');
     });
 
-    // Route::get('/administrador.perfil', function () {
-    //     return view('/administrador/perfil');
-    // });
 
     // Rutas de accion perfil
     // |________________________________________________________________________________________________________________

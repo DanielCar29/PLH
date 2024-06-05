@@ -66,32 +66,11 @@ class perfil extends Controller
 
         $datos_supervisor =DB::select('CALL ObtenerDatosSupervisor(?)',[$id_supervisor]);
 
-        return view('supervisor.perfil', compact('datos_supervisor'));
+        return redirect()->back()->with([
+            'success' => 'Se han hecho cambios correctamente!',
+            'datos_supervisor' => $datos_supervisor,
+        ]);
 
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

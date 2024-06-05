@@ -69,7 +69,7 @@ class visualizar_solicitudes extends Controller
 
         $alumnos = DB::select('CALL obtenerAlumnos_visualizarSolicitudes()');
 
-        return view('supervisor.visualizar_solicitud');
+        return redirect()->back()->with(['success' => 'Se ha enviado la lista de solicitudes!']);
 
     }
 

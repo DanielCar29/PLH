@@ -214,6 +214,22 @@ div.menu-navegacion nav{
 }
 
 /* Vista habilitar convocatoria */
+.fechas_convocatoria{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+.fecha_inicio{
+    padding: 2%;
+    text-decoration: underline;
+}
+
+.fecha_cierre{
+    padding: 2%;
+    text-decoration: underline;
+
+}
 
 .habilitar-convocatoria{
     margin: auto;
@@ -267,9 +283,11 @@ div.menu-navegacion nav{
 }
 
 .botones-form{
-    display: inline-block;
-    margin: auto;
-    max-width: 50%;
+    width: 50%;
+    margin: auto !important;
+    margin-top: 3% !important;
+    text-align: center;
+    
 }
 
 .titulo-convocatoria{
