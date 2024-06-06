@@ -58,7 +58,7 @@ return new class extends Migration
 
         Schema::create('solicitudes_de_beca', function (Blueprint $table) { 
             $table->bigIncrements('id'); 
-            $table->date('fecha_solicitud')->unique(); 
+            $table->date('fecha_solicitud'); 
             $table->timestamps(); 
         }); 
 
@@ -109,7 +109,7 @@ return new class extends Migration
             $table->bigInteger('solicitud_de_beca_id')->unsigned();  
             $table->bigInteger('alumno_id')->unsigned();  
             $table->string('estado', 45)->default('pendiente');
-            $table->integer('envio');
+            $table->integer('envio')->default('0');
             $table->timestamps();  
 
             $table->foreign('solicitud_de_beca_id')->references('id')->on('solicitudes_de_beca')->onDelete('no action')->onUpdate('no action');  
@@ -126,7 +126,7 @@ return new class extends Migration
             $table->bigIncrements('id');  
             $table->bigInteger('preguntas_id')->unsigned();    
             $table->bigInteger('supervisor_id')->unsigned();  
-            $table->string('respuesta', 200);  
+            $table->string('respuesta', 200)->default('no contesto');  
             $table->timestamps(); 
            
             $table->foreign('preguntas_id')->references('id')->on('preguntas_de_solicitud_del_alumno')->onDelete('no action')->onUpdate('no action');  

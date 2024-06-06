@@ -20,6 +20,19 @@
     <div class="container contenido">
         {{-- Convocatoria de beca --}}
         <div class="row justify-content-center mt-5">
+            <div class="container mt-1">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+    
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+            </div>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">

@@ -89,16 +89,16 @@
                     <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>
                   @endforeach
                 </select>
-                @error('carrera')
+              
+              </div>
+    @error('carrera')
                   <span class="text-danger">{{ $message }}</span>
                 @enderror
-              </div>
-
               <div class="form-group input-login">
                 <label for="semestre" class="color">Semestre</label>
                 <select id="semestre" class="form-control" name="semestre" required>
                   <option value="" disabled selected>Selecciona tu semestre</option>
-                  @for ($i = 1; $i <= 8; $i++)
+                  @for ($i = 1; $i <= 9; $i++)
                     <option value="{{ $i }}" {{ old('semestre') == $i ? 'selected' : '' }}>{{ $i }}</option>
                   @endfor
                 </select>

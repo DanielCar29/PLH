@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid nav-color color-borde-plh">
       <a class="navbar-brand item-nav elemento-navegacion-plh" href="{{ url('/supervisor.home') }}">
-        <img src="{{URL::asset('/img/logo-plh-menu.png')}}" alt="Logo" 
+        <img src="{{URL::asset('/img/logo.png')}}" alt="Logo" 
             height="30" class="d-inline-block align-text-top">
                 PLH
     </a>
