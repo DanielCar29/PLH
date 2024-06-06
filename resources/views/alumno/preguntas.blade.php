@@ -176,12 +176,16 @@
                                     <input class="form-check-input" type="radio" name="respuesta_9" id="borrowed_house" value="Prestada" required>
                                     <label class="form-check-label" for="borrowed_house">Prestada</label>
                                 </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label" for="respuesta_9">Otros</label>
-                                        <textarea class="form-control" name="scholarship_reason" id="scholarship_reason" rows="3" placeholder="Escribe aquí..."></textarea>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta_9" id="other_house" value="Otros" required>
+                                    <label class="form-check-label" for="other_house">Otros</label>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <textarea class="form-control" name="other_reason" id="other_reason" rows="3" placeholder="Escribe aquí..." style="display:none;"></textarea>
                                 </div>
                             </div>
-
+                            
+                            
                             <!-- Pregunta 9 -->
                             <div class="mb-4">
                                 <label for="health_services" class="form-label">9. ¿Con qué servicio de salud cuentan tú y tu familia?</label>
@@ -206,10 +210,12 @@
                                     <label class="form-check-label" for="no_health_services">No tengo</label>
                                 </div>
                                 <div class="form-check">
-                                    <label class="form-check-label" for="respuesta_10">Otros</label>
-                                    <textarea class="form-control" name="scholarship_reason" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." ></textarea>
+                                    <input class="form-check-input" type="radio" name="respuesta_10" id="other_health_services" value="Otros" required>
+                                    <label class="form-check-label" for="other_health_services">Otros</label>
                                 </div>
-                                
+                                <div class="form-group mt-2">
+                                    <textarea class="form-control" name="other_health_reason" id="other_health_reason" rows="3" placeholder="Escribe aquí..." style="display:none;"></textarea>
+                                </div>
                             </div>
 
                             <!-- Pregunta 10 -->
@@ -304,17 +310,41 @@
             crossorigin="anonymous"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    var otherScholarships = document.querySelector('input[name="respuesta_2"]');
-                    var scholarshipsDetails = document.getElementById('scholarships_details');
+    var otherScholarships = document.querySelectorAll('input[name="respuesta_2"]');
+    var scholarshipsDetails = document.getElementById('scholarships_details');
 
-                    otherScholarships.addEventListener('change', function() {
-                        if (this.value === 'si') {
-                            scholarshipsDetails.style.display = 'block';
-                        } else {
-                            scholarshipsDetails.style.display = 'none';
-                        }
-                    });
+            otherScholarships.forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'si') {
+                        scholarshipsDetails.style.display = 'block';
+                    } else {
+                        scholarshipsDetails.style.display = 'none';
+                    }
                 });
+            });
+        });
+
+                document.querySelectorAll('input[name="respuesta_9"]').forEach((elem) => {
+                                    elem.addEventListener("change", function(event) {
+                                        var item = event.target.value;
+                                        if (item === "Otros") {
+                                            document.getElementById("other_reason").style.display = "block";
+                                        } else {
+                                            document.getElementById("other_reason").style.display = "none";
+                                        }
+                                    });
+                                });
+
+                                document.querySelectorAll('input[name="respuesta_10"]').forEach((elem) => {
+                                    elem.addEventListener("change", function(event) {
+                                        var item = event.target.value;
+                                        if (item === "Otros") {
+                                            document.getElementById("other_health_reason").style.display = "block";
+                                        } else {
+                                            document.getElementById("other_health_reason").style.display = "none";
+                                        }
+                                    });
+                                });
                 </script>
                 
                 
