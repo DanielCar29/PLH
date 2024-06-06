@@ -322,7 +322,7 @@ return new class extends Migration
                     u.apellido_paterno,
                     u.apellido_materno,
                     a.numero_de_control,
-                    sb.fecha_solicitud AS fecha_envio_solicitud,
+                    sb.fecha_solicitud AS fecha_solicitud,
                     asb.estado AS estado
                 FROM 
                     alumno_solicitudbeca asb

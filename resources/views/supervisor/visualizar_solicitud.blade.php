@@ -68,7 +68,9 @@
                                 </a>
 
                             </td>
-                            <td>{{$alumno->fecha_envio_solicitud}}</td>
+                            <td>
+                              {{$alumno->fecha_solicitud}}
+                            </td>
                             <td>
                               @if ($alumno->estado == 'aceptada')
                                 <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
