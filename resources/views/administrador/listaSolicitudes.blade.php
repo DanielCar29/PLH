@@ -29,6 +29,12 @@
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
+
+                    @if(empty($alumnos))
+                        <div class="anuncio_noSolicitudes">
+                            <h2>No hay solicitudes disponibles!</h2>
+                        </div>
+                    @else
                         <div class="tabla-lista">
                             <table class="table table-hover table-striped">
                                 <thead>
@@ -41,85 +47,33 @@
                                 </thead>
 
                                 <tbody class="table-group-divider">
+                    @foreach($alumnos as $alumno)                                    
                                     <tr>
-                                        <td>212310628</td>
-                                        <td>Jose Alberto Sandoval Vazquez</td>
+                                        <td>{{$alumno->numero_de_control}}</td>
+                                        <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
                                         <td>
                                             <div class="icono_ver">
-                                                <a href="{{ url('/administrador.ver') }}">
+                                                <a href="{{route('administrador.verSolicitudAlumno', ['id' => $alumno->alumno_id])}}">
                                                     <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
                                                 </a>
                                             </div>
             
                                         </td>
                                         <td>
-                                            <div class="grupo-botones">
-                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option1">
+                                            @if ($alumno->estado == 'aceptada')
+                                              <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
+              
+                                            @elseif ($alumno->estado == 'rechazada')
+                                              <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
+              
+                                            @else
+                                              <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
+                                            @endif
+                                              
+                                          </td>
+                                      </tr>
+                                          @endforeach
 
-                                                        <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="30">
-
-                                                    </label>
-                                            
-                                                    <input type="radio" class="btn-check" name="options" id="option2" checked autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option2">
-                                                        
-                                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="30">
-
-                                                    </label>
-                                            
-                                                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option3">
-                                                        
-                                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="30">
-
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>212310628</td>
-                                        <td>Jose Alberto Sandoval Vazquez</td>
-                                        <td>
-                                            <div class="icono_ver">
-                                                <a href="{{ url('/administrador.ver') }}">
-                                                    <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                                </a>
-                                            </div>
-            
-                                        </td>
-                                        <td>
-                                            <div class="grupo-botones">
-                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" name="options-" id="option1-" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option1-">
-
-                                                        <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="30">
-
-                                                    </label>
-                                            
-                                                    <input type="radio" class="btn-check" name="options-" id="option2-" checked autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option2-">
-                                                        
-                                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="30">
-
-                                                    </label>
-                                            
-                                                    <input type="radio" class="btn-check" name="options-" id="option3-" autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="option3-">
-                                                        
-                                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="30">
-
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -127,7 +81,7 @@
                         <div class="boton-envio-aceptados">
                             <button type="button" class="btn btn-success">Enviar aceptados</button>
                         </div>
-
+                    @endif
                     </div>
                   </div>
                 </div>
@@ -141,7 +95,7 @@
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       
-                        <div class="tabla-lista">
+                        {{-- <div class="tabla-lista">
                             <table class="table table-hover table-striped">
                                 <caption>Lista de solicitudes de alumnos de Informática</caption>
                                 <thead>
@@ -170,7 +124,7 @@
 
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
 
                     </div>
                   </div>
@@ -185,7 +139,7 @@
                   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       
-                        <div class="tabla-lista">
+                        {{-- <div class="tabla-lista">
                             <table class="table table-hover table-striped">
                                 <caption>Lista de solicitudes de alumnos de Informática</caption>
                                 <thead>
@@ -214,7 +168,7 @@
 
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
 
                     </div>
                   </div>

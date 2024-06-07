@@ -36,13 +36,13 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         Route::get('/supervisor.ver_solicitud/{id}',[visualizar_solicitudes::class,'verSolicitudAlumno'])
                     ->name('supervisor.ver_solicitud');
 
-        Route::post('/aceptarSolicitud/{id}',[visualizar_solicitudes::class,'aceptarSolicitud'])
+        Route::post('/aceptarSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'aceptarSolicitud'])
                     ->name('supervisor.aceptarSolicitud');
 
-        Route::post('/rechazarSolicitud/{id}',[visualizar_solicitudes::class,'rechazarSolicitud'])
+        Route::post('/rechazarSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'rechazarSolicitud'])
                     ->name('supervisor.rechazarSolicitud');
 
-        Route::post('/esperaSolicitud/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
+        Route::post('/esperaSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
                     ->name('supervisor.esperaSolicitud');
 
         Route::post('/enviarListaSolicitudes',[visualizar_solicitudes::class,'enviarListaSolicitudes'])

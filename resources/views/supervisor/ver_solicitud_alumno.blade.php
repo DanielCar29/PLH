@@ -37,8 +37,6 @@
             @endforeach  
         </div>
 
-        
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 formulario-contestado">
@@ -58,7 +56,7 @@
                                 </div>
                     @endforeach
 
-                                <div class="contenido_botones-solicitud">
+                        <div class="contenido_botones-solicitud">
                             <form method="POST" action="{{route('supervisor.aceptarSolicitud',[$alumno->alumno_id])}}">
                                 @csrf
                                 
@@ -106,7 +104,7 @@
 
                             </form>
 
-                                </div>
+                        </div>
                             
                       
                         </div>

@@ -29,6 +29,8 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
         DB::statement('DROP PROCEDURE IF EXISTS insertar_detalle_beca');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnoRespuestas');
+        DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosListasSolicitud');
+
 
 
 
@@ -394,6 +396,29 @@ return new class extends Migration
                 END
         ");
 
+        DB::statement("
+        CREATE PROCEDURE mostrarDatosListasSolicitud()
+            BEGIN
+                SELECT 
+                    u.name AS name,
+                    a.id AS alumno_id,
+                    u.apellido_paterno AS apellido_paterno,
+                    u.apellido_materno AS apellido_materno,
+                    a.numero_de_control AS numero_de_control,
+                    asb.estado AS estado
+                FROM 
+                    listas_solicitud ls
+                JOIN 
+                    solicitudes_de_beca sb ON ls.solicitud_de_beca_id = sb.id
+                JOIN 
+                    alumno_solicitudbeca asb ON ls.solicitud_de_beca_id = asb.solicitud_de_beca_id
+                JOIN 
+                    alumnos a ON asb.alumno_id = a.id
+                JOIN 
+                    users u ON a.usuario_id = u.id;
+            END
+    ");
+
     }
 
 
@@ -418,7 +443,9 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosAlumno_NOENVIO');
       DB::statement('DROP PROCEDURE IF EXISTS insertar_detalle_beca');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnoRespuestas');
+      DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosListasSolicitud');
 
+        
       
     }
 

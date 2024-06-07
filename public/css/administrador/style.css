@@ -320,6 +320,9 @@ div.menu-navegacion nav{
 th{
     text-align: center !important;
 }
+td{
+    text-align: center !important;
+}
 
 .boton-envio-aceptados{
     text-align: center;
@@ -472,12 +475,12 @@ div.datos-perfil > div > h3{
     border-radius: 10px;
 }
 
-.formulario-contestado:hover{
+/* .formulario-contestado:hover{
     padding: 2%;
     background-color: rgb(76, 0, 125,.6);
     border: 3px solid #fff;
     border-radius: 10px;
-}
+} */
 
 .contenido_formulario{
     margin-top: 1%;
@@ -501,6 +504,7 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.3);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
 }
 
 .nombre_alumno-formulario:hover{
@@ -512,6 +516,8 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.6);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
+
 }
 
 .carrera_alumno-formulario{
@@ -523,6 +529,8 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.3);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
+
 }
 
 .carrera_alumno-formulario:hover{
@@ -534,6 +542,8 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.6);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
+
 }
 
 .numero-control_alumno-formulario{
@@ -545,6 +555,8 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.3);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
+
 }
 
 .numero-control_alumno-formulario:hover{
@@ -556,4 +568,21 @@ div.datos-perfil > div > h3{
     background-color: rgb(76, 0, 125,.6);
     text-decoration: underline;
     display: inline-block;
+    color: #fff;
+
+}
+
+.botones_solicitud{
+    display: inline-block;
+    padding: 2%;
+}
+
+.contenido_botones-solicitud form{
+    display: inline-block;
+}
+
+.contenido_botones-solicitud{
+    width: 60%;
+    margin: auto;
+    text-align: center;
 }

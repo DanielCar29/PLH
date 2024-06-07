@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrador\registrar_supervisor;
 use App\Http\Controllers\Administrador\perfil;
 use App\Http\Controllers\Administrador\habilitar_convocatoria;
+use App\Http\Controllers\Administrador\listaSolicitudes;
+
 
 
 
@@ -47,9 +49,24 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
 
     // |________________________________________________________________________________________________________________
 
-    Route::get('/administrador.lista', function () {
-        return view('/administrador/listaSolicitudes');
-    });
+    // Route::get('/administrador.lista', function () {
+    //     return view('/administrador/listaSolicitudes');
+    // });
+
+        Route::get('/administrador.lista',[listaSolicitudes::class,'index'])
+                    ->name('administrador.listaSolicitudes');
+
+        Route::get('/administrador.ver_solicitud/{id}',[listaSolicitudes::class,'verSolicitudAlumno'])
+                    ->name('administrador.verSolicitudAlumno');
+
+        Route::post('/aceptarSolicitud/{id}',[listaSolicitudes::class,'aceptarSolicitud'])
+                    ->name('administrador.aceptarSolicitud');
+
+        Route::post('/rechazarSolicitud/{id}',[listaSolicitudes::class,'rechazarSolicitud'])
+                    ->name('administrador.rechazarSolicitud');
+
+        Route::post('/esperaSolicitud/{id}',[listaSolicitudes::class,'esperaSolicitud'])
+                    ->name('administrador.esperaSolicitud');
 
 
     // Rutas de accion perfil
