@@ -34,11 +34,11 @@
                             <div class="mb-4">
                                 <label for="scholarship_type" class="form-label">1. La beca Alimenticia que solicitas es:</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_1" id="first_time" value="primera vez" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_1" id="first_time" value="Primera vez" required>
                                     <label class="form-check-label" for="first_time">Primera vez</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_1" id="renewal" value="renovación" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_1" id="renewal" value="Renovación" required>
                                     <label class="form-check-label" for="renewal">Renovación</label>
                                 </div>
                             </div>
@@ -47,11 +47,11 @@
                             <div class="mb-4">
                                 <label for="other_scholarships" class="form-label">2. ¿Cuentas actualmente con otra beca en el Tec?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_2" id="yes_other_scholarships" value="si" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_2" id="yes_other_scholarships" value="Si" required>
                                     <label class="form-check-label" for="yes_other_scholarships">Sí</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_2" id="no_other_scholarships" value="no" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_2" id="no_other_scholarships" value="No" required>
                                     <label class="form-check-label" for="no_other_scholarships">No</label>
                                 </div>
                             </div>
@@ -60,19 +60,19 @@
                             <div id="scholarships_details" class="mb-4" style="display:none;">
                                 <label for="scholarships_details" class="form-label">En caso de que sí, ¿con qué becas cuentas actualmente?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="respuesta_3" id="academic_effort" value="Esfuerzo académico">
+                                    <input class="form-check-input" type="radio" name="respuesta_3" id="academic_effort" value="Esfuerzo académico">
                                     <label class="form-check-label" for="academic_effort">Esfuerzo académico</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="respuesta_3" id="academic_excellence" value="Excelencia académica">
+                                    <input class="form-check-input" type="radio" name="respuesta_3" id="academic_excellence" value="Excelencia académica">
                                     <label class="form-check-label" for="academic_excellence">Excelencia académica</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="respuesta_3" id="socioeconomic" value="Socio economica">
+                                    <input class="form-check-input" type="radio" name="respuesta_3" id="socioeconomic" value="Socio economica">
                                     <label class="form-check-label" for="socioeconomic">Socio económica</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="respuesta_3" id="federal_scholarship" value="Beca federal">
+                                    <input class="form-check-input" type="radio" name="respuesta_3" id="federal_scholarship" value="Beca federal (Benito Juárez, manutención, madres solteras, etc.)">
                                     <label class="form-check-label" for="federal_scholarship">Beca federal (Benito Juárez, manutención, madres solteras, etc.)</label>
                                 </div>
                             </div>
@@ -81,11 +81,11 @@
                             <div class="mb-4">
                                 <label for="live_with_family" class="form-label">3. ¿Vives con tu familia?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_4" id="yes_live_with_family" value="si" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_4" id="yes_live_with_family" value="Si" required>
                                     <label class="form-check-label" for="yes_live_with_family">Sí</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_4" id="no_live_with_family" value="no" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_4" id="no_live_with_family" value="No" required>
                                     <label class="form-check-label" for="no_live_with_family">No</label>
                                 </div>
                             </div>
@@ -93,11 +93,11 @@
                                 <div class="mb-4">
                                 <label for="currently_working" class="form-label mt-3">4. ¿Trabajas Actualmente?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_5" id="yes_working" value="si" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_5" id="yes_working" value="Si" required>
                                     <label class="form-check-label" for="yes_working">Sí</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_5" id="no_working" value="no" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_5" id="no_working" value="No" required>
                                     <label class="form-check-label" for="no_working">No</label>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                     <label class="form-check-label" for="4-5_dependents">4-5</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_6" id="6_or_more_dependents" value="6_o_mas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_6" id="6_or_more_dependents" value="6 o más" required>
                                     <label class="form-check-label" for="6_or_more_dependents">6 o más</label>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                                     <label class="form-check-label" for="4000-5000">4000-5000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_7" id="5000_more" value="5000 o mas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_7" id="5000_more" value="5000 o más" required>
                                     <label class="form-check-label" for="5000_more">5000 o más</label>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                             <div class="mb-4">
                                 <label for="responsible_person" class="form-label">7. ¿Quién es la persona responsable de cubrir tus gastos escolares y colegiaturas?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_8" id="parents" value="Padres" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_8" id="parents" value="Padres (ambos)" required>
                                     <label class="form-check-label" for="parents">Padres (ambos)</label>
                                 </div>
                                 <div class="form-check">
@@ -152,7 +152,7 @@
                                     <label class="form-check-label" for="single_parent_or_guardian">Mamá, Papá o tutor</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_8" id="myself" value="Yo mismo<" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_8" id="myself" value="Yo mismo" required>
                                     <label class="form-check-label" for="myself">Yo mismo</label>
                                 </div>
                                 <div class="form-check">
@@ -190,15 +190,15 @@
                             <div class="mb-4">
                                 <label for="health_services" class="form-label">9. ¿Con qué servicio de salud cuentan tú y tu familia?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_10" id="imss" value="imss" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_10" id="imss" value="IMSS" required>
                                     <label class="form-check-label" for="imss">IMSS</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_10" id="issste" value="issste" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_10" id="issste" value="ISSSTE" required>
                                     <label class="form-check-label" for="issste">ISSSTE</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_10" id="insabi" value="insabi" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_10" id="insabi" value="INSABI" required>
                                     <label class="form-check-label" for="insabi">INSABI</label>
                                 </div>
                                 <div class="form-check">
@@ -222,7 +222,7 @@
                             <div class="mb-4">
                                 <label for="transportation" class="form-label">10. ¿Qué medio de transporte utilizas para ir a la escuela?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_11" id="taxi" value="taxi" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_11" id="taxi" value="Taxi" required>
                                     <label class="form-check-label" for="taxi">Taxi</label>
                                 </div>
                                 <div class="form-check">
@@ -230,7 +230,7 @@
                                     <label class="form-check-label" for="bus">Camión</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_11" id="online_service" value="servicio_online" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_11" id="online_service" value="Servicio online (Uber, Didi, etc.)" required>
                                     <label class="form-check-label" for="online_service">Servicio online (Uber, Didi, etc.)</label>
                                 </div>
                                 <div class="form-check">
@@ -238,7 +238,7 @@
                                     <label class="form-check-label" for="walking">Caminando</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_11" id="two_wheel_vehicle" value="Vehículo_de_2_ruedas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_11" id="two_wheel_vehicle" value="Vehículo de 2 ruedas (bicis, motocicletas, otros)" required>
                                     <label class="form-check-label" for="two_wheel_vehicle">Vehículo de 2 ruedas (bicis, motocicletas, otros)</label>
                                 </div>
                                 <div class="form-check">
@@ -251,20 +251,20 @@
                             <div class="mb-4">
                                 <label for="commute_time" class="form-label">11. ¿Cuánto tiempo tardas en trasladarte de tu casa a la escuela?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_12" id="0-14_minutes" value="0-14_min" required>
-                                    <label class="form-check-label" for="0-14_minutes">0-14 min</label>
+                                    <input class="form-check-input" type="radio" name="respuesta_12" id="0-14_minutes" value="0-14 minutos" required>
+                                    <label class="form-check-label" for="0-14_minutes">0-14 minutos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_12" id="15-29_minutes" value="15-29_min" required>
-                                    <label class="form-check-label" for="15-29_minutes">15-29 min</label>
+                                    <input class="form-check-input" type="radio" name="respuesta_12" id="15-29_minutes" value="15-29 minutos" required>
+                                    <label class="form-check-label" for="15-29_minutes">15-29 minutos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_12" id="30-59_minutes" value="30-59_min" required>
-                                    <label class="form-check-label" for="30-59_minutes">30-59 min</label>
+                                    <input class="form-check-input" type="radio" name="respuesta_12" id="30-59_minutes" value="30-59 minutos" required>
+                                    <label class="form-check-label" for="30-59_minutes">30-59 minutos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_12" id="60_minutes_or_more" value="60_minu_o_mas required>
-                                    <label class="form-check-label" for="60_minutes_or_more">60 min o más</label>
+                                    <input class="form-check-input" type="radio" name="respuesta_12" id="60_minutes_or_more" value="60 minutos o más">
+                                    <label class="form-check-label" for="60_minutes_or_more">60 minutos o más</label>
                                 </div>
                             </div>
 
@@ -272,15 +272,15 @@
                             <div class="mb-4">
                                 <label for="school_duration" class="form-label">12. ¿Cuánto tiempo duras en la escuela?</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_13" id="4-6_hours" value="4-6_horas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_13" id="4-6_hours" value="4 a 6 horas" required>
                                     <label class="form-check-label" for="4-6_hours">4 a 6 horas</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_13" id="7-8_hours" value="7-8_horas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_13" id="7-8_hours" value="7 a 8 horas" required>
                                     <label class="form-check-label" for="7-8_hours">7 a 8 horas</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_13" id="9_or_more_hours" value="9_o_mas_horas" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_13" id="9_or_more_hours" value="9 o más horas" required>
                                     <label class="form-check-label" for="9_or_more_hours">9 o más horas</label>
                                 </div>
                             </div>
@@ -315,7 +315,7 @@
 
             otherScholarships.forEach(function(radio) {
                 radio.addEventListener('change', function() {
-                    if (this.value === 'si') {
+                    if (this.value === 'Si') {
                         scholarshipsDetails.style.display = 'block';
                     } else {
                         scholarshipsDetails.style.display = 'none';

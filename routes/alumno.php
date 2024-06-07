@@ -19,7 +19,8 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
     Route::get('/alumno.solicitar_beca', function () {
         return view('/alumno/solicitar_beca');
     })->name('alumno.solicitud');
-    // Rutas formulario
+    
+// Rutas formulario
     // |__________________________________________________________________________________________________
     Route::get('/alumno.formulario', [FormularioSolicitud::class, 'show'])->name('alumno.formulario');
 
