@@ -23,7 +23,9 @@ class visualizar_solicitudes extends Controller
 
         $alumno = DB::select('CALL obtenerDatosAlumno(?)',[$id]);
 
-        return view('supervisor.ver_solicitud_alumno', compact('alumno'));
+        $preguntas_alumno = DB::select('CALL obtenerAlumnoRespuestas(?)',[$id]);
+
+        return view('supervisor.ver_solicitud_alumno', compact('alumno','preguntas_alumno'));
 
     }
 

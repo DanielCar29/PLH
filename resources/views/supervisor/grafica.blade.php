@@ -94,22 +94,18 @@
         var myChart = new Chart(ctx, {
             type: 'bar', // El tipo de gráfico que deseas crear
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Marzo', 'Abril', 'Mayo', 'Junio',],
                 datasets: [{
                     // No necesitas el label si no quieres mostrarlo
-                    data: [12, 13, 3, 5, 2, 3],
+                    data: [12, 13, 3, 5,],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(75, 192, 192, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 255, 255, 1)', // Cambia el color del borde de las barras a blanco
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
                         'rgba(255, 255, 255, 1)',
                         'rgba(255, 255, 255, 1)',
                         'rgba(255, 255, 255, 1)'

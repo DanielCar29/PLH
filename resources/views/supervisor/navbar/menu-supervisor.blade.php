@@ -48,7 +48,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
                     data-bs-toggle="dropdown" aria-expanded="false">
-                        Nombre Supervisor
+                        Supervisor
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ url('/supervisor.perfil') }}">Perfil</a></li>
