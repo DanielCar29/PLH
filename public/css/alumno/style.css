@@ -280,29 +280,31 @@ input[type="text"], input[type="password"] {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-
+.boton_enviar-perfil{
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+}
+.boton_enviar-perfil:hover{
+    background: none;
+    border: none;
+    color: #000;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+}
 .boton_perfil-guardar{
     width: 50%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 20%;
     padding: 2%;
     border-radius: 10px;
     text-align: center;
-    border: 1px solid #fff;
-    background-color: rgba(18, 20, 89, 0.581);
 }
 
-
-.boton_perfil-guardar:hover{
-    width: 50%;
-    margin: auto;
-    margin-top: 10%;
-    padding: 2%;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #fff;
-    background-color: #fff
-}
 
 .boton_perfil-guardar > a{
     text-decoration: none;
@@ -313,7 +315,6 @@ input[type="text"], input[type="password"] {
     text-decoration: underline;
     color: #000;
 }
-
 /* ver beca */
 
 .contenedor_detalles{
