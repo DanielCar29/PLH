@@ -234,7 +234,7 @@
                                     <label class="form-check-label" for="online_service">Servicio online (Uber, Didi, etc.)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_11" id="walking" value="walking" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_11" id="walking" value="Caminando" required>
                                     <label class="form-check-label" for="walking">Caminando</label>
                                 </div>
                                 <div class="form-check">
@@ -242,7 +242,7 @@
                                     <label class="form-check-label" for="two_wheel_vehicle">Vehículo de 2 ruedas (bicis, motocicletas, otros)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_11" id="own_car" value="own_car" required>
+                                    <input class="form-check-input" type="radio" name="respuesta_11" id="own_car" value="Carro propio" required>
                                     <label class="form-check-label" for="own_car">Carro propio</label>
                                 </div>
                             </div>
