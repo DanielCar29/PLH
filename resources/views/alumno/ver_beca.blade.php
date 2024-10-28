@@ -25,8 +25,16 @@
                     <div class="card mb-4">
                         <h2 class="card-header">Detalles de la Beca</h2>
                         <div class="card-body">
-                            <p><strong>Fecha de Autorización:</strong> {{ $beca->fecha_de_autorizacion }}</p>
-                            <p><strong>Estado:</strong> {{ $beca->estado }}</p>
+
+                            {{-- Verificar si existen los datos de fecha de autorización y estado --}}
+                            @if(!empty($beca->fecha_de_autorizacion) && !empty($beca->estado))
+                                <p><strong>Fecha de Autorización:</strong> {{ $beca->fecha_de_autorizacion }}</p>
+                                <p><strong>Estado:</strong> {{ $beca->estado }}</p>
+                            @else
+                                <p><strong>Fecha de Autorización:</strong> No disponible</p>
+                                <p><strong>Estado:</strong> No disponible</p>
+                            @endif
+
                             <p><strong>Descripción:</strong> <span id="description">Esta beca proporciona apoyo alimenticio mensual
                                  para estudiantes en situación de vulnerabilidad económica.</span></p>
                                  <a href="{{ route('generar.pdf') }}" target="_blank" class="btn btn-primary">Generar PDF</a>
