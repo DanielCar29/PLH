@@ -6,6 +6,7 @@ use App\Http\Controllers\Administrador\registrar_supervisor;
 use App\Http\Controllers\Administrador\perfil;
 use App\Http\Controllers\Administrador\habilitar_convocatoria;
 use App\Http\Controllers\Administrador\listaSolicitudes;
+use App\Http\Controllers\Administrador\SupervisorController;
 
 
 
@@ -24,6 +25,8 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
 
     // Rutas de acción Registrar supervisor
     // |_______________________________________________________________________________________________________________
+    Route::get('/administrador.listaSupervisores', [SupervisorController::class, 'listaSupervisores'])
+    ->name('administrador.listaSupervisores');
 
         Route::get('/administrador.registro',[registrar_supervisor::class,'index'])
                     ->name('administrador.registrarSupervisor');

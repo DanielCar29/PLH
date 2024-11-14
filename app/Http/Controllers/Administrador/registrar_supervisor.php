@@ -46,7 +46,7 @@ class registrar_supervisor extends Controller
 
             $carreras = carreras::all();
 
-            return redirect()->back()->with([
+            return redirect()->route('administrador.listaSupervisores')->with([
                 'success' => 'Se ha registradro el supervisor: '.$nombre.' '.$apellido_paterno.' '.$apellido_materno,
                 'carreras' => $carreras,
             ]);

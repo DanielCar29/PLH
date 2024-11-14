@@ -586,3 +586,43 @@ div.datos-perfil > div > h3{
     margin: auto;
     text-align: center;
 }
+/* Estilos para la tabla de supervisores */
+.tabla-info-supervisor {
+    width: 100%;
+    border-collapse: collapse; /* Asegura que no haya espacio entre las celdas */
+    margin: 0 auto; /* Centra la tabla en la página */
+}
+
+/* Estilo para las celdas y encabezado */
+.tabla-info-supervisor th, .tabla-info-supervisor td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd; /* Bordes finos entre celdas */
+    background-color: white; /* Fondo blanco para las celdas */
+}
+
+/* Encabezado con fondo morado y texto blanco */
+.tabla-info-supervisor th {
+    background-color: #4c007d; /* Fondo morado oscuro */
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo de filas alternadas para mayor legibilidad */
+.tabla-info-supervisor tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fondo gris claro para las filas pares */
+}
+
+/* Estilo de las filas cuando se pasa el mouse sobre ellas */
+.tabla-info-supervisor tr:hover {
+    background-color: #f1e6ff; /* Fondo morado claro al pasar el mouse */
+}
+
+/* Responsividad: permite desplazamiento horizontal en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .tabla-info-supervisor {
+        display: block;
+        overflow-x: auto; /* Habilita el scroll horizontal si la tabla es muy ancha */
+        white-space: nowrap; /* Evita que el texto se rompa en palabras */
+    }
+}

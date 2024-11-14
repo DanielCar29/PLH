@@ -23,8 +23,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link elemento-navegacion-plh" href="{{ url('/administrador.registro') }}">
-                  Registrar Supervisor
+                <a class="nav-link elemento-navegacion-plh" href="{{ url('/administrador.listaSupervisores') }}">
+                  Supervisores
                 </a>
             </li>
             <li class="nav-item">
