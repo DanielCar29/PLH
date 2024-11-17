@@ -1,0 +1,628 @@
+@font-face {
+    font-family: 'fuente_';
+    src: url(/fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+
+body{
+    /* background-color: rgb(76, 0, 125,.2) !important; */
+    background-image: url('/img/fondo-admin.jpg');
+}
+
+/* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
+
+.boton-salir{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer; /* Opcional: mantener el cursor de puntero */
+    outline: none;
+    text-decoration: none;
+}
+
+.menu-navegacion{
+    margin-top: 1.5% !important;
+    max-width: 95%;
+    margin: auto;
+    max-height: 10%;
+    border-radius: 5px;
+}
+
+.navbar{
+    position: relative;
+    z-index: 1000;
+    /* Establecer un ancho fijo para el menú de navegación en dispositivos más grandes */
+    width: 100%;
+}
+
+div.menu-navegacion nav{
+    background-color: #4c007d !important; 
+    border-radius: 10px;
+    height: 100px;
+}
+
+/* vista home----------------------------------------------------------------------------------------------------------------------*/
+.contenido-plh_{
+    margin-top: 3% !important;
+    
+}
+
+.color-borde-plh{
+    background-color: #4c007d;
+    max-width: 100%;
+}
+
+.elemento-navegacion-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size:larger !important;
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 12px;
+}
+
+.elemento-navegacion-plh:hover{
+    color: #000 !important;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.pie-plh{
+    margin-top: 100px;
+    background-color: #58151c;
+    max-width: 100% !important;
+}
+
+.elemento-pie-plh{
+    color: rgb(255, 255, 255) !important;
+    font-size: small !important;
+}
+.elemento-pie-plh a{
+    text-decoration: none;
+    color: #fff;
+}
+.elemento-pie-plh li{
+    list-style: none;
+}
+
+.elemento-pie-plh a:hover{
+    color: #aaa !important;
+}
+
+.contenido-plh{
+    max-height: 80%;
+    margin-top: 2% !important;
+}
+
+.contenido-plh-video{
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+
+.contenido-plh-video{
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 400px;
+    margin: 20px;
+    padding: 10px;
+
+}
+.contenido-plh-video img{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.contenido-plh-actualizacion{
+    text-decoration: underline;
+    color: #fff;
+    font-family: fuente_,'Times New Roman', Times, serif;
+    margin: 20px;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.3);
+    max-height: 450px;
+    padding: 10px;
+    /* border: 2px solid #000; */
+    overflow: hidden;
+    overflow-y:scroll;
+}
+
+.contenido-plh-actualizacion h1{
+    text-align: center;
+}
+
+/* Vista Registrar Supervisor ----------------------------------------------------------------------------------------------------------*/
+
+.contenido{
+    margin-top: 2%;
+}
+
+.registro{
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+    padding: 4%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.registro:hover{
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+    padding: 4%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.correo{
+    margin-top: 1.5%;
+}
+
+.contrasena{
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+.boton-registro{
+    width: 30%;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.titulo{
+    color:#fff;
+    font-family:fuente_,Arial, Helvetica, sans-serif;
+    max-width: 20%;
+    margin: auto;
+    margin-bottom: 1.5%;
+    text-align: center;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.titulo:hover{
+    color:#fff;
+    font-family:fuente_,Arial, Helvetica, sans-serif;
+    max-width: 20%;
+    margin: auto;
+    margin-bottom: 1.5%;
+    text-align: center;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.titulo > h2{
+    text-decoration:underline;
+}
+
+/* Vista habilitar convocatoria */
+.fechas_convocatoria{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+.fecha_inicio{
+    padding: 2%;
+    text-decoration: underline;
+}
+
+.fecha_cierre{
+    padding: 2%;
+    text-decoration: underline;
+
+}
+
+.habilitar-convocatoria{
+    margin: auto;
+    margin-top: 2.5%;
+    max-width: 70%;
+    padding: 3%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+}
+
+.habilitar-convocatoria:hover{
+    margin: auto;
+    margin-top: 2.5%;
+    max-width: 70%;
+    padding: 3%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+.formulario-convocatoria{
+    /* padding: 2%; */
+}
+
+.input-carrera{
+    width: 45% !important;
+    display:inline-table !important;
+}
+
+.nombre-carrera-input{
+    /* max-width: 60%; */
+    display:inline-table !important;
+}
+
+.input-numero-carrera{
+    width: 30% !important;
+    display:inline-table !important;
+}
+
+.boton-acuerdo{
+    display: inline-block;
+    margin: auto;
+    max-width: 100%;
+}
+
+.boton-envio{
+    display: inline-block;
+    margin: auto;
+    max-width: 100%;
+}
+
+.botones-form{
+    width: 50%;
+    margin: auto !important;
+    margin-top: 3% !important;
+    text-align: center;
+    
+}
+
+.titulo-convocatoria{
+    width: 30%;
+    border:1px #fff solid;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.4);
+    text-align: center;
+}
+
+.titulo-convocatoria:hover{
+    width: 30%;
+    border:1px #fff solid;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+    text-align: center;
+}
+
+.titulo-convocatoria > h2{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Vista lista solicitudes ----------------------------------------------------------------------------------------------------------*/
+th{
+    text-align: center !important;
+}
+td{
+    text-align: center !important;
+}
+
+.boton-envio-aceptados{
+    text-align: center;
+}
+
+.icono_ver{
+    margin: auto;
+    width: 70%;
+    text-align: center;
+}
+
+.grupo-botones{
+    text-align: center;
+}
+
+.contenido-lista{
+    margin-top: 2%;
+}
+
+.contenido-listas-cuerpo{
+    padding: 2%;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 2%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.3);
+}
+
+.contenido-listas-cuerpo:hover{
+    padding: 2%;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 2%;
+    border:1px #fff solid;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.6);
+}
+
+/* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
+.contenido-general-perfil{
+    width: 75vw;
+    height: 100vh;
+    background-color: rgb(76, 0, 125,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.foto-perfil{
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgb(76, 0, 125,.3);
+    width: 60% !important;
+    margin: auto;
+    margin-top: 10%;
+    padding: 6%;
+}
+
+.foto-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgb(76, 0, 125,.3);
+    width: 100% !important;
+    margin: auto;
+    padding: 6%;
+
+}
+
+.contenido-datos-perfil{
+    text-align: center;
+    padding: 3%;
+}
+
+.contenido-datos-institucionales{
+    padding: 3%;
+}
+
+div.foto-datos_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 25%;
+}
+
+.datos-correo_usuario{
+    /* border: 1px solid #000; */
+    margin-top: 1.35% !important;
+}
+
+.datos-correo_usuario-interno{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    background-color: rgb(76, 0, 125,.3);
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 100%;
+    padding: 4%;
+}
+
+.datos-perfil > div{
+    text-align: center;
+}
+
+div.datos-perfil > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div > h3{
+    text-decoration: underline;
+}
+
+.datos-correo_usuario-interno > div{
+    text-align: center;
+}
+
+.boton_perfil-guardar{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.boton_perfil-guardar > a{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton_perfil-guardar > a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+/* Ver solicitud alumno -------------------------------------------------------------------------------------------------------- */
+
+.formulario-contestado{
+    padding: 2%;
+    background-color: rgb(76, 0, 125,.3);
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+/* .formulario-contestado:hover{
+    padding: 2%;
+    background-color: rgb(76, 0, 125,.6);
+    border: 3px solid #fff;
+    border-radius: 10px;
+} */
+
+.contenido_formulario{
+    margin-top: 1%;
+}
+
+.datos_alumno-formulario{
+    font-family: fuente_,Arial, Helvetica, sans-serif;
+    margin-bottom: 1% !important;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+}
+
+.nombre_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+}
+
+.nombre_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+
+}
+
+.carrera_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+
+}
+
+.carrera_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+
+}
+
+.numero-control_alumno-formulario{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.3);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+
+}
+
+.numero-control_alumno-formulario:hover{
+    width: 50%;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgb(76, 0, 125,.6);
+    text-decoration: underline;
+    display: inline-block;
+    color: #fff;
+
+}
+
+.botones_solicitud{
+    display: inline-block;
+    padding: 2%;
+}
+
+.contenido_botones-solicitud form{
+    display: inline-block;
+}
+
+.contenido_botones-solicitud{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+/* Estilos para la tabla de supervisores */
+.tabla-info-supervisor {
+    width: 100%;
+    border-collapse: collapse; /* Asegura que no haya espacio entre las celdas */
+    margin: 0 auto; /* Centra la tabla en la página */
+}
+
+/* Estilo para las celdas y encabezado */
+.tabla-info-supervisor th, .tabla-info-supervisor td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd; /* Bordes finos entre celdas */
+    background-color: white; /* Fondo blanco para las celdas */
+}
+
+/* Encabezado con fondo morado y texto blanco */
+.tabla-info-supervisor th {
+    background-color: #4c007d; /* Fondo morado oscuro */
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo de filas alternadas para mayor legibilidad */
+.tabla-info-supervisor tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fondo gris claro para las filas pares */
+}
+
+/* Estilo de las filas cuando se pasa el mouse sobre ellas */
+.tabla-info-supervisor tr:hover {
+    background-color: #f1e6ff; /* Fondo morado claro al pasar el mouse */
+}
+
+/* Responsividad: permite desplazamiento horizontal en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .tabla-info-supervisor {
+        display: block;
+        overflow-x: auto; /* Habilita el scroll horizontal si la tabla es muy ancha */
+        white-space: nowrap; /* Evita que el texto se rompa en palabras */
+    }
+}

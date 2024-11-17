@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\carreras;
+use App\Models\solicitudes_de_beca;
+use App\Models\becas;
+use App\Models\reportes;
+use App\Models\respuestas_alumno;
+
+
+
+class alumnos extends Model
+{
+    use HasFactory;
+
+    protected $table = 'alumnos';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
+    
+    public function becas()
+    {
+        return $this->belongsToMany(becas::class, 'alumno_beca', 'alumno_id', 'beca_id');
+    }
+
+    public function carreras()
+    {
+        return $this->belongsToMany(Carreras::class, 'carreras_alumno', 'alumno_id', 'carreras_id');
+    }
+
+    protected $fillable = [
+        'numero_de_control',
+        'semestre',
+        'usuario_id',
+    ];
+}
