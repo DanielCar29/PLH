@@ -30,6 +30,7 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS insertar_detalle_beca');
         DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnoRespuestas');
         DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosListasSolicitud');
+        DB::statement('DROP PROCEDURE IF EXISTS ObtenerSupervisores');
 
 
 
@@ -418,10 +419,24 @@ return new class extends Migration
                     users u ON a.usuario_id = u.id;
             END
     ");
+    DB::unprepared('
+                CREATE PROCEDURE ObtenerSupervisores()
+                BEGIN
+                    SELECT s.id AS supervisor_id, 
+                        u.name AS nombre, 
+                        u.apellido_paterno, 
+                        u.apellido_materno, 
+                        u.email, 
+                        c.carrera AS carrera
+                    FROM supervisores s
+                    JOIN users u ON s.usuario_id = u.id
+                    JOIN carreras_supervisor cs ON cs.supervisor_id = s.id
+                    JOIN carreras c ON cs.carreras_id = c.id;
+                END
+');
+
 
     }
-
-
     /**
      * Reverse the migrations.
      */
@@ -429,11 +444,12 @@ return new class extends Migration
     {
 
       // Eliminar el procedimiento en la migración inversa
+      DB::statement('DROP PROCEDURE IF EXISTS ObtenerSupervisores');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnos_visualizarSolicitudes');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAlumno');
       DB::statement('DROP PROCEDURE IF EXISTS cambiarEstadoSolicitudAlumno');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosReporteAlumno');
-      DB::statement('DRPO PROCEDURE IF EXISTS obtenerDatosSupervisor');
+      DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS ActualizarUsuarioSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS RegistrarSupervisor');
       DB::statement('DROP PROCEDURE IF EXISTS obtenerDatosAdmin');

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\carreras;
-use App\Models\alumnos;
-use App\Models\carreras_alumno;
+use App\Models\Carrera;
+use App\Models\Alumno;
+use App\Models\CarrerasAlumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        $carreras = carreras::all(); // O cualquier método que obtenga las carreras
+        $carreras = carrera::all(); // O cualquier método que obtenga las carreras
         return view('registro', compact('carreras'));
     }
     
@@ -47,17 +47,17 @@ class RegisteredUserController extends Controller
         ]);
 
         // Asociar al alumno con la carrera seleccionada
-        $carrera = carreras::findOrFail($request->carrera);
+        $carrera = carrera::findOrFail($request->carrera);
 
         // Crear el estudiante asociado con el usuario
-        $alumno = new alumnos();
+        $alumno = new Alumno();
         $alumno->numero_de_control = $request->numero_de_control;
         $alumno->semestre = $request->semestre;
         $alumno->usuario_id = $user->id;
         $alumno->save();
 
         // Crear una nueva entrada en la tabla pivot carreras_alumno
-        $carrera_alumno = new carreras_alumno();
+        $carrera_alumno = new CarrerasAlumno();
         $carrera_alumno->carreras_id = $carrera->id; // ID de la carrera seleccionada
         $carrera_alumno->alumno_id = $alumno->id; // ID del alumno recién creado
         $carrera_alumno->save();

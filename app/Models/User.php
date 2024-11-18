@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\administradores_general;
-use App\Models\alumnos;
-use App\Models\supervisores;
+use App\Models\AdministradorGeneral;
+use App\Models\Alumno;
+use App\Models\Supervisor;
 
 class User extends Authenticatable
 {
@@ -20,18 +20,18 @@ class User extends Authenticatable
     
     public function alumno()
     {
-        return $this->hasOne(alumnos::class, 'usuario_id');
+        return $this->hasOne(Alumno::class, 'usuario_id');
         
     }
 
     public function administradorGeneral()
     {
-        return $this->hasOne(administradores_general::class);
+        return $this->hasOne(AdministradorGeneral::class);
     }
 
     public function supervisor()
     {
-        return $this->hasOne(supervisores::class);
+        return $this->hasOne(Supervisor::class);
     }
 
     /**
