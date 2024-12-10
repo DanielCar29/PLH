@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Administrador;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\carreras;
+use App\Models\carrera;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +15,7 @@ class registrar_supervisor extends Controller
      */
     public function index()
     {
-        $carreras = carreras::all();
+        $carreras = carrera::all();
 
         return view('administrador.registrarSupervisor',compact('carreras'));
     }
@@ -44,7 +44,7 @@ class registrar_supervisor extends Controller
                 $carrera
             ]);
 
-            $carreras = carreras::all();
+            $carreras = carrera::all();
 
             return redirect()->route('administrador.listaSupervisores')->with([
                 'success' => 'Se ha registradro el supervisor: '.$nombre.' '.$apellido_paterno.' '.$apellido_materno,
@@ -56,7 +56,7 @@ class registrar_supervisor extends Controller
 
             session()->flash('message', 'Algo salió mal. Intenta de nuevo');
 
-            $carreras = carreras::all();
+            $carreras = carrera::all();
 
             return redirect()->back()->with([
                 'error' => 'Ocurrió un error. Intenta de nuevo',

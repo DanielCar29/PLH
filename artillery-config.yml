@@ -1,0 +1,10 @@
+config:
+  target: 'http://localhost:8000'  # Cambia esta URL si tu aplicación corre en otro host o puerto
+  phases:
+    - duration: 30  # Duración total de la prueba en segundos
+      arrivalRate: 1  # Número de usuarios por segundo
+
+scenarios:
+  - flow:
+      - get:
+          url: "/"  # La ruta del formulario

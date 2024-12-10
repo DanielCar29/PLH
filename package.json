@@ -15,7 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "chart.js": "^4.4.3",
+        "chart.js": "^4.4.6",
         "materialize-css": "^1.0.0-rc.2"
     }
 }

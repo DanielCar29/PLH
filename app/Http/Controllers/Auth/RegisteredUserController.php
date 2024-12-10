@@ -63,9 +63,9 @@ class RegisteredUserController extends Controller
         $carrera_alumno->save();
 
         // Autenticar al usuario recién registrado
-        // Auth::login($user); Se ha comentado esta linea debido a que no se necesita para este caso, se va a logear.
+        Auth::login($user);
 
         // Redirigir al usuario a la página de inicio del alumno
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME_ALUMNO);
     }
 }
