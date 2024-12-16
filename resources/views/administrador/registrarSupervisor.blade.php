@@ -40,40 +40,66 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Nombres</span>
                     <input type="text" class="form-control" aria-label="Sizing example input" 
-                            aria-describedby="inputGroup-sizing-default" name="nombre">
-                </div>
-
-                <div class="input-group">
-                    <span class="input-group-text">Apellido Paterno y Materno</span>
-                    <input type="text" aria-label="First name" class="form-control" name="apellido_paterno">
-                    <input type="text" aria-label="Last name" class="form-control" name="apellido_materno">
-                </div>
-
-                <div class="input-group mb-3 correo">
-                    <input type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username" name="correoPart1">
-                    <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" placeholder="Gmail.com" aria-label="Server" name="correoPart2">
-                </div>
-
-                <div>
-                    
-                    <select class="form-select" aria-label="Default select example" name="carrera">
-                        @foreach($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$carrera->carrera}}</option>
-                        @endforeach
-                    </select>
-                    
+                           aria-describedby="inputGroup-sizing-default" name="nombre" value="{{ old('nombre') }}">
                 </div>
                 
-                <div class="contrasena">
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                            placeholder="Constraseña" name="passPart1" minlength="8">
+                <div class="input-group">
+                    <span class="input-group-text">Apellido Paterno y Materno</span>
+                    <input type="text" aria-label="First name" class="form-control" name="apellido_paterno" value="{{ old('apellido_paterno') }}">
+                    <input type="text" aria-label="Last name" class="form-control" name="apellido_materno" value="{{ old('apellido_materno') }}">
                 </div>
+                            
+
+                <div class="input-group mb-3 correo">
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" aria-label="Username" name="correoPart1" value="{{ old('correoPart1') }}">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" placeholder="gmail.com" aria-label="Server" name="correoPart2" value="{{ old('correoPart2') }}">
+                </div>                
+                
+                @error('correoPart1')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                
+                @error('correoPart2')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                
+                
 
                 <div>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                            placeholder="Verificar Constraseña" name="passPart2" minlength="8">
+                    <select class="form-select" aria-label="Default select example" name="carrera">
+                        @foreach($carreras as $carrera)
+                            <option value="{{ $carrera->id }}" {{ old('carrera') == $carrera->id ? 'selected' : '' }}>
+                                {{ $carrera->carrera }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
+                
+                
+                
+                <div class="contrasena">
+                    <input type="password" id="inputPassword1" class="form-control" 
+                           aria-describedby="passwordHelpBlock" placeholder="Contraseña" 
+                           name="passPart1" minlength="8" required value="{{ old('passPart1') }}">
+                </div>
+                
+                
+                @error('passPart1')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                
+                <div>
+                    <input type="password" id="inputPassword5" class="form-control" 
+                           aria-describedby="passwordHelpBlock" placeholder="Verificar Contraseña" 
+                           name="passPart2" minlength="8" required value="{{ old('passPart2') }}">
+                </div>
+                
+                @error('passPart2')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                
+                
 
                 <div class="boton-registro">
 
@@ -84,9 +110,6 @@
             </form>
 
         </div>
-
-    </div>
-
 
 
 

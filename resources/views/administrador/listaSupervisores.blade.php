@@ -33,14 +33,18 @@
             </thead>
             <tbody>
                 @foreach ($supervisores as $supervisor)
-                    <tr>
-                        <td>{{ $supervisor->supervisor_id }}</td>
-                        <td>{{ $supervisor->nombre }}</td>
-                        <td>{{ $supervisor->apellido_paterno }}</td>
-                        <td>{{ $supervisor->apellido_materno }}</td>
-                        <td>{{ $supervisor->email }}</td>
-                        <td>{{ $supervisor->carrera }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ $supervisor->id }}</td>
+                    <td>{{ $supervisor->usuario->name }}</td>
+                    <td>{{ $supervisor->usuario->apellido_paterno }}</td>
+                    <td>{{ $supervisor->usuario->apellido_materno }}</td>
+                    <td>{{ $supervisor->usuario->email }}</td>
+                    <td>
+                        @foreach ($supervisor->carreras as $carrera)
+                            <span>{{ $carrera->carrera }}</span><br>
+                        @endforeach
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

@@ -30,8 +30,10 @@ class Supervisor extends Model
     }
 
     // Relación con las carreras a través de una tabla intermedia
-    public function carreras()
-    {
-        return $this->belongsToMany(Carrera::class, 'carreras_supervisor');
-    }
+    // En el modelo Supervisor
+public function carreras()
+{
+    return $this->belongsToMany(Carrera::class, 'carreras_supervisor', 'supervisor_id', 'carreras_id');
+}
+
 }
