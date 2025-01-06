@@ -89,7 +89,7 @@
 
                             </form>
                                 
-                            <form method="POST" action="{{route('supervisor.esperaSolicitud',[$alumno->alumno_id])}}">
+                            {{-- <form method="POST" action="{{route('supervisor.esperaSolicitud',[$alumno->alumno_id])}}">
 
                                 @csrf
                                 <div class="botones_solicitud">
@@ -102,7 +102,7 @@
                                         
                                 </div>
 
-                            </form>
+                            </form> --}}
 
                         </div>
                             
