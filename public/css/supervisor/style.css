@@ -5,8 +5,8 @@
 body{
     background-image: url('/img/fondo-supervisor.jpg');
     /* background-color: #d5bdaf !important; */
-    /* background-size: cover;
-    overflow-x: hidden; */
+    /* background-size: cover; */
+    overflow-x: hidden;
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
@@ -112,8 +112,9 @@ div.menu-navegacion nav{
 
 }
 .contenido-plh-video img{
-    width: 100%;
-    height: 100%;
+    /* Soluccion para la imagen que se desbordaba */
+    width: 45.5rem !important;
+    /* height: 50% !important; */
     margin: auto;
 }
 
