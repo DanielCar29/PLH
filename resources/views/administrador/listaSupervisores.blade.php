@@ -29,6 +29,7 @@
                     <th>Apellido Materno</th>
                     <th>Correo</th>
                     <th>Carrera</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,13 @@
                         @foreach ($supervisor->carreras as $carrera)
                             <span>{{ $carrera->carrera }}</span><br>
                         @endforeach
+                    </td>
+                    <td>
+                        <form action="{{ route('administrador.eliminarSupervisor', $supervisor->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

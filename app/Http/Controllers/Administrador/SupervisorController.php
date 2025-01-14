@@ -20,4 +20,23 @@ class SupervisorController extends Controller
         // Pasar la colección de supervisores a la vista
         return view('administrador.listaSupervisores', compact('supervisores'));
     }
+
+    /**
+     * Elimina un supervisor.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function eliminarSupervisor($id)
+    {
+        $supervisor = Supervisor::findOrFail($id);
+        
+        // Eliminar las relaciones de carreras
+        $supervisor->carreras()->detach();
+        
+        // Eliminar el supervisor
+        $supervisor->delete();
+
+        return redirect()->route('administrador.listaSupervisores')->with('success', 'Supervisor eliminado correctamente');
+    }
 }

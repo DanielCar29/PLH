@@ -26,9 +26,9 @@ class User extends Authenticatable
 
     public function administradorGeneral()
     {
-        return $this->hasOne(AdministradorGeneral::class);
+        return $this->hasOne(AdministradorGeneral::class, 'usuario_id'); // Cambiar 'usuario_id' si es diferente
     }
-
+    
     public function supervisor()
     {
         return $this->hasOne(Supervisor::class);

@@ -10,7 +10,6 @@ class DetallesBeca extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cantidad_de_becas',
         'carrera_id',
         'administrador_general_id',
         'estado_convocatoria',

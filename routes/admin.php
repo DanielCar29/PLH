@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
 
         Route::post('/administrador.registro',[registrar_supervisor::class,'registrarSupervisor'])
                     ->name('registrarSupervisor');
+
+     Route::delete('/administrador/supervisores/{id}', [SupervisorController::class, 'eliminarSupervisor'])->name('administrador.eliminarSupervisor');
     
     // |_______________________________________________________________________________________________________________
 
@@ -87,5 +89,6 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         return view('/administrador/verSolicitudAlumno');
     });
 
+    
 
 });

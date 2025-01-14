@@ -38,53 +38,13 @@
 
                             @csrf
 
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Informática</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" name="informatica" required>
-                            </div>
-    
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Sis. Computacionales</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-    
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Ambiental</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-    
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Industrial</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Sis. Automotrices</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Gestión Empresarial</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Electromecánica</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
-
-                            <div class="input-group mb-3 input-carrera">
-                                <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">Ing. Electrónica</span>
-                                <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                        aria-describedby="inputGroup-sizing-default" disabled>
-                            </div>
+                            @foreach ($carreras as $carrera)
+                                <div class="input-group mb-3 input-carrera">
+                                    <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">{{ $carrera->carrera }}</span>
+                                    <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
+                                            aria-describedby="inputGroup-sizing-default" name="carreras[{{ $carrera->id }}]" required>
+                                </div>
+                            @endforeach
                             
                             <div class="fechas_convocatoria">
 
