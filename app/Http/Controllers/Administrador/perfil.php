@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Administrador;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class perfil extends Controller
@@ -15,51 +15,48 @@ class perfil extends Controller
     public function index()
     {
         $id_user = auth()->user()->id;
-        $admin = DB::select('CALL obtenerDatosAdmin(?)',[$id_user]);
-        return view('administrador.perfil',compact('admin'));
+        $admin = User::with('administradorGeneral')->find($id_user);
+
+        if (!$admin || !$admin->administradorGeneral) {
+            return redirect()->back()->withErrors(['error' => 'No se encontraron datos del administrador.']);
+        }
+
+        return view('administrador.perfil', compact('admin'));
     }
 
-
-    public function actualizarPerfil(Request $request){
+    public function actualizarPerfil(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'required|string|max:255',
+            'correo' => 'required|string|email|max:255',
+            'pass' => 'nullable|string|min:8|confirmed',
+        ]);
 
         $id_user = auth()->user()->id;
-        $nombre = $request->input('nombre');
-        $apellido_paterno = $request->input('apellido_paterno');
-        $apellido_materno = $request->input('apellido_materno');
-        $correo = $request->input('correo');
+        $user = User::find($id_user);
 
-        if(empty($request->pass)){
-            DB::select('CALL ActualizarUsuario(?,?,?,?,?,?)',[
-                $id_user,
-                $nombre,
-                $apellido_paterno,
-                $apellido_materno,
-                $correo,
-                ''
-            ]);
-        }
-        else{
-            $pass = hash::make($request->input('pass'));
-
-            DB::select('CALL ActualizarUsuario(?,?,?,?,?,?)',[
-                $id_user,
-                $nombre,
-                $apellido_paterno,
-                $apellido_materno,
-                $correo,
-                $pass
-            ]);
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'Usuario no encontrado.']);
         }
 
-        $admin = DB::select('CALL obtenerDatosAdmin(?)',[$id_user]);
+        $user->name = $request->input('nombre');
+        $user->apellido_paterno = $request->input('apellido_paterno');
+        $user->apellido_materno = $request->input('apellido_materno');
+        $user->email = $request->input('correo');
+
+        if (!empty($request->pass)) {
+            $user->password = Hash::make($request->input('pass'));
+        }
+
+        $user->save();
 
         return redirect()->back()->with([
             'success' => 'Se han hecho cambios correctamente!',
-            'admin' => $admin,
+            'admin' => $user,
         ]);
-
     }
-
 
     public function store(Request $request)
     {

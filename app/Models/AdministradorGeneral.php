@@ -17,8 +17,7 @@ class AdministradorGeneral extends Model
 
     // Definir la relación con el modelo User
     public function user()
-{
-    return $this->belongsTo(User::class, 'usuario_id'); // Cambiar 'usuario_id' si es diferente
-}
-
+    {
+        return $this->belongsTo(User::class, 'usuario_id'); // Cambiar 'usuario_id' si es diferente
+    }
 }

@@ -16,12 +16,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     // Se relaciona con las siguientes tablas:
-
-    
     public function alumno()
     {
         return $this->hasOne(Alumno::class, 'usuario_id');
-        
     }
 
     public function administradorGeneral()
@@ -31,7 +28,7 @@ class User extends Authenticatable
     
     public function supervisor()
     {
-        return $this->hasOne(Supervisor::class);
+        return $this->hasOne(Supervisor::class, 'usuario_id');
     }
 
     /**
