@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Alumno\ProfileController;;use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Alumno\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Alumno\BecaController;
 use App\Http\Controllers\Alumno\FormularioSolicitud;
@@ -34,7 +35,7 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
 
     // Rutas perfil
     // |__________________________________________________________________________________________________
-        Route::get('/alumno.perfil', [ProfileController::class, 'show'])
+        Route::get('/alumno.perfil', [ProfileController::class, 'index'])
                 ->name('alumno.perfil');
 
         Route::post('/alumno.actualizarPerfil/{id}',[ProfileController::class,'actualizarPerfil'])

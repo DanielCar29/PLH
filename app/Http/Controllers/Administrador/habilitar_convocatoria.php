@@ -22,7 +22,7 @@ class habilitar_convocatoria extends Controller
             'fecha_cierre' => 'required|date|after:fecha_inicio',
             'carreras' => 'required|array',
             'carreras.*' => 'required|integer|exists:carreras,id',
-            'cantidad_de_becas.*' => 'required|integer|min:1',
+            'carreras.*' => 'required|integer|min:1', // Asegúrate de validar la cantidad de becas
         ], [
             'fecha_inicio.required' => 'La fecha de inicio es obligatoria.',
             'fecha_inicio.date' => 'La fecha de inicio debe ser una fecha válida.',
@@ -32,9 +32,7 @@ class habilitar_convocatoria extends Controller
             'fecha_cierre.after' => 'La fecha de cierre debe ser después de la fecha de inicio.',
             'carreras.required' => 'Debe seleccionar al menos una carrera.',
             'carreras.*.exists' => 'La carrera seleccionada no es válida.',
-            'cantidad_de_becas.*.required' => 'La cantidad de becas es obligatoria.',
-            'cantidad_de_becas.*.integer' => 'La cantidad de becas debe ser un número entero.',
-            'cantidad_de_becas.*.min' => 'La cantidad de becas debe ser al menos 1.',
+            'carreras.*.min' => 'La cantidad de becas debe ser al menos 1.',
         ]);
 
         $fecha_inicio = $request->input('fecha_inicio');

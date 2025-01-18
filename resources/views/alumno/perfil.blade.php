@@ -16,102 +16,103 @@
     {{-- Menú de navegación --}}
     @include('/alumno/nav/menu_alumno')
     
-    {{-- Perfil --}}
+    <div class="container mt-1">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
+
     <div class="contenido-general-perfil">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <div class="row flex-sm-row flex-column foto-datos_usuario">
+                    <div class="flex-sm-row flex-column foto-datos_usuario">
                         <div class="col-12 foto-perfil">
                             <div>
                                 <img src="{{ URL::asset('/img/perfil_usuario.png') }}" alt="">
                             </div>
                             <div>
-            @foreach($alumno as $data)
-                                <h5>{{$data->nombre}} {{$data->apellido_paterno}} {{$data->apellido_materno}}</h5> <!-- Mostrar nombre del usuario -->
+                                <h5>{{ $alumno->name }} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h5> <!-- Mostrar nombre del usuario -->
                             </div>
                         </div>
                     </div>
+                    <form method="POST" action="{{ route('alumno.actualizaPerfil', ['id' => $alumno->id]) }}" onsubmit="return confirm('¿Está seguro de que desea guardar los cambios?');">
+                        @csrf
+                        <div class="boton_perfil">
+                            <div class="boton_perfil-guardar">
+                                <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                            </div>
+                        </div>
                 </div>
                 <div class="col-md-6 col-12 datos-correo_usuario">
-                    <form method="POST" action="{{route('alumno.actualizaPerfil',['id'=> $data->alumno_id])}}">
-                        
-                        @csrf
                     <div class="col-12 datos-perfil">
                         <div>
                             <h3>DATOS DE USUARIO</h3>
                         </div>
                         <div class="contenido-datos-perfil">
-
-
                                 <div>
                                     <span>Nombre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->nombre}}" placeholder="" name="nombre">
+                                    <input type="text" value="{{ $alumno->name }}" placeholder="" name="nombre">
                                 </div>
                                 <div>
                                     <span>Apellido Paterno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->apellido_paterno}}" placeholder="" name="apellido_paterno">
+                                    <input type="text" value="{{ $alumno->apellido_paterno }}" placeholder="" name="apellido_paterno">
                                 </div>
                                 <div>
                                     <span>Apellido Materno:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->apellido_materno}}" placeholder="" name="apellido_materno">
+                                    <input type="text" value="{{ $alumno->apellido_materno }}" placeholder="" name="apellido_materno">
                                 </div>
-
                         </div>
                     </div>
-                    
                     <div class="datos-correo_usuario-interno">
                         <div>
                             <h3>DATOS INSTITUCIONALES</h3>
                         </div>
                         <div class="contenido-datos-institucionales">
-
                                 <div>
                                     <span>Correo Electronico:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->email}}" placeholder="" name="correo">
+                                    <input type="text" value="{{ $alumno->email }}" placeholder="" name="correo">
                                 </div>
                                 <div>
                                     <span>Número de Control:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->numero_de_control}}" placeholder="" name="numero_control">
+                                    <input type="text" value="{{ $alumno->alumno->numero_de_control }}" placeholder="" name="numero_control">
                                 </div>
                                 <div>
                                     <span>Semestre:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->semestre}}" placeholder="" name="semestre">
+                                    <input type="text" value="{{ $alumno->alumno->semestre }}" placeholder="" name="semestre">
                                 </div>
                                 <div>
                                     <span>Carrera:</span>
                                 </div>
                                 <div>
-                                    <input type="text" value="{{$data->carrera}}" placeholder="" name="carrera" disabled>
+                                    @foreach ($alumno->alumno->carreras as $carrera)
+                                        <input type="text" value="{{ $carrera->carrera }}" placeholder="" name="carrera" disabled>
+                                    @endforeach
                                 </div>
-
-                                <span>Contraseña:</span>
-                            </div>
-                            <div>
-                                <input type="password" value="" placeholder="" name="pass">
-                            </div>
-            @endforeach
+                                <div>
+                                    <span>Contraseña:</span>
+                                </div>
+                                <div>
+                                    <input type="password" value="" placeholder="" name="pass">
+                                </div>
                         </div>
                     </div>
-                    <div class="boton_perfil">
-
-                        <button type="submit" class="btn btn-dark">Guardar cambios</button>
-
-                    </div>
-                </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>

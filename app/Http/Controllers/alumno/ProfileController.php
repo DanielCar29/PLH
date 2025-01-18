@@ -1,62 +1,63 @@
 <?php
+
 namespace App\Http\Controllers\Alumno;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use App\Models\alumnos;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function show()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-
         $id_user = auth()->user()->id;
+        $alumno = User::with(['alumno', 'alumno.carreras'])->where('id', $id_user)->first();
 
-        $alumno = DB::select('CALL obtenerDatosAlumno_perfil(?)',[$id_user]);
-
-        return view('alumno.perfil',compact('alumno'));
-
-    }
-
-    public function actualizarPerfil(Request $request,$id)
-    {
-        $id_alumno = $id;
-        $nombre = $request->input('nombre');
-        $apellido_paterno = $request->input('apellido_paterno');
-        $apellido_materno = $request->input('apellido_materno');
-        $correo = $request->input('correo');
-        $numero_control = $request->input('numero_control');
-        $semestre = $request->input('semestre');
-        $carrera = $request->input('carrera');
-
-        if(empty($request->input('pass'))){
-            DB::select('CALL actualizarAlumno(?,?,?,?,?,?,?,?)', [
-                $id_alumno,
-                $nombre,
-                $apellido_paterno,
-                $apellido_materno,
-                $correo,
-                '',
-                $numero_control,
-                $semestre
-            ]);
-        } else {
-            $pass = Hash::make($request->input('pass'));
-            DB::select('CALL actualizarAlumno(?,?,?,?,?,?,?,?)', [
-                $id_alumno,
-                $nombre,
-                $apellido_paterno,
-                $apellido_materno,
-                $correo,
-                $pass,
-                $numero_control,
-                $semestre
-            ]);
+        if (!$alumno || !$alumno->alumno) {
+            return redirect()->back()->withErrors(['error' => 'No se encontraron datos del alumno.']);
         }
 
-        return redirect()->route('alumno.perfil')->with('success', 'Perfil actualizado exitosamente.');
+        return view('alumno.perfil', compact('alumno'));
+    }
+
+    public function actualizarPerfil(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'required|string|max:255',
+            'correo' => 'required|string|email|max:255',
+            'pass' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user = User::with('alumno')->find($id);
+
+        if (!$user || !$user->alumno) {
+            return redirect()->back()->withErrors(['error' => 'Usuario no encontrado.']);
+        }
+
+        $user->name = $request->input('nombre');
+        $user->apellido_paterno = $request->input('apellido_paterno');
+        $user->apellido_materno = $request->input('apellido_materno');
+        $user->email = $request->input('correo');
+
+        if (!empty($request->pass)) {
+            $user->password = Hash::make($request->input('pass'));
+        }
+
+        $user->alumno->numero_de_control = $request->input('numero_control');
+        $user->alumno->semestre = $request->input('semestre');
+
+        $user->save();
+        $user->alumno->save();
+
+        return redirect()->back()->with([
+            'success' => 'Se han hecho cambios correctamente!',
+            'alumno' => $user,
+        ]);
     }
 }

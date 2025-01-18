@@ -42,7 +42,7 @@
                                 <div class="input-group mb-3 input-carrera">
                                     <span class="input-group-text nombre-carrera-input" id="inputGroup-sizing-default">{{ $carrera->carrera }}</span>
                                     <input type="number" class="form-control input-numero-carrera" aria-label="Sizing example input" 
-                                            aria-describedby="inputGroup-sizing-default" name="carreras[{{ $carrera->id }}]" required>
+                                            aria-describedby="inputGroup-sizing-default" name="carreras[{{ $carrera->id }}]" value="1" required>
                                 </div>
                             @endforeach
                             
@@ -68,7 +68,7 @@
     
                                 <div class="boton-envio" id="boton_habilitar">
     
-                                    <button type="submit" class="btn btn-dark">Habilitar</button>
+                                    <button type="submit" class="btn btn-dark" name="submit_button">Habilitar</button>
     
                                 </div>
                             </div>
@@ -96,24 +96,20 @@
     </script>
 
     <script>
-
-            document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('formulario_convocatoria');
             const submitButton = document.getElementById('boton_habilitar');
 
             submitButton.addEventListener('click', function(event) {
-                event.preventDefault(); // Evita el envío del formulario inmediatamente
-
                 const userConfirmed = confirm('¿Estás seguro que quieres habilitar con esos datos?');
                 if (userConfirmed) {
-                    alert('Has aceptado.');
                     form.submit(); // Envía el formulario si el usuario confirma
                 } else {
+                    event.preventDefault(); // Evita el envío del formulario si el usuario cancela
                     alert('Has cancelado.');
                 }
             });
         });
-
     </script>
 </body>
 </html>

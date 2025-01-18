@@ -13,7 +13,7 @@ class BecasCarrera extends Model
     protected $fillable = [
         'carreras_id', 
         'detalles_beca_id', 
-        'cantidad_de_becas' // Agregar el campo cantidad_de_becas
+        'cantidad_de_becas'
     ];
 
     // Relación con Carrera

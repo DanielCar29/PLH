@@ -19,7 +19,7 @@
                   <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Ver beca</a>
+                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Información de tu beca</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle elemento-navegacion-plh" href="#" role="button" 
