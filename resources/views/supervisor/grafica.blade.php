@@ -52,7 +52,7 @@
 
         <div class="datos_alumno col-4">
 
-        @foreach($alumno as $alumno)
+
 
             <div class="nombre_alumno">
                 <h5>{{$alumno->Nombre}} {{$alumno->Apellido_Paterno}} {{$alumno->Apellido_Materno}}</h1>
@@ -66,7 +66,7 @@
                 <h5>{{$alumno->Numero_de_control}}</h1>
             </div>
 
-        @endforeach    
+
         </div>
 
     </div>

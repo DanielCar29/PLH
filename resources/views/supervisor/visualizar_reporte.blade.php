@@ -23,6 +23,20 @@
                 <h1>Reporte del alumnado</h1>
             </div>
 
+            <div class="container mt-1">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+    
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+              </div>  
+
             <div class="tabla-visualizar_reporte table-responsive">
                 <table class="table table-striped table-hover">
                     <tr>
@@ -37,20 +51,28 @@
                             <td>{{$alumno->numero_de_control}}</td>
                             <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
                             <td>
+
                                 <div class="icono_notificacion">
-                                    <a href="">
-                                        <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
-                                    </a>
+                                    <form id="notification-form" method="POST" action="{{route('supervisor.correoNoUso',
+                                                                [$alumno->name,
+                                                                $alumno->apellido_paterno,
+                                                                $alumno->apellido_materno,
+                                                                $alumno->email])}}">
+                                        @csrf
+                                            <button title="Haz clic para enviar una notificación" id="submit-btn" type="submit" style="border: none; background: none; padding: 0;">
+                                                <img src="{{URL::asset('/img/icons/notificacion.png')}}" alt="" height="30">
+                                            </button>
+                                    </form>
                                 </div>
 
                                 <div class="icono_monitoreo">
-                                    <a href="{{route('supervisor.ver_grafica', ['id' => $alumno->id])}}">
+                                    <a title="Haz clic para visualizar el grafico" href="{{route('supervisor.ver_grafica', ['id' => $alumno->id])}}">
                                         <img src="{{URL::asset('/img/icons/monitoreo.png')}}" alt="" height="30">
                                     </a>
                                 </div>
 
                                 <div class="icono_pdf">
-                                    <a href="">
+                                    <a href="" title="Haz clic para generar PDF">
                                         <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
                                     </a>
                                 </div>
@@ -82,5 +104,19 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
     </script>
+
+<script>
+    document.getElementById('notification-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío inmediato del formulario
+
+        var userConfirmed = window.confirm("¿Estás seguro de que quieres enviar la notificación?");
+
+        if (userConfirmed) {
+            // Si el usuario confirma, enviamos el formulario
+            this.submit(); // Enviar el formulario manualmente
+        }
+    });
+</script>
+
 </body>
 </html>

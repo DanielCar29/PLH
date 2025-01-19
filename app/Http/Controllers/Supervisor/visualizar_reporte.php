@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\supervisor_visualiza_reporte;
+// Incluir clase para enviar correos de no uso a alumno
+use App\Mail\CorreoNoUsoMailable;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+
 
 class visualizar_reporte extends Controller
 {
@@ -14,7 +19,28 @@ class visualizar_reporte extends Controller
      */
     public function index()
     {
-        $alumnos = DB::select('CALL obtenerDatosReporteAlumno()');
+        //Encontrar la manera de hacer esto mismo pero sin el procedmiento almacenado y con modelos
+        $alumnos = DB::table('alumnos')
+            ->join('users', 'alumnos.usuario_id', '=', 'users.id')
+            ->leftJoin('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
+            ->select(
+                'alumnos.id', 
+                'alumnos.numero_de_control', 
+                'users.name', 
+                'users.apellido_paterno', 
+                'users.apellido_materno', 
+                'users.email', // Se agrega el campo email
+                DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca')
+            )
+            ->groupBy(
+                'alumnos.id', 
+                'alumnos.numero_de_control', 
+                'users.name', 
+                'users.apellido_paterno', 
+                'users.apellido_materno', 
+                'users.email' // Asegúrate de agrupar por el campo email también
+            )
+            ->get();
 
         return view('supervisor.visualizar_reporte', compact('alumnos'));
     }
@@ -25,54 +51,31 @@ class visualizar_reporte extends Controller
 
     public function verGrafica($id){
 
-        $alumno = DB::select('CALL obtenerDatosAlumno(?)',[$id]);
+        $alumno = DB::table('alumnos')
+            ->join('users', 'alumnos.usuario_id', '=', 'users.id')
+            ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
+            ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
+            ->select(
+                'alumnos.id AS alumno_id', 
+                'alumnos.numero_de_control AS Numero_de_control', 
+                'users.name AS Nombre', 
+                'users.apellido_paterno AS Apellido_Paterno', 
+                'users.apellido_materno AS Apellido_Materno', 
+                'carreras.carrera AS Carrera'
+            )
+            ->where('alumnos.id', $id)
+            ->first();
 
         return view('supervisor.grafica', compact('alumno'));
 
     }
 
-    public function create()
-    {
-        //
-    }
+    public function correoNoUso($nombre,$apellidoPaterno,$apellidoMaterno,$email){
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        Mail::to($email)->send(new CorreoNoUsoMailable($nombre,$apellidoPaterno,$apellidoMaterno));
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        return redirect()->route('supervisor.visualizar_reporte')->with(['success' => 'Se ha enviado la notificación a: '.$nombre
+                                                                    .' '.$apellidoPaterno.' '.$apellidoMaterno]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

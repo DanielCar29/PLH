@@ -12,7 +12,11 @@
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
     <style>
-       
+           /* Color del error */
+    .text-danger {
+        color: #8B0000 !important;
+        /* font-weight: bold; */
+    }
     </style>
 </head>
 <body>
@@ -34,7 +38,6 @@
         @endif
     </div>  
 
-@foreach($datos_supervisor as $datos)
 
       <div class="contenido-general-perfil">
 
@@ -91,6 +94,9 @@
 
                                 <div>
                                     <input type="text" value="{{$datos->Nombre}}" placeholder="" name="nombre">
+                                    @error('nombre')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div>
@@ -99,6 +105,9 @@
 
                                 <div>
                                     <input type="text" value="{{$datos->ApellidoPaterno}}" placeholder="" name="apellidoPaterno">
+                                    @error('apellidoPaterno')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div>
@@ -107,6 +116,9 @@
 
                                 <div>
                                     <input type="text" value="{{$datos->ApellidoMaterno}}" placeholder="" name="apellidoMaterno">
+                                    @error('apellidoMaterno')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                         </div>
@@ -128,6 +140,9 @@
 
                                 <div>
                                     <input type="text" value="{{$datos->Correo}}" placeholder="" name="correo">
+                                    @error('correo')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div>
@@ -136,6 +151,9 @@
 
                                 <div>
                                     <input type="password" value="" placeholder="" name="pass" minlength="8">
+                                    @error('pass')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div>
@@ -152,12 +170,14 @@
                     </div>
                 </div>
             </form>
+
+
             </div>
 
         </div>
 
       </div>
-@endforeach   
+
     
 
 

@@ -23,7 +23,12 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
                     ->name('supervisor.visualizar_reporte');
 
         Route::get('/supervisor.grafica/{id}',[visualizar_reporte::class,'verGrafica'])
-                    ->name('supervisor.ver_grafica');       
+                    ->name('supervisor.ver_grafica');     
+    
+    //Ruta para mandar correo de no uso de un alumno
+        Route::post('/supervisor.correoNoUso/{nombre}/{apellidoPaterno}/{apellicoMaterno}/{email}',
+        [visualizar_reporte::class,'correoNoUso'])
+                    ->name('supervisor.correoNoUso');
 
     // |_____________________________________________________________________________________________
 
@@ -42,8 +47,9 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         Route::post('/rechazarSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'rechazarSolicitud'])
                     ->name('supervisor.rechazarSolicitud');
 
-        Route::post('/esperaSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
-                    ->name('supervisor.esperaSolicitud');
+        //Ruta para esperar solicitud se ha omitido para esta versión
+        // Route::post('/esperaSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
+        //             ->name('supervisor.esperaSolicitud');
 
         Route::post('/enviarListaSolicitudes',[visualizar_solicitudes::class,'enviarListaSolicitudes'])
                     ->name('supervisor.enviarListaSolicitudes');

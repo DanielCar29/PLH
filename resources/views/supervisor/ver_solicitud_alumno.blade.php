@@ -62,7 +62,7 @@
                                 
                                     <div class="botones_solicitud">
     
-                                        <button type="submit">
+                                        <button title="Haz clic para aceptar solicitud" type="submit">
 
                                             <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="50">
 
@@ -77,7 +77,7 @@
                                 @csrf
                                 <div class="botones_solicitud">
 
-                                    <button type="submit">
+                                    <button title="Haz clic para rechazar solicitud" type="submit">
 
                                         <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="50">
 
