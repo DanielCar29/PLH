@@ -10,7 +10,7 @@ use App\Mail\CorreoNoUsoMailable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class visualizar_reporte extends Controller
 {
@@ -76,6 +76,38 @@ class visualizar_reporte extends Controller
 
         return redirect()->route('supervisor.visualizar_reporte')->with(['success' => 'Se ha enviado la notificación a: '.$nombre
                                                                     .' '.$apellidoPaterno.' '.$apellidoMaterno]);
+
+    }
+
+    public function generarPDF($id){
+
+        $alumno = DB::table('alumnos')
+            ->join('users', 'alumnos.usuario_id', '=', 'users.id')
+            ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
+            ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
+            ->select(
+                'alumnos.id AS alumno_id', 
+                'alumnos.numero_de_control AS numero_de_control', 
+                'users.name AS nombre', 
+                'users.apellido_paterno AS apellido_paterno', 
+                'users.apellido_materno AS apellido_materno', 
+                'carreras.carrera AS carrera',
+            )
+            ->where('alumnos.id', $id)
+            ->first();
+
+        $reportes = DB::table('reportes')
+            ->where('alumno_id', $id)
+            ->get();
+
+        // Agrupar los reportes por mes
+        $reportesPorMes = $reportes->groupBy(function($reporte) {
+            return \Carbon\Carbon::parse($reporte->fecha_uso_beca)->format('F Y'); // Agrupar por mes y año
+        });
+
+        $pdf = PDF::loadView('/Supervisor/PDFIndividual', compact('alumno', 'reportesPorMes'));
+
+        return $pdf->stream('reporte_'.$alumno->numero_de_control.'.pdf');
 
     }
 }

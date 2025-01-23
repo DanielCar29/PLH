@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         [visualizar_reporte::class,'correoNoUso'])
                     ->name('supervisor.correoNoUso');
 
+    //Ruta para generar PDF individual
+        Route::get('/supervisor.generarPDF/{id}',[visualizar_reporte::class,'generarPDF'])
+                    ->name('supervisor.generarPDF');
+
     // |_____________________________________________________________________________________________
 
     // Rutas de accion visualizar solicitud
@@ -47,7 +51,7 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         Route::post('/rechazarSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'rechazarSolicitud'])
                     ->name('supervisor.rechazarSolicitud');
 
-        //Ruta para esperar solicitud se ha omitido para esta versión
+        //Ruta para esperar solicitud; se ha omitido para esta versión
         // Route::post('/esperaSolicitud_supervisor/{id}',[visualizar_solicitudes::class,'esperaSolicitud'])
         //             ->name('supervisor.esperaSolicitud');
 

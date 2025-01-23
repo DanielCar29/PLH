@@ -72,10 +72,11 @@
                                 </div>
 
                                 <div class="icono_pdf">
-                                    <a href="" title="Haz clic para generar PDF">
+                                    <a title="Haz clic para generar PDF" href="{{route('supervisor.generarPDF', ['id' => $alumno->id])}}" about="_blank" target="_blank">
                                         <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="" height="30">
                                     </a>
                                 </div>
+
                             </td>
                             <td>
                                 @if(empty($alumno->ultima_vez_uso_beca))
