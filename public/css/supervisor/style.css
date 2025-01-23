@@ -334,7 +334,7 @@ div.tabla-visualizar_reporte > table{
 
 .contenido-general-perfil{
     width: 75vw;
-    height: 100vh;
+    height: auto;
     background-color: rgba(88, 21, 28,.3);
     border: 1px solid #fff;
     margin: auto;
@@ -396,6 +396,7 @@ div.foto-datos_usuario{
     border: 1px solid #fff;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 20px; /* Agrega margen inferior */
     max-width: 100%;
     padding: 4%;
 }

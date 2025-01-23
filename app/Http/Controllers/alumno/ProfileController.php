@@ -31,7 +31,8 @@ class ProfileController extends Controller
             'apellido_paterno' => 'required|string|max:255',
             'apellido_materno' => 'required|string|max:255',
             'correo' => 'required|string|email|max:255',
-            'pass' => 'nullable|string|min:8|confirmed',
+            'pass_actual' => 'required|string|min:8',
+            'pass_nueva' => 'nullable|string|min:8|confirmed',
         ]);
 
         $user = User::with('alumno')->find($id);
@@ -40,13 +41,17 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors(['error' => 'Usuario no encontrado.']);
         }
 
+        if (!Hash::check($request->input('pass_actual'), $user->password)) {
+            return redirect()->back()->withErrors(['error' => 'Los cambios no se pudieron hacer porque la contraseña no es correcta.']);
+        }
+
         $user->name = $request->input('nombre');
         $user->apellido_paterno = $request->input('apellido_paterno');
         $user->apellido_materno = $request->input('apellido_materno');
         $user->email = $request->input('correo');
 
-        if (!empty($request->pass)) {
-            $user->password = Hash::make($request->input('pass'));
+        if (!empty($request->pass_nueva)) {
+            $user->password = Hash::make($request->input('pass_nueva'));
         }
 
         $user->alumno->numero_de_control = $request->input('numero_control');

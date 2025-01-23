@@ -11,13 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
-    <style>
-           /* Color del error */
-    .text-danger {
-        color: #8B0000 !important;
-        /* font-weight: bold; */
-    }
-    </style>
 </head>
 <body>
 
@@ -36,26 +29,31 @@
                 {{ session('error') }}
             </div>
         @endif
+
+        @if (session('password_error'))
+            <div class="alert alert-danger">
+                {{ session('password_error') }}
+            </div>
+        @endif
     </div>  
 
-
-      <div class="contenido-general-perfil">
+    <div class="contenido-general-perfil">
 
         <div class="container ">
 
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
 
                     <div class="flex-sm-row flex-column foto-datos_usuario">
-                        <div class="col-6 foto-perfil">
+                        <div class="col-12 foto-perfil">
 
                             <div>
                                 <img src="{{URL::asset('/img/perfil_usuario.png')}}" alt="" >
                             </div>
 
                             <div>
-                                <h5>{{$datos->Nombre}} {{$datos->ApellidoPaterno}} {{$datos->ApellidoMaterno}}</h5>
+                                <h5>{{ $supervisor->name }} {{ $supervisor->apellido_paterno }} {{ $supervisor->apellido_materno }}</h5>
                             </div>
 
                         </div>
@@ -67,7 +65,7 @@
 
                         <div class="boton_perfil-guardar">
                             
-                                <button type="submit" class="btn btn-dark" id="enviarDatosPerfil-boton">
+                                <button type="button" class="btn btn-dark" id="enviarDatosPerfil-boton">
 
                                     Guardar cambios
 
@@ -79,9 +77,9 @@
 
                 </div>
 
-                <div class="col-6 datos-correo_usuario">
+                <div class="col-12 col-md-6 datos-correo_usuario">
 
-                    <div class="col-6 datos-perfil">
+                    <div class="col-12 datos-perfil">
                         <div>
                             <h3>DATOS DE USUARIO</h3>
                         </div>
@@ -93,7 +91,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="{{$datos->Nombre}}" placeholder="" name="nombre">
+                                    <input type="text" value="{{ $supervisor->name }}" placeholder="" name="nombre">
                                     @error('nombre')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -104,7 +102,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="{{$datos->ApellidoPaterno}}" placeholder="" name="apellidoPaterno">
+                                    <input type="text" value="{{ $supervisor->apellido_paterno }}" placeholder="" name="apellidoPaterno">
                                     @error('apellidoPaterno')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -115,7 +113,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="{{$datos->ApellidoMaterno}}" placeholder="" name="apellidoMaterno">
+                                    <input type="text" value="{{ $supervisor->apellido_materno }}" placeholder="" name="apellidoMaterno">
                                     @error('apellidoMaterno')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -139,19 +137,30 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="{{$datos->Correo}}" placeholder="" name="correo">
+                                    <input type="text" value="{{ $supervisor->email }}" placeholder="" name="correo">
                                     @error('correo')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div>
-                                    <span>Contraseña:</span>
+                                    <span>Nueva Contraseña:</span>
                                 </div>
 
                                 <div>
-                                    <input type="password" value="" placeholder="" name="pass" minlength="8">
-                                    @error('pass')
+                                    <input type="password" value="" placeholder="" name="pass_nueva" minlength="8">
+                                    @error('pass_nueva')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <span>Confirmar Nueva Contraseña:</span>
+                                </div>
+
+                                <div>
+                                    <input type="password" value="" placeholder="" name="pass_nueva_confirmation" minlength="8">
+                                    @error('pass_nueva_confirmation')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -161,7 +170,9 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" value="{{$datos->Carrera}}" placeholder="" disabled>
+                                    @foreach ($supervisor->supervisor->carreras as $carrera)
+                                        <input type="text" value="{{ $carrera->carrera }}" placeholder="" disabled>
+                                    @endforeach
                                 </div>
 
                         </div>
@@ -178,9 +189,29 @@
 
       </div>
 
-    
-
-
+    <!-- Modal para solicitar la contraseña actual -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Confirmar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="mb-3">
+                            <label for="pass_actual" class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" id="pass_actual" name="pass_actual" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmPasswordButton">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{-- CDN'S de Bootstrap Js --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
@@ -193,24 +224,33 @@
     </script>
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('enviarDatosPerfil');
         const submitButton = document.getElementById('enviarDatosPerfil-boton');
+        const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        const confirmPasswordButton = document.getElementById('confirmPasswordButton');
+        const passwordForm = document.getElementById('passwordForm');
+        const passActualInput = document.getElementById('pass_actual');
 
         submitButton.addEventListener('click', function(event) {
             event.preventDefault(); // Evita el envío del formulario inmediatamente
+            passwordModal.show();
+        });
 
-            const userConfirmed = confirm('¿Estás seguro que quieres hacer esos cambios?');
-            if (userConfirmed) {
-                alert('Has aceptado.');
+        confirmPasswordButton.addEventListener('click', function() {
+            if (passActualInput.value) {
+                const passActualField = document.createElement('input');
+                passActualField.type = 'hidden';
+                passActualField.name = 'pass_actual';
+                passActualField.value = passActualInput.value;
+                form.appendChild(passActualField);
                 form.submit(); // Envía el formulario si el usuario confirma
             } else {
-                alert('Has cancelado.');
+                alert('Por favor, ingrese su contraseña actual.');
+                passwordModal.show(); // Asegúrate de que el modal no desaparezca
             }
         });
     });
-
 </script>
 </body>
 </html>

@@ -22,6 +22,18 @@
                 {{ session('success') }}
             </div>
         @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if (session('password_error'))
+            <div class="alert alert-danger">
+                {{ session('password_error') }}
+            </div>
+        @endif
     </div>
 
     <div class="contenido-general-perfil">
@@ -38,11 +50,11 @@
                             </div>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('alumno.actualizaPerfil', ['id' => $alumno->id]) }}" onsubmit="return confirm('¿Está seguro de que desea guardar los cambios?');">
+                    <form id="enviarDatosPerfil" method="POST" action="{{ route('alumno.actualizaPerfil', ['id' => $alumno->id]) }}">  
                         @csrf
                         <div class="boton_perfil">
                             <div class="boton_perfil-guardar">
-                                <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                                <button type="button" class="btn btn-dark" id="enviarDatosPerfil-boton">Guardar cambios</button>
                             </div>
                         </div>
                 </div>
@@ -57,18 +69,27 @@
                                 </div>
                                 <div>
                                     <input type="text" value="{{ $alumno->name }}" placeholder="" name="nombre">
+                                    @error('nombre')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <span>Apellido Paterno:</span>
                                 </div>
                                 <div>
                                     <input type="text" value="{{ $alumno->apellido_paterno }}" placeholder="" name="apellido_paterno">
+                                    @error('apellido_paterno')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <span>Apellido Materno:</span>
                                 </div>
                                 <div>
                                     <input type="text" value="{{ $alumno->apellido_materno }}" placeholder="" name="apellido_materno">
+                                    @error('apellido_materno')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                         </div>
                     </div>
@@ -82,6 +103,9 @@
                                 </div>
                                 <div>
                                     <input type="text" value="{{ $alumno->email }}" placeholder="" name="correo">
+                                    @error('correo')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <span>Número de Control:</span>
@@ -104,15 +128,51 @@
                                     @endforeach
                                 </div>
                                 <div>
-                                    <span>Contraseña:</span>
+                                    <span>Nueva Contraseña:</span>
                                 </div>
                                 <div>
-                                    <input type="password" value="" placeholder="" name="pass">
+                                    <input type="password" value="" placeholder="" name="pass_nueva" minlength="8">
+                                    @error('pass_nueva')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <span>Confirmar Nueva Contraseña:</span>
+                                </div>
+                                <div>
+                                    <input type="password" value="" placeholder="" name="pass_nueva_confirmation" minlength="8">
+                                    @error('pass_nueva_confirmation')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                         </div>
                     </div>
                 </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para solicitar la contraseña actual -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Confirmar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="mb-3">
+                            <label for="pass_actual" class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" id="pass_actual" name="pass_actual" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmPasswordButton">Confirmar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -126,5 +186,35 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('enviarDatosPerfil');
+        const submitButton = document.getElementById('enviarDatosPerfil-boton');
+        const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        const confirmPasswordButton = document.getElementById('confirmPasswordButton');
+        const passwordForm = document.getElementById('passwordForm');
+        const passActualInput = document.getElementById('pass_actual');
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el envío del formulario inmediatamente
+            passwordModal.show();
+        });
+
+        confirmPasswordButton.addEventListener('click', function() {
+            if (passActualInput.value) {
+                const passActualField = document.createElement('input');
+                passActualField.type = 'hidden';
+                passActualField.name = 'pass_actual';
+                passActualField.value = passActualInput.value;
+                form.appendChild(passActualField);
+                form.submit(); // Envía el formulario si el usuario confirma
+                passwordModal.hide(); // Oculta el modal solo si la contraseña es correcta
+            } else {
+                alert('Por favor, ingrese su contraseña actual.');
+            }
+        });
+    });
+</script>
 </body>
 </html>
