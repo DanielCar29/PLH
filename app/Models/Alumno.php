@@ -36,4 +36,9 @@ class Alumno extends Model
     {
         return $this->hasMany(AlumnoSolicitudBeca::class, 'alumno_id');
     }
+
+    public function respuestasAlumno()
+    {
+        return $this->hasMany(RespuestaAlumno::class, 'alumno_id');
+    }
 }

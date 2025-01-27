@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RespuestaSolicitud extends Model
 {
     use HasFactory;
-
+    
+    protected $table = 'respuestas_solicitud';
     protected $fillable = ['solicitud_de_beca_id', 'respuestas_alumno_id'];
 
     public function solicitudDeBeca()

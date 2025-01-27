@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RespuestaAlumno extends Model
 {
     use HasFactory;
-
+    protected $table = 'respuestas_alumno';
     protected $fillable = ['preguntas_id', 'supervisor_id', 'respuesta'];
 
     public function pregunta()
@@ -19,5 +19,10 @@ class RespuestaAlumno extends Model
     public function supervisor()
     {
         return $this->belongsTo(Supervisor::class, 'supervisor_id');
+    }
+
+    public function respuestasSolicitud()
+    {
+        return $this->hasMany(RespuestaSolicitud::class, 'respuestas_alumno_id');
     }
 }

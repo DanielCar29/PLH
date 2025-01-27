@@ -22,4 +22,9 @@ class AlumnoSolicitudBeca extends Model
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
     }
+
+    public function respuestasAlumno()
+    {
+        return $this->hasManyThrough(RespuestaAlumno::class, RespuestaSolicitud::class, 'solicitud_de_beca_id', 'id', 'solicitud_de_beca_id', 'respuestas_alumno_id');
+    }
 }

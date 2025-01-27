@@ -12,7 +12,11 @@ class SolicitudDeBeca extends Model
     protected $table = 'solicitudes_de_beca';
 
     protected $fillable = [
-        'estado',
-        'fecha_creacion',
+        'fecha_solicitud',
     ];
+
+    public function alumnoSolicitudBeca()
+    {
+        return $this->hasMany(AlumnoSolicitudBeca::class, 'solicitud_de_beca_id');
+    }
 }
