@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
     // |__________________________________________________________________________________________________
 
     Route::get('/generar-pdf', [BecaController::class, 'generarPDF'])->name('generar.pdf');
+    Route::get('/alumno.beca.generarPDF', [BecaController::class, 'generarPDF'])->name('alumno.beca.generarPDF');
     
 
 });

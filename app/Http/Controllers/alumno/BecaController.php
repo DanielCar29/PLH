@@ -24,8 +24,11 @@ class BecaController extends Controller
         // Obtener la beca del alumno
         $beca = $alumno->becas()->first();
 
-        // Retornar la vista con los datos de la beca
-        return view('alumno.ver_beca', compact('beca'));
+        // Verificar si la beca no está activa
+        $mostrarBotonPDF = $beca && $beca->estado !== 'activo';
+
+        // Retornar la vista con los datos de la beca y la variable para mostrar el botón
+        return view('alumno.ver_beca', compact('beca', 'mostrarBotonPDF'));
     }
 
     public function generarPDF()
@@ -34,7 +37,7 @@ class BecaController extends Controller
         $user = Auth::user();
 
         // Obtener el alumno asociado al usuario
-        $alumno = $user->alumno;
+        $alumno = Alumno::where('usuario_id', $user->id)->first();
 
         // Obtener la beca del alumno
         $beca = $alumno->becas()->first();
@@ -56,11 +59,11 @@ class BecaController extends Controller
         $pdf = new Dompdf($options);
 
         // Renderizar la vista en HTML
-        $html = View::make('alumno.qrcode', compact('qrCodeBase64'))->render();
+        $html = View::make('alumno.qrcode', compact('qrCodeBase64', 'alumno'))->render();
 
         // Cargar HTML en Dompdf y generar el PDF
         $pdf->loadHtml($html);
-        $pdf->setPaper('A4', 'landscape');
+        $pdf->setPaper('A4', 'portrait');
         $pdf->render();
 
         // Devolver el PDF como una descarga

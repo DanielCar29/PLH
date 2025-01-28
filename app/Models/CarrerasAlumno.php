@@ -13,7 +13,7 @@ class CarrerasAlumno extends Model
 
     protected $fillable = [
         'alumno_id',
-        'carreras_id',
+        'carreras_id'
     ];
 
     public $timestamps = false;

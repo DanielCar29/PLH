@@ -13,11 +13,11 @@ class Carrera extends Model
 
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class, 'carreras_alumno');
+        return $this->belongsToMany(Alumno::class, 'carreras_alumno', 'carreras_id', 'alumno_id');
     }
 
     public function supervisores()
     {
-        return $this->belongsToMany(Supervisor::class, 'carreras_supervisor');
+        return $this->belongsToMany(Supervisor::class, 'carreras_supervisor', 'carrera_id', 'supervisor_id');
     }
 }
