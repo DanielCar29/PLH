@@ -16,7 +16,7 @@ class Alumno extends Model
         'numero_de_control'
     ];
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo(User::class, 'usuario_id');
     }

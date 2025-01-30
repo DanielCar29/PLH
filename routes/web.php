@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Administrador\listaSolicitudes;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Auth\RecoverController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,8 @@ Route::get('/registro', [RegisteredUserController::class, 'create'])->name('regi
 Route::get('/preguntas_frecuentes', function () {
     return view('preguntas_frecuentes');
 });
+
+Route::get('/recover', [RecoverController::class, 'showRecoverForm'])->name('recover.form');
+Route::post('/recover', [RecoverController::class, 'recover'])->name('recover');
+Route::get('/reset-password', [RecoverController::class, 'showResetPasswordForm'])->name('reset.password.form');
+Route::post('/reset-password', [RecoverController::class, 'resetPassword'])->name('reset.password');

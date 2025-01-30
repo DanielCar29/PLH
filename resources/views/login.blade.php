@@ -17,28 +17,7 @@
 
     <div class="row contenido-general">
 
-      <div class="col-8 contenido-bienvenida">
-
-        <div class="nombre-proyecto color">
-          <h4>Proyect Large Heart</h4>
-        </div>
-
-        <div class="bienvenida-titulo color">
-          <h1>Bienvenido</h1>
-        </div>
-
-        <div class="bienvenida-parrafo color">
-          <h5>
-            En que consiste la beca Alimenticia: <br>
-          </h5>
-          <li>Se otorga a alumnos de muy escasos recursos.</li>
-          <li>Es un apoyo alimenticio que se imparte en la cafetería de la institución; solo puede ser utilizado para consumir alimentos (ni golosinas ni refrescos).</li>
-          <li>Esta se tramita en la Coordinación Institucional del Programa de Tutorías.</li>
-        </div>
-
-      </div>
-
-      <div class="col-4 login-plh">
+      <div class="col-lg-4 col-md-5 col-sm-12 order-md-2 login-plh">
         <div>
           <img src="{{URL::asset('/img/logo-plh.png')}}" alt="Logo"  height="80" class="d-inline-block align-text-top">
         </div>
@@ -97,8 +76,33 @@
             {{ __('Iniciar sesión') }}
           </button>
         </div>
+
+        <div>
+          <a class="dropdown-item text-decoration-none text-blue-dark" href="{{ route('recover.form') }}">¿Olvidaste tu contraseña?</a>
+        </div>
         
         </form>
+      </div>
+
+      <div class="col-lg-8 col-md-7 col-sm-12 order-md-1 contenido-bienvenida">
+
+        <div class="nombre-proyecto color">
+          <h4>Proyect Large Heart</h4>
+        </div>
+
+        <div class="bienvenida-titulo color">
+          <h1>Bienvenido</h1>
+        </div>
+
+        <div class="bienvenida-parrafo color">
+          <h5>
+            En que consiste la beca Alimenticia: <br>
+          </h5>
+          <li>Se otorga a alumnos de muy escasos recursos.</li>
+          <li>Es un apoyo alimenticio que se imparte en la cafetería de la institución; solo puede ser utilizado para consumir alimentos (ni golosinas ni refrescos).</li>
+          <li>Esta se tramita en la Coordinación Institucional del Programa de Tutorías.</li>
+        </div>
+
       </div>
     </div>
       

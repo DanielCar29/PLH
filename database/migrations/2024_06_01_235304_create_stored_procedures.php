@@ -33,10 +33,6 @@ return new class extends Migration
         DB::statement('DROP PROCEDURE IF EXISTS ObtenerSupervisores');
 
 
-
-
-
-
         // Crear el procedimiento
         DB::statement('
             CREATE PROCEDURE obtenerAlumnos_visualizarSolicitudes()
@@ -461,7 +457,7 @@ return new class extends Migration
       DB::statement('DROP PROCEDURE IF EXISTS obtenerAlumnoRespuestas');
       DB::statement('DROP PROCEDURE IF EXISTS mostrarDatosListasSolicitud');
 
-        
+
       
     }
 

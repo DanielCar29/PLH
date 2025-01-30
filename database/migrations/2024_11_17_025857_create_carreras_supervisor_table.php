@@ -17,11 +17,8 @@ return new class extends Migration
             $table->bigInteger('carreras_id')->unsigned();  
             $table->timestamps();  
 
-    
             $table->foreign('supervisor_id')->references('id')->on('supervisores')->onDelete('no action')->onUpdate('no action');  
-
             $table->foreign('carreras_id')->references('id')->on('carreras')->onDelete('no action')->onUpdate('no action');  
-
         });  
     }
 

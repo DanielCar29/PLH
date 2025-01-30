@@ -12,9 +12,9 @@ body{
 }
 div.container.text-center{
     margin-top: 3%;
+    padding: 0 15px;
 }
 .contenido-general{
-    /* border: 5px solid #000; */
     padding: 5%;
 }
 .contenido-bienvenida{
@@ -22,23 +22,23 @@ div.container.text-center{
     background-size: cover;
     border-radius: 10px;
     font-family: fuente_login, Arial, Helvetica, sans-serif;
-    /* border: 1px solid #aaa; */
     border: 5px #fff solid;
-    /* margin-right: .5%; */
-    
+    margin-bottom: 20px;
+    order: 2;
 }
 .login-plh{
     background-color: rgba(0, 0, 0, .8);
     border-radius: 10px;
-    /* border: 1px solid #aaa; */
     padding: 5% 1% 5% 1%;
     font-family: fuente_login, Arial, Helvetica, sans-serif;
     border: 5px #fff solid;
     border-left: 0px;
     color: #fff;
+    margin-bottom: 20px;
+    order: 1;
 }
 .instrucciones{
-    max-width: 60%;
+    max-width: 100%;
     margin: auto;
 }
 .instrucciones p{
@@ -49,7 +49,7 @@ div.container.text-center{
     margin: 3%;
 }
 .input-login input{
-    max-width: 80%;
+    max-width: 100%;
 }
 .boton-login{
     margin: auto;
@@ -88,4 +88,13 @@ div.container.text-center{
 .bienvenida-parrafo{
     max-width: 50%;
     margin: auto;
+}
+
+@media (min-width: 768px) {
+    .contenido-bienvenida {
+        order: 1;
+    }
+    .login-plh {
+        order: 2;
+    }
 }

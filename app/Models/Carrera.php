@@ -18,6 +18,6 @@ class Carrera extends Model
 
     public function supervisores()
     {
-        return $this->belongsToMany(Supervisor::class, 'carreras_supervisor', 'carrera_id', 'supervisor_id');
+        return $this->belongsToMany(Supervisor::class, 'carreras_supervisor', 'carreras_id', 'supervisor_id');
     }
 }
