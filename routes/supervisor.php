@@ -34,6 +34,18 @@ Route::group(['middleware' => ['auth','checkSupervisor']], function(){
         Route::get('/supervisor.generarPDF/{id}',[visualizar_reporte::class,'generarPDF'])
                     ->name('supervisor.generarPDF');
 
+    //Ruta para generar PDF general
+        Route::get('/supervisor.generarPDFGeneral',[visualizar_reporte::class,'generarPDFGeneral'])
+                    ->name('supervisor.generarPDFGeneral');
+
+    //Ruta para bloqueo de beca
+        Route::get('/supervisor.bloquearBeca/{id}',[visualizar_reporte::class,'bloquearBeca'])
+                    ->name('supervisor.bloquearBeca');
+
+    //Ruta para desbloqueo de beca
+        Route::get('/supervisor.desbloquearBeca/{id}',[visualizar_reporte::class,'desbloquearBeca'])
+                    ->name('supervisor.desbloquearBeca');
+
     // |_____________________________________________________________________________________________
 
     // Rutas de accion visualizar solicitud

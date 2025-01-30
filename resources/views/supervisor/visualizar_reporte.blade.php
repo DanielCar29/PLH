@@ -23,6 +23,7 @@
                 <h1>Reporte del alumnado</h1>
             </div>
 
+
             <div class="container mt-1">
                 @if (session('success'))
                     <div class="alert alert-success">
@@ -77,6 +78,18 @@
                                     </a>
                                 </div>
 
+                                <div class="icono_pdf">
+                                    <a title="Haz clic para realizar un bloqueo de beca" href="{{route('supervisor.bloquearBeca', ['id' => $alumno->id])}}" about="_blank" target="_blank">
+                                        <img src="{{URL::asset('/img/icons/block.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
+                                <div class="icono_pdf">
+                                    <a title="Haz clic para devolver acceso a la beca" href="{{route('supervisor.desbloquearBeca', ['id' => $alumno->id])}}" about="_blank" target="_blank">
+                                        <img src="{{URL::asset('/img/icons/devolver-acceso.png')}}" alt="" height="30">
+                                    </a>
+                                </div>
+
                             </td>
                             <td>
                                 @if(empty($alumno->ultima_vez_uso_beca))
@@ -91,6 +104,15 @@
                     
                 </table>
             </div>
+
+            <div class="btn-generar_pdf_general d-flex justify-content-end align-items-center p-3">
+                <div class="icon-pdf_general">
+                    <a class="btn btn-light border shadow-sm" title="Haz clic para generar PDF general" href="{{route('supervisor.generarPDFGeneral')}}" target="_blank">
+                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="Generar PDF" class="img-fluid" style="max-height: 50px;">
+                    </a>
+                </div>
+            </div>
+            
         </div>
     </div>
     

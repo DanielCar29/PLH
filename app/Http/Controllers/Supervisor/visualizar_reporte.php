@@ -110,4 +110,70 @@ class visualizar_reporte extends Controller
         return $pdf->stream('reporte_'.$alumno->numero_de_control.'.pdf');
 
     }
+
+    public function generarPDFGeneral(){
+
+        //Código para generar PDF general
+        $supervisorId = auth()->user()->id;
+
+        $carrera = DB::table('carreras_supervisor')
+            ->join('carreras', 'carreras_supervisor.carreras_id', '=', 'carreras.id')
+            ->where('carreras_supervisor.supervisor_id', $supervisorId)
+            ->select('carreras.carrera')
+            ->first();
+
+        $alumnos = DB::table('alumnos')
+            ->join('users', 'alumnos.usuario_id', '=', 'users.id')
+            ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
+            ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
+            ->join('carreras_supervisor', 'carreras.id', '=', 'carreras_supervisor.carreras_id')
+            ->join('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
+            ->select(
+                'alumnos.id AS alumno_id', 
+                'alumnos.numero_de_control AS numero_de_control', 
+                'users.name AS nombre', 
+                'users.apellido_paterno AS apellido_paterno', 
+                'users.apellido_materno AS apellido_materno', 
+                'carreras.carrera AS carrera',
+                DB::raw('COUNT(reportes.id) AS veces_uso_beca')
+            )
+            ->where('carreras_supervisor.supervisor_id', $supervisorId)
+            ->groupBy(
+                'alumnos.id', 
+                'alumnos.numero_de_control', 
+                'users.name', 
+                'users.apellido_paterno', 
+                'users.apellido_materno', 
+                'carreras.carrera'
+            )
+            ->get();
+
+        $reportesPorMes = DB::table('reportes')
+            ->select(
+            'alumno_id',
+            DB::raw('DATE_FORMAT(fecha_uso_beca, "%Y-%m") as mes'),
+            DB::raw('COUNT(id) as veces_uso_beca')
+            )
+            ->groupBy('alumno_id', 'mes')
+            ->get()
+            ->groupBy('alumno_id');
+
+        $pdf = PDF::loadView('/Supervisor/PDFGeneral', compact('alumnos', 'reportesPorMes', 'carrera'));
+
+        return $pdf->stream('reporte_general.pdf');
+    }
+
+    public function bloquearBeca($id){
+
+        //Código para bloquear beca
+        echo "Beca bloqueada: ".$id;
+
+    }
+
+    public function desbloquearBeca($id){
+
+        //Código para desbloquear beca
+        echo "Beca desbloqueada: ".$id;
+
+    }
 }

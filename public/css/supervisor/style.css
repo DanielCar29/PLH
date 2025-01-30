@@ -284,7 +284,7 @@ div.tabla-visualizar_reporte{
 }
 
 .contenido_general-visualizar_reporte{
-    height: 70vh;
+    height: 80vh;
     padding: 2%;
 }
 div.tabla-visualizar_reporte > table{
@@ -310,9 +310,29 @@ div.tabla-visualizar_reporte > table{
     text-align: center;
     box-sizing: content-box;
     display: inline-block;
-
 }
 
+.btn-generar_pdf_general {
+    /* background-color: #f8f9fa; */
+    border-radius: 0.5rem;
+    max-width: 9%;
+    margin-left: 87%;
+}
+
+.icon-pdf_general a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    border-radius: 0.5rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.icon-pdf_general a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 /* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
 .boton_enviar-perfil{
