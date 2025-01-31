@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CorreoBloqueoBecaMailable;
+use App\Mail\CorreoDesbloqueoBecaMailable;
 use App\Models\supervisor_visualiza_reporte;
 // Incluir clase para enviar correos de no uso a alumno
 use App\Mail\CorreoNoUsoMailable;
@@ -19,28 +21,33 @@ class visualizar_reporte extends Controller
      */
     public function index()
     {
-        //Encontrar la manera de hacer esto mismo pero sin el procedmiento almacenado y con modelos
         $alumnos = DB::table('alumnos')
             ->join('users', 'alumnos.usuario_id', '=', 'users.id')
             ->leftJoin('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
+            ->leftJoin('alumno_beca', 'alumnos.id', '=', 'alumno_beca.alumno_id')
+            ->leftJoin('becas', 'alumno_beca.beca_id', '=', 'becas.id')
             ->select(
-                'alumnos.id', 
-                'alumnos.numero_de_control', 
-                'users.name', 
-                'users.apellido_paterno', 
-                'users.apellido_materno', 
-                'users.email', // Se agrega el campo email
-                DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca')
+            'alumnos.id', 
+            'alumnos.numero_de_control', 
+            'users.name', 
+            'users.apellido_paterno', 
+            'users.apellido_materno', 
+            'users.email', // Se agrega el campo email
+            DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca'),
+            'becas.estado AS estado_beca' // Se agrega el campo estado de la beca
             )
             ->groupBy(
-                'alumnos.id', 
-                'alumnos.numero_de_control', 
-                'users.name', 
-                'users.apellido_paterno', 
-                'users.apellido_materno', 
-                'users.email' // Asegúrate de agrupar por el campo email también
+            'alumnos.id', 
+            'alumnos.numero_de_control', 
+            'users.name', 
+            'users.apellido_paterno', 
+            'users.apellido_materno', 
+            'users.email', // Asegúrate de agrupar por el campo email también
+            'becas.estado' // Asegúrate de agrupar por el campo estado de la beca también
             )
             ->get();
+
+            
 
         return view('supervisor.visualizar_reporte', compact('alumnos'));
     }
@@ -163,17 +170,44 @@ class visualizar_reporte extends Controller
         return $pdf->stream('reporte_general.pdf');
     }
 
-    public function bloquearBeca($id){
+    public function bloquearBeca($id, Request $request){
 
-        //Código para bloquear beca
-        echo "Beca bloqueada: ".$id;
+        $motivo = $request->query('motivo');
+        $correo = $request->query('correo');
+        $nombre = $request->query('nombre');
+        $apellidoPaterno = $request->query('apellido_paterno');
+        $apellidoMaterno = $request->query('apellido_materno');
+
+        Mail::to($correo)->send(new CorreoBloqueoBecaMailable($nombre,$apellidoPaterno,$apellidoMaterno,$motivo));
+
+        //Lógica para bloquear beca en la base de datos
+        DB::table('becas')
+            ->join('alumno_beca', 'becas.id', '=', 'alumno_beca.beca_id')
+            ->where('alumno_beca.alumno_id', $id)
+            ->update(['becas.estado' => 'inactivo']);
+        
+        return redirect()->route('supervisor.visualizar_reporte')->with(['success' => 'Se ha bloqueado al alumno: '.$nombre
+        .' '.$apellidoPaterno.' '.$apellidoMaterno]);
 
     }
 
-    public function desbloquearBeca($id){
+    public function desbloquearBeca($id, Request $request){
 
-        //Código para desbloquear beca
-        echo "Beca desbloqueada: ".$id;
+        $nombre = $request->query('nombre');
+        $apellidoPaterno = $request->query('apellidoPaterno');
+        $apellidoMaterno = $request->query('apellidoMaterno');
+        $correo = $request->query('correo');
+
+        Mail::to($correo)->send(new CorreoDesbloqueoBecaMailable($nombre,$apellidoPaterno,$apellidoMaterno));
+
+        //Lógica para bloquear beca en la base de datos
+        DB::table('becas')
+        ->join('alumno_beca', 'becas.id', '=', 'alumno_beca.beca_id')
+        ->where('alumno_beca.alumno_id', $id)
+        ->update(['becas.estado' => 'activo']);
+
+        return redirect()->route('supervisor.visualizar_reporte')->with(['success' => 'Se ha desbloqueado al alumno: '.$nombre
+        .' '.$apellidoPaterno.' '.$apellidoMaterno]);
 
     }
 }
