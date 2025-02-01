@@ -78,7 +78,7 @@
         </div>
 
         <div>
-          <a class="dropdown-item text-decoration-none text-blue-dark" href="{{ route('recover.form') }}">¿Olvidaste tu contraseña?</a>
+          <a class="dropdown-item text-decoration-none text-blue-dark" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
         </div>
         
         </form>

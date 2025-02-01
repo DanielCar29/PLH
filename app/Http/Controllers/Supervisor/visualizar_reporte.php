@@ -59,21 +59,31 @@ class visualizar_reporte extends Controller
     public function verGrafica($id){
 
         $alumno = DB::table('alumnos')
-            ->join('users', 'alumnos.usuario_id', '=', 'users.id')
-            ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
-            ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
-            ->select(
-                'alumnos.id AS alumno_id', 
-                'alumnos.numero_de_control AS Numero_de_control', 
-                'users.name AS Nombre', 
-                'users.apellido_paterno AS Apellido_Paterno', 
-                'users.apellido_materno AS Apellido_Materno', 
-                'carreras.carrera AS Carrera'
-            )
-            ->where('alumnos.id', $id)
-            ->first();
+        ->join('users', 'alumnos.usuario_id', '=', 'users.id')
+        ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
+        ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
+        ->select(
+            'alumnos.id AS alumno_id',
+            'alumnos.numero_de_control AS Numero_de_control',
+            'users.name AS Nombre',
+            'users.apellido_paterno AS Apellido_Paterno',
+            'users.apellido_materno AS Apellido_Materno',
+            'carreras.carrera AS Carrera'
+        )
+        ->where('alumnos.id', $id)
+        ->first();
 
-        return view('supervisor.grafica', compact('alumno'));
+        $usos_beca = DB::table('reportes')
+        ->select(
+            DB::raw("DATE_FORMAT(fecha_uso_beca, '%M') as mes"),
+            DB::raw("COUNT(*) as veces_uso_beca")
+        )
+        ->where('alumno_id', $id)
+        ->groupBy('mes')
+        ->orderByRaw("STR_TO_DATE(mes, '%M')") // Ordena los meses correctamente
+        ->get();
+
+    return view('supervisor.grafica', compact('alumno', 'usos_beca'));
 
     }
 

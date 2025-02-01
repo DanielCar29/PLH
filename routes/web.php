@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Agregar rutas modulados 
+require __DIR__.'/auth.php';
+require __DIR__.'/supervisor.php';
+require __DIR__.'/alumno.php';
+require __DIR__.'/admin.php';
+
 Route::get('/404', function () {
     return view('/errors/404');
 });
@@ -36,11 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Agregar rutas modulados 
-require __DIR__.'/auth.php';
-require __DIR__.'/supervisor.php';
-require __DIR__.'/alumno.php';
-require __DIR__.'/admin.php';
 
 Route::get('/', function () {
     return view('login');
@@ -52,7 +53,7 @@ Route::get('/preguntas_frecuentes', function () {
     return view('preguntas_frecuentes');
 });
 
-Route::get('/recover', [RecoverController::class, 'showRecoverForm'])->name('recover.form');
-Route::post('/recover', [RecoverController::class, 'recover'])->name('recover');
-Route::get('/reset-password', [RecoverController::class, 'showResetPasswordForm'])->name('reset.password.form');
-Route::post('/reset-password', [RecoverController::class, 'resetPassword'])->name('reset.password');
+// Route::get('/recover', [RecoverController::class, 'showRecoverForm'])->name('recover.form');
+// Route::post('/recover', [RecoverController::class, 'recover'])->name('recover');
+// Route::get('/reset-password', [RecoverController::class, 'showResetPasswordForm'])->name('reset.password.form');
+// Route::post('/reset-password', [RecoverController::class, 'resetPassword'])->name('reset.password');

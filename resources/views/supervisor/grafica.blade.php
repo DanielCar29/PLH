@@ -88,68 +88,80 @@
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar', // El tipo de gráfico que deseas crear
-            data: {
-                labels: ['Marzo', 'Abril', 'Mayo', 'Junio',],
-                datasets: [{
-                    // No necesitas el label si no quieres mostrarlo
-                    data: [12, 13, 3, 5,],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 255, 255, 1)', // Cambia el color del borde de las barras a blanco
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 1)' // Cambia el color de las etiquetas del eje Y a blanco
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 1)' // Cambia el color de la cuadrícula del eje Y a negro
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 1)' // Cambia el color de las etiquetas del eje X a blanco
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 1)' // Cambia el color de la cuadrícula del eje X a negro
-                        }
-                    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('myChart').getContext('2d');
+    
+            // Datos desde Laravel
+            var usos_beca = @json($usos_beca);
+    
+            // Extraer meses y veces de uso
+            var labels = usos_beca.map(item => item.mes);
+            var data = usos_beca.map(item => item.veces_uso_beca);
+    
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                plugins: {
-                    legend: {
-                        display: false // Oculta la leyenda
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1, // Asegura que solo se muestren números enteros
+                                color: 'rgba(255, 255, 255, 1)' // Color de los números del eje Y
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 1)' // Color de la cuadrícula del eje Y
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 1)' // Color de los números del eje X
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 1)' // Color de la cuadrícula del eje X
+                            }
+                        }
                     },
-                    title: {
-                        display: true,
-                        text: 'Dias de uso del alumno',
-                        color: 'rgba(255, 255, 255, 1)', // Cambia el color del título del gráfico a blanco
-                        font: {
-                            size: 34
+                    plugins: {
+                        legend: {
+                            display: false // Oculta la leyenda
+                        },
+                        title: {
+                            display: true,
+                            text: 'Días de uso del alumno',
+                            color: 'rgba(255, 255, 255, 1)',
+                            font: {
+                                size: 34
+                            }
                         }
                     }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 
 
     
