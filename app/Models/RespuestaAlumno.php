@@ -9,7 +9,7 @@ class RespuestaAlumno extends Model
 {
     use HasFactory;
     protected $table = 'respuestas_alumno';
-    protected $fillable = ['preguntas_id', 'supervisor_id', 'respuesta'];
+    protected $fillable = ['preguntas_id', 'supervisor_id', 'respuesta', 'alumno_solicitud_beca_id'];
 
     public function pregunta()
     {
@@ -24,5 +24,10 @@ class RespuestaAlumno extends Model
     public function respuestasSolicitud()
     {
         return $this->hasMany(RespuestaSolicitud::class, 'respuestas_alumno_id');
+    }
+
+    public function alumnoSolicitudBeca()
+    {
+        return $this->belongsTo(AlumnoSolicitudBeca::class, 'alumno_solicitud_beca_id');
     }
 }

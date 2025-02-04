@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ListaSolicitud extends Model
 {
     use HasFactory;
+
     protected $table = 'listas_solicitud';
 
     protected $fillable = [

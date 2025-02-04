@@ -11,7 +11,12 @@ class AlumnoSolicitudBeca extends Model
 
     protected $table = 'alumno_solicitudbeca';
 
-    protected $fillable = ['solicitud_de_beca_id', 'alumno_id', 'estado', 'envio'];
+    protected $fillable = [
+        'solicitud_de_beca_id',
+        'alumno_id',
+        'estado',
+        'envio'
+    ];
 
     public function solicitudDeBeca()
     {
@@ -25,6 +30,6 @@ class AlumnoSolicitudBeca extends Model
 
     public function respuestasAlumno()
     {
-        return $this->hasManyThrough(RespuestaAlumno::class, RespuestaSolicitud::class, 'solicitud_de_beca_id', 'id', 'solicitud_de_beca_id', 'respuestas_alumno_id');
+        return $this->hasMany(RespuestaAlumno::class, 'alumno_solicitud_beca_id');
     }
 }

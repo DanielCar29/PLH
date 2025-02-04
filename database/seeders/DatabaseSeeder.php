@@ -21,6 +21,9 @@ use App\Models\SolicitudDeBeca;
 use App\Models\SupervisorVisualizaReporte;
 use App\Models\Supervisor;
 use App\Models\User;
+use App\Models\ListaSolicitud;
+use App\Models\RespuestaAlumno; // Añadir esta línea
+use App\Models\RespuestaSolicitud; // Añadir esta línea
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,14 +34,12 @@ class DatabaseSeeder extends Seeder
     {
         // Creación de carreras:
         $carreras = [
-            'ing. informatica',
-            'ing. Sistemas Computacionales',
-            'ing. Sistemas Automotrices',
-            'Ing. ambiental',
-            'ing. electromecanica',
-            'ing electronica',
-            'ing industrial',
-            'Ing. Gestión Empresarial',
+            'Ing. Informatica',
+            'Ing. en Sistemas Computacionales',
+            'Ing. en Sistemas Automotrices',
+            'Ing. Ambiental',
+            'Ing. Industrial',
+            'Ing. en Gestión Empresarial',
             'Ing. Electromecánica',
             'Ing. Electrónica'
         ];
@@ -145,13 +146,19 @@ class DatabaseSeeder extends Seeder
         }
 
         // Registros en tabla de alumno solicitud beca
-        $estados = ['aceptada', 'rechazada', 'pendiente'];
         for ($i = 1; $i <= 3; $i++) {
             AlumnoSolicitudBeca::create([
                 'solicitud_de_beca_id' => $i,
                 'alumno_id' => $i,
-                'estado' => $estados[$i - 1],
                 'envio' => 0
+            ]);
+        }
+
+        // Registros en tabla de lista solicitud
+        for ($i = 1; $i <= 3; $i++) {
+            ListaSolicitud::create([
+                'carreras_id' => 1,
+                'solicitud_de_beca_id' => $i
             ]);
         }
 
@@ -175,6 +182,38 @@ class DatabaseSeeder extends Seeder
 
         foreach ($preguntas as $pregunta) {
             PreguntaDeSolicitudDelAlumno::create(['pregunta' => $pregunta]);
+        }
+
+        // Registros en tabla de respuestas de alumno
+        $respuestas = [
+            "Respuesta 1",
+            "Respuesta 2",
+            "Respuesta 3",
+            "Respuesta 4",
+            "Respuesta 5",
+            "Respuesta 6",
+            "Respuesta 7",
+            "Respuesta 8",
+            "Respuesta 9",
+            "Respuesta 10",
+            "Respuesta 11",
+            "Respuesta 12",
+            "Respuesta 13"
+        ];
+
+        for ($i = 1; $i <= 3; $i++) {
+            foreach ($respuestas as $index => $respuesta) {
+                $respuestaAlumno = RespuestaAlumno::create([
+                    'preguntas_id' => $index + 1,
+                    'supervisor_id' => 1, // Asignar el ID del supervisor
+                    'respuesta' => $respuesta
+                ]);
+
+                RespuestaSolicitud::create([
+                    'solicitud_de_beca_id' => $i,
+                    'respuestas_alumno_id' => $respuestaAlumno->id
+                ]);
+            }
         }
     }
 }

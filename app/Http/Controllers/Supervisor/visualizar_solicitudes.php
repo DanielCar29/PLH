@@ -240,5 +240,4 @@ class visualizar_solicitudes extends Controller
         return redirect()->route('supervisor.visualizar_solicitud')->with(['success' => 'Se ha enviado la lista de solicitudes!']);
 
     }
-
 }

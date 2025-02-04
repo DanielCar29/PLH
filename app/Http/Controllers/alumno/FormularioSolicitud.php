@@ -16,24 +16,34 @@ class FormularioSolicitud extends Controller
 {
     public function show()
     {
-        return view('alumno.preguntas');
+        // Cargar las respuestas más recientes del alumno
+        $alumnoId = Auth::user()->alumno->id;
+        $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)
+            ->where('envio', 0)  // Solo mostrar las solicitudes no enviadas
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        $respuestas = [];
+        if ($solicitudBeca) {
+            $respuestas = $solicitudBeca->solicitudDeBeca->respuestasSolicitud->pluck('respuesta', 'preguntas_id');
+        }
+
+        return view('alumno.preguntas', compact('respuestas'));
     }
 
     public function enviarFormulario(Request $request)
     {
-        // Obtener el ID del alumno autenticado
         $alumnoId = Auth::user()->alumno->id;
         $estado = 'pendiente';
-        $fechaSolicitud = now();  // Usamos el timestamp actual para fecha_solicitud
+        $fechaSolicitud = now(); 
 
-        // IDs de las preguntas definidos
+        // Respuestas del formulario, incluida la pregunta opcional
         $idsPreguntas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-        // Obtener las respuestas del formulario
         $respuestas = collect($request->only([
             'respuesta_1',
             'respuesta_2',
-            'respuesta_3', // Esta es opcional
+            'respuesta_3', // Pregunta opcional
             'respuesta_4',
             'respuesta_5',
             'respuesta_6',
@@ -47,10 +57,14 @@ class FormularioSolicitud extends Controller
             'respuesta_14'
         ]));
 
-        // Verificar si ya existe una solicitud de beca para el alumno
-        $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)->first();
+        // Buscar la última solicitud del alumno, solo si no está enviada
+        $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)
+                                             ->where('envio', 0)
+                                             ->orderBy('created_at', 'desc')
+                                             ->first();
+        
         if (!$solicitudBeca) {
-            // Crear una nueva solicitud de beca
+            // Si no existe una solicitud pendiente, creamos una nueva
             $solicitud = SolicitudDeBeca::create(['fecha_solicitud' => $fechaSolicitud]);
             $solicitudBeca = AlumnoSolicitudBeca::create([
                 'solicitud_de_beca_id' => $solicitud->id,
@@ -59,34 +73,33 @@ class FormularioSolicitud extends Controller
                 'envio' => 0
             ]);
         } else {
-            // Actualizar la fecha de solicitud si ya existe
+            // Si ya existe una solicitud pendiente, actualizamos la fecha de solicitud
             $solicitudBeca->solicitudDeBeca->update(['fecha_solicitud' => $fechaSolicitud]);
         }
 
-        // Obtener la carrera del alumno
         $carreraAlumno = CarrerasAlumno::where('alumno_id', $alumnoId)->first();
-
-        // Obtener un supervisor de la misma carrera
         $supervisor = CarrerasSupervisor::where('carreras_id', $carreraAlumno->carreras_id)->first();
 
-        // Iterar sobre cada respuesta y guardarla en la base de datos
+        // Validar si existe un supervisor para la carrera
+        if (!$supervisor) {
+            return redirect()->route('alumno.solicitud')->with('error', 'No se encontró un supervisor para tu carrera.');
+        }
+
+        // Guardar respuestas en el historial
         foreach ($idsPreguntas as $idPregunta) {
-            // Obtener la respuesta para esta pregunta
             $respuesta = $respuestas->get('respuesta_' . $idPregunta, null);
 
-            // Verificar si la respuesta es opcional y está vacía
+            // Si la pregunta 3 es opcional y no tiene respuesta, la ignoramos
             if ($idPregunta == 3 && empty($respuesta)) {
-                continue; // Saltar la inserción si la respuesta es opcional y está vacía
+                continue;
             }
 
-            // Crear la respuesta del alumno
             $respuestaAlumno = RespuestaAlumno::create([
                 'preguntas_id' => $idPregunta,
-                'supervisor_id' => $supervisor->supervisor_id, // Asignar el ID del supervisor de la misma carrera
+                'supervisor_id' => $supervisor->supervisor_id,
                 'respuesta' => $respuesta
             ]);
 
-            // Asociar la respuesta con la solicitud de beca
             RespuestaSolicitud::create([
                 'solicitud_de_beca_id' => $solicitudBeca->solicitud_de_beca_id,
                 'respuestas_alumno_id' => $respuestaAlumno->id

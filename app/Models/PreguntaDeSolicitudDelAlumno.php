@@ -22,4 +22,10 @@ class PreguntaDeSolicitudDelAlumno extends Model
     {
         return $this->hasMany(RespuestaAlumno::class, 'preguntas_id');
     }
+
+    // Relación con las respuestas de solicitud
+    public function respuestasSolicitud()
+    {
+        return $this->hasMany(RespuestaSolicitud::class, 'preguntas_id');
+    }
 }

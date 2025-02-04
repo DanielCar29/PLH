@@ -676,3 +676,37 @@ div h5{
     margin: auto;
     text-align: center;
 }
+
+
+/* Mensajes de confirmación */
+.confirmation-message {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(88, 21, 28, 1); /* Menos transparencia */
+    border: 3px solid #fff;
+    border-radius: 10px;
+    padding: 20px; /* Más espacio */
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 350px; /* Ajuste de tamaño */
+}
+
+/* Contenedor para centrar los botones */
+.confirmation-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Estilo de los botones */
+.confirmation-message button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
