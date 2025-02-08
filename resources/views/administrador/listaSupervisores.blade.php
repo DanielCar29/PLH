@@ -12,7 +12,9 @@
     @include('administrador.navbar.menu') <!-- Asegúrate de tener este archivo de menú -->
 
     <div class="container mt-5">
-        <h2>Lista de Supervisores</h2>
+        <div class="titulo">
+            <h2>Lista de Supervisores</h2>
+        </div>
 
         <!-- Botón para agregar supervisor -->
         <a href="{{ route('administrador.registrarSupervisor') }}" class="btn btn-primary mb-3">

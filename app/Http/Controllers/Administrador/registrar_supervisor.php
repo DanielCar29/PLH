@@ -24,66 +24,53 @@ class registrar_supervisor extends Controller
      * Registra un nuevo supervisor.
      */
     public function registrarSupervisor(Request $request)
-{
-    $request->validate([
-        'nombre' => 'required|string|max:255',
-        'apellido_paterno' => 'required|string|max:255',
-        'apellido_materno' => 'required|string|max:255',
-        'correoPart1' => 'required|max:255',
-        'correoPart2' => 'required|regex:/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/',
-        'carrera' => 'required|exists:carreras,id',
-        'passPart1' => 'required|min:8',
-        'passPart2' => 'required|min:8',
-    ], [
-        'correoPart2.regex' => 'El dominio del correo electrónico debe ser válido.',
-    ]);
-    
-    // Verifica si las contraseñas son iguales
-    if ($request->input('passPart1') !== $request->input('passPart2')) {
-        return back()->withErrors(['passPart2' => 'Las contraseñas no coinciden.']);
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'required|string|max:255',
+            'correo' => 'required|email|max:255|unique:users,email',
+            'carrera' => 'required|exists:carreras,id',
+            'passPart1' => 'required|min:8',
+            'passPart2' => 'required|min:8|same:passPart1',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'apellido_paterno.required' => 'El campo apellido paterno es obligatorio.',
+            'apellido_materno.required' => 'El campo apellido materno es obligatorio.',
+            'correo.required' => 'El campo correo es obligatorio.',
+            'correo.email' => 'El correo debe ser una dirección de correo válida.',
+            'correo.unique' => 'El correo ya está registrado.',
+            'carrera.required' => 'El campo carrera es obligatorio.',
+            'carrera.exists' => 'La carrera seleccionada no es válida.',
+            'passPart1.required' => 'El campo contraseña es obligatorio.',
+            'passPart1.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'passPart2.required' => 'El campo verificar contraseña es obligatorio.',
+            'passPart2.min' => 'La verificación de la contraseña debe tener al menos 8 caracteres.',
+            'passPart2.same' => 'Las contraseñas no coinciden.',
+        ]);
+
+        $nombre = $request->input('nombre');
+        $apellido_paterno = $request->input('apellido_paterno');
+        $apellido_materno = $request->input('apellido_materno');
+        $correo = $request->input('correo');
+        $carrera = $request->input('carrera');
+        $passPart1 = $request->input('passPart1');
+
+        $usuario = new User();
+        $usuario->name = $nombre;
+        $usuario->apellido_paterno = $apellido_paterno;
+        $usuario->apellido_materno = $apellido_materno;
+        $usuario->email = $correo;
+        $usuario->password = bcrypt($passPart1);
+        $usuario->role = 'supervisor';
+        $usuario->save();
+
+        $supervisor = new Supervisor();
+        $supervisor->usuario_id = $usuario->id;
+        $supervisor->save();
+
+        $supervisor->carreras()->attach($carrera);
+
+        return redirect()->route('administrador.listaSupervisores')->with('success', 'Supervisor registrado correctamente');
     }
-    
-    // Combina las partes del correo electrónico
-$correo = $request->input('correoPart1') . '@' . $request->input('correoPart2');
-
-// Validación de formato de correo (dominio incorrecto)
-if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-    return back()->withErrors([
-        'correoPart1' => 'El correo electrónico no es válido.',
-        'correoPart2' => 'El dominio del correo electrónico debe ser válido.'
-    ])->withInput();
-}
-
-// Verifica si el correo ya existe en la base de datos
-if (User::where('email', $correo)->exists()) {
-    return back()->withErrors([
-        'correoPart1' => 'El correo electrónico ya está registrado.',
-        'correoPart2' => 'Por favor, utiliza un correo diferente.'
-    ])->withInput();
-}
-
-    
-    $nombre = $request->input('nombre');
-    $apellido_paterno = $request->input('apellido_paterno');
-    $apellido_materno = $request->input('apellido_materno');
-    $carrera = $request->input('carrera');
-    $passPart1 = $request->input('passPart1');
-    
-    $usuario = new User();
-    $usuario->name = $nombre;
-    $usuario->apellido_paterno = $apellido_paterno;
-    $usuario->apellido_materno = $apellido_materno;
-    $usuario->email = $correo;
-    $usuario->password = bcrypt($passPart1);
-    $usuario->role = 'supervisor';
-    $usuario->save();
-    
-    $supervisor = new Supervisor();
-    $supervisor->usuario_id = $usuario->id;
-    $supervisor->save();
-    
-    $supervisor->carreras()->attach($carrera);
-    
-    return redirect()->route('administrador.listaSupervisores')->with('success', 'Supervisor registrado correctamente');
-}    
 }

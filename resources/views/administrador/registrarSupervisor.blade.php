@@ -43,29 +43,26 @@
                            aria-describedby="inputGroup-sizing-default" name="nombre" value="{{ old('nombre') }}">
                 </div>
                 
-                <div class="input-group">
-                    <span class="input-group-text">Apellido Paterno y Materno</span>
-                    <input type="text" aria-label="First name" class="form-control" name="apellido_paterno" value="{{ old('apellido_paterno') }}">
-                    <input type="text" aria-label="Last name" class="form-control" name="apellido_materno" value="{{ old('apellido_materno') }}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Apellido Paterno</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" 
+                           aria-describedby="inputGroup-sizing-default" name="apellido_paterno" value="{{ old('apellido_paterno') }}">
                 </div>
-                            
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Apellido Materno</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" 
+                           aria-describedby="inputGroup-sizing-default" name="apellido_materno" value="{{ old('apellido_materno') }}">
+                </div>
 
                 <div class="input-group mb-3 correo">
-                    <input type="text" class="form-control" placeholder="Correo Electrónico" aria-label="Username" name="correoPart1" value="{{ old('correoPart1') }}">
-                    <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" placeholder="gmail.com" aria-label="Server" name="correoPart2" value="{{ old('correoPart2') }}">
+                    <input type="email" class="form-control" placeholder="Correo Electrónico" aria-label="Email" name="correo" value="{{ old('correo') }}">
                 </div>                
                 
-                @error('correoPart1')
+                @error('correo')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
                 
-                @error('correoPart2')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                
-                
-
                 <div>
                     <select class="form-select" aria-label="Default select example" name="carrera">
                         @foreach($carreras as $carrera)

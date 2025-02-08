@@ -91,7 +91,7 @@
         </div>
 
         <div class="bienvenida-titulo color">
-          <h1>Bienvenido</h1>
+          <h1>¡Hola y bienvenido!</h1>
         </div>
 
         <div class="bienvenida-parrafo color">

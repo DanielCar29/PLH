@@ -2,7 +2,7 @@
 <div class="menu-navegacion">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid nav-color color-borde-plh">
-      <a class="navbar-brand item-nav elemento-navegacion-plh" href="{{ url('/supervisor.home') }}">
+      <a class="navbar-brand item-nav elemento-navegacion-plh" href="{{ url('/alumno.home') }}">
         <img src="{{URL::asset('/img/logo.png')}}" alt="Logo" 
             height="30" class="d-inline-block align-text-top">
                 PLH
@@ -16,7 +16,7 @@
                   <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar becas</a>
+                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar beca</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Información de tu beca</a>

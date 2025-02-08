@@ -189,6 +189,8 @@ div.menu-navegacion nav{
     border:1px #fff solid;
     border-radius: 10px;
     background-color: rgb(76, 0, 125,.4);
+    padding: 10px; /* Añadir padding para evitar desbordamiento */
+    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
 }
 
 .titulo:hover{
@@ -197,6 +199,7 @@ div.menu-navegacion nav{
 
 .titulo > h2{
     text-decoration:underline;
+    word-wrap: break-word; /* Permitir que el texto se ajuste a la línea */
 }
 
 /* Vista habilitar convocatoria */
@@ -545,6 +548,9 @@ div.datos-perfil > div > h3{
     width: 100%;
     border-collapse: collapse; /* Asegura que no haya espacio entre las celdas */
     margin: 0 auto; /* Centra la tabla en la página */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el desbordamiento de los bordes redondeados */
 }
 
 /* Estilo para las celdas y encabezado */
@@ -583,6 +589,11 @@ div.datos-perfil > div > h3{
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
+    .titulo {
+        max-width: 90%;
+        margin: auto;
+    }
+
     .menu-navegacion {
         max-width: 100%;
     }
@@ -591,7 +602,7 @@ div.datos-perfil > div > h3{
         height: auto;
     }
 
-    .titulo-convocatoria, .habilitar-convocatoria, .registro, .titulo {
+    .titulo-convocatoria, .habilitar-convocatoria, .registro {
         width: 90%;
         margin: auto;
     }
