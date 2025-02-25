@@ -21,11 +21,19 @@ class visualizar_reporte extends Controller
      */
     public function index()
     {
+        // Obtener el ID del supervisor autenticado
+        $supervisorId = auth()->user()->id;
+        $supervisorId = DB::table('supervisores')
+            ->where('usuario_id', auth()->user()->id)
+            ->value('id');
+
         $alumnos = DB::table('alumnos')
             ->join('users', 'alumnos.usuario_id', '=', 'users.id')
             ->leftJoin('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
             ->leftJoin('alumno_beca', 'alumnos.id', '=', 'alumno_beca.alumno_id')
             ->leftJoin('becas', 'alumno_beca.beca_id', '=', 'becas.id')
+            ->join('carreras_alumno as ca', 'alumnos.id', '=', 'ca.alumno_id')
+            ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
             'alumnos.id', 
             'alumnos.numero_de_control', 
@@ -36,6 +44,7 @@ class visualizar_reporte extends Controller
             DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca'),
             'becas.estado AS estado_beca' // Se agrega el campo estado de la beca
             )
+            ->where('cs.supervisor_id', $supervisorId)
             ->groupBy(
             'alumnos.id', 
             'alumnos.numero_de_control', 

@@ -16,6 +16,9 @@ class visualizar_solicitudes extends Controller
     {
         // Obtener el ID del supervisor autenticado
         $supervisorId = auth()->user()->id;
+        $supervisorId = DB::table('supervisores')
+            ->where('usuario_id', auth()->user()->id)
+            ->value('id');
 
         $alumnos = DB::table('alumno_solicitudbeca as asb')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
@@ -85,6 +88,9 @@ class visualizar_solicitudes extends Controller
 
         // Obtener el ID del supervisor autenticado
         $supervisorId = auth()->user()->id;
+        $supervisorId = DB::table('supervisores')
+            ->where('usuario_id', auth()->user()->id)
+            ->value('id');
 
         $alumnos = DB::table('alumno_solicitudbeca as asb')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
@@ -119,6 +125,9 @@ class visualizar_solicitudes extends Controller
 
         // Obtener el ID del supervisor autenticado
         $supervisorId = auth()->user()->id;
+        $supervisorId = DB::table('supervisores')
+            ->where('usuario_id', auth()->user()->id)
+            ->value('id');
 
         $alumnos = DB::table('alumno_solicitudbeca as asb')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
@@ -189,19 +198,33 @@ class visualizar_solicitudes extends Controller
         DB::beginTransaction();
 
         try {
-            // Actualizar el campo envio a 1
-            DB::table('alumno_solicitudbeca')
-                ->update(['envio' => 1]);
+            // Obtener el ID del supervisor autenticado
+            $supervisorId = auth()->user()->id;
+            $supervisorId = DB::table('supervisores')
+                ->where('usuario_id', auth()->user()->id)
+                ->value('id');
 
-            // Insertar registros en listas_solicitud para aquellos con estado = 'aceptada'
+            // Insertar registros en listas_solicitud para aquellos con estado = 'aceptada', envio = 0 y que correspondan a la carrera del supervisor
             DB::table('listas_solicitud')->insertUsing(
                 ['carreras_id', 'solicitud_de_beca_id', 'created_at', 'updated_at'],
                 DB::table('alumno_solicitudbeca as asb')
                     ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
                     ->join('carreras_alumno as ca', 'a.id', '=', 'ca.alumno_id')
+                    ->join('carreras_supervisor as cs', 'ca.carreras_id', '=', 'cs.carreras_id')
                     ->where('asb.estado', 'aceptada')
+                    ->where('asb.envio', 0)
+                    ->where('cs.supervisor_id', $supervisorId)
                     ->select('ca.carreras_id', 'asb.solicitud_de_beca_id', DB::raw('NOW()'), DB::raw('NOW()'))
             );
+
+            // Actualizar el campo envio a 1 solo para aquellos que no han sido enviados y que correspondan a la carrera del supervisor
+            DB::table('alumno_solicitudbeca as asb')
+                ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+                ->join('carreras_alumno as ca', 'a.id', '=', 'ca.alumno_id')
+                ->join('carreras_supervisor as cs', 'ca.carreras_id', '=', 'cs.carreras_id')
+                ->where('asb.envio', 0)
+                ->where('cs.supervisor_id', $supervisorId)
+                ->update(['asb.envio' => 1]);
 
             // Confirmar la transacción
             DB::commit();
@@ -214,28 +237,6 @@ class visualizar_solicitudes extends Controller
             DB::statement("SET @@sql_safe_updates = @old_safe_updates;");
             throw $e;
         }
-
-        // Obtener el ID del supervisor autenticado
-        $supervisorId = auth()->user()->id;
-
-        $alumnos = DB::table('alumno_solicitudbeca as asb')
-            ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
-            ->join('users as u', 'a.usuario_id', '=', 'u.id')
-            ->join('solicitudes_de_beca as sb', 'asb.solicitud_de_beca_id', '=', 'sb.id')
-            ->join('carreras_alumno as ca', 'ca.alumno_id', '=', 'a.id')
-            ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
-            ->select(
-                'a.id as alumno_id', 
-                'u.name', 
-                'u.apellido_paterno', 
-                'u.apellido_materno', 
-                'a.numero_de_control', 
-                'sb.fecha_solicitud as fecha_solicitud', 
-                'asb.estado as estado'
-            )
-            ->where('asb.envio', 0)
-            ->where('cs.supervisor_id', $supervisorId)
-            ->get();
 
         return redirect()->route('supervisor.visualizar_solicitud')->with(['success' => 'Se ha enviado la lista de solicitudes!']);
 
