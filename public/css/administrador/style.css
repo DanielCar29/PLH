@@ -6,6 +6,7 @@
 body{
     /* background-color: rgb(76, 0, 125,.2) !important; */
     background-image: url('/img/fondo-admin.jpg');
+    font-size: 1.1rem; /* Aumentar el tamaño de la fuente general */
 }
 
 /* MENU DE NAVEGACION-------------------------------------------------------------------------------------------------------------- */
@@ -203,21 +204,15 @@ div.menu-navegacion nav{
 }
 
 /* Vista habilitar convocatoria */
-.fechas_convocatoria{
+.fechas_convocatoria, .uso_beca, .limite_solicitudes {
     width: 80%;
     text-align: center;
     margin: auto;
 }
 
-.fecha_inicio{
+.fecha_inicio, .fecha_cierre, .fecha_inicio_uso, .fecha_fin_uso, .limite_solicitudes {
     padding: 2%;
     text-decoration: underline;
-}
-
-.fecha_cierre{
-    padding: 2%;
-    text-decoration: underline;
-
 }
 
 .habilitar-convocatoria{
@@ -235,7 +230,7 @@ div.menu-navegacion nav{
 }
 
 .formulario-convocatoria{
-    /* padding: 2%; */
+    padding: 2%;
 }
 
 .input-carrera{
@@ -273,7 +268,6 @@ div.menu-navegacion nav{
     width: 50%;
     margin: auto !important;
     margin-top: 3% !important;
-    text-align: center;
     
 }
 
@@ -335,6 +329,42 @@ td{
 
 .contenido-listas-cuerpo:hover{
     background-color: rgb(76, 0, 125,.6);
+}
+
+.accordion-button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #4c007d;
+}
+
+.accordion-button:not(.collapsed::after) {
+    filter: invert(1);
+}
+
+.accordion-button {
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+    background-color: #6a008f;
+}
+
+.anuncio_noSolicitudes {
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.anuncio_noSolicitudes h2 {
+    font-size: 1.3rem; /* Aumentar el tamaño de la fuente para el anuncio de no solicitudes */
+}
+
+.tabla-lista {
+    margin-top: 20px;
 }
 
 /* Vista PERFIL ------------------------------------------------------------------------------------------------------------------------- */
@@ -559,6 +589,7 @@ div.datos-perfil > div > h3{
     text-align: left;
     border: 1px solid #ddd; /* Bordes finos entre celdas */
     background-color: white; /* Fondo blanco para las celdas */
+    font-size: 1.1rem; /* Aumentar el tamaño de la fuente para las tablas */
 }
 
 /* Encabezado con fondo morado y texto blanco */
@@ -585,6 +616,12 @@ div.datos-perfil > div > h3{
         overflow-x: auto; /* Habilita el scroll horizontal si la tabla es muy ancha */
         white-space: nowrap; /* Evita que el texto se rompa en palabras */
     }
+}
+
+.carrera-titulo {
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem; /* Aumentar el tamaño de la fuente para los títulos de las carreras */
 }
 
 /* Estilos responsivos */

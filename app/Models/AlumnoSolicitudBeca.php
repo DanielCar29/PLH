@@ -32,4 +32,9 @@ class AlumnoSolicitudBeca extends Model
     {
         return $this->hasMany(RespuestaAlumno::class, 'alumno_solicitud_beca_id');
     }
+
+    public function listaSolicitud()
+    {
+        return $this->hasOne(ListaSolicitud::class, 'solicitud_de_beca_id', 'solicitud_de_beca_id');
+    }
 }

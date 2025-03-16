@@ -73,6 +73,9 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         Route::post('/esperaSolicitud/{id}',[listaSolicitudes::class,'esperaSolicitud'])
                     ->name('administrador.esperaSolicitud');
 
+     Route::post('/administrador/activarBeca', [App\Http\Controllers\Administrador\listaSolicitudes::class, 'activarBeca'])->name('administrador.activarBeca');
+
+
 
     // Rutas de accion perfil
     // |________________________________________________________________________________________________________________

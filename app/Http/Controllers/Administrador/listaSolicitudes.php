@@ -6,60 +6,86 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Carrera;
+use App\Models\Alumno;
+use App\Models\AlumnoSolicitudBeca;
+use App\Models\Beca;
+use App\Models\AlumnoBeca;
+use App\Models\ListaSolicitud;
 
 class listaSolicitudes extends Controller
 {
-    public function index(){
+    public function index() {
+        $carreras = Carrera::all();
+        $solicitudesPorCarrera = [];
 
-        $alumnos = DB::select('CALL mostrarDatosListasSolicitud()');
+        foreach ($carreras as $carrera) {
+            $solicitudesPorCarrera[$carrera->id] = Alumno::whereHas('carreras', function($query) use ($carrera) {
+                $query->where('carreras.id', $carrera->id);
+            })->whereHas('solicitudesBeca', function($query) {
+                $query->where('envio', 1)->where('estado', 'aceptada');
+            })->with(['user', 'solicitudesBeca' => function($query) {
+                $query->with('listaSolicitud');
+            }])->get();
+        }
 
-        return view('administrador.listaSolicitudes', compact('alumnos'));
-
+        return view('administrador.listaSolicitudes', compact('carreras', 'solicitudesPorCarrera'));
     }
 
     public function verSolicitudAlumno($id){
-
-        $alumno = DB::select('CALL obtenerDatosAlumno(?)',[$id]);
-
+        $alumno = Alumno::with('user', 'carreras')->find($id);
         $preguntas_alumno = DB::select('CALL obtenerAlumnoRespuestas(?)',[$id]);
+        $estado = AlumnoSolicitudBeca::where('alumno_id', $id)->value('estado');
 
-        return view('administrador.verSolicitudAlumno', compact('alumno','preguntas_alumno'));
-
+        return view('administrador.verSolicitudAlumno', compact('alumno', 'preguntas_alumno', 'estado'));
     }
 
     public function aceptarSolicitud($id){
-
         $estado = 'aceptada';
+        ListaSolicitud::where('solicitud_de_beca_id', $id)->update(['estado' => $estado]);
 
-        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
-
-        $alumnos = DB::select('CALL mostrarDatosListasSolicitud()');
-
-        return view('administrador.listaSolicitudes', compact('alumnos'));
-
+        return redirect()->route('administrador.listaSolicitudes');
     }
 
     public function rechazarSolicitud($id){
-
         $estado = 'rechazada';
+        ListaSolicitud::where('solicitud_de_beca_id', $id)->update(['estado' => $estado]);
 
-        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
-
-        $alumnos = DB::select('CALL mostrarDatosListasSolicitud()');
-
-        return view('administrador.listaSolicitudes', compact('alumnos'));
-
+        return redirect()->route('administrador.listaSolicitudes');
     }
 
-    public function esperaSolicitud($id){
+    public function activarBeca(Request $request){
+        $alumnos = Alumno::whereIn('id', $request->alumnos)->get();
 
-        $estado = 'pendiente';
+        foreach ($alumnos as $alumno) {
+            $solicitudBeca = $alumno->solicitudesBeca->first();
+            if ($solicitudBeca && $solicitudBeca->listaSolicitud->estado == 'aceptada' && $solicitudBeca->listaSolicitud->envio == 0) {
+                $codigo_qr = $this->generateUniqueQrCode();
 
-        DB::select('CALL cambiarEstadoSolicitudAlumno(?,?)',[$estado,$id]);
-        
-        $alumnos = DB::select('CALL mostrarDatosListasSolicitud()');
+                $beca = Beca::create([
+                    'fecha_de_autorizacion' => now(),
+                    'codigo_qr' => $codigo_qr,
+                    'estado' => 'activa',
+                    'becas_carrera_id' => $alumno->carreras->first()->id // Asignar el ID correcto de la carrera del alumno
+                ]);
 
-        return view('administrador.listaSolicitudes', compact('alumnos'));
+                AlumnoBeca::create([
+                    'alumno_id' => $alumno->id,
+                    'beca_id' => $beca->id
+                ]);
 
+                $solicitudBeca->listaSolicitud->update(['envio' => 1]);
+            }
+        }
+
+        return redirect()->route('administrador.listaSolicitudes')->with('success', 'Becas activadas correctamente.');
+    }
+
+    private function generateUniqueQrCode() {
+        do {
+            $codigo_qr = bin2hex(random_bytes(16)); // Generar un código QR único
+        } while (Beca::where('codigo_qr', $codigo_qr)->exists());
+
+        return $codigo_qr;
     }
 }

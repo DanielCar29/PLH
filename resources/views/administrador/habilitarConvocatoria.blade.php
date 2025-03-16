@@ -45,31 +45,41 @@
                                             aria-describedby="inputGroup-sizing-default" name="carreras[{{ $carrera->id }}]" value="1" required>
                                 </div>
                             @endforeach
-                            
+
+                            <div class="limite_solicitudes">
+                                <span>Límite de solicitudes por docente:</span>
+                                <input type="number" name="limite_solicitudes" min="1" required>
+                            </div>
+
                             <div class="fechas_convocatoria">
 
                                 <div class="fecha_inicio">
                                     <span>Fecha de inicio:</span>
-                                    <input type="date" name="fecha_inicio" id="" required
-                                            name="fecha_inicio">
-
+                                    <input type="date" name="fecha_inicio" id="" required>
                                 </div>
 
                                 <div class="fecha_cierre">
                                     <span>Fecha de cierre:</span>
-                                    <input type="date" name="fecha_cierre" id="" required
-                                            name="fecha_cierre">
-
+                                    <input type="date" name="fecha_cierre" id="" required>
                                 </div>
 
                             </div>
 
+                            <div class="uso_beca">
+                                <div class="fecha_inicio_uso">
+                                    <span>Inicio de uso de la beca:</span>
+                                    <input type="date" name="inicio_uso_beca" required>
+                                </div>
+
+                                <div class="fecha_fin_uso">
+                                    <span>Fin de uso de la beca:</span>
+                                    <input type="date" name="fin_uso_beca" required>
+                                </div>
+                            </div>
+
                             <div class="botones-form">
-    
                                 <div class="boton-envio" id="boton_habilitar">
-    
                                     <button type="submit" class="btn btn-dark" name="submit_button">Habilitar</button>
-    
                                 </div>
                             </div>
 

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('estado_convocatoria', 45);
             $table->date('inicio_convocatoria'); // New field for the start date of the convocatoria
             $table->date('fin_convocatoria'); // New field for the end date of the convocatoria
+            $table->date('inicio_uso_beca'); // Nuevo campo para inicio de uso de la beca
+            $table->date('fin_uso_beca'); // Nuevo campo para fin de uso de la beca
             $table->timestamps();
 
             $table->foreign('administrador_general_id')->references('id')->on('administradores_generales')->onDelete('no action')->onUpdate('no action');

@@ -14,6 +14,8 @@ class ListaSolicitud extends Model
     protected $fillable = [
         'carreras_id',
         'solicitud_de_beca_id',
+        'estado',
+        'envio'
     ];
 
     public function carrera()

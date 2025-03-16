@@ -112,33 +112,19 @@ class DatabaseSeeder extends Seeder
             'administrador_general_id' => 1,
             'estado_convocatoria' => 'activo',
             'inicio_convocatoria' => fake()->date(),
-            'fin_convocatoria' => fake()->date()
+            'fin_convocatoria' => fake()->date(),
+            'inicio_uso_beca' => fake()->date(), // Añadir este campo
+            'fin_uso_beca' => fake()->date() // Añadir este campo
         ]);
 
         // Registro en tabla becas carrera
         BecasCarrera::create([
             'carreras_id' => 1,
             'detalles_beca_id' => $detalles_beca->id,
-            'cantidad_de_becas' => 10
+            'cantidad_de_becas' => 10,
+            'limite_solicitudes' => 5 // Añadir este campo
         ]);
 
-        // Registro en tabla beca
-        for ($i = 1; $i <= 3; $i++) {
-            Beca::create([
-                'fecha_de_autorizacion' => fake()->date(),
-                'codigo_qr' => fake()->uuid(),
-                'estado' => 'activo',
-                'becas_carrera_id' => 1
-            ]);
-        }
-
-        // Registros en tabla de alumnos beca
-        for ($i = 1; $i <= 3; $i++) {
-            AlumnoBeca::create([
-                'alumno_id' => $i,
-                'beca_id' => $i
-            ]);
-        }
 
         // Registros en tabla de solicitudes de beca
         for ($i = 1; $i <= 3; $i++) {
@@ -151,14 +137,6 @@ class DatabaseSeeder extends Seeder
                 'solicitud_de_beca_id' => $i,
                 'alumno_id' => $i,
                 'envio' => 0
-            ]);
-        }
-
-        // Registros en tabla de lista solicitud
-        for ($i = 1; $i <= 3; $i++) {
-            ListaSolicitud::create([
-                'carreras_id' => 1,
-                'solicitud_de_beca_id' => $i
             ]);
         }
 

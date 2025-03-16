@@ -20,6 +20,9 @@ class habilitar_convocatoria extends Controller
         $request->validate([
             'fecha_inicio' => 'required|date|before:fecha_cierre',
             'fecha_cierre' => 'required|date|after:fecha_inicio',
+            'inicio_uso_beca' => 'required|date|before:fin_uso_beca',
+            'fin_uso_beca' => 'required|date|after:inicio_uso_beca',
+            'limite_solicitudes' => 'required|integer|min:1',
             'carreras' => 'required|array',
             'carreras.*' => 'required|integer|exists:carreras,id',
             'carreras.*' => 'required|integer|min:1', // Asegúrate de validar la cantidad de becas
@@ -30,6 +33,15 @@ class habilitar_convocatoria extends Controller
             'fecha_cierre.required' => 'La fecha de cierre es obligatoria.',
             'fecha_cierre.date' => 'La fecha de cierre debe ser una fecha válida.',
             'fecha_cierre.after' => 'La fecha de cierre debe ser después de la fecha de inicio.',
+            'inicio_uso_beca.required' => 'La fecha de inicio de uso de la beca es obligatoria.',
+            'inicio_uso_beca.date' => 'La fecha de inicio de uso de la beca debe ser una fecha válida.',
+            'inicio_uso_beca.before' => 'La fecha de inicio de uso de la beca debe ser antes de la fecha de fin de uso de la beca.',
+            'fin_uso_beca.required' => 'La fecha de fin de uso de la beca es obligatoria.',
+            'fin_uso_beca.date' => 'La fecha de fin de uso de la beca debe ser una fecha válida.',
+            'fin_uso_beca.after' => 'La fecha de fin de uso de la beca debe ser después de la fecha de inicio de uso de la beca.',
+            'limite_solicitudes.required' => 'El límite de solicitudes por docente es obligatorio.',
+            'limite_solicitudes.integer' => 'El límite de solicitudes por docente debe ser un número entero.',
+            'limite_solicitudes.min' => 'El límite de solicitudes por docente debe ser al menos 1.',
             'carreras.required' => 'Debe seleccionar al menos una carrera.',
             'carreras.*.exists' => 'La carrera seleccionada no es válida.',
             'carreras.*.min' => 'La cantidad de becas debe ser al menos 1.',
@@ -37,6 +49,9 @@ class habilitar_convocatoria extends Controller
 
         $fecha_inicio = $request->input('fecha_inicio');
         $fecha_cierre = $request->input('fecha_cierre');
+        $inicio_uso_beca = $request->input('inicio_uso_beca');
+        $fin_uso_beca = $request->input('fin_uso_beca');
+        $limite_solicitudes = $request->input('limite_solicitudes');
 
         // Verificar si el administrador está autenticado
         if (!auth()->check()) {
@@ -48,6 +63,8 @@ class habilitar_convocatoria extends Controller
         $detalleBeca->estado_convocatoria = 'activo';
         $detalleBeca->inicio_convocatoria = $fecha_inicio;
         $detalleBeca->fin_convocatoria = $fecha_cierre;
+        $detalleBeca->inicio_uso_beca = $inicio_uso_beca;
+        $detalleBeca->fin_uso_beca = $fin_uso_beca;
         $detalleBeca->save();
 
         foreach ($request->input('carreras') as $carrera_id => $cantidad_de_becas) {
@@ -55,6 +72,7 @@ class habilitar_convocatoria extends Controller
             $becaCarrera->carreras_id = $carrera_id;
             $becaCarrera->detalles_beca_id = $detalleBeca->id;
             $becaCarrera->cantidad_de_becas = $cantidad_de_becas;
+            $becaCarrera->limite_solicitudes = $limite_solicitudes;
             $becaCarrera->save();
         }
 

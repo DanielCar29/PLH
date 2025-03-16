@@ -88,6 +88,11 @@ div.container.text-center{
 .bienvenida-parrafo{
     max-width: 50%;
     margin: auto;
+    text-align: justify;
+}
+
+.bienvenida-parrafo li {
+    margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {

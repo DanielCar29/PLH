@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,163 +20,77 @@
         <div class="contenido-listas-cuerpo">
 
             <div class="accordion" id="accordionExample">
+                @foreach($carreras as $carrera)
                 <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
-                            aria-expanded="true" aria-controls="collapseOne">
-                            Ing. Informática
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-
-                    @if(empty($alumnos))
-                        <div class="anuncio_noSolicitudes">
-                            <h2>No hay solicitudes disponibles!</h2>
-                        </div>
-                    @else
-                        <div class="tabla-lista">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Numero de control</th>
-                                        <th>Nombre del alumno</th>
-                                        <th>Acciones</th>
-                                        <th>Aceptado/Rechazado</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody class="table-group-divider">
-                    @foreach($alumnos as $alumno)                                    
-                                    <tr>
-                                        <td>{{$alumno->numero_de_control}}</td>
-                                        <td>{{$alumno->name}} {{$alumno->apellido_paterno}} {{$alumno->apellido_materno}}</td>
-                                        <td>
-                                            <div class="icono_ver">
-                                                <a href="{{route('administrador.verSolicitudAlumno', ['id' => $alumno->alumno_id])}}">
-                                                    <img src="{{URL::asset('/img/icons/ver.png')}}" alt="" height="30">
-                                                </a>
-                                            </div>
-            
-                                        </td>
-                                        <td>
-                                            @if ($alumno->estado == 'aceptada')
-                                              <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">
-              
-                                            @elseif ($alumno->estado == 'rechazada')
-                                              <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
-              
-                                            @else
-                                              <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="40">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button {{ empty($solicitudesPorCarrera[$carrera->id]) ? 'collapsed' : '' }} carrera-titulo" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $carrera->id }}" 
+                                aria-expanded="{{ empty($solicitudesPorCarrera[$carrera->id]) ? 'false' : 'true' }}" aria-controls="collapse{{ $carrera->id }}" {{ empty($solicitudesPorCarrera[$carrera->id]) ? 'disabled' : '' }}>
+                            {{ $carrera->carrera }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ $carrera->id }}" class="accordion-collapse collapse {{ empty($solicitudesPorCarrera[$carrera->id]) ? '' : 'show' }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            @if(empty($solicitudesPorCarrera[$carrera->id]))
+                            <div class="anuncio_noSolicitudes">
+                                <h2>No hay solicitudes disponibles!</h2>
+                            </div>
+                            @else
+                            <form method="POST" action="{{ route('administrador.activarBeca') }}">
+                                @csrf
+                                <div class="tabla-lista">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Numero de control</th>
+                                                <th>Nombre del alumno</th>
+                                                <th>Acciones</th>
+                                                <th>Estado</th>
+                                                <th>Seleccionar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                            @foreach($solicitudesPorCarrera[$carrera->id] as $alumno)
+                                            @if ($alumno->solicitudesBeca->isNotEmpty() && $alumno->solicitudesBeca->first()->listaSolicitud->envio == 0)
+                                            <tr>
+                                                <td>{{ $alumno->numero_de_control }}</td>
+                                                <td>{{ $alumno->user->name }} {{ $alumno->user->apellido_paterno }} {{ $alumno->user->apellido_materno }}</td>
+                                                <td>
+                                                    <div class="icono_ver">
+                                                        <a href="{{ route('administrador.verSolicitudAlumno', ['id' => $alumno->id]) }}">
+                                                            <img src="{{ URL::asset('/img/icons/ver.png') }}" alt="" height="30">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @if ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'aceptada')
+                                                    <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="40">
+                                                    @elseif ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'rechazada')
+                                                    <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="40">
+                                                    @else
+                                                    <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="alumnos[]" value="{{ $alumno->id }}">
+                                                </td>
+                                            </tr>
                                             @endif
-                                              
-                                          </td>
-                                      </tr>
-                                          @endforeach
-
-                                </tbody>
-                            </table>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="botones_solicitud">
+                                    <button type="submit" class="btn btn-primary">Activar Beca</button>
+                                </div>
+                            </form>
+                            @endif
                         </div>
-
-                        <div class="boton-envio-aceptados">
-                            <button type="button" class="btn btn-success">Enviar aceptados</button>
-                        </div>
-                    @endif
                     </div>
-                  </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
-                            aria-expanded="false" aria-controls="collapseTwo">
-                      Ing. Sistemas Computacionales
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      
-                        {{-- <div class="tabla-lista">
-                            <table class="table table-hover table-striped">
-                                <caption>Lista de solicitudes de alumnos de Informática</caption>
-                                <thead>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Edad</th>
-                                    <th>Correo Electrónico</th>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div> --}}
-
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" 
-                            aria-expanded="false" aria-controls="collapseThree">
-                      Ing. Ambiental
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      
-                        {{-- <div class="tabla-lista">
-                            <table class="table table-hover table-striped">
-                                <caption>Lista de solicitudes de alumnos de Informática</caption>
-                                <thead>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Edad</th>
-                                    <th>Correo Electrónico</th>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>Juan</td>
-                                        <td>Pérez</td>
-                                        <td>20</td>
-                                        <td>juan.perez@example.com</td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div> --}}
-
-                    </div>
-                  </div>
-                </div>
-              </div>
+                @endforeach
+            </div>
 
         </div>
-
 
     </div>
     

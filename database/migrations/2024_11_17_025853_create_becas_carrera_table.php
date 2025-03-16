@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('carreras_id')->unsigned();  
             $table->integer('detalles_beca_id')->unsigned();  
             $table->integer('cantidad_de_becas'); // Agregar el campo cantidad_de_becas
+            $table->integer('limite_solicitudes'); // Nuevo campo para límite de solicitudes por docente
             $table->timestamps();  
 
             $table->foreign('carreras_id')->references('id')->on('carreras')->onDelete('no action')->onUpdate('no action');  

@@ -99,7 +99,8 @@
             En que consiste la beca Alimenticia: <br>
           </h5>
           <li>Se otorga a alumnos de muy escasos recursos.</li>
-          <li>Es un apoyo alimenticio que se imparte en la cafetería de la institución; solo puede ser utilizado para consumir alimentos (ni golosinas ni refrescos).</li>
+          <li>Es un apoyo alimenticio que se imparte en la cafetería de la institución.</li>
+          <li>Solo puede ser utilizado para consumir alimentos (ni golosinas ni refrescos).</li>
           <li>Esta se tramita en la Coordinación Institucional del Programa de Tutorías.</li>
         </div>
 

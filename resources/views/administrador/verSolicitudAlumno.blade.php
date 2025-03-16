@@ -14,22 +14,18 @@
     <div class="contenido_formulario">
 
         <div class="datos_alumno-formulario">
-            @foreach($alumno as $alumno)
             <div class="nombre_alumno-formulario">
-                <h5>{{$alumno->Nombre}} {{$alumno->Apellido_Materno}} {{$alumno->Apellido_Paterno}}</h1>
+                <h5>{{ $alumno->user->name }} {{ $alumno->user->apellido_paterno }} {{ $alumno->user->apellido_materno }}</h5>
             </div>
     
             <div class="carrera_alumno-formulario">
-                <h5>{{$alumno->Carrera}}</h1>
+                <h5>{{ $alumno->carreras->first()->carrera }}</h5>
             </div>
     
             <div class="numero-control_alumno-formulario">
-                <h5>{{$alumno->Numero_de_control}}</h1>
+                <h5>{{ $alumno->numero_de_control }}</h5>
             </div>
-            @endforeach  
         </div>
-
-        
 
         <div class="container">
             <div class="row justify-content-center">
@@ -38,66 +34,36 @@
                         <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
                         <div class="card-body">
                     
-                    @foreach($preguntas_alumno as $preguntas_alumno)
+                    @foreach($preguntas_alumno as $pregunta)
                                 <div class="mb-4">
                                     
-                                    <label for="scholarship_type" class="form-label"><strong>{{$preguntas_alumno->pregunta}}</strong></label>
+                                    <label for="scholarship_type" class="form-label"><strong>{{ $pregunta->pregunta }}</strong></label>
 
                                         <div>
-                                            <p><strong>R.-</strong> {{$preguntas_alumno->respuesta}}</p>
+                                            <p><strong>R.-</strong> {{ $pregunta->respuesta }}</p>
                                         </div>
                                     
                                 </div>
                     @endforeach
         
                     <div class="contenido_botones-solicitud">
-                        <form method="POST" action="{{route('administrador.aceptarSolicitud',[$alumno->alumno_id])}}">
-                            @csrf
-                            
-                                <div class="botones_solicitud">
-
-                                    <button type="submit">
-
-                                        <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="50">
-
-                                    </button>
-                                        
-
-                                </div>
-
-                        </form>
-
-                        <form method="POST" action="{{route('administrador.rechazarSolicitud',[$alumno->alumno_id])}}">
+                        <form method="POST" action="{{ route('administrador.aceptarSolicitud', ['id' => $alumno->id]) }}">
                             @csrf
                             <div class="botones_solicitud">
-
                                 <button type="submit">
-
-                                    <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="50">
-
+                                    <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="50">
                                 </button>
-                                    
-                                
-
-                            </div class="botones_solicitud">
-
-                        </form>
-                            
-                        <form method="POST" action="{{route('administrador.esperaSolicitud',[$alumno->alumno_id])}}">
-
-                            @csrf
-                            <div class="botones_solicitud">
-
-                                <button type="submit">
-
-                                    <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="50">
-
-                                </button>
-                                    
                             </div>
-
                         </form>
 
+                        <form method="POST" action="{{ route('administrador.rechazarSolicitud', ['id' => $alumno->id]) }}">
+                            @csrf
+                            <div class="botones_solicitud">
+                                <button type="submit">
+                                    <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="50">
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
                         </div>

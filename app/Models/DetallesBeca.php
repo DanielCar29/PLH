@@ -13,7 +13,9 @@ class DetallesBeca extends Model
         'administrador_general_id',
         'estado_convocatoria',
         'inicio_convocatoria',
-        'fin_convocatoria'
+        'fin_convocatoria',
+        'inicio_uso_beca', // Nuevo campo
+        'fin_uso_beca' // Nuevo campo
     ];
 
     public function administradorGeneral()
