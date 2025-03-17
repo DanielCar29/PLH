@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Administrador\listaSolicitudes;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\RecoverController;
+use App\Http\Controllers\QrScannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,9 @@ Route::get('/registro', [RegisteredUserController::class, 'create'])->name('regi
 Route::get('/preguntas_frecuentes', function () {
     return view('preguntas_frecuentes');
 });
+
+Route::get('/qrscanner', [QrScannerController::class, 'showScanner'])->name('qrscanner');
+Route::post('/register-usage', [QrScannerController::class, 'registerUsage'])->name('register.usage');
 
 // Route::get('/recover', [RecoverController::class, 'showRecoverForm'])->name('recover.form');
 // Route::post('/recover', [RecoverController::class, 'recover'])->name('recover');

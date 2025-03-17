@@ -23,7 +23,9 @@ class listaSolicitudes extends Controller
             $solicitudesPorCarrera[$carrera->id] = Alumno::whereHas('carreras', function($query) use ($carrera) {
                 $query->where('carreras.id', $carrera->id);
             })->whereHas('solicitudesBeca', function($query) {
-                $query->where('envio', 1)->where('estado', 'aceptada');
+                $query->whereHas('listaSolicitud', function($query) {
+                    $query->where('envio', 0); // Excluir solicitudes ya enviadas
+                });
             })->with(['user', 'solicitudesBeca' => function($query) {
                 $query->with('listaSolicitud');
             }])->get();
@@ -54,12 +56,36 @@ class listaSolicitudes extends Controller
         return redirect()->route('administrador.listaSolicitudes');
     }
 
-    public function activarBeca(Request $request){
-        $alumnos = Alumno::whereIn('id', $request->alumnos)->get();
+    public function activarBeca() {
+        $alumnos = Alumno::whereHas('solicitudesBeca.listaSolicitud', function($query) {
+            $query->where('envio', 0);
+        })->get();
 
         foreach ($alumnos as $alumno) {
-            $solicitudBeca = $alumno->solicitudesBeca->first();
-            if ($solicitudBeca && $solicitudBeca->listaSolicitud->estado == 'aceptada' && $solicitudBeca->listaSolicitud->envio == 0) {
+            $this->activarBecaParaAlumno($alumno);
+        }
+
+        return redirect()->route('administrador.listaSolicitudes')->with('success', 'Becas activadas correctamente.');
+    }
+
+    public function activarBecaPorCarrera($carrera_id) {
+        $alumnos = Alumno::whereHas('carreras', function($query) use ($carrera_id) {
+            $query->where('carreras.id', $carrera_id);
+        })->whereHas('solicitudesBeca.listaSolicitud', function($query) {
+            $query->where('envio', 0);
+        })->get();
+
+        foreach ($alumnos as $alumno) {
+            $this->activarBecaParaAlumno($alumno);
+        }
+
+        return redirect()->route('administrador.listaSolicitudes')->with('success', 'Becas activadas correctamente para la carrera seleccionada.');
+    }
+
+    private function activarBecaParaAlumno($alumno) {
+        $solicitudBeca = $alumno->solicitudesBeca->first();
+        if ($solicitudBeca) {
+            if ($solicitudBeca->listaSolicitud->estado == 'aceptada') {
                 $codigo_qr = $this->generateUniqueQrCode();
 
                 $beca = Beca::create([
@@ -73,12 +99,9 @@ class listaSolicitudes extends Controller
                     'alumno_id' => $alumno->id,
                     'beca_id' => $beca->id
                 ]);
-
-                $solicitudBeca->listaSolicitud->update(['envio' => 1]);
             }
+            $solicitudBeca->listaSolicitud->update(['envio' => 1]);
         }
-
-        return redirect()->route('administrador.listaSolicitudes')->with('success', 'Becas activadas correctamente.');
     }
 
     private function generateUniqueQrCode() {

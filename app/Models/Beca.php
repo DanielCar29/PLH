@@ -13,10 +13,16 @@ class Beca extends Model
         'fecha_de_autorizacion', 
         'codigo_qr', 
         'estado', 
-        'becas_carrera_id'];
+        'becas_carrera_id'
+    ];
 
     public function becasCarrera()
     {
         return $this->belongsTo(BecasCarrera::class, 'becas_carrera_id');
+    }
+
+    public function alumnos()
+    {
+        return $this->belongsToMany(Alumno::class, 'alumno_beca', 'beca_id', 'alumno_id');
     }
 }

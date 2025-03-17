@@ -21,11 +21,11 @@ class BecaController extends Controller
         // Obtener el alumno asociado al usuario
         $alumno = $user->alumno;
 
-        // Obtener la beca del alumno
-        $beca = $alumno->becas()->first();
+        // Obtener la última beca activa del alumno
+        $beca = $alumno->becas()->where('estado', 'activa')->latest()->first();
 
         // Verificar si la beca no está activa
-        $mostrarBotonPDF = $beca && $beca->estado !== 'activo';
+        $mostrarBotonPDF = $beca && $beca->estado !== 'activa';
 
         // Retornar la vista con los datos de la beca y la variable para mostrar el botón
         return view('alumno.ver_beca', compact('beca', 'mostrarBotonPDF'));
@@ -39,8 +39,8 @@ class BecaController extends Controller
         // Obtener el alumno asociado al usuario
         $alumno = Alumno::where('usuario_id', $user->id)->first();
 
-        // Obtener la beca del alumno
-        $beca = $alumno->becas()->first();
+        // Obtener la última beca activa del alumno
+        $beca = $alumno->becas()->where('estado', 'activa')->latest()->first();
 
         // Obtener el código QR de la beca desde la base de datos
         $codigoQR = $beca->codigo_qr;

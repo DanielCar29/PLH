@@ -13,11 +13,11 @@ class SupervisorVisualizaReporte extends Model
 
     public function supervisor()
     {
-        return $this->belongsTo(Supervisor::class, 'supervisor_id');
+        return $this->belongsTo(Supervisor::class, 'supervisor_id')->withDefault();
     }
 
     public function reporte()
     {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
+        return $this->belongsTo(Reporte::class, 'reporte_id')->withDefault();
     }
 }

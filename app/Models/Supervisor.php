@@ -31,9 +31,21 @@ class Supervisor extends Model
 
     // Relación con las carreras a través de una tabla intermedia
     // En el modelo Supervisor
-public function carreras()
-{
-    return $this->belongsToMany(Carrera::class, 'carreras_supervisor', 'supervisor_id', 'carreras_id');
-}
+    public function carreras()
+    {
+        return $this->belongsToMany(Carrera::class, 'carreras_supervisor', 'supervisor_id', 'carreras_id');
+    }
 
+    // Relación para obtener los alumnos de las mismas carreras que el supervisor
+    public function alumnos()
+    {
+        return $this->hasManyThrough(
+            Alumno::class,
+            CarrerasAlumno::class,
+            'carreras_id', // Foreign key on CarrerasAlumno table...
+            'id', // Foreign key on Alumno table...
+            'id', // Local key on Supervisor table...
+            'alumno_id' // Local key on CarrerasAlumno table...
+        );
+    }
 }

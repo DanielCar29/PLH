@@ -38,6 +38,9 @@ class AuthenticatedSessionController extends Controller
         elseif(auth()->user()->role == 'administrador'){
             return redirect()->intended(RouteServiceProvider::HOME_ADMIN);
         }
+        elseif(auth()->user()->role == 'cafeteria'){
+            return redirect()->intended(RouteServiceProvider::HOME_CAFETERIA);
+        }
         else{
             echo 'Uy no';
         }

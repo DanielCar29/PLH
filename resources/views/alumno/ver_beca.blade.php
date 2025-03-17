@@ -27,19 +27,19 @@
                         <div class="card-body">
 
                             {{-- Verificar si existen los datos de fecha de autorización y estado --}}
-                            @if(!empty($beca->fecha_de_autorizacion) && !empty($beca->estado))
+                            @if(!empty($beca) && !empty($beca->fecha_de_autorizacion) && !empty($beca->estado))
                                 <p><strong>Fecha de Autorización:</strong> {{ $beca->fecha_de_autorizacion }}</p>
                                 <p><strong>Estado:</strong> {{ $beca->estado }}</p>
                             @else
                                 <p><strong>Fecha de Autorización:</strong> No disponible</p>
-                                <p><strong>Estado:</strong> No disponible</p>
+                                <p><strong>Estado:</strong> Usted no ha llevado alguna vez la beca alimenticia o no posee esta misma.</p>
                             @endif
 
                             <p><strong>Descripción:</strong> <span id="description">Esta beca proporciona apoyo alimenticio mensual
                                  para estudiantes en situación de vulnerabilidad económica.</span></p>
 
-                            {{-- Mostrar botón de descargar PDF solo si la beca está cancelada --}}
-                            @if($beca->estado == 'activo')
+                            {{-- Mostrar botón de descargar PDF solo si la beca está activa --}}
+                            @if(!empty($beca) && $beca->estado == 'activa')
                                 <a href="{{ route('alumno.beca.generarPDF') }}" class="btn btn-primary">Descargar PDF</a>
                             @endif
 

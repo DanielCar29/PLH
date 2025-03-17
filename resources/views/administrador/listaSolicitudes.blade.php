@@ -35,61 +35,62 @@
                                 <h2>No hay solicitudes disponibles!</h2>
                             </div>
                             @else
-                            <form method="POST" action="{{ route('administrador.activarBeca') }}">
-                                @csrf
-                                <div class="tabla-lista">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Numero de control</th>
-                                                <th>Nombre del alumno</th>
-                                                <th>Acciones</th>
-                                                <th>Estado</th>
-                                                <th>Seleccionar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
-                                            @foreach($solicitudesPorCarrera[$carrera->id] as $alumno)
-                                            @if ($alumno->solicitudesBeca->isNotEmpty() && $alumno->solicitudesBeca->first()->listaSolicitud->envio == 0)
-                                            <tr>
-                                                <td>{{ $alumno->numero_de_control }}</td>
-                                                <td>{{ $alumno->user->name }} {{ $alumno->user->apellido_paterno }} {{ $alumno->user->apellido_materno }}</td>
-                                                <td>
-                                                    <div class="icono_ver">
-                                                        <a href="{{ route('administrador.verSolicitudAlumno', ['id' => $alumno->id]) }}">
-                                                            <img src="{{ URL::asset('/img/icons/ver.png') }}" alt="" height="30">
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    @if ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'aceptada')
-                                                    <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="40">
-                                                    @elseif ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'rechazada')
-                                                    <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="40">
-                                                    @else
-                                                    <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <input type="checkbox" name="alumnos[]" value="{{ $alumno->id }}">
-                                                </td>
-                                            </tr>
-                                            @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="botones_solicitud">
-                                    <button type="submit" class="btn btn-primary">Activar Beca</button>
-                                </div>
-                            </form>
+                            <div class="tabla-lista">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Numero de control</th>
+                                            <th>Nombre del alumno</th>
+                                            <th>Acciones</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        @foreach($solicitudesPorCarrera[$carrera->id] as $alumno)
+                                        <tr>
+                                            <td>{{ $alumno->numero_de_control }}</td>
+                                            <td>{{ $alumno->user->name }} {{ $alumno->user->apellido_paterno }} {{ $alumno->user->apellido_materno }}</td>
+                                            <td>
+                                                <div class="icono_ver">
+                                                    <a href="{{ route('administrador.verSolicitudAlumno', ['id' => $alumno->id]) }}">
+                                                        <img src="{{ URL::asset('/img/icons/ver.png') }}" alt="" height="30">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'aceptada')
+                                                <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="40">
+                                                @elseif ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'rechazada')
+                                                <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="40">
+                                                @else
+                                                <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="botones_solicitud">
+                                <form method="POST" action="{{ route('administrador.activarBecaPorCarrera', ['carrera_id' => $carrera->id]) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Activar Becas de esta Carrera</button>
+                                </form>
+                            </div>
                             @endif
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
-
+            @if(!empty(array_filter($solicitudesPorCarrera, function($solicitudes) { return !empty($solicitudes); })))
+            <div class="botones_solicitud">
+                <form method="POST" action="{{ route('administrador.activarBeca') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Activar Becas de Todas las Carreras</button>
+                </form>
+            </div>
+            @endif
         </div>
 
     </div>

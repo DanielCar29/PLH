@@ -89,6 +89,14 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make(123456789),
                 'role' => 'administrador'
+            ],
+            [
+                'name' => 'Cafeteria',
+                'apellido_materno' => 'N/A',
+                'apellido_paterno' => 'N/A',
+                'email' => 'cafeteria@gmail.com',
+                'password' => Hash::make(123456789),
+                'role' => 'cafeteria'
             ]
         ];
 

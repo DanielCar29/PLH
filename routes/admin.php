@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
                     ->name('administrador.esperaSolicitud');
 
      Route::post('/administrador/activarBeca', [App\Http\Controllers\Administrador\listaSolicitudes::class, 'activarBeca'])->name('administrador.activarBeca');
+     Route::post('/administrador/activarBecaPorCarrera/{carrera_id}', [App\Http\Controllers\Administrador\listaSolicitudes::class, 'activarBecaPorCarrera'])->name('administrador.activarBecaPorCarrera');
 
 
 

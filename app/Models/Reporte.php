@@ -12,14 +12,27 @@ class Reporte extends Model
     protected $table = 'reportes';
 
     protected $fillable = [
-        'titulo',
-        'contenido',
-        'fecha',
-        'id_supervisor',
+        'fecha_uso_beca',
+        'alumno_id',
     ];
 
-    public function supervisor()
+    public static function boot()
     {
-        return $this->belongsTo(Supervisor::class, 'id_supervisor');
+        parent::boot();
+
+        static::creating(function ($model) {
+            $existingReport = self::where('alumno_id', $model->alumno_id)
+                ->whereDate('fecha_uso_beca', $model->fecha_uso_beca)
+                ->first();
+
+            if ($existingReport) {
+                throw new \Exception('Ya existe un reporte para este alumno en la fecha especificada.');
+            }
+        });
+    }
+
+    public function alumno()
+    {
+        return $this->belongsTo(Alumno::class, 'alumno_id')->withDefault();
     }
 }

@@ -75,6 +75,9 @@
           <button type="submit">
             {{ __('Iniciar sesión') }}
           </button>
+          {{-- <a href="{{ route('qrscanner') }}" class="btn btn-secondary">
+            {{ __('Escanear Código QR') }}
+          </a> --}}
         </div>
 
         <div>

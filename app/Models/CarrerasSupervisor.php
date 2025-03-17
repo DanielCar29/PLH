@@ -27,4 +27,16 @@ class CarrerasSupervisor extends Model
     {
         return $this->belongsTo(Carrera::class, 'carreras_id');
     }
+
+    public function alumnos()
+    {
+        return $this->hasManyThrough(
+            Alumno::class,
+            CarrerasAlumno::class,
+            'carreras_id', // Foreign key on CarrerasAlumno table...
+            'id', // Foreign key on Alumno table...
+            'carreras_id', // Local key on CarrerasSupervisor table...
+            'alumno_id' // Local key on CarrerasAlumno table...
+        );
+    }
 }
