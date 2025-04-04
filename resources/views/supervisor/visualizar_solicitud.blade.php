@@ -37,7 +37,6 @@
             <div class="titulo">
                 <h1>Solicitudes de alumnos</h1>
             </div>
-    
 
             @if(empty($alumnos))
                 <div class="anuncio_noSolicitudes">
@@ -45,6 +44,22 @@
                 </div>
             @else
             <div class="tabla">
+
+              <div class="d-flex justify-content-end">
+                <h5 style="background-color: #fff; border-radius: 5px;">{{$carrera}}</h5>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <h5 style="background-color: #fff; border-radius: 5px;">Total de solicitudes:
+                  @if(empty($totalSolicitudes))
+                    <span>0</span>
+                  @else
+                    <span>{{$totalSolicitudes}}</span>
+                  @endif
+                    <span>/ {{$limiteSolicitudes}}</span>
+                </h5>
+              </div>
+
                 <table class="table table-hover table-striped" id="tabla">
                     
                         <tr>
@@ -53,6 +68,7 @@
                             <th>Visualizar Solicitud</th>
                             <th>Día de envío</th>
                             <th>Aceptado/Rechazado</th>
+
                         </tr>
 
                     <tbody class="table-group-divider">
@@ -87,25 +103,30 @@
     
                 </table>
             </div>
-            @if(empty($alumnos))
-            <div></div>
+
+            @if($alumnos->isEmpty())
+                
+                <div class="anuncio_noSolicitudes" style="text-align: center; margin-top: 20px;">
+                  <h2 style="">¡No hay solicitudes pendientes!</h2>
+                </div>
+
+                <div class="botonEnviar-lista_contenido">
+                  <button type="submit" id="botonEnviar-lista" class="btn btn-dark" disabled>
+                    Enviar solicitudes
+                  </button>
+                </div>
 
             @else
-            <form id="enviar_solicitudes" method="POST" action="{{route('supervisor.enviarListaSolicitudes')}}">
+              <form id="enviar_solicitudes" method="POST" action="{{route('supervisor.enviarListaSolicitudes')}}">
               @csrf
-              <div class="botonEnviar-lista_contenido">
-
-                <button type="submit" id="botonEnviar-lista" class="btn btn-dark">
-
+                <div class="botonEnviar-lista_contenido">
+                  <button type="submit" id="botonEnviar-lista" class="btn btn-dark">
                   Enviar solicitudes
-  
-                </button>
-
-              </div>
+                  </button>
+                </div>
+              </form>
             @endif
-
-            </form>
-
+              
         </div>
     </div>
     

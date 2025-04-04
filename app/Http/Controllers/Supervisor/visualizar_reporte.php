@@ -27,38 +27,49 @@ class visualizar_reporte extends Controller
             ->where('usuario_id', auth()->user()->id)
             ->value('id');
 
+        $carrera = DB::table('carreras_supervisor as cs')
+        ->join('carreras as c', 'cs.carreras_id', '=', 'c.id')
+        ->where('cs.supervisor_id', $supervisorId)
+        ->select('c.carrera')
+        ->first();
+
+        $carrera = $carrera->carrera;
+
         $alumnos = DB::table('alumnos')
             ->join('users', 'alumnos.usuario_id', '=', 'users.id')
             ->leftJoin('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
-            ->leftJoin('alumno_beca', 'alumnos.id', '=', 'alumno_beca.alumno_id')
+            ->join('alumno_beca', 'alumnos.id', '=', 'alumno_beca.alumno_id') // Aseguramos que exista un registro en alumno_beca
             ->leftJoin('becas', 'alumno_beca.beca_id', '=', 'becas.id')
             ->join('carreras_alumno as ca', 'alumnos.id', '=', 'ca.alumno_id')
             ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
-            'alumnos.id', 
-            'alumnos.numero_de_control', 
-            'users.name', 
-            'users.apellido_paterno', 
-            'users.apellido_materno', 
-            'users.email', // Se agrega el campo email
-            DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca'),
-            'becas.estado AS estado_beca' // Se agrega el campo estado de la beca
+                'alumnos.id', 
+                'alumnos.numero_de_control', 
+                'users.name', 
+                'users.apellido_paterno', 
+                'users.apellido_materno', 
+                'users.email', // Se agrega el campo email
+                DB::raw('MAX(reportes.fecha_uso_beca) AS ultima_vez_uso_beca'),
+                'becas.estado AS estado_beca', // Se agrega el campo estado de la beca
+                'becas.fecha_de_autorizacion' // Se agrega el campo fecha de autorización
             )
             ->where('cs.supervisor_id', $supervisorId)
+            ->whereNotNull('becas.fecha_de_autorizacion') // Filtrar por fecha de autorización no nula
             ->groupBy(
-            'alumnos.id', 
-            'alumnos.numero_de_control', 
-            'users.name', 
-            'users.apellido_paterno', 
-            'users.apellido_materno', 
-            'users.email', // Asegúrate de agrupar por el campo email también
-            'becas.estado' // Asegúrate de agrupar por el campo estado de la beca también
+                'alumnos.id', 
+                'alumnos.numero_de_control', 
+                'users.name', 
+                'users.apellido_paterno', 
+                'users.apellido_materno', 
+                'users.email', // Asegúrate de agrupar por el campo email también
+                'becas.estado', // Asegúrate de agrupar por el campo estado de la beca también
+                'becas.fecha_de_autorizacion' // Asegúrate de agrupar por el campo fecha de autorización también
             )
             ->get();
 
             
 
-        return view('supervisor.visualizar_reporte', compact('alumnos'));
+        return view('supervisor.visualizar_reporte', compact('alumnos','carrera'));
     }
 
     /**
@@ -153,6 +164,7 @@ class visualizar_reporte extends Controller
             ->join('carreras_alumno', 'alumnos.id', '=', 'carreras_alumno.alumno_id')
             ->join('carreras', 'carreras_alumno.carreras_id', '=', 'carreras.id')
             ->join('carreras_supervisor', 'carreras.id', '=', 'carreras_supervisor.carreras_id')
+            ->join('alumno_beca', 'alumnos.id', '=', 'alumno_beca.alumno_id') // Verificar que exista un registro en alumno_beca
             ->join('reportes', 'alumnos.id', '=', 'reportes.alumno_id')
             ->select(
                 'alumnos.id AS alumno_id', 
@@ -186,7 +198,7 @@ class visualizar_reporte extends Controller
 
         $pdf = PDF::loadView('/Supervisor/PDFGeneral', compact('alumnos', 'reportesPorMes', 'carrera'));
 
-        return $pdf->stream('reporte_general.pdf');
+        return $pdf->stream('reporte_general_'.$carrera->carrera.'.pdf');
     }
 
     public function bloquearBeca($id, Request $request){

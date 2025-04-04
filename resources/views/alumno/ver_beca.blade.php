@@ -39,7 +39,7 @@
                                  para estudiantes en situación de vulnerabilidad económica.</span></p>
 
                             {{-- Mostrar botón de descargar PDF solo si la beca está activa --}}
-                            @if(!empty($beca) && $beca->estado == 'activa')
+                            @if(!empty($beca) && $beca->estado == 'activo')
                                 <a href="{{ route('alumno.beca.generarPDF') }}" class="btn btn-primary">Descargar PDF</a>
                             @endif
 

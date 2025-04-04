@@ -20,6 +20,14 @@ class visualizar_solicitudes extends Controller
             ->where('usuario_id', auth()->user()->id)
             ->value('id');
 
+        $carrera = DB::table('carreras_supervisor as cs')
+            ->join('carreras as c', 'cs.carreras_id', '=', 'c.id')
+            ->where('cs.supervisor_id', $supervisorId)
+            ->select('c.carrera')
+            ->first();
+
+        $carrera = $carrera->carrera;
+
         $alumnos = DB::table('alumno_solicitudbeca as asb')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
             ->join('users as u', 'a.usuario_id', '=', 'u.id')
@@ -39,8 +47,27 @@ class visualizar_solicitudes extends Controller
             ->where('cs.supervisor_id', $supervisorId)
             ->get();
 
+        $totalSolicitudes = DB::table('alumno_solicitudbeca as asb')
+            ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+            ->join('carreras_alumno as ca', 'a.id', '=', 'ca.alumno_id')
+            ->join('carreras_supervisor as cs', 'ca.carreras_id', '=', 'cs.carreras_id')
+            // ->where('asb.estado', 'pendiente')
+            ->where('asb.envio', 0)
+            ->where('cs.supervisor_id', $supervisorId)
+            ->select(DB::raw('COUNT(asb.id) as total_solicitudes'))
+            ->first();
+
+        $limiteSolicitudes = DB::table('becas_carrera as bc')
+            ->join('carreras_supervisor as cs', 'bc.carreras_id', '=', 'cs.carreras_id')
+            ->where('cs.supervisor_id', $supervisorId)
+            ->select('bc.limite_solicitudes')
+            ->first();
+
+        $totalSolicitudes = $totalSolicitudes->total_solicitudes;
+        $limiteSolicitudes = $limiteSolicitudes->limite_solicitudes;
+
         // Retornar la vista con los datos de los alumnos
-        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+        return view('supervisor.visualizar_solicitud', compact('alumnos','totalSolicitudes','limiteSolicitudes','carrera'));
     }
 
     public function verSolicitudAlumno($id){
@@ -86,32 +113,21 @@ class visualizar_solicitudes extends Controller
             ->where('alumno_id', $id)
             ->update(['estado' => $estado]);
 
-        // Obtener el ID del supervisor autenticado
-        $supervisorId = auth()->user()->id;
-        $supervisorId = DB::table('supervisores')
-            ->where('usuario_id', auth()->user()->id)
-            ->value('id');
 
-        $alumnos = DB::table('alumno_solicitudbeca as asb')
-            ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+        $alumno = DB::table('alumnos as a')
             ->join('users as u', 'a.usuario_id', '=', 'u.id')
-            ->join('solicitudes_de_beca as sb', 'asb.solicitud_de_beca_id', '=', 'sb.id')
-            ->join('carreras_alumno as ca', 'ca.alumno_id', '=', 'a.id')
-            ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
-                'a.id as alumno_id', 
-                'u.name', 
-                'u.apellido_paterno', 
-                'u.apellido_materno', 
-                'a.numero_de_control', 
-                'sb.fecha_solicitud as fecha_solicitud', 
-                'asb.estado as estado'
+            'u.name as nombre', 
+            'u.apellido_paterno', 
+            'u.apellido_materno'
             )
-            ->where('asb.envio', 0)
-            ->where('cs.supervisor_id', $supervisorId)
-            ->get();
+            ->where('a.id', $id)
+            ->first();
 
-        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+        return redirect()->route('supervisor.visualizar_solicitud')->with(['success' => 'Se ha cambiado el estado de la solicitud del alumno: '.
+                                                                            $alumno->nombre.' '.
+                                                                            $alumno->apellido_materno.' '.
+                                                                            $alumno->apellido_paterno. ' a aceptada!']);
 
     }
 
@@ -123,32 +139,20 @@ class visualizar_solicitudes extends Controller
             ->where('alumno_id', $id)
             ->update(['estado' => $estado]);
 
-        // Obtener el ID del supervisor autenticado
-        $supervisorId = auth()->user()->id;
-        $supervisorId = DB::table('supervisores')
-            ->where('usuario_id', auth()->user()->id)
-            ->value('id');
-
-        $alumnos = DB::table('alumno_solicitudbeca as asb')
-            ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+        $alumno = DB::table('alumnos as a')
             ->join('users as u', 'a.usuario_id', '=', 'u.id')
-            ->join('solicitudes_de_beca as sb', 'asb.solicitud_de_beca_id', '=', 'sb.id')
-            ->join('carreras_alumno as ca', 'ca.alumno_id', '=', 'a.id')
-            ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
-                'a.id as alumno_id', 
-                'u.name', 
-                'u.apellido_paterno', 
-                'u.apellido_materno', 
-                'a.numero_de_control', 
-                'sb.fecha_solicitud as fecha_solicitud', 
-                'asb.estado as estado'
+            'u.name as nombre', 
+            'u.apellido_paterno', 
+            'u.apellido_materno'
             )
-            ->where('asb.envio', 0)
-            ->where('cs.supervisor_id', $supervisorId)
-            ->get();
+            ->where('a.id', $id)
+            ->first();
 
-        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+        return redirect()->route('supervisor.visualizar_solicitud')->with(['success' => 'Se ha cambiado el estado de la solicitud del alumno: '.
+                                                                            $alumno->nombre.' '.
+                                                                            $alumno->apellido_materno.' '.
+                                                                            $alumno->apellido_paterno. ' a rechazada!']);
 
     }
 
@@ -162,29 +166,20 @@ class visualizar_solicitudes extends Controller
             ->where('alumno_id', $id)
             ->update(['estado' => $estado]);
 
-        // Obtener el ID del supervisor autenticado
-        $supervisorId = auth()->user()->id;
-
-        $alumnos = DB::table('alumno_solicitudbeca as asb')
-            ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+            $alumno = DB::table('alumnos as a')
             ->join('users as u', 'a.usuario_id', '=', 'u.id')
-            ->join('solicitudes_de_beca as sb', 'asb.solicitud_de_beca_id', '=', 'sb.id')
-            ->join('carreras_alumno as ca', 'ca.alumno_id', '=', 'a.id')
-            ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
-                'a.id as alumno_id', 
-                'u.name', 
-                'u.apellido_paterno', 
-                'u.apellido_materno', 
-                'a.numero_de_control', 
-                'sb.fecha_solicitud as fecha_solicitud', 
-                'asb.estado as estado'
+            'u.name as nombre', 
+            'u.apellido_paterno', 
+            'u.apellido_materno'
             )
-            ->where('asb.envio', 0)
-            ->where('cs.supervisor_id', $supervisorId)
-            ->get();
+            ->where('a.id', $id)
+            ->first();
 
-        return view('supervisor.visualizar_solicitud', compact('alumnos'));
+        return redirect()->route('supervisor.visualizar_solicitud')->with(['success' => 'Se ha cambiado el estado de la solicitud del alumno: '.
+                                                                            $alumno->nombre.' '.
+                                                                            $alumno->apellido_materno.' '.
+                                                                            $alumno->apellido_paterno. ' a pendiente!']);
 
     }
 

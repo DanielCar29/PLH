@@ -37,9 +37,15 @@
                         {{ session('error') }}
                     </div>
                 @endif
-              </div>  
+              </div>
+              
 
             <div class="tabla-visualizar_reporte table-responsive">
+
+                <div class="d-flex justify-content-end">
+                    <h5 style="background-color: #fff; border-radius: 5px;">{{$carrera}}</h5>
+                </div>
+                
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>Numero de control</th>
@@ -49,7 +55,13 @@
                         <th>Estado de beca</th>
                     </tr>
                     <tbody class="table-group-divider">
-                        
+
+                    @if($alumnos->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center">¡No hay reportes disponibles!</td>
+                        </tr>
+                    @else
+
                     @foreach($alumnos as $alumno)
                         <tr>
                             <td>{{$alumno->numero_de_control}}</td>
@@ -173,65 +185,70 @@
                 </table>
             </div>
 
-            <div class="btn-generar_pdf_general d-flex justify-content-end align-items-center p-3">
-                <div class="icon-pdf_general">
-                    <a class="btn btn-light border shadow-sm" title="Haz clic para generar PDF general" href="{{route('supervisor.generarPDFGeneral')}}" target="_blank">
-                        <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="Generar PDF" class="img-fluid" style="max-height: 50px;">
-                    </a>
+                    {{-- Boton Generar PDF de todos los alumnos --}}
+                    <div class="btn-generar_pdf_general d-flex justify-content-end align-items-center p-3">
+                        <div class="icon-pdf_general">
+                            <a class="btn btn-light border shadow-sm" title="Haz clic para generar PDF general" href="{{route('supervisor.generarPDFGeneral')}}" target="_blank">
+                                <img src="{{URL::asset('/img/icons/archivo-pdf.png')}}" alt="Generar PDF" class="img-fluid" style="max-height: 50px;">
+                            </a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             
-        </div>
-    </div>
-    
-    {{-- Modal para bloqueo de beca --}}
-    <div class="modal fade" id="bloqueoModal" tabindex="-1" aria-labelledby="bloqueoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bloqueoModalLabel">Confirmar Bloqueo de Beca</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            {{-- Modal para bloqueo de beca --}}
+            <div class="modal fade" id="bloqueoModal" tabindex="-1" aria-labelledby="bloqueoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="bloqueoModalLabel">Confirmar Bloqueo de Beca</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="bloqueoForm">
+                                <input type="hidden" id="alumnoId" name="alumno_id">
+                                <input type="hidden" id="correo" name="correo">
+                                <input type="hidden" id="nombre" name="nombre">
+                                <input type="hidden" id="apellidoPaternoInput" name="apellido_paterno">
+                                <input type="hidden" id="apellidoMaternoInput" name="apellido_materno">
+                                
+                                <div class="mb-3">
+                                    <label for="motivo" class="form-label">Motivo del bloqueo:</label>
+                                    <textarea class="form-control" id="motivo" name="motivo" rows="3" required></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger" id="confirmarBloqueo">Confirmar Bloqueo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="bloqueoForm">
-                        <input type="hidden" id="alumnoId" name="alumno_id">
-                        <input type="hidden" id="correo" name="correo">
-                        <input type="hidden" id="nombre" name="nombre">
-                        <input type="hidden" id="apellidoPaternoInput" name="apellido_paterno">
-                        <input type="hidden" id="apellidoMaternoInput" name="apellido_materno">
-                        
-                        <div class="mb-3">
-                            <label for="motivo" class="form-label">Motivo del bloqueo:</label>
-                            <textarea class="form-control" id="motivo" name="motivo" rows="3" required></textarea>
+            </div>
+
+            {{-- Modal para desbloqueo de beca --}}
+            <div class="modal fade" id="confirmDesbloqueoModal" tabindex="-1" aria-labelledby="confirmDesbloqueoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDesbloqueoModalLabel">Confirmar Desbloqueo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que deseas devolver el acceso a la beca a este alumno?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-danger" id="confirmarBloqueo">Confirmar Bloqueo</button>
+                            <button type="button" class="btn btn-primary" id="confirmDesbloqueo">Confirmar</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    {{-- Modal para desbloqueo de beca --}}
-    <div class="modal fade" id="confirmDesbloqueoModal" tabindex="-1" aria-labelledby="confirmDesbloqueoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDesbloqueoModalLabel">Confirmar Desbloqueo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de que deseas devolver el acceso a la beca a este alumno?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmDesbloqueo">Confirmar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    @endif
+                        
+                    
 
 
 

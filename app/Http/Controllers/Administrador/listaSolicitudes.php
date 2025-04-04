@@ -91,7 +91,7 @@ class listaSolicitudes extends Controller
                 $beca = Beca::create([
                     'fecha_de_autorizacion' => now(),
                     'codigo_qr' => $codigo_qr,
-                    'estado' => 'activa',
+                    'estado' => 'activo',
                     'becas_carrera_id' => $alumno->carreras->first()->id // Asignar el ID correcto de la carrera del alumno
                 ]);
 
