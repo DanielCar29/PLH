@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
         // Registro en tabla detalles becas
         $detalles_beca = DetallesBeca::create([
             'administrador_general_id' => 1,
-            'estado_convocatoria' => 'activo',
+            'estado_convocatoria' => 'activa',
             'inicio_convocatoria' => fake()->date(),
             'fin_convocatoria' => fake()->date(),
             'inicio_uso_beca' => fake()->date(), // Añadir este campo

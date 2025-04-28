@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Carbon\Carbon;
 
 class ConvocatoriaHabilitada extends Notification
 {
@@ -23,6 +24,11 @@ class ConvocatoriaHabilitada extends Notification
 
     public function toMail($notifiable)
     {
+        $detallesBeca = \App\Models\DetallesBeca::first();
+        if ($detallesBeca && $detallesBeca->isConvocatoriaFinalizada()) {
+            $detallesBeca->update(['estado_convocatoria' => 'finalizada']);
+        }
+
         return (new MailMessage)
             ->subject('Convocatoria Habilitada')
             ->line('Se ha habilitado una nueva convocatoria de becas.')

@@ -16,21 +16,20 @@ class FormularioSolicitud extends Controller
 {
     public function show()
     {
-        // Cargar las respuestas más recientes del alumno
         $alumnoId = Auth::user()->alumno->id;
         $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)
             ->where('envio', 0)  // Solo mostrar las solicitudes no enviadas
             ->orderBy('created_at', 'desc')
             ->first();
-
-        $respuestas = [];
-        if ($solicitudBeca) {
+    
+        $respuestas = collect(); // por defecto respuestas vacías
+    
+        if ($solicitudBeca && $solicitudBeca->solicitudDeBeca && $solicitudBeca->solicitudDeBeca->respuestasSolicitud) {
             $respuestas = $solicitudBeca->solicitudDeBeca->respuestasSolicitud->pluck('respuesta', 'preguntas_id');
         }
-
+    
         return view('alumno.preguntas', compact('respuestas'));
     }
-
     public function enviarFormulario(Request $request)
     {
         $alumnoId = Auth::user()->alumno->id;

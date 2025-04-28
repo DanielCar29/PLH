@@ -27,8 +27,7 @@
                 <div class="card">
                     <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
                     <div class="card-body">
-                        <form action="{{route("alumno.formulario")}}" method="post">
-
+                        <form action="{{ route('alumno.formulario') }}" method="post">
                             @csrf
                                                         <!-- Pregunta 1 -->
                             <div class="mb-4">
@@ -291,7 +290,7 @@
                                 <textarea class="form-control" name="respuesta_14" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." required></textarea>
                             </div>
                             
-                            <button type="submit" class="btn btn-primary" href="{{ url('/alumno.beca') }}">Enviar</button>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
                     </div>
                 </div>

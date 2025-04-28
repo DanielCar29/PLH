@@ -15,8 +15,10 @@
               <li class="nav-item">
                   <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">Solicitar beca</a>
+              <li class="nav-item" id="solicitar-beca-item" style="display: none;">
+                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">
+                     Solicitar beca
+                  </a>
               </li>
               <li class="nav-item">
                   <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.beca') }}">Información de tu beca</a>
@@ -53,3 +55,25 @@
       </div>
     </nav>
   </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('{{ route("convocatoria.activa") }}')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta de la API');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.activa) {
+                    document.getElementById('solicitar-beca-item').style.display = 'block';
+                } else {
+                    console.warn('No hay una convocatoria activa.');
+                }
+            })
+            .catch(error => {
+                console.error('Error al verificar la convocatoria:', error);
+            });
+    });
+</script>

@@ -23,12 +23,10 @@ Route::group(['middleware' => ['auth','checkAlumno']], function(){
     
 // Rutas formulario
     // |__________________________________________________________________________________________________
-    Route::get('/alumno.formulario', [FormularioSolicitud::class, 'show'])->name('alumno.formulario');
+    Route::get('/alumno/formulario', [FormularioSolicitud::class, 'show'])->name('alumno.formulario');
 
-    Route::post('/alumno.formulario', [FormularioSolicitud::class, 'enviarFormulario'])->name('alumno.formulario');
-    //* Route::get('', function () {
-     //   return view('/alumno/preguntas');
-    //});
+    Route::post('/alumno/formulario', [FormularioSolicitud::class, 'enviarFormulario'])->name('alumno.formulario');
+
 // Rutas ver beca
     // |__________________________________________________________________________________________________
     Route::get('/alumno.beca', [BecaController::class, 'show'])->name('alumno.beca');

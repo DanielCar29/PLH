@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reportes', function (Blueprint $table) { 
             $table->bigIncrements('id'); 
-            $table->date('fecha_uso_beca')->unique(); 
+            $table->date('fecha_uso_beca');
             $table->bigInteger('alumno_id')->unsigned(); 
             $table->timestamps();
 

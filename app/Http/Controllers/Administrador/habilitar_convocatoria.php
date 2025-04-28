@@ -58,9 +58,17 @@ class habilitar_convocatoria extends Controller
             return redirect()->back()->with('error', 'No estás autenticado.');
         }
 
+        // Actualizar convocatorias finalizadas automáticamente
+        DetallesBeca::where('estado_convocatoria', 'activa')
+            ->where('fin_convocatoria', '<', now())
+            ->each(function ($convocatoria) {
+                $convocatoria->update(['estado_convocatoria' => 'finalizada']);
+            });
+
+        // Crear nueva convocatoria
         $detalleBeca = new DetallesBeca();
         $detalleBeca->administrador_general_id = auth()->user()->administradorGeneral->id; // Obtener el ID del administrador general
-        $detalleBeca->estado_convocatoria = 'activo';
+        $detalleBeca->estado_convocatoria = 'activa'; // Asegúrate de que el estado sea 'activa'
         $detalleBeca->inicio_convocatoria = $fecha_inicio;
         $detalleBeca->fin_convocatoria = $fecha_cierre;
         $detalleBeca->inicio_uso_beca = $inicio_uso_beca;
@@ -77,5 +85,23 @@ class habilitar_convocatoria extends Controller
         }
 
         return redirect()->back()->with('success', 'Se ha habilitado correctamente!');
+    }
+
+    public function verificarConvocatoria()
+    {
+        $detallesBeca = DetallesBeca::where('estado_convocatoria', 'activa')
+            ->where('inicio_convocatoria', '<=', now())
+            ->where('fin_convocatoria', '>=', now())
+            ->first();
+
+        if (!$detallesBeca) {
+            return response()->json(['activa' => false, 'error' => 'No hay convocatorias activas.']);
+        }
+
+        return response()->json([
+            'activa' => true,
+            'inicio_convocatoria' => $detallesBeca->inicio_convocatoria,
+            'fin_convocatoria' => $detallesBeca->fin_convocatoria,
+        ]);
     }
 }

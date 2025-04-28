@@ -39,7 +39,7 @@
                         <h1 class="card-title text-center">Convocatoria de Beca</h1>
                         <p class="card-text text-center">La convocatoria de beca ofrece oportunidades de financiamiento para estudiantes sobresalientes. Si cumples con los requisitos, ¡no dudes en solicitar!</p>
                         <div class="d-grid gap-2">
-                            <a href="{{ url('/alumno.formulario') }}" class="btn btn-primary">Solicitar</a>
+                            <a href="{{ url('/alumno/formulario') }}" class="btn btn-primary">Solicitar</a>
                         </div>
                     </div>
                 </div>

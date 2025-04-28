@@ -8,10 +8,6 @@ use App\Http\Controllers\Administrador\habilitar_convocatoria;
 use App\Http\Controllers\Administrador\listaSolicitudes;
 use App\Http\Controllers\Administrador\SupervisorController;
 
-
-
-
-
 // Rutas de administrador -------------------------------------------------------------------------------------------------
 // |
 // |
@@ -51,6 +47,8 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
         Route::Post('/administrador.activaConvocatoria',[habilitar_convocatoria::class,'habilitarConvocatoria'])
                 ->name('administrador.activaConvocatoria');
 
+        Route::get('/administrador.verificarConvocatoria', [habilitar_convocatoria::class, 'verificarConvocatoria'])
+                ->name('administrador.verificarConvocatoria');
 
     // |________________________________________________________________________________________________________________
 
@@ -75,8 +73,6 @@ Route::group(['middleware' => ['auth','checkAdmin']], function(){
 
      Route::post('/administrador/activarBeca', [App\Http\Controllers\Administrador\listaSolicitudes::class, 'activarBeca'])->name('administrador.activarBeca');
      Route::post('/administrador/activarBecaPorCarrera/{carrera_id}', [App\Http\Controllers\Administrador\listaSolicitudes::class, 'activarBecaPorCarrera'])->name('administrador.activarBecaPorCarrera');
-
-
 
     // Rutas de accion perfil
     // |________________________________________________________________________________________________________________
