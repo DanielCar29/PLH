@@ -25,16 +25,32 @@ class RegisteredUserController extends Controller
     
     public function store(Request $request): RedirectResponse
     {
+        $messages = [
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'password.regex' => 'La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+        ];
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'apellido_paterno' => ['required', 'string', 'max:255'],
             'apellido_materno' => ['required', 'string', 'max:255'],
             'numero_de_control' => ['required', 'string', 'max:9', 'unique:alumnos'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                'min:8', // Mínimo 8 caracteres
+                'regex:/[a-z]/', // Al menos una letra minúscula
+                'regex:/[A-Z]/', // Al menos una letra mayúscula
+                'regex:/[0-9]/', // Al menos un número
+                'regex:/[@$!%*?&]/', // Al menos un carácter especial
+                'confirmed', // Confirmación de contraseña
+            ],
             'semestre' => ['required', 'string', 'max:255'],
             'carrera' => ['required', 'exists:carreras,id'],
-        ]);
+        ], $messages);
 
         // Crear el usuario
         $user = User::create([
