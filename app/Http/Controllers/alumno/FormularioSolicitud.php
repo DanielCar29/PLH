@@ -32,6 +32,13 @@ class FormularioSolicitud extends Controller
     }
     public function enviarFormulario(Request $request)
     {
+        // Validar campos de texto
+        $request->validate([
+            'respuesta_14' => 'required|string|max:1000',
+            'other_reason' => 'nullable|string|max:500',
+            'other_health_reason' => 'nullable|string|max:500',
+        ]);
+
         $alumnoId = Auth::user()->alumno->id;
         $estado = 'pendiente';
         $fechaSolicitud = now(); 
@@ -91,6 +98,11 @@ class FormularioSolicitud extends Controller
             // Si la pregunta 3 es opcional y no tiene respuesta, la ignoramos
             if ($idPregunta == 3 && empty($respuesta)) {
                 continue;
+            }
+
+            // Validar que la respuesta 14 (última pregunta) no esté vacía
+            if ($idPregunta == 14 && empty($respuesta)) {
+                return redirect()->route('alumno.solicitud')->with('error', 'La última pregunta es obligatoria.');
             }
 
             $respuestaAlumno = RespuestaAlumno::create([

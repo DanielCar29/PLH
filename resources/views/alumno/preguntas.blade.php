@@ -11,133 +11,131 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
           crossorigin="anonymous">
-
-       
-   
 </head>
 <body>
     {{-- Menú de navegación --}}
     @include('/alumno/nav/menu_alumno')
 
     {{-- Formulario de Solicitud de Beca Alimenticia --}}
-<div class="contenido_formulario">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
-                    <div class="card-body">
-                        <form action="{{ route('alumno.formulario') }}" method="post">
-                            @csrf
-                                                        <!-- Pregunta 1 -->
-                            <div class="mb-4">
-                                <label for="scholarship_type" class="form-label">1. La beca Alimenticia que solicitas es:</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_1" id="first_time" value="Primera vez" required>
-                                    <label class="form-check-label" for="first_time">Primera vez</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_1" id="renewal" value="Renovación" required>
-                                    <label class="form-check-label" for="renewal">Renovación</label>
-                                </div>
-                            </div>
-
-                          <!-- Pregunta 2 -->
-                            <div class="mb-4">
-                                <label for="other_scholarships" class="form-label">2. ¿Cuentas actualmente con otra beca en el Tec?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_2" id="yes_other_scholarships" value="Si" required>
-                                    <label class="form-check-label" for="yes_other_scholarships">Sí</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_2" id="no_other_scholarships" value="No" required>
-                                    <label class="form-check-label" for="no_other_scholarships">No</label>
-                                </div>
-                            </div>
-
-                            <!-- Pregunta sobre las becas actuales -->
-                            <div id="scholarships_details" class="mb-4" style="display:none;">
-                                <label for="scholarships_details" class="form-label">En caso de que sí, ¿con qué becas cuentas actualmente?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_3" id="academic_effort" value="Esfuerzo académico">
-                                    <label class="form-check-label" for="academic_effort">Esfuerzo académico</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_3" id="academic_excellence" value="Excelencia académica">
-                                    <label class="form-check-label" for="academic_excellence">Excelencia académica</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_3" id="socioeconomic" value="Socio economica">
-                                    <label class="form-check-label" for="socioeconomic">Socio económica</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_3" id="federal_scholarship" value="Beca federal (Benito Juárez, manutención, madres solteras, etc.)">
-                                    <label class="form-check-label" for="federal_scholarship">Beca federal (Benito Juárez, manutención, madres solteras, etc.)</label>
-                                </div>
-                            </div>
-
-                            <!-- Pregunta 3 -->
-                            <div class="mb-4">
-                                <label for="live_with_family" class="form-label">3. ¿Vives con tu familia?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_4" id="yes_live_with_family" value="Si" required>
-                                    <label class="form-check-label" for="yes_live_with_family">Sí</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_4" id="no_live_with_family" value="No" required>
-                                    <label class="form-check-label" for="no_live_with_family">No</label>
-                                </div>
-                            </div>
-                             <!-- Pregunta 4 -->
+    <div class="contenido_formulario">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <h2 class="card-header">Formulario de Solicitud de Beca Alimenticia</h2>
+                        <div class="card-body">
+                            <form action="{{ route('alumno.formulario') }}" method="post">
+                                @csrf
+                                <!-- Pregunta 1 -->
                                 <div class="mb-4">
-                                <label for="currently_working" class="form-label mt-3">4. ¿Trabajas Actualmente?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_5" id="yes_working" value="Si" required>
-                                    <label class="form-check-label" for="yes_working">Sí</label>
+                                    <label for="scholarship_type" class="form-label">1. La beca Alimenticia que solicitas es:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_1" id="first_time" value="Primera vez" required>
+                                        <label class="form-check-label" for="first_time">Primera vez</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_1" id="renewal" value="Renovación" required>
+                                        <label class="form-check-label" for="renewal">Renovación</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_5" id="no_working" value="No" required>
-                                    <label class="form-check-label" for="no_working">No</label>
-                                </div>
-                            </div>
 
-                            <!-- Pregunta 5 -->
-                            <div class="mb-4">
-                                <label for="dependents" class="form-label">5. ¿Cuántas personas dependen del ingreso económico de los miembros de tu hogar para cubrir gastos de alimento (incluyéndote)?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_6"id="1-3_dependents" value="1-3" required>
-                                    <label class="form-check-label" for="1-3_dependents">1-3</label>
+                                <!-- Pregunta 2 -->
+                                <div class="mb-4">
+                                    <label for="other_scholarships" class="form-label">2. ¿Cuentas actualmente con otra beca en el Tec?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_2" id="yes_other_scholarships" value="Si" required>
+                                        <label class="form-check-label" for="yes_other_scholarships">Sí</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_2" id="no_other_scholarships" value="No" required>
+                                        <label class="form-check-label" for="no_other_scholarships">No</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_6" id="4-5_dependents" value="4-5" required>
-                                    <label class="form-check-label" for="4-5_dependents">4-5</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_6" id="6_or_more_dependents" value="6 o más" required>
-                                    <label class="form-check-label" for="6_or_more_dependents">6 o más</label>
-                                </div>
-                            </div>
 
-                            <!-- Pregunta 6 -->
-                            <div class="mb-4">
-                                <label for="monthly_income" class="form-label">6. ¿Cuál es el ingreso económico mensual?</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_7" id="2500-3000" value="2500-3000" required>
-                                    <label class="form-check-label" for="2500-3000">2500-3000</label>
+                                <!-- Detalles de becas actuales -->
+                                <div id="scholarships_details" class="mb-4" style="display:none;">
+                                    <label for="scholarships_details" class="form-label">En caso de que sí, ¿con qué becas cuentas actualmente?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_3" id="academic_effort" value="Esfuerzo académico">
+                                        <label class="form-check-label" for="academic_effort">Esfuerzo académico</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_3" id="academic_excellence" value="Excelencia académica">
+                                        <label class="form-check-label" for="academic_excellence">Excelencia académica</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_3" id="socioeconomic" value="Socio economica">
+                                        <label class="form-check-label" for="socioeconomic">Socio económica</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_3" id="federal_scholarship" value="Beca federal (Benito Juárez, manutención, madres solteras, etc.)">
+                                        <label class="form-check-label" for="federal_scholarship">Beca federal (Benito Juárez, manutención, madres solteras, etc.)</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_7" id="3000-4000" value="3000-4000" required>
-                                    <label class="form-check-label" for="3000-4000">3000-4000</label>
+
+                                <!-- Pregunta 3 -->
+                                <div class="mb-4">
+                                    <label for="live_with_family" class="form-label">3. ¿Vives con tu familia?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_4" id="yes_live_with_family" value="Si" required>
+                                        <label class="form-check-label" for="yes_live_with_family">Sí</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_4" id="no_live_with_family" value="No" required>
+                                        <label class="form-check-label" for="no_live_with_family">No</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_7" id="4000-5000" value="4000-5000" required>
-                                    <label class="form-check-label" for="4000-5000">4000-5000</label>
+
+                                <!-- Pregunta 4 -->
+                                <div class="mb-4">
+                                    <label for="currently_working" class="form-label">4. ¿Trabajas Actualmente?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_5" id="yes_working" value="Si" required>
+                                        <label class="form-check-label" for="yes_working">Sí</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_5" id="no_working" value="No" required>
+                                        <label class="form-check-label" for="no_working">No</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="respuesta_7" id="5000_more" value="5000 o más" required>
-                                    <label class="form-check-label" for="5000_more">5000 o más</label>
+
+                                <!-- Pregunta 5 -->
+                                <div class="mb-4">
+                                    <label for="dependents" class="form-label">5. ¿Cuántas personas dependen del ingreso económico de los miembros de tu hogar para cubrir gastos de alimento (incluyéndote)?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_6" id="1-3_dependents" value="1-3" required>
+                                        <label class="form-check-label" for="1-3_dependents">1-3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_6" id="4-5_dependents" value="4-5" required>
+                                        <label class="form-check-label" for="4-5_dependents">4-5</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_6" id="6_or_more_dependents" value="6 o más" required>
+                                        <label class="form-check-label" for="6_or_more_dependents">6 o más</label>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <!-- Pregunta 6 -->
+                                <div class="mb-4">
+                                    <label for="monthly_income" class="form-label">6. ¿Cuál es el ingreso económico mensual?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_7" id="2500-3000" value="2500-3000" required>
+                                        <label class="form-check-label" for="2500-3000">2500-3000</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_7" id="3000-4000" value="3000-4000" required>
+                                        <label class="form-check-label" for="3000-4000">3000-4000</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_7" id="4000-5000" value="4000-5000" required>
+                                        <label class="form-check-label" for="4000-5000">4000-5000</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta_7" id="5000_more" value="5000 o más" required>
+                                        <label class="form-check-label" for="5000_more">5000 o más</label>
+                                    </div>
+                                </div>
 
                             <!-- Pregunta 7 -->
                             <div class="mb-4">
@@ -181,6 +179,7 @@
                                 </div>
                                 <div class="form-group mt-2">
                                     <textarea class="form-control" name="other_reason" id="other_reason" rows="3" placeholder="Escribe aquí..." style="display:none;"></textarea>
+                                    @error('other_reason')<span class="text-danger">{{ $message }}</span>@enderror
                                 </div>
                             </div>
                             
@@ -214,6 +213,7 @@
                                 </div>
                                 <div class="form-group mt-2">
                                     <textarea class="form-control" name="other_health_reason" id="other_health_reason" rows="3" placeholder="Escribe aquí..." style="display:none;"></textarea>
+                                    @error('other_health_reason')<span class="text-danger">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
@@ -288,6 +288,7 @@
                             <div class="mb-4">
                                 <label for="scholarship_reason" class="form-label">13. Describe las causas de por qué solicitas la beca</label>
                                 <textarea class="form-control" name="respuesta_14" id="scholarship_reason" rows="3" placeholder="Escribe aquí..." required></textarea>
+                                @error('respuesta_14')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                             
                             <button type="submit" class="btn btn-primary">Enviar</button>
