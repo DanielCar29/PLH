@@ -28,6 +28,11 @@ class visualizar_solicitudes extends Controller
 
         $carrera = $carrera->carrera;
 
+        $detallesBeca = DB::table('detalles_becas')
+            ->where('estado_convocatoria', 'activa')
+            ->select('inicio_convocatoria', 'fin_convocatoria')
+            ->first();
+
         $alumnos = DB::table('alumno_solicitudbeca as asb')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
             ->join('users as u', 'a.usuario_id', '=', 'u.id')
@@ -35,16 +40,17 @@ class visualizar_solicitudes extends Controller
             ->join('carreras_alumno as ca', 'ca.alumno_id', '=', 'a.id')
             ->join('carreras_supervisor as cs', 'cs.carreras_id', '=', 'ca.carreras_id')
             ->select(
-                'a.id as alumno_id', 
-                'u.name', 
-                'u.apellido_paterno', 
-                'u.apellido_materno', 
-                'a.numero_de_control', 
-                'sb.fecha_solicitud as fecha_solicitud', 
-                'asb.estado as estado'
+            'a.id as alumno_id', 
+            'u.name', 
+            'u.apellido_paterno', 
+            'u.apellido_materno', 
+            'a.numero_de_control', 
+            'sb.fecha_solicitud as fecha_solicitud', 
+            'asb.estado as estado'
             )
             ->where('asb.envio', 0)
             ->where('cs.supervisor_id', $supervisorId)
+            ->whereBetween('sb.fecha_solicitud', [$detallesBeca->inicio_convocatoria, $detallesBeca->fin_convocatoria])
             ->get();
 
         $totalSolicitudes = DB::table('alumno_solicitudbeca as asb')
@@ -87,18 +93,25 @@ class visualizar_solicitudes extends Controller
             ->where('a.id', $id)
             ->get();
 
+        $detallesBecaActiva = DB::table('detalles_becas')
+            ->where('estado_convocatoria', 'activa')
+            ->select('inicio_convocatoria', 'fin_convocatoria')
+            ->first();
+
         $preguntas_alumno = DB::table('respuestas_alumno as ra')
             ->join('preguntas_de_solicitud_del_alumno as psa', 'ra.preguntas_id', '=', 'psa.id')
             ->join('respuestas_solicitud as rs', 'ra.id', '=', 'rs.respuestas_alumno_id')
             ->join('alumno_solicitudbeca as asb', 'rs.solicitud_de_beca_id', '=', 'asb.solicitud_de_beca_id')
             ->join('alumnos as a', 'asb.alumno_id', '=', 'a.id')
+            ->join('solicitudes_de_beca as sb', 'asb.solicitud_de_beca_id', '=', 'sb.id')
             ->select(
-                'a.id as alumno_id',
-                'a.numero_de_control',
-                'psa.pregunta',
-                'ra.respuesta'
+            'a.id as alumno_id',
+            'a.numero_de_control',
+            'psa.pregunta',
+            'ra.respuesta'
             )
             ->where('a.id', $id)
+            ->whereBetween('sb.fecha_solicitud', [$detallesBecaActiva->inicio_convocatoria, $detallesBecaActiva->fin_convocatoria])
             ->get();
 
         return view('supervisor.ver_solicitud_alumno', compact('alumno','preguntas_alumno'));

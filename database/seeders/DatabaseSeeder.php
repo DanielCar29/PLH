@@ -119,10 +119,10 @@ class DatabaseSeeder extends Seeder
         $detalles_beca = DetallesBeca::create([
             'administrador_general_id' => 1,
             'estado_convocatoria' => 'activa',
-            'inicio_convocatoria' => fake()->date(),
-            'fin_convocatoria' => fake()->date(),
-            'inicio_uso_beca' => fake()->date(), // Añadir este campo
-            'fin_uso_beca' => fake()->date() // Añadir este campo
+            'inicio_convocatoria' => '2025-01-01',
+            'fin_convocatoria' => '2026-01-01',
+            'inicio_uso_beca' => '2025-01-01', // Añadir este campo
+            'fin_uso_beca' => '2026-01-01' // Añadir este campo
         ]);
 
         // Registro en tabla becas carrera
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
 
         // Registros en tabla de solicitudes de beca
         for ($i = 1; $i <= 3; $i++) {
-            SolicitudDeBeca::create(['fecha_solicitud' => fake()->date()]);
+            SolicitudDeBeca::create(['fecha_solicitud' => '2025-03-25']);
         }
 
         // Registros en tabla de alumno solicitud beca
