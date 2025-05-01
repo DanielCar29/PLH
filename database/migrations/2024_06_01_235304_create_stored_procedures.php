@@ -370,28 +370,7 @@ return new class extends Migration
         END
         ");
 
-        DB::statement("
-            CREATE PROCEDURE obtenerAlumnoRespuestas(IN alumnoID BIGINT)
-                BEGIN
-                    SELECT 
-                        alumnos.id AS alumno_id,
-                        alumnos.numero_de_control,
-                        preguntas_de_solicitud_del_alumno.pregunta,
-                        respuestas_alumno.respuesta
-                    FROM 
-                        respuestas_alumno
-                    JOIN 
-                        preguntas_de_solicitud_del_alumno ON respuestas_alumno.preguntas_id = preguntas_de_solicitud_del_alumno.id
-                    JOIN 
-                        respuestas_solicitud ON respuestas_alumno.id = respuestas_solicitud.respuestas_alumno_id
-                    JOIN 
-                        alumno_solicitudbeca ON respuestas_solicitud.solicitud_de_beca_id = alumno_solicitudbeca.solicitud_de_beca_id
-                    JOIN 
-                        alumnos ON alumno_solicitudbeca.alumno_id = alumnos.id
-                    WHERE 
-                        alumnos.id = alumnoID;
-                END
-        ");
+       
 
         DB::statement("
         CREATE PROCEDURE mostrarDatosListasSolicitud()

@@ -11,6 +11,13 @@
     {{-- Menú de navegación --}}
     @include('administrador/navbar/menu')
 
+    {{-- Mensaje de feedback --}}
+    @if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="contenido-lista">
 
         <div class="titulo">
@@ -71,12 +78,19 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if($solicitudesPorCarrera[$carrera->id]->isNotEmpty())
                             <div class="botones_solicitud">
                                 <form method="POST" action="{{ route('administrador.activarBecaPorCarrera', ['carrera_id' => $carrera->id]) }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary">Activar Becas de esta Carrera</button>
+                                    <button type="submit" class="btn btn-primary" 
+                                            {{ $solicitudesPorCarrera[$carrera->id]->contains(function($alumno) {
+                                                return $alumno->solicitudesBeca->first()->listaSolicitud->estado == 'pendiente';
+                                            }) ? 'disabled' : '' }}>
+                                        Activar Becas de esta Carrera
+                                    </button>
                                 </form>
                             </div>
+                            @endif
                             @endif
                         </div>
                     </div>
@@ -87,7 +101,12 @@
             <div class="botones_solicitud">
                 <form method="POST" action="{{ route('administrador.activarBeca') }}">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Activar Becas de Todas las Carreras</button>
+                    <button type="submit" class="btn btn-primary" 
+                            {{ collect($solicitudesPorCarrera)->flatten()->contains(function($alumno) {
+                                return $alumno->solicitudesBeca->first()->listaSolicitud->estado == 'pendiente';
+                            }) ? 'disabled' : '' }}>
+                        Activar Becas de Todas las Carreras
+                    </button>
                 </form>
             </div>
             @endif

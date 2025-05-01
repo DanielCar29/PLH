@@ -44,7 +44,7 @@ class FormularioSolicitud extends Controller
         $fechaSolicitud = now(); 
 
         // Respuestas del formulario, incluida la pregunta opcional
-        $idsPreguntas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+        $idsPreguntas = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; // Excluir pregunta 3 por defecto
 
         $respuestas = collect($request->only([
             'respuesta_1',
@@ -62,6 +62,11 @@ class FormularioSolicitud extends Controller
             'respuesta_13',
             'respuesta_14'
         ]));
+
+        // Validar si la pregunta 3 debe ser incluida
+        if ($respuestas->get('respuesta_2') === 'Si') {
+            $idsPreguntas[] = 3; // Incluir pregunta 3 si la respuesta a la pregunta 2 es "Si"
+        }
 
         // Buscar la última solicitud del alumno, solo si no está enviada
         $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)
@@ -94,11 +99,6 @@ class FormularioSolicitud extends Controller
         // Guardar respuestas en el historial
         foreach ($idsPreguntas as $idPregunta) {
             $respuesta = $respuestas->get('respuesta_' . $idPregunta, null);
-
-            // Si la pregunta 3 es opcional y no tiene respuesta, la ignoramos
-            if ($idPregunta == 3 && empty($respuesta)) {
-                continue;
-            }
 
             // Validar que la respuesta 14 (última pregunta) no esté vacía
             if ($idPregunta == 14 && empty($respuesta)) {
