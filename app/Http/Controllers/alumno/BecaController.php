@@ -61,12 +61,15 @@ class BecaController extends Controller
         // Renderizar la vista en HTML
         $html = View::make('alumno.qrcode', compact('qrCodeBase64', 'alumno'))->render();
 
+        // Construir el nombre del archivo usando el nombre del alumno
+        $nombreArchivo = 'QR_' . $alumno->user->name . '_' . $alumno->user->apellido_paterno . '_' . $alumno->numero_de_control . '.pdf';
+
         // Cargar HTML en Dompdf y generar el PDF
         $pdf->loadHtml($html);
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
 
-        // Devolver el PDF como una descarga
-        return $pdf->stream('codigo_qr.pdf');
+        // Devolver el PDF como una descarga con el nombre dinámico
+        return $pdf->stream($nombreArchivo);
     }
 }

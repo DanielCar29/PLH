@@ -14,7 +14,7 @@
         }
         .header {
             padding: 20px;
-            background-color: #343a40;
+            background-color: #003785;
             color: #ffffff;
         }
         .header .institution {
@@ -66,6 +66,19 @@
     
     <!-- Título del Documento -->
     <div class="title">Código QR del Alumno</div>
+
+    <!-- Información del Alumno -->
+    <div class="qr-code-container">
+        <h3>Datos del Alumno</h3>
+        <p><strong>Nombre:</strong> {{ $alumno-> User ->name }} {{ $alumno -> User ->apellido_paterno }} {{ $alumno -> User ->apellido_materno }}</p>
+        <p><strong>Número de Control:</strong> {{ $alumno->numero_de_control }}</p>
+        <p><strong>Semestre:</strong> {{ $alumno->semestre }}</p>
+        <p><strong>Carrera:</strong> 
+            @foreach ($alumno->carreras as $carrera)
+                {{ $carrera->carrera }}
+            @endforeach
+        </p>
+    </div>
 
     <!-- Código QR -->
     <div class="qr-code-container">
