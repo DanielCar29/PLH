@@ -26,6 +26,11 @@ class QrScannerController extends Controller
             return response()->json(['message' => 'Beca no encontrada.', 'debug' => $decodedText], 404);
         }
 
+        // Verificar si la beca está activa
+        if ($beca->estado !== 'activo') {
+            return response()->json(['message' => 'Beca suspendida temporalmente', 'debug' => $decodedText], 400);
+        }
+
         $alumnoBeca = AlumnoBeca::where('beca_id', $beca->id)->first();
 
         if (!$alumnoBeca) {
@@ -37,8 +42,8 @@ class QrScannerController extends Controller
         // Verificar si el alumno ya usó la beca hoy
         $today = Carbon::today();
         $reporte = Reporte::where('alumno_id', $alumnoId)
-                          ->whereDate('fecha_uso_beca', $today)
-                          ->first();
+                  ->whereDate('fecha_uso_beca', $today)
+                  ->first();
 
         if ($reporte) {
             return response()->json(['message' => 'Este alumno ya canjeó su beca alimenticia por hoy.'], 400);
@@ -49,7 +54,6 @@ class QrScannerController extends Controller
             'fecha_uso_beca' => Carbon::now(),
             'alumno_id' => $alumnoId,
         ]);
-
 
         return response()->json([
             'message' => 'Uso de beca registrado exitosamente.',
