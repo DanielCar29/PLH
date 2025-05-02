@@ -215,7 +215,14 @@
                                 
                                 <div class="mb-3">
                                     <label for="motivo" class="form-label">Motivo del bloqueo:</label>
-                                    <textarea class="form-control" id="motivo" name="motivo" rows="3" required></textarea>
+                                    <select class="form-select" id="motivo" name="motivo" required>
+                                        <option value="" disabled selected>Seleccione un motivo</option>
+                                        <option value="Falta de uso">Falta de uso</option>
+                                        <option value="Faltas disciplinarias">Faltas disciplinarias</option>
+                                        <option value="Cambio de carrera o institución">Cambio de carrera o institución</option>
+                                        <option value="Renuncia voluntaria del beneficiario">Renuncia voluntaria del beneficiario</option>
+                                        <option value="Graduación o baja académica">Graduación o baja académica</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -150,13 +150,22 @@ class visualizar_reporte extends Controller
 
     public function generarPDFGeneral(){
 
-        //Código para generar PDF general
-        $supervisorId = auth()->user()->id;
+        $usuarioId = auth()->user()->id;
 
-        $carrera = DB::table('carreras_supervisor')
-            ->join('carreras', 'carreras_supervisor.carreras_id', '=', 'carreras.id')
-            ->where('carreras_supervisor.supervisor_id', $supervisorId)
-            ->select('carreras.carrera')
+        $supervisor = DB::table('supervisores')
+            ->where('usuario_id', $usuarioId)
+            ->first();
+        
+        if (!$supervisor) {
+            dd('No se encontró supervisor para este usuario.');
+        }
+        
+        $supervisorId = $supervisor->id;
+
+        $carrera = DB::table('carreras_supervisor as cs')
+            ->join('carreras as c', 'cs.carreras_id', '=', 'c.id')
+            ->where('cs.supervisor_id', $supervisorId)
+            ->select('c.carrera')
             ->first();
 
         $alumnos = DB::table('alumnos')
@@ -196,7 +205,12 @@ class visualizar_reporte extends Controller
             ->get()
             ->groupBy('alumno_id');
 
-        $pdf = PDF::loadView('/Supervisor/PDFGeneral', compact('alumnos', 'reportesPorMes', 'carrera'));
+
+        if ($alumnos->isEmpty()) {
+            dd('Sin datos de alumnos', $alumnos);
+        }
+
+        $pdf = PDF::loadView('Supervisor.PDFGeneral', compact('alumnos', 'reportesPorMes', 'carrera'));
 
         return $pdf->stream('reporte_general_'.$carrera->carrera.'.pdf');
     }

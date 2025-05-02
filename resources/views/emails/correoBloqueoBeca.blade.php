@@ -39,11 +39,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Notificación de Bloqueo de Beca</h1>
+            <h1>Notificación de suspensión de Beca</h1>
         </div>
         <div class="content">
             <p>Estimado/a {{ $nombre }} {{ $apellidoPaterno }} {{ $apellidoMaterno }}</p>
-            <p>Le informamos que su beca ha sido bloqueada debido a los siguientes motivos:</p>
+            <p>Le informamos que su beca ha sido suspendida debido a los siguientes motivos:</p>
             <ul>
                 {{ $motivo }}
             </ul>

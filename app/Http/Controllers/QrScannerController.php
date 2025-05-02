@@ -8,6 +8,7 @@ use App\Models\Beca;
 use App\Models\Reporte;
 use App\Models\AlumnoBeca;
 use app\Models\SupervisorVisualizaReporte;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class QrScannerController extends Controller
@@ -40,7 +41,8 @@ class QrScannerController extends Controller
         $alumnoId = $alumnoBeca->alumno_id;
 
         // Verificar si el alumno ya usó la beca hoy
-        $today = Carbon::today();
+        $today = DB::raw('DATE(NOW())');
+        
         $reporte = Reporte::where('alumno_id', $alumnoId)
                   ->whereDate('fecha_uso_beca', $today)
                   ->first();
@@ -51,7 +53,7 @@ class QrScannerController extends Controller
 
         // Registrar el uso de la beca
         $reporte = Reporte::create([
-            'fecha_uso_beca' => Carbon::now(),
+            'fecha_uso_beca' => $today,
             'alumno_id' => $alumnoId,
         ]);
 
