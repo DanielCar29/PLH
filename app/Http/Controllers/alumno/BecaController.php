@@ -7,27 +7,40 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Alumno;
 use App\Models\Beca;
+use App\Models\DetallesBeca;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\View;
+use Carbon\Carbon;
 
 class BecaController extends Controller
 {
     public function show()
     {
-        // Obtener el usuario autenticado
         $user = Auth::user();
-
-        // Obtener el alumno asociado al usuario
         $alumno = $user->alumno;
 
         // Obtener la última beca activa del alumno
         $beca = $alumno->becas()->where('estado', 'activo')->latest()->first();
 
-        // Verificar si la beca no está activa
-        $mostrarBotonPDF = $beca && $beca->estado !== 'activo';
+        $mostrarBotonPDF = false;
 
-        // Retornar la vista con los datos de la beca y la variable para mostrar el botón
+        if ($beca) {
+            // Buscar las fechas directamente en la tabla detalles_beca
+            $detallesBeca = DetallesBeca::where('estado_convocatoria', 'activa')->latest()->first();
+
+            if ($detallesBeca) {
+                $inicioUso = Carbon::parse($detallesBeca->inicio_uso_beca)->startOfDay();
+                $finUso = Carbon::parse($detallesBeca->fin_uso_beca)->endOfDay();
+                $hoy = Carbon::today();
+
+                // Verificar si la fecha actual está dentro del rango
+                if ($hoy->between($inicioUso, $finUso)) {
+                    $mostrarBotonPDF = true;
+                }
+            }
+        }
+
         return view('alumno.ver_beca', compact('beca', 'mostrarBotonPDF'));
     }
 

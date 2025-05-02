@@ -25,4 +25,9 @@ class Beca extends Model
     {
         return $this->belongsToMany(Alumno::class, 'alumno_beca', 'beca_id', 'alumno_id');
     }
+
+    public function detallesBeca()
+    {
+        return $this->belongsTo(DetallesBeca::class, 'detalles_beca_id');
+    }
 }

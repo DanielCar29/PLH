@@ -38,9 +38,11 @@
                             <p><strong>Descripción:</strong> <span id="description">Esta beca proporciona apoyo alimenticio mensual
                                  para estudiantes en situación de vulnerabilidad económica.</span></p>
 
-                            {{-- Mostrar botón de descargar PDF solo si la beca está activa --}}
-                            @if(!empty($beca) && $beca->estado == 'activo')
+                            {{-- Mostrar botón solo si corresponde --}}
+                            @if($mostrarBotonPDF)
                                 <a href="{{ route('alumno.beca.generarPDF') }}" class="btn btn-primary">Descargar PDF</a>
+                            @else
+                                <p class="text-muted">El botón solo estará disponible entre el inicio y fin del uso de la beca.</p>
                             @endif
 
                         </div>
