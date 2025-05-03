@@ -50,8 +50,8 @@
                         <form method="POST" action="{{ route('administrador.aceptarSolicitud', ['id' => $alumno->id]) }}">
                             @csrf
                             <div class="botones_solicitud">
-                                <button type="submit">
-                                    <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="50">
+                                <button type="submit" data-tooltip="Aceptar solicitud">
+                                    <img src="{{ URL::asset('/img/icons/SM.png') }}" alt="" height="50">
                                 </button>
                             </div>
                         </form>
@@ -59,8 +59,8 @@
                         <form method="POST" action="{{ route('administrador.rechazarSolicitud', ['id' => $alumno->id]) }}">
                             @csrf
                             <div class="botones_solicitud">
-                                <button type="submit">
-                                    <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="50">
+                                <button type="submit" data-tooltip="Rechazar solicitud">
+                                    <img src="{{ URL::asset('/img/icons/NM.png') }}" alt="" height="50">
                                 </button>
                             </div>
                         </form>

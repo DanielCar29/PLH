@@ -310,6 +310,7 @@ div.tabla-visualizar_reporte > table{
     text-align: center;
     box-sizing: content-box;
     display: inline-block;
+
 }
 
 .btn-generar_pdf_general {
@@ -677,6 +678,45 @@ div h5{
     text-align: center;
 }
 
+.contenido_botones-solicitud button {
+    background-color: transparent; /* Eliminar fondo gris */
+    font-size: 1.2rem; /* Aumentar el tamaño de la fuente */
+    padding: 10px 20px; /* Aumentar el tamaño del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    border: none; /* Eliminar el borde */
+    color: #58151c; /* Color del texto */
+    cursor: pointer;
+    position: relative; /* Necesario para el tooltip */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contenido_botones-solicitud button:hover {
+    background-color: #58151c; /* Fondo oscuro al pasar el mouse */
+    color: #fff; /* Texto blanco al pasar el mouse */
+}
+
+/* Estilos para el mensaje emergente */
+.contenido_botones-solicitud button::after {
+    content: attr(title); /* Mostrar el texto del atributo title */
+    position: absolute;
+    bottom: 120%; /* Posicionar el mensaje encima del botón */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #58151c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.contenido_botones-solicitud button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* Mensajes de confirmación */
 .confirmation-message {

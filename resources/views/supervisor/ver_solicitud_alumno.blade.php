@@ -64,7 +64,7 @@
     
                                         <button title="Haz clic para aceptar solicitud" type="submit">
 
-                                            <img src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="50">
+                                            <img src="{{URL::asset('/img/icons/SR.png')}}" alt="" height="50">
 
                                         </button>
                                             
@@ -79,31 +79,14 @@
 
                                     <button title="Haz clic para rechazar solicitud" type="submit">
 
-                                        <img src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="50">
-
-                                    </button>
-                                        
-                                    
-
-                                </div class="botones_solicitud">
-
-                            </form>
-                                
-                            {{-- <form method="POST" action="{{route('supervisor.esperaSolicitud',[$alumno->alumno_id])}}">
-
-                                @csrf
-                                <div class="botones_solicitud">
-
-                                    <button type="submit">
-
-                                        <img src="{{URL::asset('/img/icons/pending.png')}}" alt="" height="50">
+                                        <img src="{{URL::asset('/img/icons/NR.png')}}" alt="" height="50">
 
                                     </button>
                                         
                                 </div>
 
-                            </form> --}}
-
+                            </form>
+                                
                         </div>
                             
                       

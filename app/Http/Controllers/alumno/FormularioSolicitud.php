@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Alumno;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\SolicitudDeBeca;
 use App\Models\AlumnoSolicitudBeca;
 use App\Models\RespuestaAlumno;
 use App\Models\RespuestaSolicitud;
 use App\Models\CarrerasAlumno;
 use App\Models\CarrerasSupervisor;
+use App\Models\DetallesBeca;
 
 class FormularioSolicitud extends Controller
 {
@@ -21,15 +23,16 @@ class FormularioSolicitud extends Controller
             ->where('envio', 0)  // Solo mostrar las solicitudes no enviadas
             ->orderBy('created_at', 'desc')
             ->first();
-    
+
         $respuestas = collect(); // por defecto respuestas vacías
-    
+
         if ($solicitudBeca && $solicitudBeca->solicitudDeBeca && $solicitudBeca->solicitudDeBeca->respuestasSolicitud) {
             $respuestas = $solicitudBeca->solicitudDeBeca->respuestasSolicitud->pluck('respuesta', 'preguntas_id');
         }
-    
+
         return view('alumno.preguntas', compact('respuestas'));
     }
+
     public function enviarFormulario(Request $request)
     {
         // Validar campos de texto
@@ -40,8 +43,23 @@ class FormularioSolicitud extends Controller
         ]);
 
         $alumnoId = Auth::user()->alumno->id;
+
+        // Verificar si ya existe una solicitud para la convocatoria activa
+        $convocatoriaActiva = DetallesBeca::where('estado_convocatoria', 'activa')->latest()->first();
+        if ($convocatoriaActiva) {
+            $solicitudExistente = DB::table('detallesbeca_alumnosolicitud')
+                ->join('alumno_solicitudbeca', 'detallesbeca_alumnosolicitud.alumno_solicitudbeca_id', '=', 'alumno_solicitudbeca.id')
+                ->where('detallesbeca_alumnosolicitud.detalles_beca_id', $convocatoriaActiva->id)
+                ->where('alumno_solicitudbeca.alumno_id', $alumnoId)
+                ->exists();
+
+            if ($solicitudExistente) {
+                return redirect()->route('alumno.solicitud')->with('error', 'Ya has enviado una solicitud para esta convocatoria.');
+            }
+        }
+
         $estado = 'pendiente';
-        $fechaSolicitud = now(); 
+        $fechaSolicitud = now();
 
         // Respuestas del formulario, incluida la pregunta opcional
         $idsPreguntas = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; // Excluir pregunta 3 por defecto
@@ -70,10 +88,10 @@ class FormularioSolicitud extends Controller
 
         // Buscar la última solicitud del alumno, solo si no está enviada
         $solicitudBeca = AlumnoSolicitudBeca::where('alumno_id', $alumnoId)
-                                             ->where('envio', 0)
-                                             ->orderBy('created_at', 'desc')
-                                             ->first();
-        
+            ->where('envio', 0)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
         if (!$solicitudBeca) {
             // Si no existe una solicitud pendiente, creamos una nueva
             $solicitud = SolicitudDeBeca::create(['fecha_solicitud' => $fechaSolicitud]);
@@ -116,6 +134,14 @@ class FormularioSolicitud extends Controller
                 'respuestas_alumno_id' => $respuestaAlumno->id
             ]);
         }
+
+        // Guardar la relación en la tabla intermedia
+        DB::table('detallesbeca_alumnosolicitud')->insert([
+            'detalles_beca_id' => $convocatoriaActiva->id,
+            'alumno_solicitudbeca_id' => $solicitudBeca->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         return redirect()->route('alumno.solicitud')->with('success', 'Se envió el formulario.');
     }

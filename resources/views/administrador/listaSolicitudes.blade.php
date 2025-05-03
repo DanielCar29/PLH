@@ -66,9 +66,9 @@
                                             </td>
                                             <td>
                                                 @if ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'aceptada')
-                                                <img src="{{ URL::asset('/img/icons/acept.png') }}" alt="" height="40">
+                                                <img src="{{ URL::asset('/img/icons/SM.png') }}" alt="" height="40">
                                                 @elseif ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'rechazada')
-                                                <img src="{{ URL::asset('/img/icons/cancel.png') }}" alt="" height="40">
+                                                <img src="{{ URL::asset('/img/icons/NM.png') }}" alt="" height="40">
                                                 @else
                                                 <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
                                                 @endif

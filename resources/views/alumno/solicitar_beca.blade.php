@@ -39,7 +39,7 @@
                         <h1 class="card-title text-center">Convocatoria de Beca</h1>
                         <p class="card-text text-center">La convocatoria de beca ofrece oportunidades de financiamiento para estudiantes sobresalientes. Si cumples con los requisitos, ¡no dudes en solicitar!</p>
                         <div class="d-grid gap-2">
-                            <a href="{{ url('/alumno/formulario') }}" class="btn btn-primary">Solicitar</a>
+                            <a id="solicitar-beca-btn" href="{{ url('/alumno/formulario') }}" class="btn btn-primary disabled" title="Cargando...">Solicitar</a>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,6 @@
         </div>
     </div>
 
-    
     {{-- CDN'S de Bootstrap Js --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
@@ -56,6 +55,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('{{ route("convocatoria.activa") }}')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const solicitarBecaBtn = document.getElementById('solicitar-beca-btn');
+
+                    if (data.activa) {
+                        if (data.puede_solicitar) {
+                            solicitarBecaBtn.classList.remove('disabled');
+                            solicitarBecaBtn.title = "Haz clic para solicitar la beca.";
+                        } else {
+                            solicitarBecaBtn.classList.add('disabled');
+                            solicitarBecaBtn.title = "Ya has enviado una solicitud para esta convocatoria.";
+                        }
+                    } else {
+                        solicitarBecaBtn.classList.add('disabled');
+                        solicitarBecaBtn.title = "No hay convocatorias activas en este momento.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar la convocatoria:', error);
+                });
+        });
     </script>
 </body>
 </html>

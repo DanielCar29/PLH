@@ -89,11 +89,13 @@
                             </td>
                             <td>
                               @if ($alumno->estado == 'aceptada')
-                                <img title="El estado es aceptado" src="{{URL::asset('/img/icons/acept.png')}}" alt="" height="40">                                
+                                <img title="El estado es aceptado" src="{{URL::asset('/img/icons/SR.png')}}" alt="" height="40">                                
 
-                              @else
-                                <img title="El estado es rechazado" src="{{URL::asset('/img/icons/cancel.png')}}" alt="" height="40">
-                              @endif
+                                @elseif ($alumno-> estado == 'rechazada')
+                                <img title="El estado es rechazado" src="{{URL::asset('/img/icons/NR.png')}}" alt="" height="40">
+                                @else
+                                <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
+                                @endif
                                 
                             </td>
                         </tr>

@@ -15,8 +15,8 @@
               <li class="nav-item">
                   <a class="nav-link active elemento-navegacion-plh" aria-current="page" href="{{ url('/alumno.home') }}">Home</a>
               </li>
-              <li class="nav-item" id="solicitar-beca-item" style="display: none;">
-                  <a class="nav-link elemento-navegacion-plh" href="{{ url('/alumno.solicitar_beca') }}">
+              <li class="nav-item" id="solicitar-beca-item" style="display: block;">
+                  <a class="nav-link elemento-navegacion-plh disabled" href="{{ url('/alumno.solicitar_beca') }}">
                      Solicitar beca
                   </a>
               </li>
@@ -66,10 +66,20 @@
                 return response.json();
             })
             .then(data => {
+                const solicitarBecaItem = document.getElementById('solicitar-beca-item');
+                const solicitarBecaLink = solicitarBecaItem.querySelector('a');
+
                 if (data.activa) {
-                    document.getElementById('solicitar-beca-item').style.display = 'block';
+                    if (data.puede_solicitar) {
+                        solicitarBecaLink.classList.remove('disabled');
+                        solicitarBecaLink.title = "Haz clic para solicitar la beca.";
+                    } else {
+                        solicitarBecaLink.classList.add('disabled');
+                        solicitarBecaLink.title = "Ya has enviado una solicitud para esta convocatoria.";
+                    }
                 } else {
-                    console.warn('No hay una convocatoria activa.');
+                    solicitarBecaLink.classList.add('disabled');
+                    solicitarBecaLink.title = "No hay convocatorias activas en este momento.";
                 }
             })
             .catch(error => {
