@@ -94,7 +94,7 @@
                                 @elseif ($alumno-> estado == 'rechazada')
                                 <img title="El estado es rechazado" src="{{URL::asset('/img/icons/NR.png')}}" alt="" height="40">
                                 @else
-                                <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
+                                <img src="{{ URL::asset('/img/icons/OR.png') }}" alt="" height="40">
                                 @endif
                                 
                             </td>
@@ -147,43 +147,59 @@
     </script>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('enviar_solicitudes');
             const submitButton = document.getElementById('botonEnviar-lista');
+            const modalConfirmButton = document.getElementById('modalConfirmButton');
+            const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
 
             submitButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Evita el envío del formulario inmediatamente
+                modal.show(); // Muestra el modal de confirmación
+            });
 
-                const userConfirmed = confirm('¿Estás seguro que quieres mandar la lista de solicitudes?');
-                if (userConfirmed) {
-                    alert('Has aceptado.');
-                    form.submit(); // Envía el formulario si el usuario confirma
-                } else {
-                    alert('Has cancelado.');
-                }
+            modalConfirmButton.addEventListener('click', function() {
+                form.submit(); // Envía el formulario si el usuario confirma
             });
         });
-
     </script>
-</body>
-{{-- Contenido del Footer --}}
-{{-- <footer>
-    <div class="container pie-plh">
-      <div class="row">
-        <div class="col-lg-4 elemento-pie-plh">
-          <h3>Enlaces</h3>
-          <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-custom">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-body-custom">
+                    ¿Estás seguro que quieres mandar la lista de solicitudes?
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-secondary btn-cancel-custom" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="modalConfirmButton" class="btn btn-primary btn-confirm-custom">Aceptar</button>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4 elemento-pie-plh">
-          <h3>Contacto</h3>
-          <p>Correo electrónico: info@example.com</p>
-          <p>Teléfono: 123-456-7890</p>
-        </div>
+    </div>
+
+    <!-- Modal de bloqueo -->
+    <div class="modal fade" id="bloqueoModal" tabindex="-1" aria-labelledby="bloqueoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-custom">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title" id="bloqueoModalLabel">Confirmar Bloqueo de Beca</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-body-custom">
+                    <form id="bloqueoForm">
+                        <input type="hidden" id="alumnoId" name="alumno_id">
+                        <input type="hidden" id="correo" name="correo">
+                        <input type="hidden" id="nombre" name="nombre">
+                        <input type="hidden" id="apellidoPaternoInput" name="apellido_paterno">
+                        <input type="hidden" id="apellidoMaternoInput" name="apellido_materno">
+                        
+                        <div class="mb-3">
         <div class="col-lg-4 elemento-pie-plh">
           <h3>Derechos de autor</h3>
           <p>(c) 2023 Mi Sitio Web. Todos los derechos reservados.</p>

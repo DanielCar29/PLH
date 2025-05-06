@@ -70,7 +70,7 @@
                                                 @elseif ($alumno->solicitudesBeca->first()->listaSolicitud->estado == 'rechazada')
                                                 <img src="{{ URL::asset('/img/icons/NM.png') }}" alt="" height="40">
                                                 @else
-                                                <img src="{{ URL::asset('/img/icons/pending.png') }}" alt="" height="40">
+                                                <img src="{{ URL::asset('/img/icons/OM.png') }}" alt="" height="40">
                                                 @endif
                                             </td>
                                         </tr>

@@ -200,12 +200,12 @@
             {{-- Modal para bloqueo de beca --}}
             <div class="modal fade" id="bloqueoModal" tabindex="-1" aria-labelledby="bloqueoModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
+                    <div class="modal-content modal-custom">
+                        <div class="modal-header modal-header-custom">
                             <h5 class="modal-title" id="bloqueoModalLabel">Confirmar Bloqueo de Beca</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body modal-body-custom">
                             <form id="bloqueoForm">
                                 <input type="hidden" id="alumnoId" name="alumno_id">
                                 <input type="hidden" id="correo" name="correo">
@@ -224,9 +224,9 @@
                                         <option value="Graduación o baja académica">Graduación o baja académica</option>
                                     </select>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-danger" id="confirmarBloqueo">Confirmar Bloqueo</button>
+                                <div class="modal-footer modal-footer-custom">
+                                    <button type="button" class="btn btn-secondary btn-cancel-custom" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger btn-confirm-custom" id="confirmarBloqueo">Confirmar Bloqueo</button>
                                 </div>
                             </form>
                         </div>
@@ -271,33 +271,26 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const confirmModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
-    const confirmButton = document.getElementById('confirmarEnvio');
+        const confirmModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+        const confirmButton = document.getElementById('confirmarEnvio');
 
-    // Escuchar cuando un botón de notificación es clickeado
-    const notificationButtons = document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#confirmacionModal"]');
-    
-    notificationButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            // Obtener los datos del alumno desde el botón
-            const alumnoId = button.getAttribute('data-alumno-id');
-            const alumnoNombre = button.getAttribute('data-alumno-nombre');
-            const alumnoApellidoPaterno = button.getAttribute('data-alumno-apellido-paterno');
-            const alumnoApellidoMaterno = button.getAttribute('data-alumno-apellido-materno');
+        const notificationButtons = document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#confirmacionModal"]');
+        notificationButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const alumnoId = button.getAttribute('data-alumno-id');
+                const alumnoNombre = button.getAttribute('data-alumno-nombre');
+                const alumnoApellidoPaterno = button.getAttribute('data-alumno-apellido-paterno');
+                const alumnoApellidoMaterno = button.getAttribute('data-alumno-apellido-materno');
 
-            // Actualizar el texto del modal con los datos del alumno
-            const modalBody = document.querySelector('#confirmacionModal .modal-body');
-            modalBody.innerHTML = `¿Estás seguro(a) de que quieres enviar la notificación a ${alumnoNombre} ${alumnoApellidoPaterno} ${alumnoApellidoMaterno}?`;
+                const modalBody = document.querySelector('#confirmacionModal .modal-body');
+                modalBody.innerHTML = `<span style="color: #58151c; font-weight: bold;">¿Estás seguro(a) de que quieres enviar la notificación a ${alumnoNombre} ${alumnoApellidoPaterno} ${alumnoApellidoMaterno}?</span>`;
 
-            // Agregar un evento para confirmar el envío de la notificación
-            confirmButton.onclick = function() {
-                // Aquí se puede hacer el envío del formulario de notificación
-                const form = document.getElementById(`notification-form-${alumnoId}`);
-                form.submit();  // Enviar el formulario correspondiente
-            };
+                confirmButton.onclick = function() {
+                    const form = document.getElementById(`notification-form-${alumnoId}`);
+                    form.submit();
+                };
 
-            // Mostrar el modal
-            confirmModal.show();
+                confirmModal.show();
             });
         });
     });
@@ -310,14 +303,12 @@
 
             document.querySelectorAll('[data-bs-toggle="modal"]').forEach(function(element) {
                 element.addEventListener('click', function() {
-                    // Obtener valores desde los atributos data
                     alumnoId = this.getAttribute('data-alumno-id');
                     correo = this.getAttribute('data-alumno-correo');
                     nombre = this.getAttribute('data-alumno-nombre');
                     apellidoPaterno = this.getAttribute('data-alumno-apellido-paterno');
                     apellidoMaterno = this.getAttribute('data-alumno-apellido-materno');
 
-                    // Asignar valores a los inputs ocultos
                     document.getElementById('alumnoId').value = alumnoId;
                     document.getElementById('correo').value = correo;
                     document.getElementById('nombre').value = nombre;
@@ -334,10 +325,8 @@
                     return;
                 }
 
-                // Generar la URL con los parámetros en la ruta definida en Laravel (GET)
                 const url = `/supervisor.bloquearBeca/${alumnoId}?motivo=${encodeURIComponent(motivo)}&correo=${encodeURIComponent(correo)}&nombre=${encodeURIComponent(nombre)}&apellido_paterno=${encodeURIComponent(apellidoPaterno)}&apellido_materno=${encodeURIComponent(apellidoMaterno)}`;
-
-                window.location.href = url; // Redirigir a la URL con los datos
+                window.location.href = url;
             });
         });
     </script>
@@ -349,7 +338,7 @@
             document.querySelectorAll('.desbloquear-beca').forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
-                    
+
                     alumnoData = {
                         id: this.getAttribute('data-id'),
                         nombre: this.getAttribute('data-nombre'),
@@ -358,21 +347,19 @@
                         correo: this.getAttribute('data-correo')
                     };
 
-                    let modal = new bootstrap.Modal(document.getElementById('confirmDesbloqueoModal'));
+                    const modal = new bootstrap.Modal(document.getElementById('confirmDesbloqueoModal'));
                     modal.show();
                 });
             });
 
             document.getElementById('confirmDesbloqueo').addEventListener('click', function() {
                 if (alumnoData.id) {
-                    let url = `/supervisor.desbloquearBeca/${alumnoData.id}?nombre=${encodeURIComponent(alumnoData.nombre)}&apellidoPaterno=${encodeURIComponent(alumnoData.apellidoPaterno)}&apellidoMaterno=${encodeURIComponent(alumnoData.apellidoMaterno)}&correo=${encodeURIComponent(alumnoData.correo)}`;
-                    
+                    const url = `/supervisor.desbloquearBeca/${alumnoData.id}?nombre=${encodeURIComponent(alumnoData.nombre)}&apellidoPaterno=${encodeURIComponent(alumnoData.apellidoPaterno)}&apellidoMaterno=${encodeURIComponent(alumnoData.apellidoMaterno)}&correo=${encodeURIComponent(alumnoData.correo)}`;
                     window.location.href = url;
                 }
             });
         });
     </script>
-
 
 </body>
 </html>

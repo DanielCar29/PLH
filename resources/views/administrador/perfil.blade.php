@@ -144,22 +144,22 @@
     <!-- Modal para solicitar la contraseña actual -->
     <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Confirmar Contraseña</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content" style="background-color: #4c007d; border: 1px solid #fff; color: #fff; border-radius: 10px;">
+                <div class="modal-header" style="border-bottom: 1px solid #fff;">
+                    <h5 class="modal-title" id="passwordModalLabel" style="color: #fff;">Confirmar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
                 </div>
                 <div class="modal-body">
                     <form id="passwordForm">
                         <div class="mb-3">
-                            <label for="pass_actual" class="form-label">Contraseña Actual</label>
-                            <input type="password" class="form-control" id="pass_actual" name="pass_actual" required>
+                            <label for="pass_actual" class="form-label" style="color: #fff;">Contraseña</label>
+                            <input type="password" class="form-control" id="pass_actual" name="pass_actual" required style="background-color: #fff; color: #000; border: 1px solid #6a008f;">
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmPasswordButton">Confirmar</button>
+                <div class="modal-footer" style="border-top: 1px solid #fff;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #6a008f; color: #fff; border: none;">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmPasswordButton" style="background-color: #58151c; color: #fff; border: none;">Confirmar</button>
                 </div>
             </div>
         </div>
@@ -174,34 +174,63 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
             crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('enviarDatosPerfil');
+            const submitButton = document.getElementById('enviarDatosPerfil-boton');
+            const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+            const confirmPasswordButton = document.getElementById('confirmPasswordButton');
+            const passwordForm = document.getElementById('passwordForm');
+            const passActualInput = document.getElementById('pass_actual');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('enviarDatosPerfil');
-        const submitButton = document.getElementById('enviarDatosPerfil-boton');
-        const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
-        const confirmPasswordButton = document.getElementById('confirmPasswordButton');
-        const passwordForm = document.getElementById('passwordForm');
-        const passActualInput = document.getElementById('pass_actual');
+            submitButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Evita el envío del formulario inmediatamente
+                passwordModal.show();
+            });
 
-        submitButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Evita el envío del formulario inmediatamente
-            passwordModal.show();
+            confirmPasswordButton.addEventListener('click', function() {
+                if (passActualInput.value) {
+                    Swal.fire({
+                        title: '¿Confirmar contraseña?',
+                        text: '¿Estás seguro de que deseas guardar los cambios?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#4c007d',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí, confirmar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const passActualField = document.createElement('input');
+                            passActualField.type = 'hidden';
+                            passActualField.name = 'pass_actual';
+                            passActualField.value = passActualInput.value;
+                            form.appendChild(passActualField);
+                            form.submit(); // Envía el formulario si el usuario confirma
+                        }
+                    });
+                } else {
+                    Swal.fire(
+                        'Error',
+                        'Por favor, ingrese su contraseña actual.',
+                        'error'
+                    );
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                const errorMessage = '{{ session('error') }}';
+                if (errorMessage) {
+                    event.preventDefault();
+                    Swal.fire(
+                        'Error',
+                        errorMessage,
+                        'error'
+                    );
+                }
+            });
         });
-
-        confirmPasswordButton.addEventListener('click', function() {
-            if (passActualInput.value) {
-                const passActualField = document.createElement('input');
-                passActualField.type = 'hidden';
-                passActualField.name = 'pass_actual';
-                passActualField.value = passActualInput.value;
-                form.appendChild(passActualField);
-                form.submit(); // Envía el formulario si el usuario confirma
-            } else {
-                alert('Por favor, ingrese su contraseña actual.');
-            }
-        });
-    });
-</script>
+    </script>
 </body>
 </html>

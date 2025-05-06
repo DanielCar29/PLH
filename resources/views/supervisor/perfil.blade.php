@@ -190,24 +190,24 @@
       </div>
 
     <!-- Modal para solicitar la contraseña actual -->
-    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Confirmar Contraseña</h5>
+    <div class="modal fade" id="confirmarContrasenaModal" tabindex="-1" aria-labelledby="confirmarContrasenaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-custom">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title" id="confirmarContrasenaModalLabel">Confirmar Contraseña</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form id="passwordForm">
+                <div class="modal-body modal-body-custom">
+                    <form id="confirmarContrasenaForm">
                         <div class="mb-3">
-                            <label for="pass_actual" class="form-label">Contraseña Actual</label>
-                            <input type="password" class="form-control" id="pass_actual" name="pass_actual" required>
+                            <label for="contrasenaActual" class="form-label">Contraseña Actual:</label>
+                            <input type="password" class="form-control" id="contrasenaActual" name="contrasena_actual" required>
+                        </div>
+                        <div class="modal-footer modal-footer-custom">
+                            <button type="button" class="btn btn-secondary btn-cancel-custom" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-confirm-custom">Confirmar</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmPasswordButton">Confirmar</button>
                 </div>
             </div>
         </div>
@@ -227,10 +227,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('enviarDatosPerfil');
         const submitButton = document.getElementById('enviarDatosPerfil-boton');
-        const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        const passwordModal = new bootstrap.Modal(document.getElementById('confirmarContrasenaModal'));
         const confirmPasswordButton = document.getElementById('confirmPasswordButton');
-        const passwordForm = document.getElementById('passwordForm');
-        const passActualInput = document.getElementById('pass_actual');
+        const passwordForm = document.getElementById('confirmarContrasenaForm');
+        const passActualInput = document.getElementById('contrasenaActual');
 
         submitButton.addEventListener('click', function(event) {
             event.preventDefault(); // Evita el envío del formulario inmediatamente

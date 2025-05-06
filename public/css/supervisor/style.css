@@ -702,8 +702,9 @@ div h5{
     bottom: 120%; /* Posicionar el mensaje encima del botón */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #58151c;
-    color: #fff;
+    background-color: #58151c; /* Fondo del tooltip */
+    color: #fff; /* Texto blanco */
+    font-family: fuente_, Arial, Helvetica, sans-serif; /* Fuente personalizada */
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 0.9rem;
@@ -720,8 +721,8 @@ div h5{
 
 /* Mensajes de confirmación */
 .confirmation-message {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(88, 21, 28, 1); /* Menos transparencia */
+    font-family: fuente_, Arial, Helvetica, sans-serif;
+    background-color: rgba(88, 21, 28, 1); /* Fondo oscuro */
     border: 3px solid #fff;
     border-radius: 10px;
     padding: 20px; /* Más espacio */
@@ -749,4 +750,65 @@ div h5{
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #58151c; /* Fondo principal */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #fff;
+    font-family: fuente_, Arial, Helvetica, sans-serif; /* Fuente personalizada */
+}
+
+.confirmation-message button:hover {
+    background-color: #fff; /* Fondo blanco al pasar el mouse */
+    color: #58151c; /* Texto del color principal */
+}
+
+/* Estilos personalizados para el modal */
+.modal-custom {
+    background-color: rgba(88, 21, 28, 0.95); /* Fondo oscuro con transparencia */
+    border: 2px solid #fff; /* Borde blanco */
+    border-radius: 10px;
+    color: #fff; /* Texto blanco */
+}
+
+.modal-header-custom {
+    background-color: #58151c; /* Color principal del sistema */
+    border-bottom: 2px solid #fff;
+    color: #fff; /* Texto blanco */
+    font-weight: bold; /* Hace que el texto sea más legible */
+    text-align: center; /* Centra el texto */
+}
+
+.modal-body-custom {
+    background-color: rgba(88, 21, 28, 0.85); /* Fondo más claro */
+    color: #fff; /* Texto blanco */
+    font-family: fuente_, Arial, Helvetica, sans-serif; /* Fuente personalizada */
+}
+
+.modal-footer-custom {
+    background-color: #58151c; /* Color principal */
+    border-top: 2px solid #fff;
+}
+
+/* Botones personalizados */
+.btn-cancel-custom {
+    background-color: #aaa; /* Color gris para cancelar */
+    color: #000; /* Texto negro */
+    border: 1px solid #fff;
+    font-family: fuente_, Arial, Helvetica, sans-serif; /* Fuente personalizada */
+}
+
+.btn-cancel-custom:hover {
+    background-color: #fff; /* Fondo blanco al pasar el mouse */
+    color: #000; /* Texto negro */
+}
+
+.btn-confirm-custom {
+    background-color: #58151c; /* Color principal */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #fff;
+    font-family: fuente_, Arial, Helvetica, sans-serif; /* Fuente personalizada */
+}
+
+.btn-confirm-custom:hover {
+    background-color: #fff; /* Fondo blanco al pasar el mouse */
+    color: #58151c; /* Texto del color principal */
 }

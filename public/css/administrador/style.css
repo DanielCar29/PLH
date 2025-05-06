@@ -220,13 +220,47 @@ div.menu-navegacion nav{
     margin-top: 2.5%;
     max-width: 70%;
     padding: 3%;
-    border:1px #fff solid;
+    border: 1px #fff solid;
     border-radius: 10px;
-    background-color: rgb(76, 0, 125,.4);
+    background-color: rgb(76, 0, 125, .4);
+    color: #fff; /* Texto blanco */
 }
 
 .habilitar-convocatoria:hover{
-    background-color: rgb(76, 0, 125,.6);
+    background-color: rgb(76, 0, 125, .6);
+}
+
+.input-carrera .nombre-carrera-input{
+    background-color: #4c007d; /* Fondo morado oscuro */
+    color: #fff; /* Texto blanco */
+}
+
+.input-carrera .input-numero-carrera{
+    background-color: #fff; /* Fondo blanco */
+    color: #000; /* Texto negro */
+    border: 1px solid #4c007d; /* Borde morado */
+}
+
+.limite_solicitudes input,
+.fechas_convocatoria input,
+.uso_beca input{
+    background-color: #fff; /* Fondo blanco */
+    color: #000; /* Texto negro */
+    border: 1px solid #4c007d; /* Borde morado */
+}
+
+.boton-envio button{
+    background-color: #4c007d; /* Fondo morado */
+    color: #fff; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-envio button:hover{
+    background-color: #6a008f; /* Fondo morado más claro */
+    color: #fff; /* Texto blanco */
 }
 
 .formulario-convocatoria{
